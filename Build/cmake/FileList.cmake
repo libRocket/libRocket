@@ -15,6 +15,7 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNodeSelectorEmpty.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetParser.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerTemplate.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerTemplateData.h
     ${PROJECT_SOURCE_DIR}/Source/Core/PropertyShorthandDefinition.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNodeSelectorNthOfType.h
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementTextDefault.h
@@ -191,6 +192,7 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/FontEffect.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/FileInterfaceDefault.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerTemplate.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerTemplateData.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/ConvolutionFilter.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DecoratorTiled.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.cpp
