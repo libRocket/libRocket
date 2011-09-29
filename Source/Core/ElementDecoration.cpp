@@ -145,7 +145,7 @@ void ElementDecoration::UpdateActiveDecorators()
 				{
 					// Insert the new index into the list of active decorators, ordered by z-index.
 					float z_index = decorators[indices[j].second].decorator->GetZIndex();
-					std::vector< int >::iterator insert_iterator = active_decorators.begin();
+					Container::vector< int >::Type::iterator insert_iterator = active_decorators.begin();
 					while (insert_iterator != active_decorators.end() &&
 						   z_index > decorators[(*insert_iterator)].decorator->GetZIndex())
 						++insert_iterator;

@@ -71,8 +71,8 @@ private:
 
 	bool release_stream;
 
-	typedef std::vector< FontFaceHandle* > HandleList;
-	typedef std::map< int, HandleList > HandleMap;
+	typedef Container::vector< FontFaceHandle* >::Type HandleList;
+	typedef Container::map< int, HandleList >::Type HandleMap;
 	HandleMap handles;
 };
 

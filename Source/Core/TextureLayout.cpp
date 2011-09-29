@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "TextureLayout.h"
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 #include "TextureLayoutRectangle.h"
 #include "TextureLayoutTexture.h"
 
@@ -90,7 +90,7 @@ int TextureLayout::GetNumTextures() const
 bool TextureLayout::GenerateLayout(int max_texture_dimensions)
 {
 	// Sort the rectangles by height.
-	std::sort(rectangles.begin(), rectangles.end(), RectangleSort());
+	Rocket::Core::Container::sort(rectangles.begin(), rectangles.end(), RectangleSort());
 
 	int num_placed_rectangles = 0;
 	while (num_placed_rectangles != GetNumRectangles())

@@ -31,7 +31,7 @@
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/EventListener.h>
 #include <Rocket/Controls/SelectOption.h>
-#include <vector>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Controls {
@@ -95,7 +95,7 @@ public:
 	virtual void ProcessEvent(Core::Event& event);
 
 private:
-	typedef std::vector< SelectOption > OptionList;
+	typedef Rocket::Core::Container::vector< SelectOption >::Type OptionList;
 
 	// Shows or hides the selection box.
 	void ShowSelectBox(bool show);

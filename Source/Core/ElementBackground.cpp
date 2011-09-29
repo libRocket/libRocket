@@ -87,8 +87,8 @@ void ElementBackground::GenerateBackground()
 			num_boxes++;
 	}
 
-	std::vector< Vertex >& vertices = geometry.GetVertices();
-	std::vector< int >& indices = geometry.GetIndices();
+	Container::vector< Vertex >::Type& vertices = geometry.GetVertices();
+	Container::vector< int >::Type& indices = geometry.GetIndices();
 
 	int index_offset = 0;
 	vertices.resize(4 * num_boxes);

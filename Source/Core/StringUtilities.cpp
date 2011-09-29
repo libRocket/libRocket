@@ -156,7 +156,7 @@ static int __utf8_forbidden(unsigned char octet)
 
 
 // Converts a character array in UTF-8 encoding to a vector of words.
-bool StringUtilities::UTF8toUCS2(const String& input, std::vector< word >& output)
+bool StringUtilities::UTF8toUCS2(const String& input, Container::vector< word >::Type& output)
 {
 	if (input.Empty())
 		return true;
@@ -263,7 +263,7 @@ bool StringUtilities::UTF8toUCS2(const String& input, std::vector< word >& outpu
 }
 
 // Converts a vector of words in UCS-2 encoding a character array in UTF-8 encoding.
-bool StringUtilities::UCS2toUTF8(const std::vector< word >& input, String& output)
+bool StringUtilities::UCS2toUTF8(const Container::vector< word >::Type& input, String& output)
 {
 	return UCS2toUTF8(&input[0], input.size(), output);
 }

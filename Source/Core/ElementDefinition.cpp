@@ -59,7 +59,7 @@ ElementDefinition::~ElementDefinition()
 }
 
 // Initialises the element definition from a list of style sheet nodes.
-void ElementDefinition::Initialise(const std::vector< const StyleSheetNode* >& style_sheet_nodes, const PseudoClassList& volatile_pseudo_classes, bool _structurally_volatile)
+void ElementDefinition::Initialise(const Container::vector< const StyleSheetNode* >::Type& style_sheet_nodes, const PseudoClassList& volatile_pseudo_classes, bool _structurally_volatile)
 {
 	// Set the volatile structure flag.
 	structurally_volatile = _structurally_volatile;

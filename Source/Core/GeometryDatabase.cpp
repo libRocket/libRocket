@@ -32,7 +32,7 @@
 namespace Rocket {
 namespace Core {
 
-typedef std::set< Geometry* > GeometrySet;
+typedef Container::set< Geometry* >::Type GeometrySet;
 GeometrySet geometries;
 
 // Adds a geometry to the database.

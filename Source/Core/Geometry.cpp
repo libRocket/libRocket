@@ -146,13 +146,13 @@ void Geometry::Render(const Vector2f& translation)
 }
 
 // Returns the geometry's vertices. If these are written to, Release() should be called to force a recompile.
-std::vector< Vertex >& Geometry::GetVertices()
+Container::vector< Vertex >::Type& Geometry::GetVertices()
 {
 	return vertices;
 }
 
 // Returns the geometry's indices. If these are written to, Release() should be called to force a recompile.
-std::vector< int >& Geometry::GetIndices()
+Container::vector< int >::Type& Geometry::GetIndices()
 {
 	return indices;
 }

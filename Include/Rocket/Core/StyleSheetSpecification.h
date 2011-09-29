@@ -106,7 +106,7 @@ private:
 	void RegisterDefaultProperties();
 
 	// Parsers used by all property definitions.
-	typedef std::map< String, PropertyParser* > ParserMap;
+	typedef Container::map< String, PropertyParser* >::Type ParserMap;
 	ParserMap parsers;
 
 	// The properties defined in the style sheet specification.

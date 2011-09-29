@@ -176,9 +176,9 @@ private:
 	// overflow occured, false if it did.
 	bool CatchVerticalOverflow(float cursor = -1);
 
-	typedef std::vector< AbsoluteElement > AbsoluteElementList;
-	typedef std::vector< LayoutBlockBox* > BlockBoxList;
-	typedef std::vector< LayoutLineBox* > LineBoxList;
+	typedef Container::vector< AbsoluteElement >::Type AbsoluteElementList;
+	typedef Container::vector< LayoutBlockBox* >::Type BlockBoxList;
+	typedef Container::vector< LayoutLineBox* >::Type LineBoxList;
 
 	// The object managing our space, as occupied by floating elements of this box and our ancestors.
 	LayoutBlockBoxSpace* space;

@@ -34,7 +34,7 @@
 namespace Rocket {
 namespace Core {
 
-typedef std::map< String, XMLNodeHandler* > NodeHandlers;
+typedef Container::map< String, XMLNodeHandler* >::Type NodeHandlers;
 static NodeHandlers node_handlers;
 static XMLNodeHandler* default_node_handler = NULL;
 

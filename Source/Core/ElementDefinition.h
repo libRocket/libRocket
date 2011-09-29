@@ -30,8 +30,7 @@
 
 #include <Rocket/Core/Dictionary.h>
 #include <Rocket/Core/ReferenceCountable.h>
-#include <map>
-#include <set>
+#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Core/FontEffect.h>
 #include "StyleSheetNode.h"
 
@@ -45,12 +44,12 @@ class FontEffect;
 // PseudoClassPropertyMap defined in StyleSheetNode.h ... bit clumsy). Here the properties are stored as a list
 // of definitions against each property name in specificity-order, along with the pseudo-class requirements for each
 // one. This makes it much more straight-forward to query at run-time.
-typedef std::pair< StringList, Property > PseudoClassProperty;
-typedef std::vector< PseudoClassProperty > PseudoClassPropertyList;
-typedef std::map< String, PseudoClassPropertyList > PseudoClassPropertyDictionary;
+typedef Container::pair< StringList, Property >::Type PseudoClassProperty;
+typedef Container::vector< PseudoClassProperty >::Type PseudoClassPropertyList;
+typedef Container::map< String, PseudoClassPropertyList >::Type PseudoClassPropertyDictionary;
 
-typedef std::map< String, Decorator* > DecoratorMap;
-typedef std::map< StringList, DecoratorMap > PseudoClassDecoratorMap;
+typedef Container::map< String, Decorator* >::Type DecoratorMap;
+typedef Container::map< StringList, DecoratorMap >::Type PseudoClassDecoratorMap;
 
 /**
 	@author Peter Curry
@@ -70,7 +69,7 @@ public:
 	virtual ~ElementDefinition();
 
 	/// Initialises the element definition from a list of style sheet nodes.
-	void Initialise(const std::vector< const StyleSheetNode* >& style_sheet_nodes, const PseudoClassList& volatile_pseudo_classes, bool structurally_volatile);
+	void Initialise(const Container::vector< const StyleSheetNode* >::Type& style_sheet_nodes, const PseudoClassList& volatile_pseudo_classes, bool structurally_volatile);
 
 	/// Returns a specific property from the element definition's base properties.
 	/// @param[in] name The name of the property to return.
@@ -127,13 +126,13 @@ protected:
 	void OnReferenceDeactivate();
 
 private:
-	typedef std::pair< String, PropertyDictionary > PropertyGroup;
-	typedef std::map< String, PropertyGroup > PropertyGroupMap;
+	typedef Container::pair< String, PropertyDictionary >::Type PropertyGroup;
+	typedef Container::map< String, PropertyGroup >::Type PropertyGroupMap;
 
-	typedef std::vector< std::pair< StringList, int > > PseudoClassFontEffectIndex;
-	typedef std::map< String, PseudoClassFontEffectIndex > FontEffectIndex;
+	typedef Container::vector< Container::pair< StringList, int >::Type >::Type PseudoClassFontEffectIndex;
+	typedef Container::map< String, PseudoClassFontEffectIndex >::Type FontEffectIndex;
 
-	typedef std::map< String, PseudoClassVolatility > PseudoClassVolatilityMap;
+	typedef Container::map< String, PseudoClassVolatility >::Type PseudoClassVolatilityMap;
 
 	// Finds all propery declarations for a group.
 	void BuildPropertyGroup(PropertyGroupMap& groups, const String& group_type, const PropertyDictionary& element_properties, const PropertyGroupMap* default_properties = NULL);

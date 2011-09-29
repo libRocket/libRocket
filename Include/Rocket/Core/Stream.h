@@ -32,7 +32,6 @@
 #include <Rocket/Core/ReferenceCountable.h>
 #include <Rocket/Core/Types.h>
 #include <Rocket/Core/URL.h>
-#include <list>
 
 namespace Rocket {
 namespace Core {

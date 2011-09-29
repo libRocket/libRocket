@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "StyleSheetParser.h"
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 #include "StyleSheetFactory.h"
 #include "StyleSheetNode.h"
 #include <Rocket/Core/Log.h>
@@ -242,9 +242,9 @@ bool StyleSheetParser::ImportProperties(StyleSheetNode* node, const String& name
 
 		// Sort the classes and pseudo-classes so they are consistent across equivalent declarations that shuffle the
 		// order around.
-		std::sort(classes.begin(), classes.end());
-		std::sort(pseudo_classes.begin(), pseudo_classes.end());
-		std::sort(structural_pseudo_classes.begin(), structural_pseudo_classes.end());
+		Rocket::Core::Container::sort(classes.begin(), classes.end());
+		Rocket::Core::Container::sort(pseudo_classes.begin(), pseudo_classes.end());
+		Rocket::Core::Container::sort(structural_pseudo_classes.begin(), structural_pseudo_classes.end());
 
 		// Get the named child node.
 		leaf_node = leaf_node->GetChildNode(tag, StyleSheetNode::TAG);

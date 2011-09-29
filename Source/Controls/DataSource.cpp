@@ -29,7 +29,7 @@
 #include <Rocket/Controls/DataSourceListener.h>
 #include <Rocket/Core/StringUtilities.h>
 #include <Rocket/Core/Log.h>
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Controls {
@@ -38,7 +38,7 @@ const Rocket::Core::String DataSource::CHILD_SOURCE("#child_data_source");
 const Rocket::Core::String DataSource::DEPTH("#depth");
 const Rocket::Core::String DataSource::NUM_CHILDREN("#num_children");
 
-typedef std::map< Rocket::Core::String, DataSource* > DataSourceMap;
+typedef Core::Container::map< Rocket::Core::String, DataSource* >::Type DataSourceMap;
 static DataSourceMap data_sources;
 
 DataSource::DataSource(const Rocket::Core::String& _name)

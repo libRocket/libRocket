@@ -54,7 +54,7 @@ WString::WString(WStringBase::size_type count, word ucs2_char) : WStringBase(cou
 // Constructs a string from a sequence of UTF-8 encoded characters.
 WString::WString(const char* utf8_string)
 {
-	std::vector< word > ucs2_string;
+	Container::vector< word >::Type ucs2_string;
 	StringUtilities::UTF8toUCS2(utf8_string, ucs2_string);
 
 	if (ucs2_string.size() > 1)
@@ -64,7 +64,7 @@ WString::WString(const char* utf8_string)
 // Constructs a string from a sequence of UTF-8 encoded characters.
 	WString::WString(const char* utf8_string_begin, const char* utf8_string_end)
 {
-	std::vector< word > ucs2_string;
+	Container::vector< word >::Type ucs2_string;
 	StringUtilities::UTF8toUCS2(String(utf8_string_begin, utf8_string_end), ucs2_string);
 
 	if (ucs2_string.size() > 1)
@@ -74,7 +74,7 @@ WString::WString(const char* utf8_string)
 // Constructs a string from a sequence of UTF-8 encoded characters.
 	WString::WString(const String& utf8_string)
 {
-	std::vector< word > ucs2_string;
+	Container::vector< word >::Type ucs2_string;
 	StringUtilities::UTF8toUCS2(utf8_string, ucs2_string);
 
 	if (ucs2_string.size() > 1)
@@ -121,7 +121,7 @@ WString& WString::operator=(const word* string)
 // Converts a UTF-8 encoded string into UCS-2 and assigns it to this string.
 WString& WString::operator=(const char* string)
 {
-	std::vector< word > ucs2_string;
+	Container::vector< word >::Type ucs2_string;
 	StringUtilities::UTF8toUCS2(string, ucs2_string);
 
 	if (ucs2_string.size() > 1)

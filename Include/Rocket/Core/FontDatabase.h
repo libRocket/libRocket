@@ -105,7 +105,7 @@ private:
 	// Loads a FreeType face from memory.
 	void* LoadFace(const byte* data, int data_length, const String& source, bool local_data);
 
-	typedef std::map< String, FontFamily*, StringUtilities::StringComparei > FontFamilyMap;
+	typedef Container::map< String, FontFamily*, StringUtilities::StringComparei >::Type FontFamilyMap;
 	FontFamilyMap font_families;
 
 	static FontDatabase* instance;

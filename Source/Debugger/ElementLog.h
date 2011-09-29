@@ -30,7 +30,7 @@
 
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/EventListener.h>
-#include <deque>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Debugger {
@@ -64,7 +64,7 @@ private:
 		unsigned int index;
 		Core::String message;
 	};
-	typedef std::deque< LogMessage > LogMessageList;
+	typedef Rocket::Core::Container::deque< LogMessage >::Type LogMessageList;
 
 	struct LogType
 	{

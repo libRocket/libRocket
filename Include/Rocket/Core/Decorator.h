@@ -29,7 +29,7 @@
 #define ROCKETCOREDECORATOR_H
 
 #include <Rocket/Core/ReferenceCountable.h>
-#include <vector>
+#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/Texture.h>
 #include <Rocket/Core/Types.h>
@@ -116,7 +116,7 @@ private:
 	int specificity;
 
 	// Stores a list of textures in use by this decorator.
-	std::vector< Texture > textures;
+	Container::vector< Texture >::Type textures;
 
 	friend class Factory;
 };

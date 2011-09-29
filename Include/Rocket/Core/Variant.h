@@ -31,7 +31,6 @@
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/Types.h>
 #include <Rocket/Core/TypeConverter.h>
-#include <list>
 
 namespace Rocket {
 namespace Core {

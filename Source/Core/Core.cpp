@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include <Rocket/Core.h>
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 #include "FileInterfaceDefault.h"
 #include "GeometryDatabase.h"
 #include "PluginRegistry.h"
@@ -49,7 +49,7 @@ static FileInterfaceDefault file_interface_default;
 #endif
 static bool initialised = false;
 
-typedef std::map< String, Context* > ContextMap;
+typedef Container::map< String, Context* >::Type ContextMap;
 static ContextMap contexts;
 
 #ifndef ROCKET_VERSION

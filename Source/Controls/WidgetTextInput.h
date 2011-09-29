@@ -189,7 +189,7 @@ private:
 	Rocket::Core::Vector2f internal_dimensions;
 	Rocket::Core::Vector2f scroll_offset;
 
-	typedef std::vector< Line > LineList;
+	typedef Rocket::Core::Container::vector< Line >::Type LineList;
 	LineList lines;
 
 	int max_length;

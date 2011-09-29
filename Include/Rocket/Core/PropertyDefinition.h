@@ -82,7 +82,7 @@ private:
 		ParameterMap parameters;
 	};
 
-	std::vector< ParserState > parsers;
+	Container::vector< ParserState >::Type parsers;
 };
 
 }

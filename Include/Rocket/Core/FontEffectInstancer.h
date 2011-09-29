@@ -89,7 +89,7 @@ private:
 	PropertySpecification properties;
 
 	// Properties that define the geometry.
-	std::set< String > volatile_properties;
+	Container::set< String >::Type volatile_properties;
 
 	friend class Factory;
 };
