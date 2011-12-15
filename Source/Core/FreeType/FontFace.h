@@ -25,55 +25,61 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontFamily.h"
-#include "FontFace.h"
+#ifndef ROCKETCOREFONTFACE_H
+#define ROCKETCOREFONTFACE_H
+
+#include <Rocket/Core/Font.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 namespace Rocket {
 namespace Core {
 
-FontFamily::FontFamily(const String& name) : name(name)
+class FontFaceHandle;
+
+namespace FreeType {
+
+/**
+	@author Peter Curry
+ */
+
+class FontFace
 {
-}
+public:
+	FontFace(FT_Face face, Font::Style style, Font::Weight weight, bool release_stream);
+	~FontFace();
 
-FontFamily::~FontFamily()
-{
-	for (size_t i = 0; i < font_faces.size(); ++i)
-		delete font_faces[i];
-}
+	/// Returns the style of the font face.
+	/// @return The font face's style.
+	Font::Style GetStyle() const;
+	/// Returns the weight of the font face.
+	/// @return The font face's weight.
+	Font::Weight GetWeight() const;
 
-// Adds a new face to the family.
-bool FontFamily::AddFace(FT_Face ft_face, Font::Style style, Font::Weight weight, bool release_stream)
-{
-	FontFace* face = new FontFace(ft_face, style, weight, release_stream);
-	font_faces.push_back(face);
+	/// Returns a handle for positioning and rendering this face at the given size.
+	/// @param[in] charset The set of characters in the handle, as a comma-separated list of unicode ranges.
+	/// @param[in] size The size of the desired handle, in points.
+	/// @return The shared font handle.
+	FontFaceHandle* GetHandle(const String& charset, int size);
 
-	return true;
-}
+	/// Releases the face's FreeType face structure. This will mean handles for new sizes cannot be constructed,
+	/// but existing ones can still be fetched.
+	void ReleaseFace();
 
-// Returns a handle to the most appropriate font in the family, at the correct size.
-FontFaceHandle* FontFamily::GetFaceHandle(const String& charset, Font::Style style, Font::Weight weight, int size)
-{
-	// Search for a face of the same style, and match the weight as closely as we can.
-	FontFace* matching_face = NULL;
-	for (size_t i = 0; i < font_faces.size(); i++)
-	{
-		// If we've found a face matching the style, then ... great! We'll match it regardless of the weight. However,
-		// if it's a perfect match, then we'll stop looking altogether.
-		if (font_faces[i]->GetStyle() == style)
-		{
-			matching_face = font_faces[i];
+private:
+	FT_Face face;
+	Font::Style style;
+	Font::Weight weight;
 
-			if (font_faces[i]->GetWeight() == weight)
-				break;
-		}
-	}
+	bool release_stream;
 
-	if (matching_face == NULL)
-		return NULL;
-
-	return matching_face->GetHandle(charset, size);
-}
+	typedef std::vector< FontFaceHandle* > HandleList;
+	typedef std::map< int, HandleList > HandleMap;
+	HandleMap handles;
+};
 
 }
 }
+}
+
+#endif
