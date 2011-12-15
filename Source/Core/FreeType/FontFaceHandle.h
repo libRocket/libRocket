@@ -25,30 +25,29 @@
  *
  */
 
-#ifndef ROCKETCOREFONTFACEHANDLE_H
-#define ROCKETCOREFONTFACEHANDLE_H
+#ifndef ROCKETCOREFREETYPEFONTFACEHANDLE_H
+#define ROCKETCOREFREETYPEFONTFACEHANDLE_H
 
-#include <Rocket/Core/ReferenceCountable.h>
-#include "UnicodeRange.h"
+#include <Rocket/Core/UnicodeRange.h>
 #include <Rocket/Core/Font.h>
 #include <Rocket/Core/FontEffect.h>
 #include <Rocket/Core/FontGlyph.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/Texture.h>
+#include <Rocket/Core/FontFaceHandle.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 namespace Rocket {
 namespace Core {
-
-class FontFaceLayer;
+namespace FreeType {
 
 /**
 	@author Peter Curry
  */
 
-class FontFaceHandle : public ReferenceCountable
+class FontFaceHandle : public Rocket::Core::FontFaceHandle
 {
 public:
 	FontFaceHandle();
@@ -60,28 +59,6 @@ public:
 	/// @param[in] size The size, in points, of the face this handle should render at.
 	/// @return True if the handle initialised successfully and is ready for rendering, false if an error occured.
 	bool Initialise(FT_Face ft_face, const String& charset, int size);
-
-	/// Returns the average advance of all glyphs in this font face.
-	/// @return An approximate width of the characters in this font face.
-	int GetCharacterWidth() const;
-
-	/// Returns the point size of this font face.
-	/// @return The face's point size.
-	int GetSize() const;
-	/// Returns the pixel height of a lower-case x in this font face.
-	/// @return The height of a lower-case x.
-	int GetXHeight() const;
-	/// Returns the default height between this font face's baselines.
-	/// @return The default line height.
-	int GetLineHeight() const;
-
-	/// Returns the font's baseline, as a pixel offset from the bottom of the font.
-	/// @return The font's baseline.
-	int GetBaseline() const;
-
-	/// Returns the font's glyphs.
-	/// @return The font's glyphs.
-	const FontGlyphMap& GetGlyphs() const;
 
 	/// Returns the width a string will take up if rendered with this handle.
 	/// @param[in] string The string to measure.
@@ -160,21 +137,9 @@ private:
 	// required.
 	LayerConfigurationList layer_configurations;
 
-	// The average advance (in pixels) of all of this face's glyphs.
-	int average_advance;
-
-	int size;
-	int x_height;
-	int line_height;
-	int baseline;
-
-	float underline_position;
-	float underline_thickness;
-
-	String raw_charset;
-	UnicodeRangeList charset;
 };
 
+}
 }
 }
 

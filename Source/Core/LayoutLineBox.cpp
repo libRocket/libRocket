@@ -30,7 +30,7 @@
 #include "LayoutBlockBox.h"
 #include "LayoutEngine.h"
 #include "LayoutInlineBoxText.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 #include <Rocket/Core/Property.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/ElementText.h>

@@ -35,7 +35,7 @@
 #include "ElementStyle.h"
 #include "EventDispatcher.h"
 #include "ElementDecoration.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 #include "LayoutEngine.h"
 #include "PluginRegistry.h"
 #include "StyleSheetParser.h"

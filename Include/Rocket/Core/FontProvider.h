@@ -25,50 +25,37 @@
  *
  */
 
-#ifndef ROCKETCOREFONTFAMILY_H
-#define ROCKETCOREFONTFAMILY_H
+#ifndef ROCKETCOREFONTPROVIDER_H
+#define ROCKETCOREFONTPROVIDER_H
 
+#include <Rocket/Core/StringUtilities.h>
+#include <Rocket/Core/Header.h>
 #include <Rocket/Core/Font.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
 
 namespace Rocket {
 namespace Core {
 
-class FontFace;
-class FontFaceHandle;
-
 /**
+	The font database contains all font families currently in use by Rocket.
+
 	@author Peter Curry
  */
 
-class FontFamily
+class ROCKETCORE_API FontProvider
 {
 public:
-	FontFamily(const String& name);
-	~FontFamily();
 
-	/// Adds a new face to the family.
-	/// @param[in] ft_face The previously loaded FreeType face.
-	/// @param[in] style The style of the new face.
-	/// @param[in] weight The weight of the new face.
-	/// @param[in] release_stream True if the application must free the face's memory stream.
-	/// @return True if the face was loaded successfully, false otherwise.
-	bool AddFace(FT_Face ft_face, Font::Style style, Font::Weight weight, bool release_stream);
-
-	/// Returns a handle to the most appropriate font in the family, at the correct size.
-	/// @param[in] charset The set of characters in the handle, as a comma-separated list of unicode ranges.
-	/// @param[in] style The style of the desired handle.
-	/// @param[in] weight The weight of the desired handle.
+	/// Returns a handle to a font face that can be used to position and render text. This will return the closest match
+	/// it can find, but in the event a font family is requested that does not exist, NULL will be returned instead of a
+	/// valid handle.
+	/// @param[in] family The family of the desired font handle.
+	/// @param[in] charset The set of characters required in the font face, as a comma-separated list of unicode ranges.
+	/// @param[in] style The style of the desired font handle.
+	/// @param[in] weight The weight of the desired font handle.
 	/// @param[in] size The size of desired handle, in points.
 	/// @return A valid handle if a matching (or closely matching) font face was found, NULL otherwise.
-	FontFaceHandle* GetFaceHandle(const String& charset, Font::Style style, Font::Weight weight, int size);
+	virtual FontFaceHandle* GetFontFaceHandle(const String& family, const String& charset, Font::Style style, Font::Weight weight, int size) = 0;
 
-private:
-	String name;
-
-	typedef std::vector< FontFace* > FontFaceList;
-	FontFaceList font_faces;
 };
 
 }
