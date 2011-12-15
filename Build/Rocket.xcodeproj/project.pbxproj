@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,7 +44,6 @@
 		6E8B1CF6123AB0CC00C451C8 /* XMLNodeHandlerTabSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C6E123AB0CC00C451C8 /* XMLNodeHandlerTabSet.cpp */; };
 		6E8B1CF8123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E8B1C70123AB0CC00C451C8 /* XMLNodeHandlerTextArea.cpp */; };
 		6E8B1DC3123AB7A500C451C8 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DC2123AB7A500C451C8 /* libfreetype.a */; };
-		6E8B1DE1123ABCA200C451C8 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DC2123AB7A500C451C8 /* libfreetype.a */; };
 		6E8B1DE2123ABCA200C451C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DD1123ABA3A00C451C8 /* libz.dylib */; };
 		6E8B1DE3123ABCC200C451C8 /* BaseXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9D09261209823B00099E1A /* BaseXMLParser.cpp */; };
 		6E8B1DE4123ABCC200C451C8 /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28B78120580DA000FAF17 /* Box.cpp */; };
@@ -102,10 +101,7 @@
 		6E8B1E18123ABCC200C451C8 /* FontEffectOutlineInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5412058A45000FAF17 /* FontEffectOutlineInstancer.cpp */; };
 		6E8B1E19123ABCC200C451C8 /* FontEffectShadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5612058A45000FAF17 /* FontEffectShadow.cpp */; };
 		6E8B1E1A123ABCC200C451C8 /* FontEffectShadowInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5812058A45000FAF17 /* FontEffectShadowInstancer.cpp */; };
-		6E8B1E1B123ABCC200C451C8 /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5A12058A45000FAF17 /* FontFace.cpp */; };
-		6E8B1E1C123ABCC200C451C8 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5C12058A45000FAF17 /* FontFaceHandle.cpp */; };
 		6E8B1E1D123ABCC200C451C8 /* FontFaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5E12058A45000FAF17 /* FontFaceLayer.cpp */; };
-		6E8B1E1E123ABCC200C451C8 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6012058A45000FAF17 /* FontFamily.cpp */; };
 		6E8B1E1F123ABCC200C451C8 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6212058A45000FAF17 /* Geometry.cpp */; };
 		6E8B1E20123ABCC200C451C8 /* GeometryDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6312058A45000FAF17 /* GeometryDatabase.cpp */; };
 		6E8B1E21123ABCC200C451C8 /* GeometryUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6512058A45000FAF17 /* GeometryUtilities.cpp */; };
@@ -291,10 +287,7 @@
 		6EF28E8012058A45000FAF17 /* FontEffectOutlineInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5412058A45000FAF17 /* FontEffectOutlineInstancer.cpp */; };
 		6EF28E8212058A45000FAF17 /* FontEffectShadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5612058A45000FAF17 /* FontEffectShadow.cpp */; };
 		6EF28E8412058A45000FAF17 /* FontEffectShadowInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5812058A45000FAF17 /* FontEffectShadowInstancer.cpp */; };
-		6EF28E8612058A45000FAF17 /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5A12058A45000FAF17 /* FontFace.cpp */; };
-		6EF28E8812058A45000FAF17 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5C12058A45000FAF17 /* FontFaceHandle.cpp */; };
 		6EF28E8A12058A45000FAF17 /* FontFaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D5E12058A45000FAF17 /* FontFaceLayer.cpp */; };
-		6EF28E8C12058A45000FAF17 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6012058A45000FAF17 /* FontFamily.cpp */; };
 		6EF28E8E12058A45000FAF17 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6212058A45000FAF17 /* Geometry.cpp */; };
 		6EF28E8F12058A45000FAF17 /* GeometryDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6312058A45000FAF17 /* GeometryDatabase.cpp */; };
 		6EF28E9112058A45000FAF17 /* GeometryUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EF28D6512058A45000FAF17 /* GeometryUtilities.cpp */; };
@@ -379,15 +372,6 @@
 		6EF3BB9012481D140014316D /* ElementTabSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BB6A12481D140014316D /* ElementTabSet.h */; };
 		6EF3BB9112481D140014316D /* Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BB6B12481D140014316D /* Header.h */; };
 		6EF3BB9212481D140014316D /* SelectOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BB6C12481D140014316D /* SelectOption.h */; };
-		6EF3BC0512481DD40014316D /* Colour.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBAC12481DD40014316D /* Colour.inl */; };
-		6EF3BC0E12481DD40014316D /* Dictionary.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBB512481DD40014316D /* Dictionary.inl */; };
-		6EF3BC1012481DD40014316D /* Element.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBB712481DD40014316D /* Element.inl */; };
-		6EF3BC1412481DD40014316D /* ElementInstancerGeneric.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBBB12481DD40014316D /* ElementInstancerGeneric.inl */; };
-		6EF3BC2E12481DD40014316D /* Pool.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBD512481DD40014316D /* Pool.inl */; };
-		6EF3BC4612481DD40014316D /* StringBase.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBEE12481DD40014316D /* StringBase.inl */; };
-		6EF3BC4F12481DD40014316D /* TypeConverter.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBF712481DD40014316D /* TypeConverter.inl */; };
-		6EF3BC5312481DD40014316D /* Variant.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBFB12481DD40014316D /* Variant.inl */; };
-		6EF3BC5512481DD40014316D /* Vector2.inl in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3BBFD12481DD40014316D /* Vector2.inl */; };
 		6EF3BCA912481DD40014316D /* BaseXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BBA912481DD40014316D /* BaseXMLParser.h */; };
 		6EF3BCAA12481DD40014316D /* Box.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BBAA12481DD40014316D /* Box.h */; };
 		6EF3BCAB12481DD40014316D /* Colour.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BBAB12481DD40014316D /* Colour.h */; };
@@ -463,6 +447,30 @@
 		6EF3BCFE12481DD40014316D /* WString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BBFF12481DD40014316D /* WString.h */; };
 		6EF3BCFF12481DD40014316D /* XMLNodeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BC0012481DD40014316D /* XMLNodeHandler.h */; };
 		6EF3BD0012481DD40014316D /* XMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF3BC0112481DD40014316D /* XMLParser.h */; };
+		B00E95F61499F2F6002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */; };
+		B00E95F71499F433002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */; };
+		B00E9644149A1EE4002493D4 /* FontProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95E714996A2C002493D4 /* FontProvider.h */; };
+		B00E9645149A1EE4002493D4 /* FontFace.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95EA149974A3002493D4 /* FontFace.h */; };
+		B00E9646149A1EE4002493D4 /* FontFaceHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95EE14997746002493D4 /* FontFaceHandle.h */; };
+		B00E9647149A1EE4002493D4 /* FontFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95F21499F0E2002493D4 /* FontFamily.h */; };
+		B00E96C7149A1EE4002493D4 /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95E5149969F7002493D4 /* FontProvider.cpp */; };
+		B00E96C8149A1EE4002493D4 /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95E9149974A3002493D4 /* FontFace.cpp */; };
+		B00E96C9149A1EE4002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95ED14997746002493D4 /* FontFaceHandle.cpp */; };
+		B00E96CA149A1EE4002493D4 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F11499F0E2002493D4 /* FontFamily.cpp */; };
+		B00E96CB149A1EE4002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */; };
+		B00E96CD149A1EE4002493D4 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DC2123AB7A500C451C8 /* libfreetype.a */; };
+		B00E97A5149A1F0E002493D4 /* libfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E95FC1499FC5C002493D4 /* libfreetype.dylib */; };
+		B00E97A6149A1F0E002493D4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DD1123ABA3A00C451C8 /* libz.dylib */; };
+		B00E97B4149A1F7B002493D4 /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95F11499F0E2002493D4 /* FontFamily.cpp */; };
+		B00E97B5149A1F7B002493D4 /* FontFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95F21499F0E2002493D4 /* FontFamily.h */; };
+		B00E97B6149A1F7B002493D4 /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95ED14997746002493D4 /* FontFaceHandle.cpp */; };
+		B00E97B7149A1F7B002493D4 /* FontFaceHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95EE14997746002493D4 /* FontFaceHandle.h */; };
+		B00E97B8149A1F7B002493D4 /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95E9149974A3002493D4 /* FontFace.cpp */; };
+		B00E97B9149A1F7B002493D4 /* FontFace.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95EA149974A3002493D4 /* FontFace.h */; };
+		B00E97BA149A1F7B002493D4 /* FontProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95E714996A2C002493D4 /* FontProvider.h */; };
+		B00E97BB149A1F7B002493D4 /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95E5149969F7002493D4 /* FontProvider.cpp */; };
+		B0845E00149A21010000CC58 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
+		B0845E02149A21050000CC58 /* RocketFreeTypeOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -646,10 +654,7 @@
 		6EF28D5412058A45000FAF17 /* FontEffectOutlineInstancer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontEffectOutlineInstancer.cpp; path = ../Source/Core/FontEffectOutlineInstancer.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D5612058A45000FAF17 /* FontEffectShadow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontEffectShadow.cpp; path = ../Source/Core/FontEffectShadow.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D5812058A45000FAF17 /* FontEffectShadowInstancer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontEffectShadowInstancer.cpp; path = ../Source/Core/FontEffectShadowInstancer.cpp; sourceTree = SOURCE_ROOT; };
-		6EF28D5A12058A45000FAF17 /* FontFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFace.cpp; path = ../Source/Core/FontFace.cpp; sourceTree = SOURCE_ROOT; };
-		6EF28D5C12058A45000FAF17 /* FontFaceHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFaceHandle.cpp; path = ../Source/Core/FontFaceHandle.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D5E12058A45000FAF17 /* FontFaceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFaceLayer.cpp; path = ../Source/Core/FontFaceLayer.cpp; sourceTree = SOURCE_ROOT; };
-		6EF28D6012058A45000FAF17 /* FontFamily.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFamily.cpp; path = ../Source/Core/FontFamily.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D6212058A45000FAF17 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = ../Source/Core/Geometry.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D6312058A45000FAF17 /* GeometryDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GeometryDatabase.cpp; path = ../Source/Core/GeometryDatabase.cpp; sourceTree = SOURCE_ROOT; };
 		6EF28D6512058A45000FAF17 /* GeometryUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GeometryUtilities.cpp; path = ../Source/Core/GeometryUtilities.cpp; sourceTree = SOURCE_ROOT; };
@@ -807,6 +812,19 @@
 		6EF3BBFF12481DD40014316D /* WString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WString.h; path = ../Include/Rocket/Core/WString.h; sourceTree = SOURCE_ROOT; };
 		6EF3BC0012481DD40014316D /* XMLNodeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLNodeHandler.h; path = ../Include/Rocket/Core/XMLNodeHandler.h; sourceTree = SOURCE_ROOT; };
 		6EF3BC0112481DD40014316D /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParser.h; path = ../Include/Rocket/Core/XMLParser.h; sourceTree = SOURCE_ROOT; };
+		B00E95E5149969F7002493D4 /* FontProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontProvider.cpp; path = ../Source/Core/FreeType/FontProvider.cpp; sourceTree = SOURCE_ROOT; };
+		B00E95E714996A2C002493D4 /* FontProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontProvider.h; path = ../Include/Rocket/Core/FreeType/FontProvider.h; sourceTree = SOURCE_ROOT; };
+		B00E95E9149974A3002493D4 /* FontFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFace.cpp; path = ../Source/Core/FreeType/FontFace.cpp; sourceTree = "<group>"; };
+		B00E95EA149974A3002493D4 /* FontFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontFace.h; path = ../Source/Core/FreeType/FontFace.h; sourceTree = "<group>"; };
+		B00E95ED14997746002493D4 /* FontFaceHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFaceHandle.cpp; path = ../Source/Core/FreeType/FontFaceHandle.cpp; sourceTree = "<group>"; };
+		B00E95EE14997746002493D4 /* FontFaceHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontFaceHandle.h; path = ../Source/Core/FreeType/FontFaceHandle.h; sourceTree = "<group>"; };
+		B00E95F11499F0E2002493D4 /* FontFamily.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFamily.cpp; path = ../Source/Core/FreeType/FontFamily.cpp; sourceTree = "<group>"; };
+		B00E95F21499F0E2002493D4 /* FontFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontFamily.h; path = ../Source/Core/FreeType/FontFamily.h; sourceTree = "<group>"; };
+		B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontFaceHandle.cpp; path = ../Source/Core/FontFaceHandle.cpp; sourceTree = "<group>"; };
+		B00E95FC1499FC5C002493D4 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = SDKs/MacOSX10.6.sdk/usr/local/lib/libfreetype.dylib; sourceTree = DEVELOPER_DIR; };
+		B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketFreeTypeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketFreeTypeOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RocketFreeTypeOSX-Info.plist"; path = "/Users/hamaide/Project/librocket-dev/Build/RocketFreeTypeOSX-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -821,7 +839,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E8B1DE1123ABCA200C451C8 /* libfreetype.a in Frameworks */,
 				6E8B1DE2123ABCA200C451C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -845,7 +862,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0845E02149A21050000CC58 /* RocketFreeTypeOSX.framework in Frameworks */,
 				6E8B1ECB123AC83300C451C8 /* RocketCoreOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E96CC149A1EE4002493D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E96CD149A1EE4002493D4 /* libfreetype.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E97A4149A1F0E002493D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0845E00149A21010000CC58 /* RocketCoreOSX.framework in Frameworks */,
+				B00E97A5149A1F0E002493D4 /* libfreetype.dylib in Frameworks */,
+				B00E97A6149A1F0E002493D4 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +899,7 @@
 		0867D691FE84028FC02AAC07 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				B00E95FC1499FC5C002493D4 /* libfreetype.dylib */,
 				6E8B1EB6123AC78300C451C8 /* Debugger */,
 				6E8B1BE2123AADEB00C451C8 /* Controls */,
 				6E8B1BD8123AABCD00C451C8 /* Core */,
@@ -874,6 +911,7 @@
 		6E8B1BD8123AABCD00C451C8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B00E95E4149969BF002493D4 /* FreeType */,
 				6EF3BBA912481DD40014316D /* BaseXMLParser.h */,
 				6EF3BBAA12481DD40014316D /* Box.h */,
 				6EF3BBAB12481DD40014316D /* Colour.h */,
@@ -1005,10 +1043,8 @@
 				6EF28D5412058A45000FAF17 /* FontEffectOutlineInstancer.cpp */,
 				6EF28D5612058A45000FAF17 /* FontEffectShadow.cpp */,
 				6EF28D5812058A45000FAF17 /* FontEffectShadowInstancer.cpp */,
-				6EF28D5A12058A45000FAF17 /* FontFace.cpp */,
-				6EF28D5C12058A45000FAF17 /* FontFaceHandle.cpp */,
+				B00E95F51499F2F5002493D4 /* FontFaceHandle.cpp */,
 				6EF28D5E12058A45000FAF17 /* FontFaceLayer.cpp */,
-				6EF28D6012058A45000FAF17 /* FontFamily.cpp */,
 				6EF28D6212058A45000FAF17 /* Geometry.cpp */,
 				6EF28D6312058A45000FAF17 /* GeometryDatabase.cpp */,
 				6EF28D6512058A45000FAF17 /* GeometryUtilities.cpp */,
@@ -1193,6 +1229,9 @@
 		6E9D09201209807A00099E1A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */,
+				B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */,
+				B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */,
 				6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */,
 				6E8B1EC7123AC80700C451C8 /* RocketDebuggerOSX-Info.plist */,
 				6E8B1EBC123AC7A200C451C8 /* libRocketDebuggeriOS.a */,
@@ -1207,6 +1246,21 @@
 				6E8B1B0C123A0E2A00C451C8 /* libRocketCoreiOS.a */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		B00E95E4149969BF002493D4 /* FreeType */ = {
+			isa = PBXGroup;
+			children = (
+				B00E95F11499F0E2002493D4 /* FontFamily.cpp */,
+				B00E95F21499F0E2002493D4 /* FontFamily.h */,
+				B00E95ED14997746002493D4 /* FontFaceHandle.cpp */,
+				B00E95EE14997746002493D4 /* FontFaceHandle.h */,
+				B00E95E9149974A3002493D4 /* FontFace.cpp */,
+				B00E95EA149974A3002493D4 /* FontFace.h */,
+				B00E95E714996A2C002493D4 /* FontProvider.h */,
+				B00E95E5149969F7002493D4 /* FontProvider.cpp */,
+			);
+			name = FreeType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1336,6 +1390,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B00E9643149A1EE4002493D4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E9644149A1EE4002493D4 /* FontProvider.h in Headers */,
+				B00E9645149A1EE4002493D4 /* FontFace.h in Headers */,
+				B00E9646149A1EE4002493D4 /* FontFaceHandle.h in Headers */,
+				B00E9647149A1EE4002493D4 /* FontFamily.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E96D3149A1F0E002493D4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E97B5149A1F7B002493D4 /* FontFamily.h in Headers */,
+				B00E97B7149A1F7B002493D4 /* FontFaceHandle.h in Headers */,
+				B00E97B9149A1F7B002493D4 /* FontFace.h in Headers */,
+				B00E97BA149A1F7B002493D4 /* FontProvider.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07A0554694100DB518D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1438,6 +1514,41 @@
 			productReference = 6E8B1EC6123AC80700C451C8 /* RocketDebuggerOSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B00E9642149A1EE4002493D4 /* RocketFreeTypeiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B00E96CE149A1EE4002493D4 /* Build configuration list for PBXNativeTarget "RocketFreeTypeiOS" */;
+			buildPhases = (
+				B00E9643149A1EE4002493D4 /* Headers */,
+				B00E9648149A1EE4002493D4 /* Sources */,
+				B00E96CC149A1EE4002493D4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketFreeTypeiOS;
+			productName = test;
+			productReference = B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B00E96D2149A1F0E002493D4 /* RocketFreeTypeOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B00E97A7149A1F0E002493D4 /* Build configuration list for PBXNativeTarget "RocketFreeTypeOSX" */;
+			buildPhases = (
+				B00E96D3149A1F0E002493D4 /* Headers */,
+				B00E9716149A1F0E002493D4 /* Resources */,
+				B00E9720149A1F0E002493D4 /* Sources */,
+				B00E97A4149A1F0E002493D4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketFreeTypeOSX;
+			productName = RocketCoreOSX;
+			productReference = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D2AAC07D0554694100DB518D /* RocketCoreiOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "RocketCoreiOS" */;
@@ -1460,8 +1571,11 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Rocket" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1478,6 +1592,8 @@
 				6E8B1DDB123ABC7800C451C8 /* RocketCoreOSX */,
 				6E8B1EBB123AC7A200C451C8 /* RocketDebuggeriOS */,
 				6E8B1EC5123AC80700C451C8 /* RocketDebuggerOSX */,
+				B00E9642149A1EE4002493D4 /* RocketFreeTypeiOS */,
+				B00E96D2149A1F0E002493D4 /* RocketFreeTypeOSX */,
 			);
 		};
 /* End PBXProject section */
@@ -1510,15 +1626,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EF3BC0512481DD40014316D /* Colour.inl in Resources */,
-				6EF3BC0E12481DD40014316D /* Dictionary.inl in Resources */,
-				6EF3BC1012481DD40014316D /* Element.inl in Resources */,
-				6EF3BC1412481DD40014316D /* ElementInstancerGeneric.inl in Resources */,
-				6EF3BC2E12481DD40014316D /* Pool.inl in Resources */,
-				6EF3BC4612481DD40014316D /* StringBase.inl in Resources */,
-				6EF3BC4F12481DD40014316D /* TypeConverter.inl in Resources */,
-				6EF3BC5312481DD40014316D /* Variant.inl in Resources */,
-				6EF3BC5512481DD40014316D /* Vector2.inl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E9716149A1F0E002493D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1628,10 +1742,7 @@
 				6E8B1E18123ABCC200C451C8 /* FontEffectOutlineInstancer.cpp in Sources */,
 				6E8B1E19123ABCC200C451C8 /* FontEffectShadow.cpp in Sources */,
 				6E8B1E1A123ABCC200C451C8 /* FontEffectShadowInstancer.cpp in Sources */,
-				6E8B1E1B123ABCC200C451C8 /* FontFace.cpp in Sources */,
-				6E8B1E1C123ABCC200C451C8 /* FontFaceHandle.cpp in Sources */,
 				6E8B1E1D123ABCC200C451C8 /* FontFaceLayer.cpp in Sources */,
-				6E8B1E1E123ABCC200C451C8 /* FontFamily.cpp in Sources */,
 				6E8B1E1F123ABCC200C451C8 /* Geometry.cpp in Sources */,
 				6E8B1E20123ABCC200C451C8 /* GeometryDatabase.cpp in Sources */,
 				6E8B1E21123ABCC200C451C8 /* GeometryUtilities.cpp in Sources */,
@@ -1701,6 +1812,7 @@
 				6E8B1E63123ABCC200C451C8 /* XMLNodeHandlerTemplate.cpp in Sources */,
 				6E8B1E64123ABCC200C451C8 /* XMLParser.cpp in Sources */,
 				6E8B1E65123ABCC200C451C8 /* XMLParseTools.cpp in Sources */,
+				B00E95F71499F433002493D4 /* FontFaceHandle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1775,6 +1887,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B00E9648149A1EE4002493D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E96C7149A1EE4002493D4 /* FontProvider.cpp in Sources */,
+				B00E96C8149A1EE4002493D4 /* FontFace.cpp in Sources */,
+				B00E96C9149A1EE4002493D4 /* FontFaceHandle.cpp in Sources */,
+				B00E96CA149A1EE4002493D4 /* FontFamily.cpp in Sources */,
+				B00E96CB149A1EE4002493D4 /* FontFaceHandle.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B00E9720149A1F0E002493D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E97B4149A1F7B002493D4 /* FontFamily.cpp in Sources */,
+				B00E97B6149A1F7B002493D4 /* FontFaceHandle.cpp in Sources */,
+				B00E97B8149A1F7B002493D4 /* FontFace.cpp in Sources */,
+				B00E97BB149A1F7B002493D4 /* FontProvider.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1833,10 +1968,7 @@
 				6EF28E8012058A45000FAF17 /* FontEffectOutlineInstancer.cpp in Sources */,
 				6EF28E8212058A45000FAF17 /* FontEffectShadow.cpp in Sources */,
 				6EF28E8412058A45000FAF17 /* FontEffectShadowInstancer.cpp in Sources */,
-				6EF28E8612058A45000FAF17 /* FontFace.cpp in Sources */,
-				6EF28E8812058A45000FAF17 /* FontFaceHandle.cpp in Sources */,
 				6EF28E8A12058A45000FAF17 /* FontFaceLayer.cpp in Sources */,
-				6EF28E8C12058A45000FAF17 /* FontFamily.cpp in Sources */,
 				6EF28E8E12058A45000FAF17 /* Geometry.cpp in Sources */,
 				6EF28E8F12058A45000FAF17 /* GeometryDatabase.cpp in Sources */,
 				6EF28E9112058A45000FAF17 /* GeometryUtilities.cpp in Sources */,
@@ -1908,6 +2040,7 @@
 				6E9D09781209858B00099E1A /* Math.cpp in Sources */,
 				6E9D0988120986B600099E1A /* ReferenceCountable.cpp in Sources */,
 				6E9D099C1209878A00099E1A /* String.cpp in Sources */,
+				B00E95F61499F2F6002493D4 /* FontFaceHandle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1944,7 +2077,6 @@
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/test.dst;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1955,7 +2087,7 @@
 					"\"$(SRCROOT)/../../support/lib\"",
 				);
 				PRODUCT_NAME = RocketCoreiOS;
-				VALID_ARCHS = armv6;
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -1991,7 +2123,6 @@
 					../../Support/freetype/include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				USE_HEADERMAP = false;
 			};
@@ -2011,7 +2142,6 @@
 					../../Support/freetype/include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				USE_HEADERMAP = false;
 			};
@@ -2025,9 +2155,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketControlsiOS;
-				VALID_ARCHS = armv6;
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -2037,9 +2166,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketControlsiOS;
 				ZERO_LINK = NO;
 			};
@@ -2049,32 +2176,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/freetype2,
+					../Include,
+				);
 				INFOPLIST_FILE = "plist/RocketCoreOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../support/lib\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketCoreOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 ";
 			};
 			name = Debug;
 		};
@@ -2082,31 +2209,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/freetype2,
+					../Include,
+				);
 				INFOPLIST_FILE = "plist/RocketCoreOSX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../support/lib\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketCoreOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 ";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2115,13 +2242,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2134,9 +2260,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketControlsOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -2144,13 +2269,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
@@ -2162,9 +2286,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketControlsOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2177,9 +2300,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketDebuggeriOS;
-				VALID_ARCHS = armv6;
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -2189,9 +2311,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketDebuggeriOS;
 				ZERO_LINK = NO;
 			};
@@ -2201,13 +2321,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2220,9 +2339,9 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketDebuggerOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
@@ -2230,13 +2349,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
@@ -2248,9 +2366,113 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = RocketDebuggerOSX;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
+				VALID_ARCHS = i386;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B00E96CF149A1EE4002493D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/test.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../support/lib\"",
+				);
+				PRODUCT_NAME = RocketFreeTypeiOS;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = Debug;
+		};
+		B00E96D0149A1EE4002493D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/test.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../support/lib\"",
+				);
+				PRODUCT_NAME = RocketFreeTypeiOS;
+			};
+			name = Release;
+		};
+		B00E97A8149A1F0E002493D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/freetype2,
+					../Include,
+				);
+				INFOPLIST_FILE = "RocketFreeTypeOSX-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = RocketFreeTypeOSX;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 ";
+			};
+			name = Debug;
+		};
+		B00E97A9149A1F0E002493D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Rocket_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/freetype2,
+					../Include,
+				);
+				INFOPLIST_FILE = "RocketFreeTypeOSX-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = RocketFreeTypeOSX;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 ";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2317,6 +2539,24 @@
 			buildConfigurations = (
 				6E8B1EC8123AC80800C451C8 /* Debug */,
 				6E8B1EC9123AC80800C451C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B00E96CE149A1EE4002493D4 /* Build configuration list for PBXNativeTarget "RocketFreeTypeiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00E96CF149A1EE4002493D4 /* Debug */,
+				B00E96D0149A1EE4002493D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B00E97A7149A1F0E002493D4 /* Build configuration list for PBXNativeTarget "RocketFreeTypeOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00E97A8149A1F0E002493D4 /* Debug */,
+				B00E97A9149A1F0E002493D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
