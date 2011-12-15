@@ -28,6 +28,7 @@
 #ifndef ROCKETCOREFONTFACELAYER_H
 #define ROCKETCOREFONTFACELAYER_H
 
+#include <Rocket/Core/Header.h>
 #include <Rocket/Core/FontGlyph.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/GeometryUtilities.h>
@@ -48,7 +49,7 @@ class FontFaceHandle;
 	@author Peter Curry
  */
 
-class FontFaceLayer
+class ROCKETCORE_API FontFaceLayer
 {
 public:
 	FontFaceLayer();

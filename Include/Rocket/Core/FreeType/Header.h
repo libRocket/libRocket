@@ -25,40 +25,23 @@
  *
  */
 
-#ifndef ROCKETCOREFONTPROVIDER_H
-#define ROCKETCOREFONTPROVIDER_H
+#ifndef ROCKETCOREFREETYPEHEADER_H
+#define ROCKETCOREFREETYPEHEADER_H
 
-#include <Rocket/Core/StringUtilities.h>
-#include <Rocket/Core/FreeType/Header.h>
-#include <Rocket/Core/Font.h>
+#include <Rocket/Core/Platform.h>
 
-namespace Rocket {
-namespace Core {
-
-/**
-	The font database contains all font families currently in use by Rocket.
-
-	@author Peter Curry
- */
-
-class ROCKETCOREFREETYPE_API FontProvider
-{
-public:
-
-	/// Returns a handle to a font face that can be used to position and render text. This will return the closest match
-	/// it can find, but in the event a font family is requested that does not exist, NULL will be returned instead of a
-	/// valid handle.
-	/// @param[in] family The family of the desired font handle.
-	/// @param[in] charset The set of characters required in the font face, as a comma-separated list of unicode ranges.
-	/// @param[in] style The style of the desired font handle.
-	/// @param[in] weight The weight of the desired font handle.
-	/// @param[in] size The size of desired handle, in points.
-	/// @return A valid handle if a matching (or closely matching) font face was found, NULL otherwise.
-	virtual FontFaceHandle* GetFontFaceHandle(const String& family, const String& charset, Font::Style style, Font::Weight weight, int size) = 0;
-
-};
-
-}
-}
+#if !defined STATIC_LIB
+	#if defined ROCKET_PLATFORM_WIN32
+		#if defined RocketFreeType_EXPORTS
+			#define ROCKETCOREFREETYPE_API __declspec(dllexport)
+		#else
+			#define ROCKETCOREFREETYPE_API __declspec(dllimport)
+		#endif
+	#else
+		#define ROCKETCOREFREETYPE_API __attribute__((visibility("default")))
+	#endif
+#else
+	#define ROCKETCOREFREETYPE_API
+#endif
 
 #endif

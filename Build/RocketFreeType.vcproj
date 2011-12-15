@@ -2,11 +2,11 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="RocketDebugger"
-	ProjectGUID="{1AAC0B29-AEC9-4E3F-9EDF-B56F8949C41A}"
-	RootNamespace="debugger"
+	Name="RocketFreeType"
+	ProjectGUID="{6B82ACD3-521B-45F9-89B3-BD728A3CE500}"
+	RootNamespace="RocketFreeType"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -18,7 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(IntDir)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets=".\vsprops\BuildConfigurationDLLDebug.vsprops"
 			CharacterSet="1"
@@ -40,10 +41,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\Include"
-				PreprocessorDefinitions="_WIN32,_DEBUG,RocketDebugger_EXPORTS"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\Include;..\..\support\freetype\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ROCKETFREETYPE_EXPORTS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -56,11 +62,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore_d.lib RocketFreeType_d.lib"
+				AdditionalDependencies="freetype243MT_D.lib RocketCore_d.lib"
 				OutputFile="..\bin\$(ProjectName)_d.dll"
-				AdditionalLibraryDirectories="..\bin"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="..\..\support\lib;..\bin"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -86,7 +94,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(IntDir)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets=".\vsprops\BuildConfigurationDLLRelease.vsprops"
 			CharacterSet="1"
@@ -109,10 +118,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\Include"
-				PreprocessorDefinitions="_WIN32,NDEBUG,RocketDebugger_EXPORTS"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\Include;..\..\support\freetype\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ROCKETFREETYPE_EXPORTS"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -125,11 +139,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore.lib RocketFreeType.lib"
+				AdditionalDependencies="freetype243MT.lib RocketCore.lib"
 				OutputFile="..\bin\$(ProjectName).dll"
-				AdditionalLibraryDirectories="..\bin"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\support\lib;..\bin"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -158,109 +176,51 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Plugin"
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\Source\Debugger\Plugin.cpp"
+				RelativePath="..\Source\Core\FreeType\FontFace.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\Source\Debugger\Plugin.h"
+				RelativePath="..\Source\Core\FreeType\FontFace.h"
 				>
 			</File>
-			<Filter
-				Name="Elements"
+			<File
+				RelativePath="..\Source\Core\FreeType\FontFaceHandle.cpp"
 				>
-				<File
-					RelativePath="..\Source\Debugger\ElementContextHook.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\ElementContextHook.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\ElementInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\ElementInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\ElementLog.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\ElementLog.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Source"
+			</File>
+			<File
+				RelativePath="..\Source\Core\FreeType\FontFaceHandle.h"
 				>
-				<File
-					RelativePath="..\Source\Debugger\BeaconSource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\CommonSource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\FontSource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\InfoSource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\LogSource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\Source\Debugger\MenuSource.h"
-					>
-				</File>
-			</Filter>
+			</File>
+			<File
+				RelativePath="..\Source\Core\FreeType\FontFamily.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Source\Core\FreeType\FontFamily.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Source\Core\FreeType\FontProvider.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 		</Filter>
 		<Filter
-			Name="Debugger"
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<File
-				RelativePath="..\Source\Debugger\Debugger.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Include\Rocket\Debugger\Debugger.h"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Debugger\Geometry.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Debugger\Geometry.h"
-				>
-			</File>
-			<File
-				RelativePath="..\Include\Rocket\Debugger\Header.h"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Debugger\SystemInterface.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Debugger\SystemInterface.h"
-				>
-			</File>
 		</Filter>
-		<File
-			RelativePath="..\Include\Rocket\Debugger.h"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
