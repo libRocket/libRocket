@@ -291,18 +291,6 @@ void FontFaceHandle::GenerateLine(Geometry* geometry, const Vector2f& position, 
 	GeometryUtilities::GenerateQuad(&line_vertices[0] + (line_vertices.size() - 4), &line_indices[0] + (line_indices.size() - 6), Vector2f(position.x, position.y + offset), Vector2f((float) width, underline_thickness), colour, line_vertices.size() - 4);
 }
 
-// Returns the font face's raw charset (the charset range as a string).
-const String& FontFaceHandle::GetRawCharset() const
-{
-	return raw_charset;
-}
-
-// Returns the font face's charset.
-const UnicodeRangeList& FontFaceHandle::GetCharset() const
-{
-	return charset;
-}
-
 // Destroys the handle.
 void FontFaceHandle::OnReferenceDeactivate()
 {
@@ -485,52 +473,6 @@ int FontFaceHandle::GetKerning(word lhs, word rhs) const
 		return 0;
 
 	return lhs_iterator->second;
-}
-
-// Generates (or shares) a layer derived from a font effect.
-FontFaceLayer* FontFaceHandle::GenerateLayer(FontEffect* font_effect)
-{
-	// See if this effect has been instanced before, as part of a different configuration.
-	FontLayerMap::iterator i = layers.find(font_effect);
-	if (i != layers.end())
-		return i->second;
-
-	FontFaceLayer* layer = new FontFaceLayer();
-	layers[font_effect] = layer;
-
-	if (font_effect == NULL)
-	{
-		layer->Initialise(this);
-	}
-	else
-	{
-		// Determine which, if any, layer the new layer should copy its geometry and textures from.
-		FontFaceLayer* clone = NULL;
-		bool deep_clone = true;
-		String generation_key;
-
-		if (!font_effect->HasUniqueTexture())
-		{
-			clone = base_layer;
-			deep_clone = false;
-		}
-		else
-		{
-			generation_key = font_effect->GetName() + ";" + font_effect->GetGenerationKey();
-			FontLayerCache::iterator cache_iterator = layer_cache.find(generation_key);
-			if (cache_iterator != layer_cache.end())
-				clone = cache_iterator->second;
-		}
-
-		// Create a new layer.
-		layer->Initialise(this, font_effect, clone, deep_clone);
-
-		// Cache the layer in the layer cache if it generated its own textures (ie, didn't clone).
-		if (clone == NULL)
-			layer_cache[generation_key] = layer;
-	}
-
-	return layer;
 }
 
 }

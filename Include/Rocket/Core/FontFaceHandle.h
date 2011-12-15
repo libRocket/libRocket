@@ -28,6 +28,7 @@
 #ifndef ROCKETCOREFONTFACEHANDLE_H
 #define ROCKETCOREFONTFACEHANDLE_H
 
+#include <Rocket/Core/Header.h>
 #include <Rocket/Core/ReferenceCountable.h>
 #include <Rocket/Core/UnicodeRange.h>
 #include <Rocket/Core/Font.h>
@@ -46,7 +47,7 @@ class FontFaceLayer;
 	@author Peter Curry
  */
 
-class FontFaceHandle : public ReferenceCountable
+class ROCKETCORE_API FontFaceHandle : public ReferenceCountable
 {
 public:
 	FontFaceHandle();
@@ -123,7 +124,10 @@ protected:
 	FontGlyphMap glyphs;
 	FontKerningMap kerning;
     
-	virtual int GetKerning(word lhs, word rhs) const = 0;
+	int GetKerning(word lhs, word rhs) const;
+
+    // Generates (or shares) a layer derived from a font effect.
+    FontFaceLayer* GenerateLayer(FontEffect* font_effect);
 
 	typedef std::map< const FontEffect*, FontFaceLayer* > FontLayerMap;
 	typedef std::map< String, FontFaceLayer* > FontLayerCache;

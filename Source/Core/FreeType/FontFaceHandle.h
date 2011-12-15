@@ -92,13 +92,6 @@ public:
 	/// @param[in] colour The colour to draw the line in.
 	void GenerateLine(Geometry* geometry, const Vector2f& position, int width, Font::Line height, const Colourb& colour) const;
 
-	/// Returns the font face's raw charset (the charset range as a string).
-	/// @return The font face's charset.
-	const String& GetRawCharset() const;
-	/// Returns the font face's charset.
-	/// @return The font face's charset.
-	const UnicodeRangeList& GetCharset() const;
-
 protected:
 	/// Destroys the handle.
 	virtual void OnReferenceDeactivate();
@@ -111,31 +104,6 @@ private:
 
 	void BuildKerning(FT_Face ft_face);
 	int GetKerning(word lhs, word rhs) const;
-
-	// Generates (or shares) a layer derived from a font effect.
-	FontFaceLayer* GenerateLayer(FontEffect* font_effect);
-
-	typedef std::map< word, int > GlyphKerningMap;
-	typedef std::map< word, GlyphKerningMap > FontKerningMap;
-
-	FontGlyphMap glyphs;
-	FontKerningMap kerning;
-
-	typedef std::map< const FontEffect*, FontFaceLayer* > FontLayerMap;
-	typedef std::map< String, FontFaceLayer* > FontLayerCache;
-	typedef std::vector< FontFaceLayer* > LayerConfiguration;
-	typedef std::vector< LayerConfiguration > LayerConfigurationList;
-
-	// The list of all font layers, index by the effect that instanced them.
-	FontFaceLayer* base_layer;
-	FontLayerMap layers;
-	// Each font layer that generated geometry or textures, indexed by the respective generation
-	// key.
-	FontLayerCache layer_cache;
-
-	// All configurations currently in use on this handle. New configurations will be generated as
-	// required.
-	LayerConfigurationList layer_configurations;
 
 };
 
