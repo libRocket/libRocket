@@ -106,7 +106,7 @@ include(FileList)
 # Build libraries ==================
 #===================================
 
-set(LIBRARIES Core Controls Debugger)
+set(LIBRARIES Core Controls Debugger FreeType)
 
 foreach(library ${LIBRARIES})
     set(NAME Rocket${library})

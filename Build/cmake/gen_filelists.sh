@@ -9,6 +9,8 @@ srcdir='${PROJECT_SOURCE_DIR}'
 srcpath=Source
 hdrpath=Include/Rocket
 pypath=Python
+freetypepath=Core/FreeType
+freetypelibname=FreeType
 
 printfiles() {
     # Print headers
@@ -42,6 +44,21 @@ printpyfiles() {
     echo -e ')\n' >>$file
 }
 
+printfreetypefiles() {
+    # Print headers
+    echo ${hdr/lib/$freetypelibname} >>$file
+    find  $srcpath/$1/ -maxdepth 1 -iname "*.h" -exec echo '    '$srcdir/{} \; >>$file
+    echo -e ')\n' >>$file
+    # Print public headers
+    echo ${pubhdr/lib/$freetypelibname} >>$file
+    find  $hdrpath/$1/ -maxdepth 1 -iname "*.h" -exec echo '    '$srcdir/{} \; >>$file
+    echo -e ')\n' >>$file
+    # Print source files
+    echo ${src/lib/$freetypelibname} >>$file
+    find  $srcpath/$1/ -maxdepth 1 -iname "*.cpp" -exec echo '    '$srcdir/{} \; >>$file
+    echo -e ')\n' >>$file
+}
+
 pushd $basedir
 echo -e "# This file was auto-generated with gen_filelists.sh\n" >$file
 for lib in "Core" "Controls" "Debugger"; do
@@ -50,6 +67,10 @@ done
 
 for lib in "Core" "Controls"; do
     printpyfiles $lib
+done
+
+for lib in "Core/FreeType"; do
+    printfreetypefiles $lib
 done
 popd
 
