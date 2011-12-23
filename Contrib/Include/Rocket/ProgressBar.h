@@ -6,7 +6,6 @@
 namespace Rocket {
 namespace ProgressBar {
 
-/// Registers the instancers for the custom controls.
 ROCKETPROGRESSBAR_API void Initialise();
 
 }

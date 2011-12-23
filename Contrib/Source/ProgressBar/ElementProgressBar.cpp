@@ -35,9 +35,7 @@ void ElementProgressBar::OnUpdate()
 void ElementProgressBar::OnRender()
 {
 	if(geometry_dirty)
-	{
 		GenerateGeometry();
-	}
 
 	left_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
 	center_geometry.Render(GetAbsoluteOffset(Rocket::Core::Box::CONTENT));
@@ -52,6 +50,12 @@ void ElementProgressBar::OnAttributeChange(const Core::AttributeNameList& change
 	if (changed_attributes.find("value") != changed_attributes.end())
 	{
 		value = GetAttribute< float >("value", 0.0f);
+
+		if (value < 0)
+			value = 0.0f;
+		else if (value > 1)
+			value = 1.0f;
+
 		geometry_dirty = true;
 	}
 }
@@ -92,18 +96,15 @@ void ElementProgressBar::GenerateGeometry()
 	initial_part_size[0] = texture[0].GetDimensions(GetRenderInterface());
 	initial_part_size[2] = texture[2].GetDimensions(GetRenderInterface());
 
-	progress_size = value * ( complete_extent.x - initial_part_size[0].x - initial_part_size[2].x );
-
-	if( progress_size < 0 )
-		progress_size = 0.0f;
+	progress_size = value * (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x);
 
 	left_geometry.Release(true);
 	center_geometry.Release(true);
 	right_geometry.Release(true);
 
-	final_part_size[0].y = final_part_size[1].y = final_part_size[2].y = float( complete_extent.y );
-	final_part_size[0].x = float( initial_part_size[0].x );
-	final_part_size[2].x = float( initial_part_size[2].x );
+	final_part_size[0].y = final_part_size[1].y = final_part_size[2].y = float(complete_extent.y);
+	final_part_size[0].x = float(initial_part_size[0].x);
+	final_part_size[2].x = float(initial_part_size[2].x);
 	final_part_size[1].x = progress_size;
 
 	// Generate left part geometry.
@@ -124,7 +125,7 @@ void ElementProgressBar::GenerateGeometry()
 	}
 
 	// Generate center part geometry.
-	if( final_part_size[1].x > 0.0f )
+	if (final_part_size[1].x > 0.0f)
 	{
 		std::vector< Rocket::Core::Vertex >& vertices = center_geometry.GetVertices();
 		std::vector< int >& indices = center_geometry.GetIndices();
