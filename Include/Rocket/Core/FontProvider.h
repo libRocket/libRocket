@@ -29,7 +29,11 @@
 #define ROCKETCOREFONTPROVIDER_H
 
 #include <Rocket/Core/StringUtilities.h>
-#include <Rocket/Core/FreeType/Header.h>
+#ifdef ROCKETCOREFREETYPE_API
+    #include <Rocket/Core/FreeType/Header.h>
+#else
+    #include <Rocket/Core/BitmapFont/Header.h>
+#endif
 #include <Rocket/Core/Font.h>
 
 namespace Rocket {
@@ -41,7 +45,11 @@ namespace Core {
 	@author Peter Curry
  */
 
-class ROCKETCOREFREETYPE_API FontProvider
+#ifdef ROCKETCOREFREETYPE_API
+    class ROCKETCOREFREETYPE_API FontProvider
+#else
+    class ROCKETCOREBITMAPFONT_API FontProvider
+#endif
 {
 public:
 

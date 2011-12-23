@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="DirectX"
 	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
 	TargetFrameworkVersion="131072"
@@ -55,7 +55,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore_d.lib RocketDebugger_d.lib opengl32.lib d3d9.lib d3dx9.lib"
+				AdditionalDependencies="RocketCore_d.lib RocketDebugger_d.lib RocketBitmapFont_d.lib opengl32.lib d3d9.lib d3dx9.lib"
 				OutputFile="..\..\..\bin\$(ProjectName)_d.exe"
 				AdditionalLibraryDirectories="..\..\..\bin"
 				GenerateDebugInformation="true"

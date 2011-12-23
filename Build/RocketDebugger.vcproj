@@ -56,7 +56,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore_d.lib RocketFreeType_d.lib"
+				AdditionalDependencies="RocketCore_d.lib RocketBitmapFont_d.lib"
 				OutputFile="..\bin\$(ProjectName)_d.dll"
 				AdditionalLibraryDirectories="..\bin"
 				RandomizedBaseAddress="1"

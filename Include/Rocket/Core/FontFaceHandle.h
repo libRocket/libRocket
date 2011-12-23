@@ -114,6 +114,22 @@ public:
 	/// @return The font face's charset.
 	const UnicodeRangeList& GetCharset() const;
 
+
+    const String & GetTextureBaseName() const
+    {
+        return TextureBaseName;
+    }
+
+    const String & GetTextureDirectory() const
+    {
+        return TextureDirectory;
+    }
+
+    int GetTextureSize() const
+    {
+        return TextureSize;
+    }
+
 protected:
 	/// Destroys the handle.
 	virtual void OnReferenceDeactivate();
@@ -127,7 +143,7 @@ protected:
 	int GetKerning(word lhs, word rhs) const;
 
     // Generates (or shares) a layer derived from a font effect.
-    FontFaceLayer* GenerateLayer(FontEffect* font_effect);
+    virtual FontFaceLayer* GenerateLayer(FontEffect* font_effect);
 
 	typedef std::map< const FontEffect*, FontFaceLayer* > FontLayerMap;
 	typedef std::map< String, FontFaceLayer* > FontLayerCache;
@@ -158,6 +174,10 @@ protected:
 
 	String raw_charset;
 	UnicodeRangeList charset;
+
+    String TextureBaseName;
+    String TextureDirectory;
+    int TextureSize;
 };
 
 }
