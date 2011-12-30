@@ -28,6 +28,8 @@
 #ifndef ROCKETCOREUNICODERANGE_H
 #define ROCKETCOREUNICODERANGE_H
 
+#include <Rocket/Core/Header.h>
+
 namespace Rocket {
 namespace Core {
 
@@ -37,7 +39,7 @@ typedef std::vector< UnicodeRange > UnicodeRangeList;
 /**
  */
 
-class UnicodeRange
+class ROCKETCORE_API UnicodeRange
 {
 public:
 	UnicodeRange();

@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "TextureResource.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 #include "TextureDatabase.h"
 #include <Rocket/Core.h>
 

@@ -25,51 +25,23 @@
  *
  */
 
-#include "precompiled.h"
-#include "XMLNodeHandlerTemplate.h"
-#include "Template.h"
-#include "TemplateCache.h"
-#include "XMLParseTools.h"
-#include <Rocket/Core.h>
+#ifndef ROCKETCOREFREETYPEHEADER_H
+#define ROCKETCOREFREETYPEHEADER_H
 
-namespace Rocket {
-namespace Core {
+#include <Rocket/Core/Platform.h>
 
-XMLNodeHandlerTemplate::XMLNodeHandlerTemplate()
-{
-}
+#if !defined STATIC_LIB
+	#if defined ROCKET_PLATFORM_WIN32
+		#if defined RocketFreeType_EXPORTS
+			#define ROCKETCOREFREETYPE_API __declspec(dllexport)
+		#else
+			#define ROCKETCOREFREETYPE_API __declspec(dllimport)
+		#endif
+	#else
+		#define ROCKETCOREFREETYPE_API __attribute__((visibility("default")))
+	#endif
+#else
+	#define ROCKETCOREFREETYPE_API
+#endif
 
-XMLNodeHandlerTemplate::~XMLNodeHandlerTemplate()
-{
-}
-
-Element* XMLNodeHandlerTemplate::ElementStart(XMLParser* parser, const String& name, const XMLAttributes& attributes)
-{
-	(void)name;
-	ROCKET_ASSERT(name == "template");
-
-	String template_name = attributes.Get<String>("src", "");
-
-	// Tell the parser to use the element handler for all child nodes
-	parser->PushDefaultHandler();
-
-	return XMLParseTools::ParseTemplate(parser->GetParseFrame()->element, template_name);
-}
-
-bool XMLNodeHandlerTemplate::ElementEnd(XMLParser* ROCKET_UNUSED(parser), const String& ROCKET_UNUSED(name))
-{
-	return true;
-}
-
-bool XMLNodeHandlerTemplate::ElementData(XMLParser* parser, const String& data)
-{	
-	return Factory::InstanceElementText(parser->GetParseFrame()->element, data);
-}
-
-void XMLNodeHandlerTemplate::Release()
-{
-	delete this;
-}
-
-}
-}
+#endif

@@ -25,13 +25,14 @@
  *
  */
 
-#include "precompiled.h"
+#include "../precompiled.h"
 #include "FontFace.h"
 #include "FontFaceHandle.h"
 #include <Rocket/Core/Log.h>
 
 namespace Rocket {
 namespace Core {
+namespace FreeType {
 
 FontFace::FontFace(FT_Face _face, Font::Style _style, Font::Weight _weight, bool _release_stream)
 {
@@ -67,7 +68,7 @@ Font::Weight FontFace::GetWeight() const
 }
 
 // Returns a handle for positioning and rendering this face at the given size.
-FontFaceHandle* FontFace::GetHandle(const String& _raw_charset, int size)
+Rocket::Core::FontFaceHandle* FontFace::GetHandle(const String& _raw_charset, int size)
 {
 	UnicodeRangeList charset;
 
@@ -156,5 +157,6 @@ void FontFace::ReleaseFace()
 	}
 }
 
+}
 }
 }

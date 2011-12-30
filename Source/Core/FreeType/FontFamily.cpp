@@ -25,12 +25,13 @@
  *
  */
 
-#include "precompiled.h"
+#include "../precompiled.h"
 #include "FontFamily.h"
 #include "FontFace.h"
 
 namespace Rocket {
 namespace Core {
+namespace FreeType {
 
 FontFamily::FontFamily(const String& name) : name(name)
 {
@@ -52,7 +53,7 @@ bool FontFamily::AddFace(FT_Face ft_face, Font::Style style, Font::Weight weight
 }
 
 // Returns a handle to the most appropriate font in the family, at the correct size.
-FontFaceHandle* FontFamily::GetFaceHandle(const String& charset, Font::Style style, Font::Weight weight, int size)
+Rocket::Core::FontFaceHandle* FontFamily::GetFaceHandle(const String& charset, Font::Style style, Font::Weight weight, int size)
 {
 	// Search for a face of the same style, and match the weight as closely as we can.
 	FontFace* matching_face = NULL;
@@ -75,5 +76,6 @@ FontFaceHandle* FontFamily::GetFaceHandle(const String& charset, Font::Style sty
 	return matching_face->GetHandle(charset, size);
 }
 
+}
 }
 }
