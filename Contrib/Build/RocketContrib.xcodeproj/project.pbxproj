@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0108E2514AE117700A53356 /* ElementProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1114AE10FD00A53356 /* ElementProgressBar.cpp */; };
+		B0108E2614AE117B00A53356 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1214AE10FD00A53356 /* ProgressBar.cpp */; };
+		B0108E2D14AE4DC600A53356 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0108DEC14AE0FAB00A53356 /* Cocoa.framework */; };
+		B0108E3B14AE4DD700A53356 /* ElementProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1114AE10FD00A53356 /* ElementProgressBar.cpp */; };
+		B0108E3C14AE4DDA00A53356 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0108E1214AE10FD00A53356 /* ProgressBar.cpp */; };
+		B0108EB614AEEFAC00A53356 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0108EB414AEEF8600A53356 /* RocketCoreOSX.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B0108DEC14AE0FAB00A53356 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B0108E0A14AE10DE00A53356 /* ElementProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ElementProgressBar.h; path = ../Include/Rocket/ProgressBar/ElementProgressBar.h; sourceTree = SOURCE_ROOT; };
+		B0108E0B14AE10DE00A53356 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Header.h; path = ../Include/Rocket/ProgressBar/Header.h; sourceTree = SOURCE_ROOT; };
+		B0108E0C14AE10DE00A53356 /* ProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressBar.h; path = ../Include/Rocket/ProgressBar.h; sourceTree = SOURCE_ROOT; };
+		B0108E1114AE10FD00A53356 /* ElementProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ElementProgressBar.cpp; path = ../Source/ProgressBar/ElementProgressBar.cpp; sourceTree = SOURCE_ROOT; };
+		B0108E1214AE10FD00A53356 /* ProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProgressBar.cpp; path = ../Source/ProgressBar/ProgressBar.cpp; sourceTree = SOURCE_ROOT; };
+		B0108E1914AE116A00A53356 /* libRocketProgressBariOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketProgressBariOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0108E2C14AE4DC600A53356 /* RocketProgressBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketProgressBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0108EB414AEEF8600A53356 /* RocketCoreOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RocketCoreOSX.framework; path = ../../bin/RocketCoreOSX.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0108E1614AE116A00A53356 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0108E2814AE4DC600A53356 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0108E2D14AE4DC600A53356 /* Cocoa.framework in Frameworks */,
+				B0108EB614AEEFAC00A53356 /* RocketCoreOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0108DDD14AE0FAB00A53356 = {
+			isa = PBXGroup;
+			children = (
+				B0108DF214AE0FAB00A53356 /* RocketContrib */,
+				B0108DEB14AE0FAB00A53356 /* Frameworks */,
+				B0108DEA14AE0FAB00A53356 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0108DEA14AE0FAB00A53356 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E1914AE116A00A53356 /* libRocketProgressBariOS.a */,
+				B0108E2C14AE4DC600A53356 /* RocketProgressBar.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0108DEB14AE0FAB00A53356 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0108EB414AEEF8600A53356 /* RocketCoreOSX.framework */,
+				B0108DEC14AE0FAB00A53356 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0108DF214AE0FAB00A53356 /* RocketContrib */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E0714AE10D200A53356 /* Include */,
+				B0108E0514AE10B700A53356 /* Source */,
+			);
+			path = RocketContrib;
+			sourceTree = "<group>";
+		};
+		B0108E0514AE10B700A53356 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E1014AE10FD00A53356 /* ProgressBar */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		B0108E0714AE10D200A53356 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E0814AE10DE00A53356 /* Rocket */,
+			);
+			name = Include;
+			path = ../Include;
+			sourceTree = "<group>";
+		};
+		B0108E0814AE10DE00A53356 /* Rocket */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E0914AE10DE00A53356 /* ProgressBar */,
+				B0108E0C14AE10DE00A53356 /* ProgressBar.h */,
+			);
+			name = Rocket;
+			path = ../../Include/Rocket;
+			sourceTree = "<group>";
+		};
+		B0108E0914AE10DE00A53356 /* ProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E0A14AE10DE00A53356 /* ElementProgressBar.h */,
+				B0108E0B14AE10DE00A53356 /* Header.h */,
+			);
+			path = ProgressBar;
+			sourceTree = "<group>";
+		};
+		B0108E1014AE10FD00A53356 /* ProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				B0108E1114AE10FD00A53356 /* ElementProgressBar.cpp */,
+				B0108E1214AE10FD00A53356 /* ProgressBar.cpp */,
+			);
+			name = ProgressBar;
+			path = ../../Source/ProgressBar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B0108E1714AE116A00A53356 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0108E2914AE4DC600A53356 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B0108E1814AE116A00A53356 /* RocketProgressBariOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0108E2214AE116A00A53356 /* Build configuration list for PBXNativeTarget "RocketProgressBariOS" */;
+			buildPhases = (
+				B0108E1514AE116A00A53356 /* Sources */,
+				B0108E1614AE116A00A53356 /* Frameworks */,
+				B0108E1714AE116A00A53356 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketProgressBariOS;
+			productName = RocketProgressBariOS;
+			productReference = B0108E1914AE116A00A53356 /* libRocketProgressBariOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B0108E2B14AE4DC600A53356 /* RocketProgressBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0108E3814AE4DC600A53356 /* Build configuration list for PBXNativeTarget "RocketProgressBar" */;
+			buildPhases = (
+				B0108E2714AE4DC600A53356 /* Sources */,
+				B0108E2814AE4DC600A53356 /* Frameworks */,
+				B0108E2914AE4DC600A53356 /* Headers */,
+				B0108E2A14AE4DC600A53356 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketProgressBar;
+			productName = RocketProgressBar;
+			productReference = B0108E2C14AE4DC600A53356 /* RocketProgressBar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0108DDF14AE0FAB00A53356 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = B0108DE214AE0FAB00A53356 /* Build configuration list for PBXProject "RocketContrib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B0108DDD14AE0FAB00A53356;
+			productRefGroup = B0108DEA14AE0FAB00A53356 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0108E1814AE116A00A53356 /* RocketProgressBariOS */,
+				B0108E2B14AE4DC600A53356 /* RocketProgressBar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0108E2A14AE4DC600A53356 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0108E1514AE116A00A53356 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0108E2514AE117700A53356 /* ElementProgressBar.cpp in Sources */,
+				B0108E2614AE117B00A53356 /* ProgressBar.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0108E2714AE4DC600A53356 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0108E3B14AE4DD700A53356 /* ElementProgressBar.cpp in Sources */,
+				B0108E3C14AE4DDA00A53356 /* ProgressBar.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B0108DFC14AE0FAC00A53356 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Include,
+					../Include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B0108DFD14AE0FAC00A53356 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Include,
+					../Include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B0108E2314AE116A00A53356 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/RocketProgressBariOS.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../bin\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B0108E2414AE116A00A53356 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/RocketProgressBariOS.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../bin\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B0108E3914AE4DC600A53356 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../bin\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		B0108E3A14AE4DC600A53356 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../bin\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0108DE214AE0FAB00A53356 /* Build configuration list for PBXProject "RocketContrib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0108DFC14AE0FAC00A53356 /* Debug */,
+				B0108DFD14AE0FAC00A53356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0108E2214AE116A00A53356 /* Build configuration list for PBXNativeTarget "RocketProgressBariOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0108E2314AE116A00A53356 /* Debug */,
+				B0108E2414AE116A00A53356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0108E3814AE4DC600A53356 /* Build configuration list for PBXNativeTarget "RocketProgressBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0108E3914AE4DC600A53356 /* Debug */,
+				B0108E3A14AE4DC600A53356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0108DDF14AE0FAB00A53356 /* Project object */;
+}
