@@ -45,6 +45,8 @@ DecoratorTiledBoxInstancer::DecoratorTiledBoxInstancer()
 	RegisterTileProperty("bottom-image", true);
 
 	RegisterTileProperty("center-image", true);
+
+	RegisterProperty("color-multiplier", "white").AddParser(COLOR);
 }
 
 DecoratorTiledBoxInstancer::~DecoratorTiledBoxInstancer()
@@ -69,6 +71,9 @@ Decorator* DecoratorTiledBoxInstancer::InstanceDecorator(const String& ROCKET_UN
 	GetTileProperties(tiles[8], texture_names[8], rcss_paths[8], properties, "center-image");
 
 	DecoratorTiledBox* decorator = new DecoratorTiledBox();
+
+	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+
 	if (decorator->Initialise(tiles, texture_names, rcss_paths))
 		return decorator;
 

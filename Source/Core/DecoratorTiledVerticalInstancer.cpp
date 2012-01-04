@@ -37,6 +37,7 @@ DecoratorTiledVerticalInstancer::DecoratorTiledVerticalInstancer()
 	RegisterTileProperty("top-image", false);
 	RegisterTileProperty("bottom-image", false);
 	RegisterTileProperty("center-image", true);
+	RegisterProperty("color-multiplier", "white").AddParser(COLOR);
 }
 
 DecoratorTiledVerticalInstancer::~DecoratorTiledVerticalInstancer()
@@ -55,6 +56,9 @@ Decorator* DecoratorTiledVerticalInstancer::InstanceDecorator(const String& ROCK
 	GetTileProperties(tiles[2], texture_names[2], rcss_paths[2], properties, "center-image");
 
 	DecoratorTiledVertical* decorator = new DecoratorTiledVertical();
+
+	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+
 	if (decorator->Initialise(tiles, texture_names, rcss_paths))
 		return decorator;
 

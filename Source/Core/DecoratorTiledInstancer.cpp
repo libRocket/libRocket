@@ -39,7 +39,7 @@ DecoratorTiledInstancer::~DecoratorTiledInstancer()
 // Adds the property declarations for a tile.
 void DecoratorTiledInstancer::RegisterTileProperty(const String& name, bool register_repeat_modes)
 {
-	RegisterProperty(String(32, "%s-src", name.CString()), "").AddParser("string");
+	RegisterProperty(String (32, "%s-src", name.CString()), "").AddParser("string");
 	RegisterProperty(String(32, "%s-s-begin", name.CString()), "0").AddParser("number");
 	RegisterProperty(String(32, "%s-s-end", name.CString()), "1").AddParser("number");
 	RegisterProperty(String(32, "%s-t-begin", name.CString()), "0").AddParser("number");

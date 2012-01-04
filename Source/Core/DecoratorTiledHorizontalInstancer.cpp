@@ -37,6 +37,7 @@ DecoratorTiledHorizontalInstancer::DecoratorTiledHorizontalInstancer()
 	RegisterTileProperty("left-image", false);
 	RegisterTileProperty("right-image", false);
 	RegisterTileProperty("center-image", true);
+	RegisterProperty("color-multiplier", "white").AddParser(COLOR);
 }
 
 DecoratorTiledHorizontalInstancer::~DecoratorTiledHorizontalInstancer()
@@ -55,6 +56,9 @@ Decorator* DecoratorTiledHorizontalInstancer::InstanceDecorator(const String& RO
 	GetTileProperties(tiles[2], texture_names[2], rcss_paths[2], properties, "center-image");
 
 	DecoratorTiledHorizontal* decorator = new DecoratorTiledHorizontal();
+
+	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+
 	if (decorator->Initialise(tiles, texture_names, rcss_paths))
 		return decorator;
 
