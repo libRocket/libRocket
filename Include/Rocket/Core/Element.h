@@ -507,7 +507,7 @@ public:
 	/// @return The element's background.
 	ElementBackground* GetElementBackground() const;
 	/// Access the element border.
-	/// @return The element's boder.
+	/// @return The element's border.
 	ElementBorder* GetElementBorder() const;
 	/// Access the element decorators.
 	/// @return The element decoration.

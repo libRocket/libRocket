@@ -156,6 +156,18 @@ void ElementImage::OnAttributeChange(const Rocket::Core::AttributeNameList& chan
 		DirtyLayout();
 }
 
+// Called when properties on the element are changed.
+void ElementImage::OnPropertyChange(const PropertyNameList& changed_properties)
+{
+	Rocket::Core::Element::OnPropertyChange(changed_properties);
+
+	// Check if color property has been changed.
+	if (changed_properties.find(COLOR) != changed_properties.end() )
+	{
+		geometry_dirty = true;
+	}
+}
+
 // Regenerates the element's geometry.
 void ElementImage::ProcessEvent(Rocket::Core::Event& event)
 {
@@ -178,6 +190,8 @@ void ElementImage::GenerateGeometry()
 
 	vertices.resize(4);
 	indices.resize(6);
+
+	Colourb color = GetProperty(COLOR)->value.Get< Colourb >();
 
 	// Generate the texture coordinates.
 	Vector2f texcoords[2];
@@ -203,9 +217,9 @@ void ElementImage::GenerateGeometry()
 
 	Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],									// vertices to write to
 												  &indices[0],									// indices to write to
-												  Vector2f(0, 0),					// origin of the quad
+												  Vector2f(0, 0),								// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
-												  Colourb(255, 255, 255, 255),		// colour of the vertices
+												  color,										// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
 
