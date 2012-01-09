@@ -234,6 +234,14 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\Include\Rocket\Core\BitmapFont\FontProvider.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Include\Rocket\Core\BitmapFont\Header.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
