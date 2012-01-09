@@ -114,22 +114,6 @@ public:
 	/// @return The font face's charset.
 	const UnicodeRangeList& GetCharset() const;
 
-
-    const String & GetTextureBaseName() const
-    {
-        return TextureBaseName;
-    }
-
-    const String & GetTextureDirectory() const
-    {
-        return TextureDirectory;
-    }
-
-    int GetTextureSize() const
-    {
-        return TextureSize;
-    }
-
 protected:
 	/// Destroys the handle.
 	virtual void OnReferenceDeactivate();
@@ -174,10 +158,6 @@ protected:
 
 	String raw_charset;
 	UnicodeRangeList charset;
-
-    String TextureBaseName;
-    String TextureDirectory;
-    int TextureSize;
 };
 
 }
