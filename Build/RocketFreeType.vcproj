@@ -19,7 +19,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="build\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets=".\vsprops\BuildConfigurationDLLDebug.vsprops"
 			CharacterSet="1"
