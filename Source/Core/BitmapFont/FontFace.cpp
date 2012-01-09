@@ -145,18 +145,7 @@ Rocket::Core::FontFaceHandle* FontFace::GetHandle(const String& _raw_charset, in
 // Releases the face's structure.
 void FontFace::ReleaseFace()
 {
-	if (face != NULL)
-	{
-        if ( release_stream )
-            Log::Message( Log::LT_ERROR, "Leak: TODO" );
-		/*FT_Byte* face_memory = face->stream->base;
-		FT_Done_Face(face);
-
-		if (release_stream)
-			delete[] face_memory;
-
-		face = NULL;*/
-	}
+	delete face;
 }
 
 }
