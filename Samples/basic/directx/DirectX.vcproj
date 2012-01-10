@@ -55,7 +55,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore_d.lib RocketDebugger_d.lib RocketBitmapFont_d.lib opengl32.lib d3d9.lib d3dx9.lib"
+				AdditionalDependencies="RocketCore_d.lib RocketDebugger_d.lib RocketFreeType_d.lib RocketBitmapFont_d.lib opengl32.lib d3d9.lib d3dx9.lib"
 				OutputFile="..\..\..\bin\$(ProjectName)_d.exe"
 				AdditionalLibraryDirectories="..\..\..\bin"
 				GenerateDebugInformation="true"
@@ -124,7 +124,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore.lib RocketDebugger.lib opengl32.lib d3d9.lib d3dx9.lib"
+				AdditionalDependencies="RocketCore.lib RocketDebugger.lib RocketFreeType.lib RocketBitmapFont.lib opengl32.lib d3d9.lib d3dx9.lib"
 				OutputFile="..\..\..\bin\$(ProjectName).exe"
 				AdditionalLibraryDirectories="..\..\..\bin"
 				SubSystem="2"

@@ -52,9 +52,10 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
     Rocket::Core::BitmapFont::FontFaceHandle
         * bm_font_face_handle;
 
-    bm_font_face_handle = ( Rocket::Core::BitmapFont::FontFaceHandle * ) handle;
 	handle = _handle;
 	effect = _effect;
+
+    bm_font_face_handle = ( Rocket::Core::BitmapFont::FontFaceHandle * ) handle;
 
 	if (effect != NULL)
     {
@@ -113,7 +114,6 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
 // Generates the texture data for a layer (for the texture database).
 bool FontFaceLayer::GenerateTexture(const byte*& texture_data, Vector2i& texture_dimensions, int texture_id)
 {
-	
 	return true;
 }
 
