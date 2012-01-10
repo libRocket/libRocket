@@ -469,6 +469,27 @@
 		B00E97B9149A1F7B002493D4 /* FontFace.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95EA149974A3002493D4 /* FontFace.h */; };
 		B00E97BA149A1F7B002493D4 /* FontProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E95E714996A2C002493D4 /* FontProvider.h */; };
 		B00E97BB149A1F7B002493D4 /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B00E95E5149969F7002493D4 /* FontProvider.cpp */; };
+		B06552D514BC812B0019C95A /* BM_Font.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552C914BC812B0019C95A /* BM_Font.h */; };
+		B06552D714BC812B0019C95A /* FontFace.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552CB14BC812B0019C95A /* FontFace.h */; };
+		B06552D914BC812B0019C95A /* FontFaceHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552CD14BC812B0019C95A /* FontFaceHandle.h */; };
+		B06552DB14BC812B0019C95A /* FontFaceLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552CF14BC812B0019C95A /* FontFaceLayer.h */; };
+		B06552DD14BC812B0019C95A /* FontFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552D114BC812B0019C95A /* FontFamily.h */; };
+		B06552DF14BC812B0019C95A /* FontParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B06552D314BC812B0019C95A /* FontParser.h */; };
+		B06552EA14BC81770019C95A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06552E914BC81770019C95A /* Cocoa.framework */; };
+		B06552FC14BC81850019C95A /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CA14BC812B0019C95A /* FontFace.cpp */; };
+		B06552FD14BC81850019C95A /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CC14BC812B0019C95A /* FontFaceHandle.cpp */; };
+		B06552FE14BC81850019C95A /* FontFaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CE14BC812B0019C95A /* FontFaceLayer.cpp */; };
+		B06552FF14BC81850019C95A /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D014BC812B0019C95A /* FontFamily.cpp */; };
+		B065530014BC81850019C95A /* FontParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D214BC812B0019C95A /* FontParser.cpp */; };
+		B065530114BC81850019C95A /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D414BC812B0019C95A /* FontProvider.cpp */; };
+		B065530214BC819C0019C95A /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
+		B065530914BC82360019C95A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B065530814BC82360019C95A /* Foundation.framework */; };
+		B065531314BC824F0019C95A /* FontFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CA14BC812B0019C95A /* FontFace.cpp */; };
+		B065531414BC824F0019C95A /* FontFaceHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CC14BC812B0019C95A /* FontFaceHandle.cpp */; };
+		B065531514BC824F0019C95A /* FontFaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552CE14BC812B0019C95A /* FontFaceLayer.cpp */; };
+		B065531614BC824F0019C95A /* FontFamily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D014BC812B0019C95A /* FontFamily.cpp */; };
+		B065531714BC824F0019C95A /* FontParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D214BC812B0019C95A /* FontParser.cpp */; };
+		B065531814BC824F0019C95A /* FontProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06552D414BC812B0019C95A /* FontProvider.cpp */; };
 		B0845E00149A21010000CC58 /* RocketCoreOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8B1DDC123ABC7800C451C8 /* RocketCoreOSX.framework */; };
 		B0845E02149A21050000CC58 /* RocketFreeTypeOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */; };
 /* End PBXBuildFile section */
@@ -825,6 +846,25 @@
 		B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketFreeTypeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketFreeTypeOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RocketFreeTypeOSX-Info.plist"; path = "/Users/hamaide/Project/librocket-dev/Build/RocketFreeTypeOSX-Info.plist"; sourceTree = "<absolute>"; };
+		B06552C914BC812B0019C95A /* BM_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BM_Font.h; sourceTree = "<group>"; };
+		B06552CA14BC812B0019C95A /* FontFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontFace.cpp; sourceTree = "<group>"; };
+		B06552CB14BC812B0019C95A /* FontFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFace.h; sourceTree = "<group>"; };
+		B06552CC14BC812B0019C95A /* FontFaceHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontFaceHandle.cpp; sourceTree = "<group>"; };
+		B06552CD14BC812B0019C95A /* FontFaceHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFaceHandle.h; sourceTree = "<group>"; };
+		B06552CE14BC812B0019C95A /* FontFaceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontFaceLayer.cpp; sourceTree = "<group>"; };
+		B06552CF14BC812B0019C95A /* FontFaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFaceLayer.h; sourceTree = "<group>"; };
+		B06552D014BC812B0019C95A /* FontFamily.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontFamily.cpp; sourceTree = "<group>"; };
+		B06552D114BC812B0019C95A /* FontFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontFamily.h; sourceTree = "<group>"; };
+		B06552D214BC812B0019C95A /* FontParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontParser.cpp; sourceTree = "<group>"; };
+		B06552D314BC812B0019C95A /* FontParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontParser.h; sourceTree = "<group>"; };
+		B06552D414BC812B0019C95A /* FontProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontProvider.cpp; sourceTree = "<group>"; };
+		B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RocketBitmapFontOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B06552E914BC81770019C95A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		B06552EC14BC81770019C95A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B06552ED14BC81770019C95A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B06552EE14BC81770019C95A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRocketBitmapFontiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B065530814BC82360019C95A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -885,6 +925,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B06552E314BC81770019C95A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B065530214BC819C0019C95A /* RocketCoreOSX.framework in Frameworks */,
+				B06552EA14BC81770019C95A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B065530414BC82360019C95A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B065530914BC82360019C95A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07C0554694100DB518D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -904,6 +961,7 @@
 				6E8B1BE2123AADEB00C451C8 /* Controls */,
 				6E8B1BD8123AABCD00C451C8 /* Core */,
 				6E9D09201209807A00099E1A /* Libraries */,
+				B06552E814BC81770019C95A /* Frameworks */,
 			);
 			name = test;
 			sourceTree = "<group>";
@@ -911,6 +969,7 @@
 		6E8B1BD8123AABCD00C451C8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B06552C814BC812B0019C95A /* BitmapFont */,
 				B00E95E4149969BF002493D4 /* FreeType */,
 				6EF3BBA912481DD40014316D /* BaseXMLParser.h */,
 				6EF3BBAA12481DD40014316D /* Box.h */,
@@ -1229,6 +1288,8 @@
 		6E9D09201209807A00099E1A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */,
+				B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */,
 				B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */,
 				B00E96D1149A1EE4002493D4 /* libRocketFreeTypeiOS.a */,
 				B00E97AB149A1F10002493D4 /* RocketFreeTypeOSX-Info.plist */,
@@ -1263,6 +1324,46 @@
 			name = FreeType;
 			sourceTree = "<group>";
 		};
+		B06552C814BC812B0019C95A /* BitmapFont */ = {
+			isa = PBXGroup;
+			children = (
+				B06552C914BC812B0019C95A /* BM_Font.h */,
+				B06552CA14BC812B0019C95A /* FontFace.cpp */,
+				B06552CB14BC812B0019C95A /* FontFace.h */,
+				B06552CC14BC812B0019C95A /* FontFaceHandle.cpp */,
+				B06552CD14BC812B0019C95A /* FontFaceHandle.h */,
+				B06552CE14BC812B0019C95A /* FontFaceLayer.cpp */,
+				B06552CF14BC812B0019C95A /* FontFaceLayer.h */,
+				B06552D014BC812B0019C95A /* FontFamily.cpp */,
+				B06552D114BC812B0019C95A /* FontFamily.h */,
+				B06552D214BC812B0019C95A /* FontParser.cpp */,
+				B06552D314BC812B0019C95A /* FontParser.h */,
+				B06552D414BC812B0019C95A /* FontProvider.cpp */,
+			);
+			name = BitmapFont;
+			path = ../Source/Core/BitmapFont;
+			sourceTree = "<group>";
+		};
+		B06552E814BC81770019C95A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B06552E914BC81770019C95A /* Cocoa.framework */,
+				B065530814BC82360019C95A /* Foundation.framework */,
+				B06552EB14BC81770019C95A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B06552EB14BC81770019C95A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B06552EC14BC81770019C95A /* AppKit.framework */,
+				B06552ED14BC81770019C95A /* CoreData.framework */,
+				B06552EE14BC81770019C95A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1270,6 +1371,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06552D514BC812B0019C95A /* BM_Font.h in Headers */,
+				B06552D714BC812B0019C95A /* FontFace.h in Headers */,
+				B06552D914BC812B0019C95A /* FontFaceHandle.h in Headers */,
+				B06552DB14BC812B0019C95A /* FontFaceLayer.h in Headers */,
+				B06552DD14BC812B0019C95A /* FontFamily.h in Headers */,
+				B06552DF14BC812B0019C95A /* FontParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1519,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B06552E414BC81770019C95A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B065530514BC82360019C95A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07A0554694100DB518D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1549,6 +1670,41 @@
 			productReference = B00E97AA149A1F0E002493D4 /* RocketFreeTypeOSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B06552E614BC81770019C95A /* RocketBitmapFontOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B06552F914BC81770019C95A /* Build configuration list for PBXNativeTarget "RocketBitmapFontOSX" */;
+			buildPhases = (
+				B06552E214BC81770019C95A /* Sources */,
+				B06552E314BC81770019C95A /* Frameworks */,
+				B06552E414BC81770019C95A /* Headers */,
+				B06552E514BC81770019C95A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketBitmapFontOSX;
+			productName = RocketBitmapFontOSX;
+			productReference = B06552E714BC81770019C95A /* RocketBitmapFontOSX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B065530614BC82360019C95A /* RocketBitmapFontiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B065531014BC82360019C95A /* Build configuration list for PBXNativeTarget "RocketBitmapFontiOS" */;
+			buildPhases = (
+				B065530314BC82360019C95A /* Sources */,
+				B065530414BC82360019C95A /* Frameworks */,
+				B065530514BC82360019C95A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketBitmapFontiOS;
+			productName = RocketBitmapFontiOS;
+			productReference = B065530714BC82360019C95A /* libRocketBitmapFontiOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		D2AAC07D0554694100DB518D /* RocketCoreiOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "RocketCoreiOS" */;
@@ -1594,6 +1750,8 @@
 				6E8B1EC5123AC80700C451C8 /* RocketDebuggerOSX */,
 				B00E9642149A1EE4002493D4 /* RocketFreeTypeiOS */,
 				B00E96D2149A1F0E002493D4 /* RocketFreeTypeOSX */,
+				B065530614BC82360019C95A /* RocketBitmapFontiOS */,
+				B06552E614BC81770019C95A /* RocketBitmapFontOSX */,
 			);
 		};
 /* End PBXProject section */
@@ -1630,6 +1788,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B00E9716149A1F0E002493D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B06552E514BC81770019C95A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1907,6 +2072,32 @@
 				B00E97B6149A1F7B002493D4 /* FontFaceHandle.cpp in Sources */,
 				B00E97B8149A1F7B002493D4 /* FontFace.cpp in Sources */,
 				B00E97BB149A1F7B002493D4 /* FontProvider.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B06552E214BC81770019C95A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B06552FC14BC81850019C95A /* FontFace.cpp in Sources */,
+				B06552FD14BC81850019C95A /* FontFaceHandle.cpp in Sources */,
+				B06552FE14BC81850019C95A /* FontFaceLayer.cpp in Sources */,
+				B06552FF14BC81850019C95A /* FontFamily.cpp in Sources */,
+				B065530014BC81850019C95A /* FontParser.cpp in Sources */,
+				B065530114BC81850019C95A /* FontProvider.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B065530314BC82360019C95A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B065531314BC824F0019C95A /* FontFace.cpp in Sources */,
+				B065531414BC824F0019C95A /* FontFaceHandle.cpp in Sources */,
+				B065531514BC824F0019C95A /* FontFaceLayer.cpp in Sources */,
+				B065531614BC824F0019C95A /* FontFamily.cpp in Sources */,
+				B065531714BC824F0019C95A /* FontParser.cpp in Sources */,
+				B065531814BC824F0019C95A /* FontProvider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2477,6 +2668,109 @@
 			};
 			name = Release;
 		};
+		B06552FA14BC81770019C95A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		B06552FB14BC81770019C95A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		B065531114BC82360019C95A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/RocketBitmapFontiOS.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B065531214BC82360019C95A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/RocketBitmapFontiOS.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2557,6 +2851,24 @@
 			buildConfigurations = (
 				B00E97A8149A1F0E002493D4 /* Debug */,
 				B00E97A9149A1F0E002493D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B06552F914BC81770019C95A /* Build configuration list for PBXNativeTarget "RocketBitmapFontOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B06552FA14BC81770019C95A /* Debug */,
+				B06552FB14BC81770019C95A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B065531014BC82360019C95A /* Build configuration list for PBXNativeTarget "RocketBitmapFontiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B065531114BC82360019C95A /* Debug */,
+				B065531214BC82360019C95A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
