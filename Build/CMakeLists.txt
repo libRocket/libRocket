@@ -61,7 +61,6 @@ find_package(Freetype REQUIRED)
 if(FREETYPE_FOUND)
 		include_directories(${FREETYPE_INCLUDE_DIRS})
 		link_directories(${FREETYPE_LINK_DIRS})
-		list(APPEND CORE_LINK_LIBS ${FREETYPE_LIBRARY})
 endif()
 mark_as_advanced(FREETYPE_INCLUDE_DIRS FREETYPE_LIBRARY FREETYPE_LINK_DIRECTORIES)
 
@@ -106,7 +105,7 @@ include(FileList)
 # Build libraries ==================
 #===================================
 
-set(LIBRARIES Core Controls Debugger FreeType)
+set(LIBRARIES Core Controls Debugger FreeType BitmapFont)
 
 foreach(library ${LIBRARIES})
     set(NAME Rocket${library})
@@ -161,7 +160,9 @@ endif()
 
 target_link_libraries(RocketCore ${CORE_LINK_LIBS})
 target_link_libraries(RocketControls RocketCore)
-target_link_libraries(RocketDebugger RocketCore)
+target_link_libraries(RocketFreeType RocketCore ${FREETYPE_LIBRARY})
+target_link_libraries(RocketBitmapFont RocketCore ${FREETYPE_LIBRARY})
+target_link_libraries(RocketDebugger RocketCore RocketFreeType RocketBitmapFont)
 
 if(BUILD_PYTHON_BINDINGS)
     target_link_libraries(_rocketcore RocketCore ${PY_BINDINGS_LINK_LIBS})
