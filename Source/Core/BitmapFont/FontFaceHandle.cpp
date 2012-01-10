@@ -329,7 +329,7 @@ void FontFaceHandle::BuildGlyphMap(BM_Font *bm_face, const UnicodeRange& unicode
 
         if ( index < 0 )
         {
-            Log::Message(Log::LT_ERROR, "Unable to load glyph for character '%u' on the font face '%s %s'.", character_code, bm_face->Face.FamilyName);
+            Log::Message(Log::LT_ERROR, "Unable to load glyph for character '%u' on the font face '%s %s'.", character_code, bm_face->Face.FamilyName.CString());
             continue;
         }
 
