@@ -143,21 +143,38 @@ namespace BitmapFont {
 
         int BinarySearch( int unicode_code, int min_index, int max_index )
         {
-            int mid_index = ( min_index + max_index ) / 2;
-            
-            if ( this->CharactersInfo[ mid_index ].Id == unicode_code )
+            if ( abs( max_index - min_index ) <= 1 )
             {
-                return mid_index;
-            }
-            else if ( this->CharactersInfo[ mid_index ].Id > unicode_code )
-            {
-                return BinarySearch( unicode_code, min_index, mid_index );
+                if ( this->CharactersInfo[ min_index ].Id == unicode_code )
+                {
+                    return min_index;
+                }
+                else if ( this->CharactersInfo[ max_index ].Id == unicode_code )
+                {
+                    return max_index;
+                }
+                else
+                {
+                    return -1;
+                }
             }
             else
             {
-                return BinarySearch( unicode_code, mid_index, max_index );
-            }
+                int mid_index = ( min_index + max_index ) / 2;
 
+                if ( this->CharactersInfo[ mid_index ].Id == unicode_code )
+                {
+                    return mid_index;
+                }
+                else if ( this->CharactersInfo[ mid_index ].Id > unicode_code )
+                {
+                    return BinarySearch( unicode_code, min_index, mid_index );
+                }
+                else
+                {
+                    return BinarySearch( unicode_code, mid_index, max_index );
+                }
+            }
         }
     };
 
