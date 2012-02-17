@@ -38,7 +38,7 @@ namespace BitmapFont {
 class FontEffectSort
 {
 public:
-    bool operator()(const Rocket::Core::FontEffect* lhs, const Rocket::Core::FontEffect* rhs)
+	bool operator()(const Rocket::Core::FontEffect* lhs, const Rocket::Core::FontEffect* rhs)
 	{
 		return lhs->GetZIndex() < rhs->GetZIndex();
 	}
@@ -70,12 +70,12 @@ FontFaceHandle::~FontFaceHandle()
 // Initialises the handle so it is able to render text.
 bool FontFaceHandle::Initialise(BM_Font *bm_face, const String& _charset, int _size)
 {
-    ROCKET_ASSERT( bm_face->CommonCharactersInfo.ScaleHeight == bm_face->CommonCharactersInfo.ScaleWidth );
+	ROCKET_ASSERT( bm_face->CommonCharactersInfo.ScaleHeight == bm_face->CommonCharactersInfo.ScaleWidth );
 
 	size = _size;
-    TextureBaseName = bm_face->Face.Source;
-    TextureDirectory = bm_face->Face.Directory;
-    TextureSize = bm_face->CommonCharactersInfo.ScaleHeight;
+	TextureBaseName = bm_face->Face.Source;
+	TextureDirectory = bm_face->Face.Directory;
+	TextureSize = bm_face->CommonCharactersInfo.ScaleHeight;
 	raw_charset = _charset;
 
 	if (!UnicodeRange::BuildList(charset, raw_charset))
@@ -302,8 +302,8 @@ void FontFaceHandle::GenerateMetrics(BM_Font *bm_face)
 	/*underline_thickness = FT_MulFix(ft_face->underline_thickness, ft_face->size->metrics.y_scale) / float(1 << 6);
 	underline_thickness = Math::Max(underline_thickness, 1.0f);
 */
-    baseline += underline_position / 1.5f;
-    underline_thickness = 1.0f;
+	baseline += underline_position / 1.5f;
+	underline_thickness = 1.0f;
 	average_advance = 0;
 	for (FontGlyphMap::iterator i = glyphs.begin(); i != glyphs.end(); ++i)
 		average_advance += i->second.advance;
@@ -315,7 +315,7 @@ void FontFaceHandle::GenerateMetrics(BM_Font *bm_face)
 	word x = (word) 'x';
 	int index = bm_face->BM_Helper_GetCharacterTableIndex( x );// FT_Get_Char_Index(ft_face, x);
 	
-    if ( index >= 0)
+	if ( index >= 0)
 		x_height = bm_face->CharactersInfo[ index ].Height;
 	else
 		x_height = 0;
@@ -325,18 +325,17 @@ void FontFaceHandle::BuildGlyphMap(BM_Font *bm_face, const UnicodeRange& unicode
 {
 	for (word character_code = (word) (Math::Max< unsigned int >(unicode_range.min_codepoint, 32)); character_code <= unicode_range.max_codepoint; ++character_code)
 	{
-        int index = bm_face->BM_Helper_GetCharacterTableIndex( character_code );
+		int index = bm_face->BM_Helper_GetCharacterTableIndex( character_code );
 
-        if ( index < 0 )
-        {
-            Log::Message(Log::LT_ERROR, "Unable to load glyph for character '%u' on the font face '%s %s'.", character_code, bm_face->Face.FamilyName.CString());
-            continue;
-        }
+		if ( index < 0 )
+		{
+			continue;
+		}
 
-        FontGlyph glyph;
-        glyph.character = character_code;
-        BuildGlyph(glyph, &bm_face->CharactersInfo[ index ] );
-        glyphs[character_code] = glyph;
+		FontGlyph glyph;
+		glyph.character = character_code;
+		BuildGlyph(glyph, &bm_face->CharactersInfo[ index ] );
+		glyphs[character_code] = glyph;
 	}
 }
 
@@ -353,16 +352,16 @@ void Rocket::Core::BitmapFont::FontFaceHandle::BuildGlyph(FontGlyph& glyph, Char
 	// Set the glyph's advance.
 	glyph.advance = bm_glyph->Advance;
 
-    if ( bm_glyph->PageId > 0 )
-    {
-        Log::Message( Log::LT_WARNING, "Multiple page not supported" );
-    }
+	if ( bm_glyph->PageId > 0 )
+	{
+		Log::Message( Log::LT_WARNING, "Multiple page not supported" );
+	}
 
 	// Set the glyph's bitmap position.
 	glyph.bitmap_dimensions.x = bm_glyph->X;
 	glyph.bitmap_dimensions.y = bm_glyph->Y;
 
-    glyph.bitmap_data = NULL;
+	glyph.bitmap_data = NULL;
 }
 
 void Rocket::Core::BitmapFont::FontFaceHandle::BuildKerning(BM_Font *bm_face)
@@ -380,7 +379,7 @@ void Rocket::Core::BitmapFont::FontFaceHandle::BuildKerning(BM_Font *bm_face)
 				{
 					for (word lhs = (word) (Math::Max< unsigned int >(charset[j].min_codepoint, 32)); lhs <= charset[j].max_codepoint; ++lhs)
 					{
-                        int kerning = bm_face->BM_Helper_GetXKerning( lhs, rhs );
+						int kerning = bm_face->BM_Helper_GetXKerning( lhs, rhs );
 						if (kerning != 0)
 							glyph_kerning[lhs] = kerning;
 					}
@@ -407,47 +406,47 @@ int Rocket::Core::BitmapFont::FontFaceHandle::GetKerning(word lhs, word rhs) con
 // Generates (or shares) a layer derived from a font effect.
 Rocket::Core::FontFaceLayer* FontFaceHandle::GenerateLayer( FontEffect* font_effect)
 {
-    // See if this effect has been instanced before, as part of a different configuration.
-    FontLayerMap::iterator i = layers.find(font_effect);
-    if (i != layers.end())
-        return i->second;
+	// See if this effect has been instanced before, as part of a different configuration.
+	FontLayerMap::iterator i = layers.find(font_effect);
+	if (i != layers.end())
+		return i->second;
 
-    Rocket::Core::FontFaceLayer* layer = new Rocket::Core::BitmapFont::FontFaceLayer();
-    layers[font_effect] = layer;
+	Rocket::Core::FontFaceLayer* layer = new Rocket::Core::BitmapFont::FontFaceLayer();
+	layers[font_effect] = layer;
 
-    if (font_effect == NULL)
-    {
-        layer->Initialise(this);
-    }
-    else
-    {
-        // Determine which, if any, layer the new layer should copy its geometry and textures from.
-        Rocket::Core::FontFaceLayer* clone = NULL;
-        bool deep_clone = true;
-        String generation_key;
+	if (font_effect == NULL)
+	{
+		layer->Initialise(this);
+	}
+	else
+	{
+		// Determine which, if any, layer the new layer should copy its geometry and textures from.
+		Rocket::Core::FontFaceLayer* clone = NULL;
+		bool deep_clone = true;
+		String generation_key;
 
-        if (!font_effect->HasUniqueTexture())
-        {
-            clone = base_layer;
-            deep_clone = false;
-        }
-        else
-        {
-            generation_key = font_effect->GetName() + ";" + font_effect->GetGenerationKey();
-            FontLayerCache::iterator cache_iterator = layer_cache.find(generation_key);
-            if (cache_iterator != layer_cache.end())
-                clone = cache_iterator->second;
-        }
+		if (!font_effect->HasUniqueTexture())
+		{
+			clone = base_layer;
+			deep_clone = false;
+		}
+		else
+		{
+			generation_key = font_effect->GetName() + ";" + font_effect->GetGenerationKey();
+			FontLayerCache::iterator cache_iterator = layer_cache.find(generation_key);
+			if (cache_iterator != layer_cache.end())
+				clone = cache_iterator->second;
+		}
 
-        // Create a new layer.
-        layer->Initialise(this, font_effect, clone, deep_clone);
+		// Create a new layer.
+		layer->Initialise(this, font_effect, clone, deep_clone);
 
-        // Cache the layer in the layer cache if it generated its own textures (ie, didn't clone).
-        if (clone == NULL)
-            layer_cache[generation_key] = (Rocket::Core::FontFaceLayer*) layer;
-    }
+		// Cache the layer in the layer cache if it generated its own textures (ie, didn't clone).
+		if (clone == NULL)
+			layer_cache[generation_key] = (Rocket::Core::FontFaceLayer*) layer;
+	}
 
-    return (Rocket::Core::FontFaceLayer*)layer;
+	return (Rocket::Core::FontFaceLayer*)layer;
 }
 
 }

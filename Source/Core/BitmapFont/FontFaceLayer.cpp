@@ -49,17 +49,18 @@ FontFaceLayer::~FontFaceLayer()
 // Generates the character and texture data for the layer.
 bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, FontEffect* _effect, const Rocket::Core::FontFaceLayer* clone, bool deep_clone)
 {
-    Rocket::Core::BitmapFont::FontFaceHandle
-        * bm_font_face_handle;
+	Rocket::Core::BitmapFont::FontFaceHandle
+		* bm_font_face_handle;
 
 	handle = _handle;
 	effect = _effect;
 
-    bm_font_face_handle = ( Rocket::Core::BitmapFont::FontFaceHandle * ) handle;
+	bm_font_face_handle = ( Rocket::Core::BitmapFont::FontFaceHandle * ) handle;
 
 	if (effect != NULL)
-    {
-        Log::Message( Log::LT_WARNING, "Effects are not supported" );
+	{
+		effect->AddReference();
+		//Log::Message( Log::LT_WARNING, "Effects are not supported" );
 	}
 
 	const FontGlyphMap& glyphs = handle->GetGlyphs();
@@ -81,31 +82,31 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
 		{
 			const FontGlyph& glyph = i->second;
 
-            Vector2i glyph_origin( glyph.bitmap_dimensions.x, glyph.bitmap_dimensions.y ); // position in texture
-            Vector2i glyph_dimension = glyph.dimensions; // size of char
+			Vector2i glyph_origin( glyph.bitmap_dimensions.x, glyph.bitmap_dimensions.y ); // position in texture
+			Vector2i glyph_dimension = glyph.dimensions; // size of char
 
 			Character character;
 			character.origin = Vector2f((float) (glyph.bearing.x), (float) (glyph.bearing.y));
 			character.dimensions = Vector2f((float) glyph.dimensions.x, (float) glyph.dimensions.y);
 
-            // Set the character's texture index.
-            character.texture_index = 0;
+			// Set the character's texture index.
+			character.texture_index = 0;
 
-            // Generate the character's texture coordinates.
-            character.texcoords[0].x = float(glyph_origin.x) / float(bm_font_face_handle->GetTextureSize());
-            character.texcoords[0].y = float(glyph_origin.y) / float(bm_font_face_handle->GetTextureSize());
-            character.texcoords[1].x = float(glyph_origin.x + character.dimensions.x) / float(bm_font_face_handle->GetTextureSize());
-            character.texcoords[1].y = float(glyph_origin.y + character.dimensions.y) / float(bm_font_face_handle->GetTextureSize());
+			// Generate the character's texture coordinates.
+			character.texcoords[0].x = float(glyph_origin.x) / float(bm_font_face_handle->GetTextureSize());
+			character.texcoords[0].y = float(glyph_origin.y) / float(bm_font_face_handle->GetTextureSize());
+			character.texcoords[1].x = float(glyph_origin.x + character.dimensions.x) / float(bm_font_face_handle->GetTextureSize());
+			character.texcoords[1].y = float(glyph_origin.y + character.dimensions.y) / float(bm_font_face_handle->GetTextureSize());
 
-            characters[i->first] = character;
+			characters[i->first] = character;
 
-        }
+		}
 
-        Texture texture;
-        if (!texture.Load( bm_font_face_handle->GetTextureBaseName() + "_0.tga", bm_font_face_handle->GetTextureDirectory() ) )
-            return false;
-        textures.push_back(texture); 
-    }
+		Texture texture;
+		if (!texture.Load( bm_font_face_handle->GetTextureBaseName() + "_0.tga", bm_font_face_handle->GetTextureDirectory() ) )
+			return false;
+		textures.push_back(texture); 
+	}
 
 
 	return true;

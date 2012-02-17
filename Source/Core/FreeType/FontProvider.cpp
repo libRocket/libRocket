@@ -59,8 +59,8 @@ bool FontProvider::Initialise()
 	if (instance == NULL)
 	{
 		new FontProvider();
-        
-        FontDatabase::AddFontProvider( instance );
+
+		FontDatabase::AddFontProvider( instance );
 
 		FT_Error result = FT_Init_FreeType(&ft_library);
 		if (result != 0)
