@@ -23,7 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- */
+  *  --== Changes ==--
+ *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+*/
 
 #include "precompiled.h"
 #include "TextureDatabase.h"
@@ -83,6 +85,22 @@ TextureResource* TextureDatabase::Fetch(const String& source, const String& sour
 
 	instance->textures[resource->GetSource()] = resource;
 	return resource;
+}
+
+// If the requested texture is already in the database, it will be returned with an extra reference count. If not, it
+// will be generated through the application's render interface.
+TextureResource* TextureDatabase::Fetch(ImageSource* image_source)
+{
+    TextureMap::iterator iterator = instance->textures.find(image_source->GetImageSourceName());
+    if (iterator != instance->textures.end())
+    {
+        iterator->second->AddReference();
+        return iterator->second;
+    }
+
+    TextureResource* resource = new TextureResource();
+    instance->textures[image_source->GetImageSourceName()] = resource;
+    return resource;
 }
 
 // Releases all textures in the database.

@@ -23,7 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- */
+  *  --== Changes ==--
+ *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+*/
 
 #include "precompiled.h"
 #include "ElementImage.h"
@@ -166,6 +168,25 @@ void ElementImage::ProcessEvent(Rocket::Core::Event& event)
 	{
 		GenerateGeometry();
 	}
+}
+
+void ElementImage::OnImageSourceDestroy(ImageSource* image_source)
+{
+}
+
+void ElementImage::OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions)
+{
+    texture_dirty = false;
+
+    geometry_dirty = true;
+
+    if (!texture.Load(image_source, source, source_dimensions))
+    {
+        geometry.SetTexture(NULL);
+    }
+
+    // Set the texture onto our geometry object.
+    geometry.SetTexture(&texture);
 }
 
 void ElementImage::GenerateGeometry()

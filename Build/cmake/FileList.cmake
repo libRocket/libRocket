@@ -156,6 +156,8 @@ set(Core_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/XMLNodeHandler.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/PropertyParser.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ContextInstancer.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ImageSource.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ImageSourceListener.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core.h
 )
 
@@ -291,6 +293,8 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/Factory.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementDefinition.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/LayoutInlineBox.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/ImageSource.cpp
+	${PROJECT_SOURCE_DIR}/Source/Core/ImageSourceListener.cpp
 )
 
 set(Controls_HDR_FILES

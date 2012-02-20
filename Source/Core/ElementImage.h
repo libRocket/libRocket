@@ -32,6 +32,7 @@
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/Texture.h>
+#include <Rocket/Core/ImageSourceListener.h>
 
 namespace Rocket {
 namespace Core {
@@ -61,9 +62,12 @@ class TextureResource;
 	overridden by the 'width' or 'height' attributes.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
-class ROCKETCORE_API ElementImage : public Element
+class ROCKETCORE_API ElementImage : public Element, public ImageSourceListener
 {
 public:
 	/// Constructs a new ElementImage. This should not be called directly; use the Factory instead.
@@ -87,6 +91,10 @@ protected:
 	/// Regenerates the element's geometry on a resize event.
 	/// @param[in] event The event to process.
 	virtual void ProcessEvent(Event& event);
+
+    virtual void OnImageSourceDestroy(ImageSource* image_source);
+
+    virtual void OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
 
 private:
 	// Generates the element's geometry.

@@ -25,58 +25,45 @@
  *
  */
 
-#ifndef ROCKETCORETEXTUREDATABASE_H
-#define ROCKETCORETEXTUREDATABASE_H
+#ifndef ROCKETCOREIMAGESOURCELISTENER_H
+#define ROCKETCOREIMAGESOURCELISTENER_H
 
-#include <Rocket/Core/ImageSource.h>
+#include <Rocket/Core/Header.h>
 #include <Rocket/Core/String.h>
-#include <map>
+#include <Rocket/Core/Texture.h>
 
 namespace Rocket {
 namespace Core {
 
-class RenderInterface;
-class TextureResource;
+class ImageSource;
 
 /**
-	@author Peter Curry
+    Interface for objects wishing to listen to image source events. Listeners should use
+    the AttachListener() on ImageSource to begin observing an image source.
+
+    @author Matthew Alan Gray <mgray@hatboystudios.com>
 
  *  --== Changes ==--
- *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
-class TextureDatabase
+class ROCKETCORE_API ImageSourceListener
 {
 public:
-	static void Initialise();
-	static void Shutdown();
+    ImageSourceListener();
+    virtual ~ImageSourceListener();
 
-	/// If the requested texture is already in the database, it will be returned with an extra
-	/// reference count. If not, it will be loaded through the application's render interface.
-	static TextureResource* Fetch(const String& source, const String& source_directory);
-
-    /// If the requested texture is already in the database, it will be returned with an extra
-    /// reference count. If not, it will be created through the application's render interface.
-    static TextureResource* Fetch(ImageSource* image_source);
-
-	/// Releases all textures in the database.
-	static void ReleaseTextures();
-
-	/// Removes a texture from the database.
-	static void RemoveTexture(TextureResource* texture);
-
-	/// Release all textures bound through a render interface.
-	static void ReleaseTextures(RenderInterface* render_interface);
-
-private:
-	TextureDatabase();
-	~TextureDatabase();
-
-	typedef std::map< String, TextureResource* > TextureMap;
-	TextureMap textures;
+    /// Notification of the destruction of an observed image source.
+    /// @param[in] image_source Image source being destroyed.
+    virtual void OnImageSourceDestroy(ImageSource* image_source);
+    /// Notification of a new image from an observed data source.
+    /// @param[in] image_source Image source being changed.
+    /// @param[in] source The source image bytes.
+    /// @param[in] source_dimensions The source image dimensions.
+    virtual void OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
 };
 
 }
 }
 
-#endif
+#endif // ROCKETCOREIMAGESOURCELISTENER_H
