@@ -79,7 +79,10 @@ Element* XMLNodeHandlerImg::ElementStart(XMLParser* parser, const String& name, 
         }
 
         Rocket::Core::String image_source = attributes.Get< Rocket::Core::String >("source", "");
-        image->SetImageSource(image_source);
+        if (!image_source.Empty())
+        {
+            image->SetImageSource(image_source);
+        }
 
         // Add the element to its parent and remove the reference
         parent->AppendChild(element);

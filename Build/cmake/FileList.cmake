@@ -73,6 +73,7 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/EventInstancerDefault.h
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementBorder.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerImg.h
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementDecoration.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StreamFile.h
     ${PROJECT_SOURCE_DIR}/Source/Core/LayoutEngine.h
@@ -196,6 +197,7 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/ConvolutionFilter.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DecoratorTiled.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerImg.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DocumentHeader.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/ContextInstancer.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DecoratorTiledInstancer.cpp

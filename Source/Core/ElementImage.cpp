@@ -38,7 +38,7 @@ namespace Rocket {
 namespace Core {
 
 // Constructs a new ElementImage.
-ElementImage::ElementImage(const String& tag) : Element(tag), dimensions(-1, -1), geometry(this)
+ElementImage::ElementImage(const String& tag) : Element(tag), dimensions(-1, -1), geometry(this), image_source(NULL)
 {
 	ResetCoords();
 	geometry_dirty = false;
@@ -54,9 +54,15 @@ void ElementImage::SetImageSource(const Rocket::Core::String& image_source_name)
     if (image_source)
         image_source->DetachListener(this);
 
-    if (image_source = ImageSource::GetImageSource(image_source_name))
+    image_source = ImageSource::GetImageSource(image_source_name);
+    if (image_source)
     {
         image_source->AttachListener(this);
+    }
+    else
+    {
+        Rocket::Core::Log::Message(Rocket::Core::Log::LT_ERROR, "Bad image source name %s", image_source_name.CString());
+        image_source = NULL;
     }
 }
 
