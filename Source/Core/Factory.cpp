@@ -23,6 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *  21 Feb 2012     Added registration of XMLNodeHandlerImg for img tag     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -46,6 +48,7 @@
 #include "StreamFile.h"
 #include "StyleSheetFactory.h"
 #include "XMLNodeHandlerBody.h"
+#include "XMLNodeHandlerImg.h"
 #include "XMLNodeHandlerDefault.h"
 #include "XMLNodeHandlerHead.h"
 #include "XMLNodeHandlerTemplate.h"
@@ -117,6 +120,7 @@ bool Factory::Initialise()
 
 	// Register the core XML node handlers.
 	XMLParser::RegisterNodeHandler("", new XMLNodeHandlerDefault())->RemoveReference();
+    XMLParser::RegisterNodeHandler("img", new XMLNodeHandlerImg())->RemoveReference();
 	XMLParser::RegisterNodeHandler("body", new XMLNodeHandlerBody())->RemoveReference();
 	XMLParser::RegisterNodeHandler("head", new XMLNodeHandlerHead())->RemoveReference();
 	XMLParser::RegisterNodeHandler("template", new XMLNodeHandlerTemplate())->RemoveReference();

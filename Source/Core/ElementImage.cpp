@@ -23,9 +23,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
-  *  --== Changes ==--
+ *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
-*/
+ *  21 Feb 2012     Added SetImageSource(), called by XMLNodeHandlerImg     Matthew Alan Gray <mgray@hatboystudios.com>
+ */
 
 #include "precompiled.h"
 #include "ElementImage.h"
@@ -46,6 +47,17 @@ ElementImage::ElementImage(const String& tag) : Element(tag), dimensions(-1, -1)
 
 ElementImage::~ElementImage()
 {
+}
+
+void ElementImage::SetImageSource(const Rocket::Core::String& image_source_name)
+{
+    if (image_source)
+        image_source->DetachListener(this);
+
+    if (image_source = ImageSource::GetImageSource(image_source_name))
+    {
+        image_source->AttachListener(this);
+    }
 }
 
 // Sizes the box to the element's inherent size.

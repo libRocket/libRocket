@@ -65,6 +65,7 @@ class TextureResource;
 
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *  21 Feb 2012     Added SetImageSource(), called by XMLNodeHandlerImg     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 class ROCKETCORE_API ElementImage : public Element, public ImageSourceListener
@@ -74,6 +75,10 @@ public:
 	/// @param[in] tag The tag the element was declared as in RML.
 	ElementImage(const String& tag);
 	virtual ~ElementImage();
+
+    /// Sets a new image source for the contents of the image.
+    /// @param[in] image_source_name The name of the new image source.
+    void SetImageSource(const Rocket::Core::String& image_source_name);
 
 	/// Returns the element's inherent size.
 	/// @param[out] The element's intrinsic dimensions.
@@ -120,6 +125,9 @@ private:
 	// The geometry used to render this element.
 	Geometry geometry;
 	bool geometry_dirty;
+
+    // The image source that the image is fetched from.
+    ImageSource* image_source;
 };
 
 }
