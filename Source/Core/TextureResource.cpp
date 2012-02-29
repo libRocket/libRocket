@@ -23,6 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+  *  --== Changes ==--
+ *  29 Feb 2012     Adding TextureResource::Load(RenderInterface*,ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -30,6 +32,7 @@
 #include "FontFaceHandle.h"
 #include "TextureDatabase.h"
 #include <Rocket/Core.h>
+#include <Rocket/Core/ImageSource.h>
 
 namespace Rocket {
 namespace Core {
@@ -171,6 +174,48 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 	TextureHandle handle;
 	Vector2i dimensions;
+	if (!render_interface->LoadTexture(handle, dimensions, source))
+	{
+		Log::Message(Log::LT_WARNING, "Failed to load texture from %s.", source.CString());
+		texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
+
+		return false;
+	}
+
+	texture_data[render_interface] = TextureData(handle, dimensions);
+	return true;
+}
+
+bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image_source)
+{
+	Vector2i dimensions;
+
+	byte* data = NULL;
+
+    image_source->GetImage(data, dimensions);
+
+    // If texture data was generated, great! Otherwise, fallback to the LoadTexture() code and
+	// hope the client knows what the hell to do with the question mark in their file name.
+	if (data != NULL)
+	{
+		TextureHandle handle;
+		bool success = render_interface->GenerateTexture(handle, data, dimensions);
+
+		if (success)
+		{
+			texture_data[render_interface] = TextureData(handle, dimensions);
+			return true;
+		}
+		else
+		{
+			Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());
+			texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
+
+			return false;
+		}
+	}
+
+    TextureHandle handle;
 	if (!render_interface->LoadTexture(handle, dimensions, source))
 	{
 		Log::Message(Log::LT_WARNING, "Failed to load texture from %s.", source.CString());

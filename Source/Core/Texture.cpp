@@ -25,6 +25,7 @@
  *
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *  29 Feb 2012     Moving texture loading code out of Texture.cpp          Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -71,23 +72,7 @@ bool Texture::Load(ImageSource* image_source, const Rocket::Core::byte* source, 
         resource->RemoveReference();
 
     resource = TextureDatabase::Fetch(image_source);
-
-    if (resource != NULL)
-    {
-        RenderInterface* renderInterface = GetRenderInterface();
-
-        TextureHandle handle = resource->GetHandle(renderInterface);
-
-        renderInterface->GenerateTexture(
-            handle,
-            source,
-            source_dimensions
-        );
-
-        return true;
-    }
-
-    return false;
+    return resource != NULL;
 }
 
 // Returns the texture's source name. This is usually the name of the file the texture was loaded from.

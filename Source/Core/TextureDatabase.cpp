@@ -25,7 +25,8 @@
  *
   *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
-*/
+ *  29 Feb 2012     Adding texture loading code in Fetch(ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
+ */
 
 #include "precompiled.h"
 #include "TextureDatabase.h"
@@ -98,7 +99,10 @@ TextureResource* TextureDatabase::Fetch(ImageSource* image_source)
         return iterator->second;
     }
 
+    RenderInterface* renderInterface = GetRenderInterface();
+
     TextureResource* resource = new TextureResource();
+    resource->Load(renderInterface, image_source);
     instance->textures[image_source->GetImageSourceName()] = resource;
     return resource;
 }
