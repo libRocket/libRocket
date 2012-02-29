@@ -72,18 +72,22 @@ public:
 	/// Removes a font effect from the font database's cache.
 	/// @param[in] The effect to release.
 	static void ReleaseFontEffect(const FontEffect* effect);
-    
-    /// Add a font provider to the database
-    /// @param[in] The provider to add.
-    static void AddFontProvider( FontProvider * provider );
+	
+	/// Add a font provider to the database
+	/// @param[in] The provider to add.
+	static void AddFontProvider(FontProvider * provider);
+
+	/// Remove a font provider from the database
+	/// @param[in] The provider to remove.
+	static void RemoveFontProvider(FontProvider * provider);
 
 private:
 	FontDatabase(void);
 	~FontDatabase(void);
 
-    typedef std::vector< FontProvider *> FontProviderTable;
+	typedef std::vector< FontProvider *> FontProviderTable;
 
-    static FontProviderTable font_provider_table;
+	static FontProviderTable font_provider_table;
 	static FontDatabase* instance;
 };
 

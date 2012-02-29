@@ -59,8 +59,8 @@ bool FontProvider::Initialise()
 	if (instance == NULL)
 	{
 		new FontProvider();
-        
-        FontDatabase::AddFontProvider( instance );
+		
+		FontDatabase::AddFontProvider(instance);
 	}
 
 	return true;
@@ -73,6 +73,7 @@ void FontProvider::Shutdown()
 		for (FontFamilyMap::iterator i = instance->font_families.begin(); i != instance->font_families.end(); ++i)
 			delete (*i).second;
 
+		FontDatabase::RemoveFontProvider(instance);
 		delete instance;
 	}
 }
@@ -80,34 +81,34 @@ void FontProvider::Shutdown()
 // Adds a new font face to the database, ignoring any family, style and weight information stored in the face itself.
 bool FontProvider::LoadFontFace(const String& file_name)
 {
-    BM_Font *bm_font = (BM_Font*) instance->LoadFace(file_name);
-    
-    if (bm_font == NULL)
-    {
-        Log::Message(Log::LT_ERROR, "Failed to load font face from %s.", file_name.CString());
-        return false;
-    }
+	BM_Font *bm_font = (BM_Font*) instance->LoadFace(file_name);
+	
+	if (bm_font == NULL)
+	{
+		Log::Message(Log::LT_ERROR, "Failed to load font face from %s.", file_name.CString());
+		return false;
+	}
 
-    Font::Style style = bm_font->Face.Style;
-    Font::Weight weight = bm_font->Face.Weight;
+	Font::Style style = bm_font->Face.Style;
+	Font::Weight weight = bm_font->Face.Weight;
 
-    if (instance->AddFace(bm_font, bm_font->Face.FamilyName, style, weight, true))
-    {
-        Log::Message(Log::LT_INFO, "Loaded font face %s (from %s).", bm_font->Face.FamilyName.CString(), file_name.CString());
-        return true;
-    }
-    else
-    {
-        Log::Message(Log::LT_ERROR, "Failed to load font face %s (from %s).", bm_font->Face.FamilyName.CString(), file_name.CString());
-        return false;
-    }
+	if (instance->AddFace(bm_font, bm_font->Face.FamilyName, style, weight, true))
+	{
+		Log::Message(Log::LT_INFO, "Loaded font face %s (from %s).", bm_font->Face.FamilyName.CString(), file_name.CString());
+		return true;
+	}
+	else
+	{
+		Log::Message(Log::LT_ERROR, "Failed to load font face %s (from %s).", bm_font->Face.FamilyName.CString(), file_name.CString());
+		return false;
+	}
 }
 
 // Loads a new font face.
 bool FontProvider::LoadFontFace(const String& file_name, const String& family, Font::Style style, Font::Weight weight)
 {
-    BM_Font *bm_font = (BM_Font*) instance->LoadFace(file_name);
-    if (bm_font == NULL)
+	BM_Font *bm_font = (BM_Font*) instance->LoadFace(file_name);
+	if (bm_font == NULL)
 	{
 		Log::Message(Log::LT_ERROR, "Failed to load font face from %s.", file_name.CString());
 		return false;
@@ -177,8 +178,8 @@ bool FontProvider::AddFace(void* face, const String& family, Font::Style style, 
 // Loads a FreeType face.
 void* FontProvider::LoadFace(const String& file_name)
 {
-    BM_Font *bm_face = new BM_Font();
-    FontParser parser( bm_face );
+	BM_Font *bm_face = new BM_Font();
+	FontParser parser( bm_face );
 
 	FileInterface* file_interface = GetFileInterface();
 	FileHandle handle = file_interface->Open(file_name);
@@ -188,43 +189,43 @@ void* FontProvider::LoadFace(const String& file_name)
 		return NULL;
 	}
 
-    size_t length = file_interface->Length(handle);
+	size_t length = file_interface->Length(handle);
 
-    byte* buffer = new byte[length];
-    file_interface->Read(buffer, length, handle);
-    file_interface->Close(handle);
+	byte* buffer = new byte[length];
+	file_interface->Read(buffer, length, handle);
+	file_interface->Close(handle);
 
-    StreamMemory* stream = new StreamMemory( buffer, length );
-    stream->SetSourceURL( file_name );
+	StreamMemory* stream = new StreamMemory( buffer, length );
+	stream->SetSourceURL( file_name );
 
-    parser.Parse( stream );
+	parser.Parse( stream );
 
-    URL
-        file_url = file_name;
+	URL
+		file_url = file_name;
 
-    bm_face->Face.Source = file_url.GetFileName();
-    bm_face->Face.Directory = file_url.GetPath();
+	bm_face->Face.Source = file_url.GetFileName();
+	bm_face->Face.Directory = file_url.GetPath();
 
-    return bm_face;
+	return bm_face;
 }
 
 // Loads a FreeType face from memory.
 void* FontProvider::LoadFace(const byte* data, int data_length, const String& source, bool local_data)
 {
-    URL
-        file_url = source + ".fnt";
+	URL
+		file_url = source + ".fnt";
 
-    BM_Font *bm_face = new BM_Font();
-    FontParser parser( bm_face );
-    StreamMemory* stream = new StreamMemory( data, data_length );
-    stream->SetSourceURL( file_url );
+	BM_Font *bm_face = new BM_Font();
+	FontParser parser( bm_face );
+	StreamMemory* stream = new StreamMemory( data, data_length );
+	stream->SetSourceURL( file_url );
 
-    parser.Parse( stream );
+	parser.Parse( stream );
 
-    bm_face->Face.Source = file_url.GetFileName();
-    bm_face->Face.Directory = file_url.GetPath();
-    
-    return bm_face;
+	bm_face->Face.Source = file_url.GetFileName();
+	bm_face->Face.Directory = file_url.GetPath();
+	
+	return bm_face;
 }
 
 }

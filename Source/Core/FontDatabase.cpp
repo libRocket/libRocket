@@ -73,23 +73,23 @@ void FontDatabase::Shutdown()
 // Returns a handle to a font face that can be used to position and render text.
 FontFaceHandle* FontDatabase::GetFontFaceHandle(const String& family, const String& charset, Font::Style style, Font::Weight weight, int size)
 {
-    size_t provider_index, provider_count;
-    
-    provider_count = font_provider_table.size();
-    
-	for( provider_index = 0; provider_index < provider_count; ++provider_index )
-    {
-        FontFaceHandle * face_handle;
-        
-        face_handle = font_provider_table[ provider_index ]->GetFontFaceHandle( family, charset, style, weight, size );
-        
-        if( face_handle )
-        {
-            return face_handle;
-        }
-    }
-    
-    return NULL; 
+	size_t provider_index, provider_count;
+	
+	provider_count = font_provider_table.size();
+	
+	for(provider_index = 0; provider_index < provider_count; ++provider_index)
+	{
+		FontFaceHandle * face_handle;
+		
+		face_handle = font_provider_table[ provider_index ]->GetFontFaceHandle(family, charset, style, weight, size);
+		
+		if(face_handle)
+		{
+			return face_handle;
+		}
+	}
+	
+	return NULL; 
 }
 
 // Returns a font effect, either a newly-instanced effect from the factory or an identical shared
@@ -112,8 +112,8 @@ FontEffect* FontDatabase::GetFontEffect(const String& name, const PropertyDictio
 
 		PropertyList::iterator insert = sorted_properties.begin();
 		while (insert != sorted_properties.end() &&
-			   insert->first < property_iterator->first)
-		   ++insert;
+				insert->first < property_iterator->first)
+			++insert;
 
 		sorted_properties.insert(insert, PropertyList::value_type(property_iterator->first, property_iterator->second.Get< String >()));
 	}
@@ -154,9 +154,21 @@ void FontDatabase::ReleaseFontEffect(const FontEffect* effect)
 	}
 }
 
-void FontDatabase::AddFontProvider( FontProvider * provider )
+void FontDatabase::AddFontProvider(FontProvider * provider)
 {
-    instance->font_provider_table.push_back( provider );
+	instance->font_provider_table.push_back(provider);
+}
+
+void FontDatabase::RemoveFontProvider(FontProvider * provider)
+{
+	for(FontProviderTable::iterator i = instance->font_provider_table.begin(); i != instance->font_provider_table.end(); ++i)
+	{
+		if(*i == provider)
+		{
+			instance->font_provider_table.erase(i);
+			return;
+		}
+	}
 }
 
 }
