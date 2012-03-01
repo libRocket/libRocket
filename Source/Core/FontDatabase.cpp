@@ -67,6 +67,8 @@ void FontDatabase::Shutdown()
 	if (instance != NULL)
 	{
 		delete instance;
+		font_effect_cache.clear();
+		font_provider_table.clear();
 	}
 }
 

@@ -60,7 +60,7 @@ bool FontProvider::Initialise()
 	{
 		new FontProvider();
 
-		FontDatabase::AddFontProvider( instance );
+		FontDatabase::AddFontProvider(instance);
 
 		FT_Error result = FT_Init_FreeType(&ft_library);
 		if (result != 0)
@@ -89,6 +89,7 @@ void FontProvider::Shutdown()
 
 		FontDatabase::RemoveFontProvider(instance);
 		delete instance;
+		instance = NULL;
 	}
 }
 

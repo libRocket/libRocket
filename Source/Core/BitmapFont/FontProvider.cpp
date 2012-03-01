@@ -75,6 +75,7 @@ void FontProvider::Shutdown()
 
 		FontDatabase::RemoveFontProvider(instance);
 		delete instance;
+		instance = NULL;
 	}
 }
 
