@@ -26,6 +26,7 @@
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
  *  29 Feb 2012     Moving texture loading code out of Texture.cpp          Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions params from Load     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -66,12 +67,16 @@ bool Texture::Load(const String& source, const String& source_path)
 	return resource != NULL;
 }
 
-bool Texture::Load(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions)
+bool Texture::Load(ImageSource* image_source)
 {
-    if (resource != NULL)
-        resource->RemoveReference();
+    TextureResource* newResource = TextureDatabase::Fetch(image_source);
 
-    resource = TextureDatabase::Fetch(image_source);
+    if (resource != NULL)
+    {
+        resource->RemoveReference();
+        resource = newResource;
+    }
+
     return resource != NULL;
 }
 

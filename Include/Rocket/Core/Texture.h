@@ -45,6 +45,7 @@ class RenderInterface;
 
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions params from Load     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 struct ROCKETCORE_API Texture
@@ -64,10 +65,8 @@ public:
 
     /// Attempts to load a texture.
     /// @param[in] image_source The ImageSource object that the source image data originates from.
-    /// @param[in] source The source image bytes of the texture.
-    /// @param[in] source_dimensions The source image dimensions.
     /// @return True if the texture loaded successfully, false if not.
-    bool Load(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
+    bool Load(ImageSource* image_source);
 
 	/// Returns the texture's source name. This is usually the name of the file the texture was loaded from.
 	/// @return The name of the this texture's source. This will be the empty string if this texture is not loaded.

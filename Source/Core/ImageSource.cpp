@@ -25,6 +25,14 @@
  *
  *  --== Changes ==--
  *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Added ImageSource::Update() to support texture update   Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  operations within the main render thread in the case
+ *                  that the ImageSource instance is updated in a separate
+ *                  thread.  This Update() method is called in the 
+ *                  ElementImage::OnUpdate() callback.  Also removed byte
+ *                  and dimension parameters from NotifyImageChange() since
+ *                  this can all be retrieved via GetImage() in the Update()
+ *                  method (if necessary).
  */
 
 #include <Rocket/Core/ImageSource.h>
@@ -109,12 +117,16 @@ void* ImageSource::GetScriptObject() const
     return NULL;
 }
 
-void ImageSource::NotifyImageChange(const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions)
+void ImageSource::Update()
+{
+}
+
+void ImageSource::NotifyImageChange()
 {
     ListenerList::iterator iter = listeners.begin();
     while (iter != listeners.end())
     {
-        (*iter)->OnImageChange(this, source, source_dimensions);
+        (*iter)->OnImageChange(this);
         iter++;
     }
 }

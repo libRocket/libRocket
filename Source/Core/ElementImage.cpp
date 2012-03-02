@@ -26,6 +26,8 @@
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
  *  21 Feb 2012     Added SetImageSource(), called by XMLNodeHandlerImg     Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Added OnUpdate() callback for updating connected        Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  ImageSource objects.
  */
 
 #include "precompiled.h"
@@ -93,6 +95,12 @@ bool ElementImage::GetIntrinsicDimensions(Vector2f& _dimensions)
 	// a 'resize' event which is caught below and will regenerate the geometry.
 	_dimensions = dimensions;
 	return true;
+}
+
+void ElementImage::OnUpdate()
+{
+    if (image_source)
+        image_source->Update();
 }
 
 // Renders the element.
@@ -192,13 +200,13 @@ void ElementImage::OnImageSourceDestroy(ImageSource* image_source)
 {
 }
 
-void ElementImage::OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions)
+void ElementImage::OnImageChange(ImageSource* image_source)
 {
     texture_dirty = false;
 
     geometry_dirty = true;
 
-    if (!texture.Load(image_source, source, source_dimensions))
+    if (!texture.Load(image_source))
     {
         geometry.SetTexture(NULL);
     }

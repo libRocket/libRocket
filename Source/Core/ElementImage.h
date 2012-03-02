@@ -66,6 +66,9 @@ class TextureResource;
  *  --== Changes ==--
  *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
  *  21 Feb 2012     Added SetImageSource(), called by XMLNodeHandlerImg     Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Added OnUpdate() callback for updating connected        Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  ImageSource objects and removed byte and 
+ *                  source_dimension params from OnImageChange()
  */
 
 class ROCKETCORE_API ElementImage : public Element, public ImageSourceListener
@@ -86,6 +89,9 @@ public:
 	bool GetIntrinsicDimensions(Vector2f& dimensions);
 
 protected:
+    /// Refreshes the image source if required.
+    virtual void OnUpdate();
+
 	/// Renders the image.
 	virtual void OnRender();
 
@@ -99,7 +105,7 @@ protected:
 
     virtual void OnImageSourceDestroy(ImageSource* image_source);
 
-    virtual void OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
+    virtual void OnImageChange(ImageSource* image_source);
 
 private:
 	// Generates the element's geometry.

@@ -25,6 +25,7 @@
  *
   *  --== Changes ==--
  *  29 Feb 2012     Adding TextureResource::Load(RenderInterface*,ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mat 2012     Refactored TextureResource::Load() to work with recent changes   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -188,44 +189,26 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image_source)
 {
-	Vector2i dimensions;
+    TextureHandle handle = reinterpret_cast<TextureHandle>((void*)NULL);
+    TextureDataMap::iterator iter = texture_data.find(render_interface);
+    if (iter != texture_data.end())
+    {
+        handle = iter->second.first;
+    }
 
-	byte* data = NULL;
+    if (!render_interface->LoadTexture(handle, image_source))
+    {
+        Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());
+        texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
 
+        return false;
+    }
+
+    Rocket::Core::byte* data = NULL;
+    Rocket::Core::Vector2i dimensions;
     image_source->GetImage(data, dimensions);
-
-    // If texture data was generated, great! Otherwise, fallback to the LoadTexture() code and
-	// hope the client knows what the hell to do with the question mark in their file name.
-	if (data != NULL)
-	{
-		TextureHandle handle;
-		bool success = render_interface->GenerateTexture(handle, data, dimensions);
-
-		if (success)
-		{
-			texture_data[render_interface] = TextureData(handle, dimensions);
-			return true;
-		}
-		else
-		{
-			Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());
-			texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
-
-			return false;
-		}
-	}
-
-    TextureHandle handle;
-	if (!render_interface->LoadTexture(handle, dimensions, source))
-	{
-		Log::Message(Log::LT_WARNING, "Failed to load texture from %s.", source.CString());
-		texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
-
-		return false;
-	}
-
-	texture_data[render_interface] = TextureData(handle, dimensions);
-	return true;
+    texture_data[render_interface] = TextureData(handle, dimensions);
+    return true;
 }
 
 void TextureResource::OnReferenceDeactivate()

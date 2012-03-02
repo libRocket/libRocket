@@ -43,6 +43,9 @@ class Context;
 	implementation of this class and install it through Core::SetRenderInterface() in order for anything to be rendered.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *   2 Mar 2012     Added a LoadTexture() method for dynamic ImageSource objects     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 class ROCKETCORE_API RenderInterface : public ReferenceCountable
@@ -95,6 +98,11 @@ public:
 	/// @param[in] source The application-defined image source, joined with the path of the referencing document.
 	/// @return True if the load attempt succeeded and the handle and dimensions are valid, false if not.
 	virtual bool LoadTexture(TextureHandle& texture_handle, Vector2i& texture_dimensions, const String& source);
+    /// Called by Rocket when a dynamic texture is required by the library.
+    /// @param[out] texture_handle The handle to write the texture handle for the loaded texture to.
+    /// @param[in] image_source The dynamic image source associated with this texture handle.
+    /// @return True if the load attempt succeeded and the handle and dimensions are valid, false if not.
+    virtual bool LoadTexture(TextureHandle& texture_handle, ImageSource* image_source);
 	/// Called by Rocket when a texture is required to be built from an internally-generated sequence of pixels.
 	/// @param[out] texture_handle The handle to write the texture handle for the generated texture to.
 	/// @param[in] source The raw 8-bit texture data. Each pixel is made up of four 8-bit values, indicating red, green, blue and alpha in that order.

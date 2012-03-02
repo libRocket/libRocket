@@ -25,6 +25,8 @@
  *
  *  --== Changes ==--
  *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions parameters since     Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  this can be obtained via ImageSource::GetImage()
  */
 
 #include <Rocket/Core/ImageSourceListener.h>
@@ -46,7 +48,7 @@ void ImageSourceListener::OnImageSourceDestroy(ImageSource* ROCKET_UNUSED(image_
 {
 }
 
-void ImageSourceListener::OnImageChange(ImageSource* ROCKET_UNUSED(image_source), const Rocket::Core::byte* ROCKET_UNUSED(source), const Rocket::Core::Vector2i& ROCKET_UNUSED(source_dimensions))
+void ImageSourceListener::OnImageChange(ImageSource* ROCKET_UNUSED(image_source))
 {
 }
 

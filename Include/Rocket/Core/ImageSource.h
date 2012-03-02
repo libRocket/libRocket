@@ -46,6 +46,14 @@ class ImageSourceListener;
 
  *  --== Changes ==--
  *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Added ImageSource::Update() to support texture update   Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  operations within the main render thread in the case
+ *                  that the ImageSource instance is updated in a separate
+ *                  thread.  This Update() method is called in the 
+ *                  ElementImage::OnUpdate() callback.  Also removed byte
+ *                  and dimension parameters from NotifyImageChange() since
+ *                  this can all be retrieved via GetImage() in the Update()
+ *                  method (if necessary).
  */
 
 class ROCKETCORE_API ImageSource
@@ -67,11 +75,13 @@ public:
 
     virtual void* GetScriptObject() const;
 
+    /// Refreshes the image source if required, calling NotifyImageChange() if 
+    /// a change occurs.
+    virtual void Update();
+
 protected:
     /// Tells all attached listeners that a new image is available.
-    /// @param[in] source The source image bytes.
-    /// @param[in] source_dimensions The source image dimensions.
-    void NotifyImageChange(const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
+    void NotifyImageChange();
 
 private:
     Core::String name;

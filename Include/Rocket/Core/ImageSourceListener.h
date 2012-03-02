@@ -45,6 +45,8 @@ class ImageSource;
 
  *  --== Changes ==--
  *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions parameters since     Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  this can be obtained via ImageSource::GetImage()
  */
 
 class ROCKETCORE_API ImageSourceListener
@@ -58,9 +60,7 @@ public:
     virtual void OnImageSourceDestroy(ImageSource* image_source);
     /// Notification of a new image from an observed data source.
     /// @param[in] image_source Image source being changed.
-    /// @param[in] source The source image bytes.
-    /// @param[in] source_dimensions The source image dimensions.
-    virtual void OnImageChange(ImageSource* image_source, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
+    virtual void OnImageChange(ImageSource* image_source);
 };
 
 }
