@@ -53,13 +53,13 @@ bool FontFaceLayer::Initialise(const Rocket::Core::FontFaceHandle* _handle, Font
 		* bm_font_face_handle;
 
 	handle = _handle;
-	effect = _effect;
+	//effect = _effect;
 
 	bm_font_face_handle = ( Rocket::Core::BitmapFont::FontFaceHandle * ) handle;
 
 	if (effect != NULL)
 	{
-		effect->AddReference();
+		//effect->AddReference();
 		//Log::Message( Log::LT_WARNING, "Effects are not supported" );
 	}
 
