@@ -23,10 +23,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *  27 Apr 2012     Initial creation.                                       Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
-#include "ElementImage.h"
+#include <Rocket/Core/ElementDynamicImage.h>
 #include <Rocket/Core.h>
 #include "TextureDatabase.h"
 #include "TextureResource.h"
@@ -34,20 +36,37 @@
 namespace Rocket {
 namespace Core {
 
-// Constructs a new ElementImage.
-ElementImage::ElementImage(const String& tag) : Element(tag), dimensions(-1, -1), geometry(this)
+// Constructs a new ElementDynamicImage.
+ElementDynamicImage::ElementDynamicImage(const String& tag) : Element(tag), dimensions(-1, -1), geometry(this), image_source(NULL)
 {
 	ResetCoords();
 	geometry_dirty = false;
 	texture_dirty = true;
 }
 
-ElementImage::~ElementImage()
+ElementDynamicImage::~ElementDynamicImage()
 {
 }
 
+void ElementDynamicImage::SetImageSource(const Rocket::Core::String& image_source_name)
+{
+    if (image_source)
+        image_source->DetachListener(this);
+
+    image_source = ImageSource::GetImageSource(image_source_name);
+    if (image_source)
+    {
+        image_source->AttachListener(this);
+    }
+    else
+    {
+        Rocket::Core::Log::Message(Rocket::Core::Log::LT_ERROR, "Bad image source name %s", image_source_name.CString());
+        image_source = NULL;
+    }
+}
+
 // Sizes the box to the element's inherent size.
-bool ElementImage::GetIntrinsicDimensions(Vector2f& _dimensions)
+bool ElementDynamicImage::GetIntrinsicDimensions(Vector2f& _dimensions)
 {
 	// Check if we need to reload the texture.
 	if (texture_dirty)
@@ -75,8 +94,14 @@ bool ElementImage::GetIntrinsicDimensions(Vector2f& _dimensions)
 	return true;
 }
 
+void ElementDynamicImage::OnUpdate()
+{
+    if (image_source)
+        image_source->Update();
+}
+
 // Renders the element.
-void ElementImage::OnRender()
+void ElementDynamicImage::OnRender()
 {
 	// Regenerate the geometry if required (this will be set if 'coords' changes but does not
 	// result in a resize).
@@ -88,7 +113,7 @@ void ElementImage::OnRender()
 }
 
 // Called when attributes on the element are changed.
-void ElementImage::OnAttributeChange(const Rocket::Core::AttributeNameList& changed_attributes)
+void ElementDynamicImage::OnAttributeChange(const Rocket::Core::AttributeNameList& changed_attributes)
 {
 	// Call through to the base element's OnAttributeChange().
 	Rocket::Core::Element::OnAttributeChange(changed_attributes);
@@ -157,7 +182,7 @@ void ElementImage::OnAttributeChange(const Rocket::Core::AttributeNameList& chan
 }
 
 // Regenerates the element's geometry.
-void ElementImage::ProcessEvent(Rocket::Core::Event& event)
+void ElementDynamicImage::ProcessEvent(Rocket::Core::Event& event)
 {
 	Element::ProcessEvent(event);
 
@@ -168,7 +193,26 @@ void ElementImage::ProcessEvent(Rocket::Core::Event& event)
 	}
 }
 
-void ElementImage::GenerateGeometry()
+void ElementDynamicImage::OnImageSourceDestroy(ImageSource* image_source)
+{
+}
+
+void ElementDynamicImage::OnImageChange(ImageSource* image_source)
+{
+    texture_dirty = false;
+
+    geometry_dirty = true;
+
+    if (!texture.Load(image_source))
+    {
+        geometry.SetTexture(NULL);
+    }
+
+    // Set the texture onto our geometry object.
+    geometry.SetTexture(&texture);
+}
+
+void ElementDynamicImage::GenerateGeometry()
 {
 	// Release the old geometry before specifying the new vertices.
 	geometry.Release(true);
@@ -212,7 +256,7 @@ void ElementImage::GenerateGeometry()
 	geometry_dirty = false;
 }
 
-bool ElementImage::LoadTexture()
+bool ElementDynamicImage::LoadTexture()
 {
 	texture_dirty = false;
 
@@ -237,7 +281,7 @@ bool ElementImage::LoadTexture()
 	return true;
 }
 
-void ElementImage::ResetCoords()
+void ElementDynamicImage::ResetCoords()
 {
 	using_coords = false;
 

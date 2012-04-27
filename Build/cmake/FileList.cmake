@@ -73,7 +73,7 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/EventInstancerDefault.h
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementBorder.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerImg.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerDynamicImg.h
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementDecoration.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StreamFile.h
     ${PROJECT_SOURCE_DIR}/Source/Core/LayoutEngine.h
@@ -157,6 +157,7 @@ set(Core_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/XMLNodeHandler.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/PropertyParser.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ContextInstancer.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ElementDynamicImage.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ImageSource.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ImageSourceListener.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core.h
@@ -197,7 +198,7 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/ConvolutionFilter.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DecoratorTiled.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerImg.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerDynamicImg.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DocumentHeader.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/ContextInstancer.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/DecoratorTiledInstancer.cpp
@@ -268,6 +269,7 @@ set(Core_SRC_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/LayoutBlockBox.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNodeSelectorNthOfType.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/ElementImage.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/ElementDynamicImage.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNodeSelector.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/GeometryUtilities.cpp
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNodeSelectorNthLastOfType.cpp

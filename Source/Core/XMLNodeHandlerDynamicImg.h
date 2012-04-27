@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef ROCKETCOREXMLNODEHANDLERIMG_H
-#define ROCKETCOREXMLNODEHANDLERIMG_H
+#ifndef ROCKETCOREXMLNODEHANDLERDYNAMICIMG_H
+#define ROCKETCOREXMLNODEHANDLERDYNAMICIMG_H
 
 #include <Rocket/Core/Types.h>
 #include <Rocket/Core/XMLNodeHandler.h>
@@ -40,14 +40,14 @@ namespace Core {
     @author Matthew Alan Gray <mgray@hatboystudios.com>
 
  *  --== Changes ==--
- *  21 Feb 2012     Initial creation.                   Matthew Alan Gray <mgray@hatboystudios.com>
+ *  27 Apr 2012     Initial creation.                   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
-class XMLNodeHandlerImg : public XMLNodeHandler
+class XMLNodeHandlerDynamicImg : public XMLNodeHandler
 {
 public:
-    XMLNodeHandlerImg();
-    ~XMLNodeHandlerImg();
+    XMLNodeHandlerDynamicImg();
+    ~XMLNodeHandlerDynamicImg();
 
     /// Called when a new element start is opened.
     virtual Element* ElementStart(XMLParser* parser, const String& name, const XMLAttributes& attributes);

@@ -26,12 +26,12 @@
  *   @author Matthew Alan Gray <mgray@hatboystudios.com>
  *
  *  --== Changes ==--
- *  21 Feb 2012     Initial creation.                   Matthew Alan Gray <mgray@hatboystudios.com>
+ *  27 Apr 2012     Initial creation.                   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
-#include "ElementImage.h"
-#include "XMLNodeHandlerImg.h"
+#include <Rocket/Core/ElementDynamicImage.h>
+#include "XMLNodeHandlerDynamicImg.h"
 #include "XMLParseTools.h"
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Element.h>
@@ -41,21 +41,21 @@
 namespace Rocket {
 namespace Core {
 
-XMLNodeHandlerImg::XMLNodeHandlerImg()
+XMLNodeHandlerDynamicImg::XMLNodeHandlerDynamicImg()
 {
 }
 
-XMLNodeHandlerImg::~XMLNodeHandlerImg()
+XMLNodeHandlerDynamicImg::~XMLNodeHandlerDynamicImg()
 {
 }
 
-Element* XMLNodeHandlerImg::ElementStart(XMLParser* parser, const String& name, const XMLAttributes& attributes)
+Element* XMLNodeHandlerDynamicImg::ElementStart(XMLParser* parser, const String& name, const XMLAttributes& attributes)
 {
     Element* element = NULL;
 
-    ROCKET_ASSERT(name == "img");
+    ROCKET_ASSERT(name == "dynamic-img");
 
-    if (name == "img")
+    if (name == "dynamic-img")
     {
         // Determine the parent
         Element* parent = parser->GetParseFrame()->element;
@@ -68,7 +68,7 @@ Element* XMLNodeHandlerImg::ElementStart(XMLParser* parser, const String& name, 
             return NULL;
         }
 
-        ElementImage* image = dynamic_cast< ElementImage* >(element);
+        ElementDynamicImage* image = dynamic_cast< ElementDynamicImage* >(element);
         if (image == NULL)
         {
             if (element != NULL)
@@ -92,12 +92,12 @@ Element* XMLNodeHandlerImg::ElementStart(XMLParser* parser, const String& name, 
     return element;
 }
 
-bool XMLNodeHandlerImg::ElementEnd(XMLParser* ROCKET_UNUSED(parser), const String& ROCKET_UNUSED(name))
+bool XMLNodeHandlerDynamicImg::ElementEnd(XMLParser* ROCKET_UNUSED(parser), const String& ROCKET_UNUSED(name))
 {
     return true;
 }
 
-bool XMLNodeHandlerImg::ElementData(XMLParser* parser, const String& data)
+bool XMLNodeHandlerDynamicImg::ElementData(XMLParser* parser, const String& data)
 {
     // Determine the parent
     Element* parent = parser->GetParseFrame()->element;
@@ -106,7 +106,7 @@ bool XMLNodeHandlerImg::ElementData(XMLParser* parser, const String& data)
     return Factory::InstanceElementText(parent, data);
 }
 
-void XMLNodeHandlerImg::Release()
+void XMLNodeHandlerDynamicImg::Release()
 {
     delete this;
 }

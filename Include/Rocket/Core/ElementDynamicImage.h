@@ -25,13 +25,14 @@
  *
  */
 
-#ifndef ROCKETCOREELEMENTIMAGE_H
-#define ROCKETCOREELEMENTIMAGE_H
+#ifndef ROCKETCOREELEMENTDYNAMICIMAGE_H
+#define ROCKETCOREELEMENTDYNAMICIMAGE_H
 
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/Texture.h>
+#include <Rocket/Core/ImageSourceListener.h>
 
 namespace Rocket {
 namespace Core {
@@ -39,7 +40,7 @@ namespace Core {
 class TextureResource;
 
 /**
-	The 'img' element. The image element can have a rectangular sub-region of its source texture
+	The 'dynamic-img' element. The image element can have a rectangular sub-region of its source texture
 	specified with the 'coords' attribute; the element will render this region rather than the
 	entire image.
 
@@ -61,15 +62,22 @@ class TextureResource;
 	overridden by the 'width' or 'height' attributes.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *  27 Apr 2012     Initial creation.                                       Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
-class ROCKETCORE_API ElementImage : public Element
+class ROCKETCORE_API ElementDynamicImage : public Element, public ImageSourceListener
 {
 public:
 	/// Constructs a new ElementImage. This should not be called directly; use the Factory instead.
 	/// @param[in] tag The tag the element was declared as in RML.
-	ElementImage(const String& tag);
-	virtual ~ElementImage();
+	ElementDynamicImage(const String& tag);
+	virtual ~ElementDynamicImage();
+
+    /// Sets a new image source for the contents of the image.
+    /// @param[in] image_source_name The name of the new image source.
+    void SetImageSource(const Rocket::Core::String& image_source_name);
 
 	/// Returns the element's inherent size.
 	/// @param[out] The element's intrinsic dimensions.
@@ -77,6 +85,9 @@ public:
 	bool GetIntrinsicDimensions(Vector2f& dimensions);
 
 protected:
+    /// Refreshes the image source if required.
+    virtual void OnUpdate();
+
 	/// Renders the image.
 	virtual void OnRender();
 
@@ -87,6 +98,10 @@ protected:
 	/// Regenerates the element's geometry on a resize event.
 	/// @param[in] event The event to process.
 	virtual void ProcessEvent(Event& event);
+
+    virtual void OnImageSourceDestroy(ImageSource* image_source);
+
+    virtual void OnImageChange(ImageSource* image_source);
 
 private:
 	// Generates the element's geometry.
@@ -112,6 +127,9 @@ private:
 	// The geometry used to render this element.
 	Geometry geometry;
 	bool geometry_dirty;
+
+    // The image source that the image is fetched from.
+    ImageSource* image_source;
 };
 
 }
