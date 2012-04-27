@@ -87,6 +87,28 @@ void ElementUtilities::GetElementsByTagName(ElementList& elements, Element* root
 	}
 }
 
+void ElementUtilities::GetElementsByClassName(ElementList& elements, Element* root_element, const String& class_name)
+{
+	// Breadth first search on elements for the corresponding id
+	typedef std::queue< Element* > SearchQueue;
+	SearchQueue search_queue;
+	for (int i = 0; i < root_element->GetNumChildren(); ++i)
+		search_queue.push(root_element->GetChild(i));
+
+	while (!search_queue.empty())
+	{
+		Element* element = search_queue.front();
+		search_queue.pop();
+
+		if (element->IsClassSet(class_name))
+			elements.push_back(element);
+
+		// Add all children to search.
+		for (int i = 0; i < element->GetNumChildren(); i++)
+			search_queue.push(element->GetChild(i));
+	}
+}
+
 // Returns the element's font face.
 FontFaceHandle* ElementUtilities::GetFontFaceHandle(Element* element)
 {
@@ -195,7 +217,22 @@ bool ElementUtilities::GetClippingRegion(Vector2i& clip_origin, Vector2i& clip_d
 				Vector2i element_origin(Math::RealToInteger(element_origin_f.x), Math::RealToInteger(element_origin_f.y));
 				Vector2i element_dimensions(Math::RealToInteger(element_dimensions_f.x), Math::RealToInteger(element_dimensions_f.y));
 				
-				if (clip_origin == Vector2i(-1, -1) && clip_dimensions == Vector2i(-1, -1))
+				bool clip_x = element->GetProperty(OVERFLOW_X)->Get< int >() != OVERFLOW_VISIBLE;
+				bool clip_y = element->GetProperty(OVERFLOW_Y)->Get< int >() != OVERFLOW_VISIBLE;
+				ROCKET_ASSERT(!clip_x || !clip_y || (clip_x && clip_y));
+				
+				if (!clip_x)
+				{
+					element_origin.x = 0;
+					element_dimensions.x = clip_dimensions.x < 0 ? element->GetContext()->GetDimensions().x : clip_dimensions.x;
+				}
+				else if (!clip_y)
+				{
+					element_origin.y = 0;
+					element_dimensions.y = clip_dimensions.y < 0 ? element->GetContext()->GetDimensions().y : clip_dimensions.y;
+				}
+		
+				if (clip_dimensions == Vector2i(-1, -1))
 				{
 					clip_origin = element_origin;
 					clip_dimensions = element_dimensions;
