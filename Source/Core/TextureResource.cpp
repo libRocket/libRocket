@@ -196,6 +196,7 @@ bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image
         handle = iter->second.first;
     }
 
+    source = image_source->GetImageSourceName();
     if (!render_interface->LoadTexture(handle, image_source))
     {
         Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());

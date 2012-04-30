@@ -72,11 +72,9 @@ bool Texture::Load(ImageSource* image_source)
     TextureResource* newResource = TextureDatabase::Fetch(image_source);
 
     if (resource != NULL)
-    {
         resource->RemoveReference();
-        resource = newResource;
-    }
 
+    resource = newResource;
     return resource != NULL;
 }
 
