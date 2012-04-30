@@ -23,6 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *   2 Mar 2012     Added a LoadTexture() method for dynamic ImageSource objects     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -61,6 +63,12 @@ void RenderInterface::ReleaseCompiledGeometry(CompiledGeometryHandle ROCKET_UNUS
 bool RenderInterface::LoadTexture(TextureHandle& ROCKET_UNUSED(texture_handle), Vector2i& ROCKET_UNUSED(texture_dimensions), const String& ROCKET_UNUSED(source))
 {
 	return false;
+}
+
+// Called by Rocket when a dynamic texture is required by the library.
+bool RenderInterface::LoadTexture(TextureHandle& ROCKET_UNUSED(texture_handle), ImageSource* ROCKET_UNUSED(image_source))
+{
+    return false;
 }
 
 // Called by Rocket when a texture is required to be built from an internally-generated sequence of pixels.

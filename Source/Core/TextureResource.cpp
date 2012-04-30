@@ -23,6 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+  *  --== Changes ==--
+ *  29 Feb 2012     Adding TextureResource::Load(RenderInterface*,ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mat 2012     Refactored TextureResource::Load() to work with recent changes   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -30,6 +33,7 @@
 #include "FontFaceHandle.h"
 #include "TextureDatabase.h"
 #include <Rocket/Core.h>
+#include <Rocket/Core/ImageSource.h>
 
 namespace Rocket {
 namespace Core {
@@ -181,6 +185,31 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 	texture_data[render_interface] = TextureData(handle, dimensions);
 	return true;
+}
+
+bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image_source)
+{
+    TextureHandle handle = reinterpret_cast<TextureHandle>((void*)NULL);
+    TextureDataMap::iterator iter = texture_data.find(render_interface);
+    if (iter != texture_data.end())
+    {
+        handle = iter->second.first;
+    }
+
+    source = image_source->GetImageSourceName();
+    if (!render_interface->LoadTexture(handle, image_source))
+    {
+        Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());
+        texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
+
+        return false;
+    }
+
+    Rocket::Core::byte* data = NULL;
+    Rocket::Core::Vector2i dimensions;
+    image_source->GetImage(data, dimensions);
+    texture_data[render_interface] = TextureData(handle, dimensions);
+    return true;
 }
 
 void TextureResource::OnReferenceDeactivate()

@@ -34,6 +34,7 @@
 namespace Rocket {
 namespace Core {
 
+class ImageSource;
 class TextureResource;
 class RenderInterface;
 
@@ -41,6 +42,10 @@ class RenderInterface;
 	Abstraction of a two-dimensional texture image, with an application-specific texture handle.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions params from Load     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 struct ROCKETCORE_API Texture
@@ -57,6 +62,11 @@ public:
 	/// @param[in] source_path The path of the resource that is requesting the texture (ie, the RCSS file in which it was specified, etc).
 	/// @return True if the texture loaded successfully, false if not.
 	bool Load(const String& source, const String& source_path = "");
+
+    /// Attempts to load a texture.
+    /// @param[in] image_source The ImageSource object that the source image data originates from.
+    /// @return True if the texture loaded successfully, false if not.
+    bool Load(ImageSource* image_source);
 
 	/// Returns the texture's source name. This is usually the name of the file the texture was loaded from.
 	/// @return The name of the this texture's source. This will be the empty string if this texture is not loaded.

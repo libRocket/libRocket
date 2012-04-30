@@ -38,6 +38,7 @@
 #include <Rocket/Core/DecoratorInstancer.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/ElementDocument.h>
+#include <Rocket/Core/ElementDynamicImage.h>
 #include <Rocket/Core/ElementInstancer.h>
 #include <Rocket/Core/ElementInstancerGeneric.h>
 #include <Rocket/Core/ElementReference.h>
