@@ -152,7 +152,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 		// hope the client knows what the hell to do with the question mark in their file name.
 		if (data != NULL)
 		{
-			TextureHandle handle;
+			TextureHandle handle = 0;
 			bool success = render_interface->GenerateTexture(handle, data, dimensions);
 
 			if (delete_data)
@@ -173,7 +173,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 		}
 	}
 
-	TextureHandle handle;
+	TextureHandle handle = 0;
 	Vector2i dimensions;
 	if (!render_interface->LoadTexture(handle, dimensions, source))
 	{
@@ -189,25 +189,24 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image_source)
 {
+    Rocket::Core::Vector2i dimensions;
     TextureHandle handle = reinterpret_cast<TextureHandle>((void*)NULL);
     TextureDataMap::iterator iter = texture_data.find(render_interface);
     if (iter != texture_data.end())
     {
         handle = iter->second.first;
     }
-
-    source = image_source->GetImageSourceName();
-    if (!render_interface->LoadTexture(handle, image_source))
+    else
     {
-        Log::Message(Log::LT_WARNING, "Failed to generate internal texture %s.", source.CString());
-        texture_data[render_interface] = TextureData(NULL, Vector2i(0, 0));
-
-        return false;
+        render_interface->LoadTexture(
+            handle,
+            dimensions,
+            String("?image_source::") + image_source->GetImageSourceName()
+        );
     }
 
     Rocket::Core::byte* data = NULL;
-    Rocket::Core::Vector2i dimensions;
-    image_source->GetImage(data, dimensions);
+    image_source->GetImage(render_interface, handle, dimensions);
     texture_data[render_interface] = TextureData(handle, dimensions);
     return true;
 }

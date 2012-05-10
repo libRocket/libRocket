@@ -95,7 +95,9 @@ TextureResource* TextureDatabase::Fetch(const String& source, const String& sour
 TextureResource* TextureDatabase::Fetch(ImageSource* image_source)
 {
     TextureResource* resource = NULL;
-    TextureMap::iterator iterator = instance->textures.find(image_source->GetImageSourceName());
+    Rocket::Core::String name("?image_source::");
+    name += image_source->GetImageSourceName();
+    TextureMap::iterator iterator = instance->textures.find(name);
     if (iterator != instance->textures.end())
     {
         resource = iterator->second;
@@ -104,7 +106,8 @@ TextureResource* TextureDatabase::Fetch(ImageSource* image_source)
     else
     {
         resource = new TextureResource();
-        instance->textures[image_source->GetImageSourceName()] = resource;
+        resource->Load(name);
+        instance->textures[name] = resource;
     }
 
     RenderInterface* renderInterface = GetRenderInterface();

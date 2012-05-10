@@ -201,7 +201,7 @@ void ElementDynamicImage::OnImageChange(ImageSource* image_source)
 {
     texture_dirty = false;
 
-    geometry_dirty = true;
+    //geometry_dirty = true;
 
     if (!texture.Load(image_source))
     {

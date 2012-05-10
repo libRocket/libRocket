@@ -68,7 +68,7 @@ public:
     /// Fetches an image from the image source.
     /// @param[out] source The source image bytes.
     /// @param[out] source_dimensions The source image dimensions.
-    virtual void GetImage(Rocket::Core::byte*& source, Rocket::Core::Vector2i& source_dimensions) = 0;
+    virtual void GetImage(Rocket::Core::RenderInterface* render_interface, Rocket::Core::TextureHandle& texture_handle, Rocket::Core::Vector2i& source_dimensions) = 0;
 
     void AttachListener(ImageSourceListener* listener);
     void DetachListener(ImageSourceListener* listener);
