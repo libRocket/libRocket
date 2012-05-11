@@ -65,12 +65,6 @@ bool RenderInterface::LoadTexture(TextureHandle& ROCKET_UNUSED(texture_handle), 
 	return false;
 }
 
-// Called by Rocket when a dynamic texture is required by the library.
-bool RenderInterface::LoadTexture(TextureHandle& ROCKET_UNUSED(texture_handle), ImageSource* ROCKET_UNUSED(image_source))
-{
-    return false;
-}
-
 // Called by Rocket when a texture is required to be built from an internally-generated sequence of pixels.
 bool RenderInterface::GenerateTexture(TextureHandle& ROCKET_UNUSED(texture_handle), const byte* ROCKET_UNUSED(source), const Vector2i& ROCKET_UNUSED(source_dimensions))
 {

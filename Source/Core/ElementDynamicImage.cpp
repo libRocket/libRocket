@@ -201,15 +201,16 @@ void ElementDynamicImage::OnImageChange(ImageSource* image_source)
 {
     texture_dirty = false;
 
-    //geometry_dirty = true;
-
     if (!texture.Load(image_source))
     {
         geometry.SetTexture(NULL);
     }
 
     // Set the texture onto our geometry object.
-    geometry.SetTexture(&texture);
+    if (geometry.GetTexture() != &texture)
+    {
+        geometry.SetTexture(&texture);
+    }
 }
 
 void ElementDynamicImage::GenerateGeometry()
