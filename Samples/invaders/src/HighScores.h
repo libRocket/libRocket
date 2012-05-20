@@ -31,7 +31,7 @@
 #include <Rocket/Controls/DataSource.h>
 #include <Rocket/Core/Types.h>
 
-const int NUM_SCORES = 10;
+const int NUM_SCORES = 30;
 
 class HighScores : public Rocket::Controls::DataSource
 {
