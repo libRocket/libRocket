@@ -207,10 +207,7 @@ void ElementDynamicImage::OnImageChange(ImageSource* image_source)
     }
 
     // Set the texture onto our geometry object.
-    if (geometry.GetTexture() != &texture)
-    {
-        geometry.SetTexture(&texture);
-    }
+    geometry.SetTexture(&texture);
 }
 
 void ElementDynamicImage::GenerateGeometry()
