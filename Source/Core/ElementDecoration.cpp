@@ -38,6 +38,9 @@ ElementDecoration::ElementDecoration(Element* _element)
 {
 	element = _element;
 	active_decorators_dirty = false;
+
+	decorators_locked = false;
+	reload_decorators_when_ready = false;
 }
 
 ElementDecoration::~ElementDecoration()
@@ -46,59 +49,64 @@ ElementDecoration::~ElementDecoration()
 }
 
 // Releases existing decorators and loads all decorators required by the element's definition.
-bool ElementDecoration::ReloadDecorators()
+void ElementDecoration::ReloadDecorators()
 {
-	ReleaseDecorators();
-
-	const ElementDefinition* definition = element->GetDefinition();
-	if (definition == NULL)
-		return true;
-
-	// Generate the decorator sets for pseudo-classes with overrides.
-	const PseudoClassDecoratorMap& pseudo_class_decorators = definition->GetPseudoClassDecorators();
-	for (PseudoClassDecoratorMap::const_iterator i = pseudo_class_decorators.begin(); i != pseudo_class_decorators.end(); ++i)
+	if (decorators_locked)
 	{
-		for (DecoratorMap::const_iterator j = (*i).second.begin(); j != (*i).second.end(); ++j)
+		reload_decorators_when_ready = true;
+	}
+	else
+	{
+		ReleaseDecorators();
+
+		const ElementDefinition* definition = element->GetDefinition();
+		if (definition == NULL)
+			return;
+
+		// Generate the decorator sets for pseudo-classes with overrides.
+		const PseudoClassDecoratorMap& pseudo_class_decorators = definition->GetPseudoClassDecorators();
+		for (PseudoClassDecoratorMap::const_iterator i = pseudo_class_decorators.begin(); i != pseudo_class_decorators.end(); ++i)
 		{
-			int index = LoadDecorator((*j).second);
-
-			// Add it into the index. If a decorator with the same name already exists for this element, then we add it
-			// into the list at the right position (sorted by specificity, descending).
-			PseudoClassDecoratorIndexList* pseudo_class_decorator_index = NULL;
-			DecoratorIndex::iterator index_iterator = decorator_index.find((*j).first);
-			if (index_iterator == decorator_index.end())
-				pseudo_class_decorator_index = &(*decorator_index.insert(DecoratorIndex::value_type((*j).first, PseudoClassDecoratorIndexList())).first).second;
-			else
-				pseudo_class_decorator_index = &(*index_iterator).second;
-
-			// Add the decorator index at the right point to maintain the order of the list.
-			PseudoClassDecoratorIndexList::iterator k = pseudo_class_decorator_index->begin();
-			for (; k != pseudo_class_decorator_index->end(); ++k)
+			for (DecoratorMap::const_iterator j = (*i).second.begin(); j != (*i).second.end(); ++j)
 			{
-				if (decorators[(*k).second].decorator->GetSpecificity() < decorators[index].decorator->GetSpecificity())
-					break;
+				int index = LoadDecorator((*j).second);
+
+				// Add it into the index. If a decorator with the same name already exists for this element, then we add it
+				// into the list at the right position (sorted by specificity, descending).
+				PseudoClassDecoratorIndexList* pseudo_class_decorator_index = NULL;
+				DecoratorIndex::iterator index_iterator = decorator_index.find((*j).first);
+				if (index_iterator == decorator_index.end())
+					pseudo_class_decorator_index = &(*decorator_index.insert(DecoratorIndex::value_type((*j).first, PseudoClassDecoratorIndexList())).first).second;
+				else
+					pseudo_class_decorator_index = &(*index_iterator).second;
+
+				// Add the decorator index at the right point to maintain the order of the list.
+				PseudoClassDecoratorIndexList::iterator k = pseudo_class_decorator_index->begin();
+				for (; k != pseudo_class_decorator_index->end(); ++k)
+				{
+					if (decorators[(*k).second].decorator->GetSpecificity() < decorators[index].decorator->GetSpecificity())
+						break;
+				}
+
+				pseudo_class_decorator_index->insert(k, PseudoClassDecoratorIndex(PseudoClassList((*i).first.begin(), (*i).first.end()), index));
 			}
-
-			pseudo_class_decorator_index->insert(k, PseudoClassDecoratorIndex(PseudoClassList((*i).first.begin(), (*i).first.end()), index));
 		}
+
+		// Put the decorators for the element's default state at the end of any index lists.
+		const DecoratorMap& default_decorators = definition->GetDecorators();
+		for (DecoratorMap::const_iterator i = default_decorators.begin(); i != default_decorators.end(); ++i)
+		{
+			int index = LoadDecorator((*i).second);
+
+			DecoratorIndex::iterator index_iterator = decorator_index.find((*i).first);
+			if (index_iterator == decorator_index.end())
+				decorator_index.insert(DecoratorIndex::value_type((*i).first, PseudoClassDecoratorIndexList(1, PseudoClassDecoratorIndex(PseudoClassList(), index))));
+			else
+				(*index_iterator).second.push_back(PseudoClassDecoratorIndex(PseudoClassList(), index));
+		}
+
+		active_decorators_dirty = true;
 	}
-
-	// Put the decorators for the element's default state at the end of any index lists.
-	const DecoratorMap& default_decorators = definition->GetDecorators();
-	for (DecoratorMap::const_iterator i = default_decorators.begin(); i != default_decorators.end(); ++i)
-	{
-		int index = LoadDecorator((*i).second);
-
-		DecoratorIndex::iterator index_iterator = decorator_index.find((*i).first);
-		if (index_iterator == decorator_index.end())
-			decorator_index.insert(DecoratorIndex::value_type((*i).first, PseudoClassDecoratorIndexList(1, PseudoClassDecoratorIndex(PseudoClassList(), index))));
-		else
-			(*index_iterator).second.push_back(PseudoClassDecoratorIndex(PseudoClassList(), index));
-	}
-
-	active_decorators_dirty = true;
-
-	return true;
 }
 
 // Loads a single decorator and adds it to the list of loaded decorators for this element.
@@ -109,17 +117,35 @@ int ElementDecoration::LoadDecorator(Decorator* decorator)
 	element_decorator.decorator->AddReference();
 	element_decorator.decorator_data = decorator->GenerateElementData(element);
 
+	if (decorators_locked)
+			ROCKET_BREAK;
+	decorators_locked = true;
+
 	decorators.push_back(element_decorator);
+
+	decorators_locked = false;
+
 	return (int) (decorators.size() - 1);
 }
 
 // Releases all existing decorators and frees their data.
 void ElementDecoration::ReleaseDecorators()
 {
+
+	if (decorators_locked)
+			ROCKET_BREAK;
+	decorators_locked = true;
+
+	try
+	{
+
 	for (size_t i = 0; i < decorators.size(); i++)
 	{
 		if (decorators[i].decorator_data)
+		{
 			decorators[i].decorator->ReleaseElementData(decorators[i].decorator_data);
+			decorators[i].decorator_data = NULL;
+		}
 
 		decorators[i].decorator->RemoveReference();
 	}
@@ -127,15 +153,34 @@ void ElementDecoration::ReleaseDecorators()
 	decorators.clear();
 	active_decorators.clear();
 	decorator_index.clear();
+
+	} catch (...) {}
+
+	decorators_locked = false;
 }
 
 // Updates the list of active decorators (if necessary).
 void ElementDecoration::UpdateActiveDecorators()
 {
+	if (reload_decorators_when_ready)
+	{
+		if (decorators_locked)
+			return;
+
+		ReloadDecorators();
+
+		active_decorators_dirty = true;
+		reload_decorators_when_ready = false;
+	}
+
 	if (active_decorators_dirty)
 	{
-		active_decorators.clear();
 
+		if (decorators_locked)
+			ROCKET_BREAK;
+		decorators_locked = true;
+
+		active_decorators.clear();
 		for (DecoratorIndex::iterator i = decorator_index.begin(); i != decorator_index.end(); ++i)
 		{
 			PseudoClassDecoratorIndexList& indices = (*i).second;
@@ -158,6 +203,8 @@ void ElementDecoration::UpdateActiveDecorators()
 		}
 
 		active_decorators_dirty = false;
+
+		decorators_locked = false;
 	}
 }
 
@@ -165,12 +212,19 @@ void ElementDecoration::RenderDecorators()
 {
 	UpdateActiveDecorators();
 
+	if (decorators_locked)
+			ROCKET_BREAK;
+	decorators_locked = true;
+
 	// Render the decorators attached to this element in its current state.
 	for (size_t i = 0; i < active_decorators.size(); i++)
 	{
+		ROCKET_ASSERT(decorators.size() > (size_t)active_decorators[i]);
 		DecoratorHandle& decorator = decorators[active_decorators[i]];
 		decorator.decorator->RenderElement(element, decorator.decorator_data);
 	}
+
+	decorators_locked = false;
 }
 
 void ElementDecoration::DirtyDecorators()
@@ -181,6 +235,8 @@ void ElementDecoration::DirtyDecorators()
 // Iterates over all active decorators attached to the decoration's element.
 bool ElementDecoration::IterateDecorators(int& index, PseudoClassList& pseudo_classes, String& name, Decorator*& decorator, DecoratorDataHandle& decorator_data) const
 {
+	ROCKET_ERRORMSG("Don't iterate decorators!");
+	return false;
 	if (index < 0)
 		return false;
 

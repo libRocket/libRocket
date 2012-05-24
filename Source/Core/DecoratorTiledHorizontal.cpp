@@ -149,6 +149,8 @@ void DecoratorTiledHorizontal::ReleaseElementData(DecoratorDataHandle element_da
 // Called to render the decorator on an element.
 void DecoratorTiledHorizontal::RenderElement(Element* element, DecoratorDataHandle element_data)
 {
+	ROCKET_ASSERT(element_data != NULL);
+
 	Vector2f translation = element->GetAbsoluteOffset(Box::PADDING);
 	DecoratorTiledHorizontalData* data = reinterpret_cast< DecoratorTiledHorizontalData* >(element_data);
 
