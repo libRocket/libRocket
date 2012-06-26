@@ -172,46 +172,66 @@ void ElementProgressBar::LoadTexture(int index)
 	{
 		case 0:
 		{
-			Core::String source = GetProperty< Core::String >("progress-left-src");
-
-			if (!texture[0].Load(source, source_url.GetPath()))
-			{
-				left_geometry.SetTexture(NULL);
-				return;
-			}
-
-			left_geometry.SetTexture(&texture[0]);
+			LoadTexture(source_url, 0, "progress-left-src", left_geometry);
 			break;
 		}
 
 		case 1:
 		{
-			Core::String source = GetProperty< Core::String >("progress-center-src");
-
-			if (!texture[1].Load(source, source_url.GetPath()))
-			{
-				center_geometry.SetTexture(NULL);
-				return;
-			}
-
-			center_geometry.SetTexture(&texture[1]);
+			LoadTexture(source_url, 1, "progress-center-src", center_geometry);
 			break;
 		}
 
 		case 2:
 		{
-			Core::String source = GetProperty< Core::String >("progress-right-src");
-
-			if (!texture[2].Load(source, source_url.GetPath()))
-			{
-				right_geometry.SetTexture(NULL);
-				return;
-			}
-
-			right_geometry.SetTexture(&texture[2]);
+			LoadTexture(source_url, 2, "progress-right-src", right_geometry);
 			break;
 		}
 	}
+}
+
+/// Called when source texture has changed.
+void ElementProgressBar::LoadTexture(Core::URL & source_url, int index, const char *property_name, Core::Geometry & geometry)
+{
+	Core::RenderInterface* render_interface = GetRenderInterface();
+	Core::StringList words;
+	Core::String source = GetProperty< Core::String >(property_name);
+	Core::StringUtilities::ExpandString(words, source, ' ');
+	bool it_uses_tex_coords = false;
+
+	if (words.size() == 5)
+	{
+		it_uses_tex_coords = true;
+		source = words[0];
+		Core::TypeConverter< Core::String, float >::Convert(words[1], texcoords[index][0].x);
+		Core::TypeConverter< Core::String, float >::Convert(words[2], texcoords[index][0].y);
+		Core::TypeConverter< Core::String, float >::Convert(words[3], texcoords[index][1].x);
+		Core::TypeConverter< Core::String, float >::Convert(words[4], texcoords[index][1].y);
+	}
+
+	if (!texture[index].Load(source, source_url.GetPath()))
+	{
+		geometry.SetTexture(NULL);
+		return;
+	}
+
+	if (it_uses_tex_coords)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			texcoords[index][i].x /= texture[index].GetDimensions(render_interface).x;
+			texcoords[index][i].y /= texture[index].GetDimensions(render_interface).y;
+		}
+	}
+	else
+	{
+		texcoords[index][0].x = 0.0f;
+		texcoords[index][0].y = 0.0f;
+		texcoords[index][1].x = 1.0f;
+		texcoords[index][1].y = 1.0f;
+	}
+
+	geometry.SetTexture(&texture[index]);
 }
 
 }

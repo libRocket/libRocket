@@ -12,9 +12,10 @@ namespace ProgressBar {
 
 void RegisterElementInstancers()
 {
-    Core::ElementInstancer* instancer = new Core::ElementInstancerGeneric< ElementProgressBar >();
-    Core::Factory::RegisterElementInstancer("progressbar", instancer);
-    instancer->RemoveReference();
+	Core::ElementInstancer* instancer = new Core::ElementInstancerGeneric< ElementProgressBar >();
+	Core::Factory::RegisterElementInstancer("progressbar", instancer);
+
+	instancer->RemoveReference();
 }
 
 static bool initialised = false;

@@ -50,7 +50,11 @@ private:
 	/// Called when source texture has changed.
 	void LoadTexture(int index);
 
+	/// Called when source texture has changed.
+	void LoadTexture(Core::URL & source_url, int index, const char *property_name, Core::Geometry & geometry);
+
 	Core::Texture texture[3];
+	Core::Vector2f texcoords[3][2];
 
 	// The geometries used to render this element.
 	Core::Geometry left_geometry;
