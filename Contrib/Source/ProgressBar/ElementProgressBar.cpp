@@ -85,13 +85,9 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 void ElementProgressBar::GenerateGeometry()
 {
 	const Core::Vector2f complete_extent = GetBox().GetSize(Core::Box::CONTENT);
-	Core::Vector2f texcoords[2];
 	Core::Vector2i initial_part_size[3];
 	Core::Vector2f final_part_size[3];
 	float progress_size;
-
-	texcoords[0] = Core::Vector2f(0, 0);
-	texcoords[1] = Core::Vector2f(1, 1);
 
 	initial_part_size[0] = texture[0].GetDimensions(GetRenderInterface());
 	initial_part_size[2] = texture[2].GetDimensions(GetRenderInterface());
@@ -120,8 +116,8 @@ void ElementProgressBar::GenerateGeometry()
 													  Core::Vector2f(0, 0),
 													  final_part_size[0],
 													  Core::Colourb(255, 255, 255, 255),
-													  texcoords[0],
-													  texcoords[1]);
+													  texcoords[0][0],
+													  texcoords[0][1]);
 	}
 
 	// Generate center part geometry.
@@ -138,8 +134,8 @@ void ElementProgressBar::GenerateGeometry()
 													  Core::Vector2f(final_part_size[0].x, 0),
 													  final_part_size[1],
 													  Core::Colourb(255, 255, 255, 255),
-													  texcoords[0],
-													  texcoords[1]);
+													  texcoords[1][0],
+													  texcoords[1][1]);
 	}
 
 	// Generate center part geometry.
@@ -155,8 +151,8 @@ void ElementProgressBar::GenerateGeometry()
 													  Core::Vector2f(final_part_size[0].x + final_part_size[1].x, 0),
 													  final_part_size[2],
 													  Core::Colourb(255, 255, 255, 255),
-													  texcoords[0],
-													  texcoords[1]);
+													  texcoords[2][0],
+													  texcoords[2][1]);
 	}
 
 	geometry_dirty = false;
