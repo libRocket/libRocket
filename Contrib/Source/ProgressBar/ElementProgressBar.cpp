@@ -65,17 +65,17 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 {
 	Element::OnPropertyChange(changed_properties);
 
-	if (changed_properties.find("progress-left-src") != changed_properties.end())
+	if (changed_properties.find("progress-left-image") != changed_properties.end())
 	{
 		LoadTexture(0);
 	}
 	
-	if (changed_properties.find("progress-center-src") != changed_properties.end())
+	if (changed_properties.find("progress-center-image") != changed_properties.end())
 	{
 		LoadTexture(1);
 	}
 	
-	if (changed_properties.find("progress-right-src") != changed_properties.end())
+	if (changed_properties.find("progress-right-image") != changed_properties.end())
 	{
 		LoadTexture(2);
 	}
@@ -85,12 +85,8 @@ void ElementProgressBar::OnPropertyChange(const Core::PropertyNameList& changed_
 void ElementProgressBar::GenerateGeometry()
 {
 	const Core::Vector2f complete_extent = GetBox().GetSize(Core::Box::CONTENT);
-	Core::Vector2i initial_part_size[3];
 	Core::Vector2f final_part_size[3];
 	float progress_size;
-
-	initial_part_size[0] = texture[0].GetDimensions(GetRenderInterface());
-	initial_part_size[2] = texture[2].GetDimensions(GetRenderInterface());
 
 	progress_size = value * (complete_extent.x - initial_part_size[0].x - initial_part_size[2].x);
 
@@ -168,19 +164,19 @@ void ElementProgressBar::LoadTexture(int index)
 	{
 		case 0:
 		{
-			LoadTexture(source_url, 0, "progress-left-src", left_geometry);
+			LoadTexture(source_url, 0, "progress-left-image", left_geometry);
 			break;
 		}
 
 		case 1:
 		{
-			LoadTexture(source_url, 1, "progress-center-src", center_geometry);
+			LoadTexture(source_url, 1, "progress-center-image", center_geometry);
 			break;
 		}
 
 		case 2:
 		{
-			LoadTexture(source_url, 2, "progress-right-src", right_geometry);
+			LoadTexture(source_url, 2, "progress-right-image", right_geometry);
 			break;
 		}
 	}
@@ -213,10 +209,15 @@ void ElementProgressBar::LoadTexture(Core::URL & source_url, int index, const ch
 
 	if (it_uses_tex_coords)
 	{
+		Core::Vector2i texture_dimensions = texture[index].GetDimensions(render_interface);
+
+		initial_part_size[index].x = texcoords[index][1].x - texcoords[index][0].x;
+		initial_part_size[index].y = texcoords[index][1].y - texcoords[index][0].y;
+
 		for (int i = 0; i < 2; i++)
 		{
-			texcoords[index][i].x /= texture[index].GetDimensions(render_interface).x;
-			texcoords[index][i].y /= texture[index].GetDimensions(render_interface).y;
+			texcoords[index][i].x /= texture_dimensions.x;
+			texcoords[index][i].y /= texture_dimensions.y;
 		}
 	}
 	else
@@ -225,6 +226,8 @@ void ElementProgressBar::LoadTexture(Core::URL & source_url, int index, const ch
 		texcoords[index][0].y = 0.0f;
 		texcoords[index][1].x = 1.0f;
 		texcoords[index][1].y = 1.0f;
+		initial_part_size[index].x = float(texture[index].GetDimensions(render_interface).x);
+		initial_part_size[index].y = float(texture[index].GetDimensions(render_interface).y);
 	}
 
 	geometry.SetTexture(&texture[index]);

@@ -55,6 +55,7 @@ private:
 
 	Core::Texture texture[3];
 	Core::Vector2f texcoords[3][2];
+	Core::Vector2f initial_part_size[3];
 
 	// The geometries used to render this element.
 	Core::Geometry left_geometry;
