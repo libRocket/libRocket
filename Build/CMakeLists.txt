@@ -44,6 +44,7 @@ if(NOT CMAKE_BUILD_TYPE)
         FORCE)
 endif()
 
+option(BUILD_FREETYPE_SUPPORT "Build with Freetype support" ON)
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_PYTHON_BINDINGS "Build python bindings" OFF)
 option(BUILD_SAMPLES "Build samples" OFF)
@@ -57,12 +58,19 @@ endif()
 #===================================
 
 # FreeType
-find_package(Freetype REQUIRED)	
-if(FREETYPE_FOUND)
+if(BUILD_FREETYPE_SUPPORT)
+
+	find_package(Freetype REQUIRED)	
+
+	if(FREETYPE_FOUND)
 		include_directories(${FREETYPE_INCLUDE_DIRS})
 		link_directories(${FREETYPE_LINK_DIRS})
+	endif()
+
+	mark_as_advanced(FREETYPE_INCLUDE_DIRS FREETYPE_LIBRARY FREETYPE_LINK_DIRECTORIES)
+else()
+	add_definitions(-DNO_FREETYPE)
 endif()
-mark_as_advanced(FREETYPE_INCLUDE_DIRS FREETYPE_LIBRARY FREETYPE_LINK_DIRECTORIES)
 
 # Boost and Python
 if(BUILD_PYTHON_BINDINGS)
@@ -105,25 +113,35 @@ include(FileList)
 # Build libraries ==================
 #===================================
 
-set(LIBRARIES Core Controls Debugger FreeType BitmapFont)
+if(FREETYPE_FOUND)
+	set( Core_SRC_FILES ${Core_SRC_FILES} ${FreeType_SRC_FILES})
+	set( Core_HDR_FILES ${Core_HDR_FILES} ${FreeType_HDR_FILES})
+	set( Core_PUB_HDR_FILES ${Core_PUB_HDR_FILES} ${FreeType_PUB_HDR_FILES})
+endif()
+
+set( Core_SRC_FILES ${Core_SRC_FILES} ${BitmapFont_SRC_FILES})
+set( Core_HDR_FILES ${Core_HDR_FILES} ${BitmapFont_HDR_FILES})
+set( Core_PUB_HDR_FILES ${Core_PUB_HDR_FILES} ${BitmapFont_PUB_HDR_FILES})
+
+set(LIBRARIES Core Controls Debugger)
 
 foreach(library ${LIBRARIES})
     set(NAME Rocket${library})
 
-    add_library(${NAME} ${${library}_SRC_FILES}
-                        ${${library}_HDR_FILES}
-                        ${${library}_PUB_HDR_FILES}
-    )
+	add_library(${NAME} ${${library}_SRC_FILES}
+							${${library}_HDR_FILES}
+							${${library}_PUB_HDR_FILES}
+		)
 
-    set_target_properties(${NAME} PROPERTIES
-                           VERSION ${PROJECT_VERSION}
-                           SOVERSION ${LIBROCKET_VERSION_MAJOR}
-    )
-    
-    if(APPLE)
-    	set_target_properties(${NAME} PROPERTIES
-    					OSX_ARCHITECTURES "i386;x86_64;"
-    	)
+	set_target_properties(${NAME} PROPERTIES
+						   VERSION ${PROJECT_VERSION}
+						   SOVERSION ${LIBROCKET_VERSION_MAJOR}
+	)
+	
+	if(APPLE)
+		set_target_properties(${NAME} PROPERTIES
+						OSX_ARCHITECTURES "i386;x86_64;"
+		)
     endif()
 
     install(TARGETS ${NAME}
@@ -158,11 +176,9 @@ endif()
 # Link libraries ===================
 #===================================
 
-target_link_libraries(RocketCore ${CORE_LINK_LIBS})
+target_link_libraries(RocketCore ${CORE_LINK_LIBS} ${FREETYPE_LIBRARY})
 target_link_libraries(RocketControls RocketCore)
-target_link_libraries(RocketFreeType RocketCore ${FREETYPE_LIBRARY})
-target_link_libraries(RocketBitmapFont RocketCore ${FREETYPE_LIBRARY})
-target_link_libraries(RocketDebugger RocketCore RocketFreeType RocketBitmapFont)
+target_link_libraries(RocketDebugger RocketCore)
 
 if(BUILD_PYTHON_BINDINGS)
     target_link_libraries(_rocketcore RocketCore ${PY_BINDINGS_LINK_LIBS})

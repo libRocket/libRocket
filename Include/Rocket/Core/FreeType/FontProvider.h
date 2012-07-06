@@ -29,7 +29,6 @@
 #define ROCKETCOREFREETYPEFONTPROVIDER_H
 
 #include <Rocket/Core/StringUtilities.h>
-#include <Rocket/Core/FreeType/Header.h>
 #include <Rocket/Core/Font.h>
 #include <Rocket/Core/FontProvider.h>
 
@@ -51,7 +50,7 @@ class FontFamily;
 	@author Peter Curry
  */
 
-class ROCKETCOREFREETYPE_API FontProvider : public Rocket::Core::FontProvider
+class ROCKETCORE_API FontProvider : public Rocket::Core::FontProvider
 {
 public:
 	static bool Initialise();

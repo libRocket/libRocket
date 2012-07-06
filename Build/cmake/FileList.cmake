@@ -492,37 +492,35 @@ set(FreeType_HDR_FILES
 )
 
 set(FreeType_PUB_HDR_FILES
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/FreeType//FontProvider.h
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/FreeType//Header.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/FreeType/FontProvider.h
 )
 
 set(FreeType_SRC_FILES
-    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType//FontFace.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType//FontFaceHandle.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType//FontFamily.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType//FontProvider.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType/FontFace.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType/FontFaceHandle.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType/FontFamily.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/FreeType/FontProvider.cpp
 )
 
 set(BitmapFont_HDR_FILES
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//BM_Font.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFace.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFaceHandle.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFaceLayer.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFamily.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontParser.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/BM_Font.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFace.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFaceHandle.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFaceLayer.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFamily.h
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontParser.h
 )
 
 set(BitmapFont_PUB_HDR_FILES
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/BitmapFont//FontProvider.h
-    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/BitmapFont//Header.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/BitmapFont/FontProvider.h
 )
 
 set(BitmapFont_SRC_FILES
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFace.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFaceHandle.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFaceLayer.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontFamily.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontParser.cpp
-    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont//FontProvider.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFace.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFaceHandle.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFaceLayer.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontFamily.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontParser.cpp
+    ${PROJECT_SOURCE_DIR}/Source/Core/BitmapFont/FontProvider.cpp
 )
 
