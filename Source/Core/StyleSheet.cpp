@@ -121,13 +121,15 @@ ElementDefinition* StyleSheet::GetElementDefinition(const Element* element) cons
 	for (int i = 0; i < 2; i++)
 	{
 		NodeIndex::const_iterator iterator = styled_node_index.find(tags[i]);
-		if (iterator != styled_node_index.end())
+		if (iterator != styled_node_index.end() && (*iterator).second.size())
 		{
 			const NodeList& nodes = (*iterator).second;
 
+            NodeList::const_iterator end = nodes.end();
+
 			// There are! Now see if we satisfy all of their parenting requirements. What this involves is traversing the style
 			// nodes backwards, trying to match nodes in the element's hierarchy to nodes in the style hierarchy.
-			for (NodeList::const_iterator iterator = nodes.begin(); iterator != nodes.end(); iterator++)
+			for (NodeList::const_iterator iterator = nodes.begin(); iterator != end; iterator++)
 			{
 				if ((*iterator)->IsApplicable(element))
 				{
@@ -147,12 +149,13 @@ ElementDefinition* StyleSheet::GetElementDefinition(const Element* element) cons
 	for (int i = 0; i < 2; ++i)
 	{
 		NodeIndex::const_iterator iterator = complete_node_index.find(tags[i]);
-		if (iterator != complete_node_index.end())
+		if (iterator != complete_node_index.end() && (*iterator).second.size())
 		{
 			const NodeList& nodes = (*iterator).second;
+            NodeList::const_iterator end = nodes.end();
 
 			// See if we satisfy all of the parenting requirements for each of these nodes (as in the previous loop).
-			for (NodeList::const_iterator iterator = nodes.begin(); iterator != nodes.end(); iterator++)
+			for (NodeList::const_iterator iterator = nodes.begin(); iterator != end; iterator++)
 			{
 				structurally_volatile |= (*iterator)->IsStructurallyVolatile();
 

@@ -39,6 +39,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 #include <Rocket/Core/Platform.h>
 #include <Rocket/Core/Debug.h>

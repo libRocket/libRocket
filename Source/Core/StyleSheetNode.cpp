@@ -434,6 +434,9 @@ void StyleSheetNode::GetApplicableDescendants(std::vector< const StyleSheetNode*
 				return;
 		}
 		break;
+
+		default:
+		break;
 	}
 
 	if (properties.GetNumProperties() > 0 ||
@@ -443,10 +446,12 @@ void StyleSheetNode::GetApplicableDescendants(std::vector< const StyleSheetNode*
 	for (int i = CLASS; i < NUM_NODE_TYPES; i++)
 	{
 		// Don't recurse into pseudo-classes; they can't be built into the root definition.
-		if (i == PSEUDO_CLASS)
+		if (i == PSEUDO_CLASS||children[i].empty())
 			continue;
 
-		for (NodeMap::const_iterator j = children[i].begin(); j != children[i].end(); ++j)
+		NodeMap::const_iterator end = children[i].end();
+
+		for (NodeMap::const_iterator j = children[i].begin(); j != end; ++j)
 			(*j).second->GetApplicableDescendants(applicable_nodes, element);
 	}
 }
@@ -464,10 +469,12 @@ bool StyleSheetNode::IsStructurallyVolatile(bool check_ancestors) const
 	// Check our children for structural pseudo-classes.
 	for (int i = 0; i < NUM_NODE_TYPES; ++i)
 	{
-		if (i == STRUCTURAL_PSEUDO_CLASS)
+		if (i == STRUCTURAL_PSEUDO_CLASS || children[i].empty())
 			continue;
 
-		for (NodeMap::const_iterator j = children[i].begin(); j != children[i].end(); ++j)
+		NodeMap::const_iterator end = children[i].end();
+
+		for (NodeMap::const_iterator j = children[i].begin(); j != end; ++j)
 		{
 			if ((*j).second->IsStructurallyVolatile(false))
 				return true;

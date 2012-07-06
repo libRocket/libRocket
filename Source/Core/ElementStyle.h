@@ -71,7 +71,10 @@ public:
 	/// Checks if a class is set on the element.
 	/// @param[in] class_name The name of the class to check for.
 	/// @return True if the class is set on the element, false otherwise.
-	bool IsClassSet(const String& class_name) const;
+	inline bool IsClassSet(const String& class_name) const
+	{
+		return classes.size() && std::find(classes.begin(), classes.end(), class_name) != classes.end();
+	}
 	/// Specifies the entire list of classes for this element. This will replace any others specified.
 	/// @param[in] class_names The list of class names to set on the style, separated by spaces.
 	void SetClassNames(const String& class_names);
