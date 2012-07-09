@@ -64,11 +64,23 @@ bool FontDatabase::Initialise()
 		new FontDatabase();
 	}
 
+	BitmapFont::FontProvider::Initialise();
+
+#ifdef ROCKET_WITH_FREETYPE
+	FreeType::FontProvider::Initialise();
+#endif
+
 	return true;
 }
 
 void FontDatabase::Shutdown()
 {
+	BitmapFont::FontProvider::Shutdown();
+
+#ifdef ROCKET_WITH_FREETYPE
+	FreeType::FontProvider::Shutdown();
+#endif
+
 	if (instance != NULL)
 	{
 		delete instance;
