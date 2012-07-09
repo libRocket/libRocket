@@ -33,15 +33,15 @@
 #define NULL 0
 #endif
 
+#include <Rocket/Core/Platform.h>
+#include <Rocket/Core/Debug.h>
+
 #include <float.h>
 #include <limits.h>
 #include <string>
 #include <map>
 #include <set>
 #include <vector>
-
-#include <Rocket/Core/Platform.h>
-#include <Rocket/Core/Debug.h>
 
 namespace Rocket {
 namespace Core {
@@ -95,5 +95,50 @@ typedef Dictionary ElementAttributes;
 
 }
 }
+
+#if !ROCKET_SUPPORT_RTTI
+
+#define ROCKET_RTTI_Define() \
+	static void * GetStaticClassIdentifier(){ static int dummy; return &dummy; } \
+	virtual void * GetClassIdentifier() const { return GetStaticClassIdentifier(); } \
+	virtual bool IsExactClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); } \
+	virtual bool IsClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); }
+
+#define ROCKET_RTTI_DefineWithParent( _PARENT_ ) \
+	static void * GetStaticClassIdentifier(){ static int dummy; return &dummy; } \
+	virtual void * GetClassIdentifier() const { return GetStaticClassIdentifier(); } \
+	virtual bool IsExactClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier(); } \
+	virtual bool IsClass(void * type_identifier) const { return type_identifier == GetStaticClassIdentifier() || _PARENT_::IsClass(type_identifier);}
+
+template<class T>
+struct make_non_const;
+
+template<class T>
+struct make_non_const<T*>
+{
+	typedef T type;
+};
+
+template<class derived, class base>
+derived dyn_cast(base base_instance)
+{
+	if(base_instance->IsClass(make_non_const<derived>::type::GetStaticClassIdentifier())) 
+	{
+		return static_cast<derived>(base_instance);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+#define dynamic_cast dyn_cast
+
+#else
+
+#define ROCKET_RTTI_Define()
+#define ROCKET_RTTI_DefineWithParent(_PARENT_)
+
+#endif
 
 #endif

@@ -45,6 +45,9 @@ class WidgetTextInput;
 class ROCKETCONTROLS_API ElementFormControlTextArea : public ElementFormControl
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(ElementFormControl)
+
 	/// Constructs a new ElementFormControlTextArea. This should not be called directly; use the
 	/// Factory instead.
 	/// @param[in] tag The tag the element was declared as in RML.

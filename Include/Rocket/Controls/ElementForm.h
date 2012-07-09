@@ -43,6 +43,9 @@ namespace Controls {
 class ROCKETCONTROLS_API ElementForm : public Core::Element
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(Core::Element)
+
 	/// Constructs a new ElementForm. This should not be called directly; use the Factory instead.
 	/// @param[in] tag The tag the element was declared as in RML.
 	ElementForm(const Rocket::Core::String& tag);

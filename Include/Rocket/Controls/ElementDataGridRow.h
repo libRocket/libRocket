@@ -50,6 +50,9 @@ class ROCKETCONTROLS_API ElementDataGridRow : public Core::Element, public DataS
 friend class ElementDataGrid;
 
 public:
+
+	ROCKET_RTTI_DefineWithParent(Core::Element)
+
 	ElementDataGridRow(const Rocket::Core::String& tag);
 	virtual ~ElementDataGridRow();
 

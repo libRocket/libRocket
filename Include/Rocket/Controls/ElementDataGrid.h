@@ -47,6 +47,8 @@ class ElementDataGridRow;
 class ROCKETCONTROLS_API ElementDataGrid : public Core::Element, public DataSourceListener
 {
 public:
+	ROCKET_RTTI_DefineWithParent(Core::Element)
+
 	ElementDataGrid(const Rocket::Core::String& tag);
 	virtual ~ElementDataGrid();
 

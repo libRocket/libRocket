@@ -71,6 +71,9 @@ class StyleSheet;
 class ROCKETCORE_API Element : public ScriptInterface
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(ScriptInterface)
+
 	/// Constructs a new libRocket element. This should not be called directly; use the Factory
 	/// instead.
 	/// @param[in] tag The tag the element was declared as in RML.

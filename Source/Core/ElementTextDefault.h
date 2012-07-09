@@ -42,6 +42,9 @@ namespace Core {
 class ROCKETCORE_API ElementTextDefault : public ElementText
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(ElementText)
+
 	ElementTextDefault(const String& tag);
 	virtual ~ElementTextDefault();
 

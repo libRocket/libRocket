@@ -44,6 +44,9 @@ class Plugin;
 class ElementContextHook : public Core::ElementDocument
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(Core::ElementDocument)
+
 	ElementContextHook(const Core::String& tag);
 	virtual ~ElementContextHook();
 

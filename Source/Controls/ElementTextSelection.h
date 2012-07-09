@@ -45,6 +45,9 @@ class WidgetTextInput;
 class ElementTextSelection : public Core::Element
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(Core::Element)
+
 	ElementTextSelection(const Rocket::Core::String& tag);
 	virtual ~ElementTextSelection();
 

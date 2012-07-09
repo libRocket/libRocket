@@ -45,6 +45,9 @@ typedef std::map< Core::PseudoClassList, NamedPropertyList > NamedPropertyMap;
 class ElementInfo : public Core::ElementDocument, public Core::EventListener
 {
 public:
+
+	ROCKET_RTTI_DefineWithParent(Core::ElementDocument)
+
 	ElementInfo(const Core::String& tag);
 	virtual ~ElementInfo();
 
