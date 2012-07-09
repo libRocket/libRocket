@@ -173,7 +173,6 @@ int main(int ROCKET_UNUSED(argc), char** ROCKET_UNUSED(argv))
 	Input::SetContext(context);
     
     Shell::LoadFonts("../../assets/");
-    Shell::LoadBitmapFonts("../../assets/BitmapFont/");
 
 	// Load and show the tutorial document.
 	Rocket::Core::ElementDocument* document = context->LoadDocument("../../assets/demo.rml");

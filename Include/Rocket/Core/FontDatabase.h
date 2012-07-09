@@ -48,8 +48,35 @@ class FontProvider;
 class ROCKETCORE_API FontDatabase
 {
 public:
+
+	enum FontProviderType
+	{
+		FREETYPE_FONT = 0,
+		BITMAP_FONT,
+	};
+
 	static bool Initialise();
 	static void Shutdown();
+
+	/// Adds a new font face to the database. The face's family, style and weight will be determined from the face itself.
+	/// @param[in] file_name The file to load the face from.
+	/// @return True if the face was loaded successfully, false otherwise.
+	static bool LoadFontFace(const String& file_name);
+	/// Adds a new font face to the database, ignoring any family, style and weight information stored in the face itself.
+	/// @param[in] file_name The file to load the face from.
+	/// @param[in] family The family to add the face to.
+	/// @param[in] style The style of the face (normal or italic).
+	/// @param[in] weight The weight of the face (normal or bold).
+	/// @return True if the face was loaded successfully, false otherwise.
+	static bool LoadFontFace(const String& file_name, const String& family, Font::Style style, Font::Weight weight);
+	/// Adds a new font face to the database, loading from memory.
+	/// @param[in] data The font data.
+	/// @param[in] data_length Length of the data.
+	/// @param[in] family The family to add the face to.
+	/// @param[in] style The style of the face (normal or italic).
+	/// @param[in] weight The weight of the face (normal or bold).
+	/// @return True if the face was loaded successfully, false otherwise.
+	static bool LoadFontFace(FontProviderType font_type, const byte* data, int data_length, const String& family, Font::Style style, Font::Weight weight);
 
 	/// Returns a handle to a font face that can be used to position and render text. This will return the closest match
 	/// it can find, but in the event a font family is requested that does not exist, NULL will be returned instead of a

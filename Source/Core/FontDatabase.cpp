@@ -29,6 +29,11 @@
 #include <Rocket/Core/FontDatabase.h>
 #include <Rocket/Core.h>
 #include <Rocket/Core/FontProvider.h>
+#include <Rocket/Core/BitmapFont/FontProvider.h>
+
+#ifdef ROCKET_WITH_FREETYPE
+	#include <Rocket/Core/FreeType/FontProvider.h>
+#endif
 
 
 namespace Rocket {
@@ -69,6 +74,66 @@ void FontDatabase::Shutdown()
 		delete instance;
 		font_effect_cache.clear();
 		font_provider_table.clear();
+	}
+}
+
+
+// Loads a new font face.
+bool FontDatabase::LoadFontFace(const String& file_name)
+{
+	if( file_name.Find( ".fnt" ) != String::npos )
+	{
+		return BitmapFont::FontProvider::LoadFontFace( file_name );
+	}
+	else
+	{
+#ifdef ROCKET_WITH_FREETYPE
+		return FreeType::FontProvider::LoadFontFace( file_name );
+#else
+		Log::Message(Log::LT_ERROR, "libRocket is not compiled with FreeType support. Rebuild with ROCKET_WITH_FREETYPE");
+		return false;
+#endif
+	}
+}
+
+// Adds a new font face to the database, ignoring any family, style and weight information stored in the face itself.
+bool FontDatabase::LoadFontFace(const String& file_name, const String& family, Font::Style style, Font::Weight weight)
+{
+	if( file_name.Find( ".fnt" ) != String::npos )
+	{
+		return BitmapFont::FontProvider::LoadFontFace( file_name, family, style, weight );
+	}
+	else
+	{
+#ifdef ROCKET_WITH_FREETYPE
+		return FreeType::FontProvider::LoadFontFace( file_name, family, style, weight );
+#else
+		Log::Message(Log::LT_ERROR, "libRocket is not compiled with FreeType support. Rebuild with ROCKET_WITH_FREETYPE");
+		return false;
+#endif
+	}
+}
+
+// Adds a new font face to the database, loading from memory.
+bool FontDatabase::LoadFontFace(FontProviderType font_type, const byte* data, int data_length, const String& family, Font::Style style, Font::Weight weight)
+{
+	if( font_type == BITMAP_FONT )
+	{
+		return BitmapFont::FontProvider::LoadFontFace( data, data_length, family, style, weight );
+	}
+	else if( font_type == FREETYPE_FONT )
+	{
+#ifdef ROCKET_WITH_FREETYPE
+		return FreeType::FontProvider::LoadFontFace( data, data_length, family, style, weight );
+#else
+		Log::Message(Log::LT_ERROR, "libRocket is not compiled with FreeType support. Rebuild with ROCKET_WITH_FREETYPE");
+		return false;
+#endif
+	}
+	else
+	{
+		Log::Message(Log::LT_ERROR, "Invalid font provider type");
+		return false;
 	}
 }
 
