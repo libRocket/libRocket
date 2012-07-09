@@ -54,7 +54,7 @@ StringBase< T >::StringBase(const T* string_start, const T* string_end) : value(
 	if (length > 0)
 	{
 		Reserve(length);
-		Copy(value, string_start, length, true);		
+		Copy(value, string_start, length, true);
 	}
 }
 
@@ -117,26 +117,37 @@ unsigned int StringBase< T >::Hash() const
 {
 	if (hash == 0 && length > 0)
 	{
-		// FNV-1 hash algorithm
-		unsigned char* bp = (unsigned char *)value;	// start of buffer
-		unsigned char* be = (unsigned char *)value + (length * sizeof(T));
-		
-		// FNV-1a hash each octet in the buffer
-		while (bp < be) 
-		{
-			// xor the bottom with the current octet
-			hash ^= *bp++;
-			
-			/* multiply by the 32 bit FNV magic prime mod 2^32 */
-			#if !defined(__GNUC__)
-				const unsigned int FNV_32_PRIME = ((unsigned int)16777619);
-				hash *= FNV_32_PRIME;
-			#else
-				hash += (hash<<1) + (hash<<4) + (hash<<7) + (hash<<8) + (hash<<24);
-			#endif
-		}
+		hash = Hash( value, length );
 	}
+
 	return hash;
+}
+
+template<typename T>
+unsigned int StringBase< T >::Hash(const T * value, const int length)
+{
+	unsigned int result = 0;
+
+	// FNV-1 hash algorithm
+	unsigned char* bp = (unsigned char *)value;	// start of buffer
+	unsigned char* be = (unsigned char *)value + (length * sizeof(T));
+	
+	// FNV-1a hash each octet in the buffer
+	while (bp < be) 
+	{
+		// xor the bottom with the current octet
+		result ^= *bp++;
+		
+		/* multiply by the 32 bit FNV magic prime mod 2^32 */
+		#if !defined(__GNUC__)
+			const unsigned int FNV_32_PRIME = ((unsigned int)16777619);
+			result *= FNV_32_PRIME;
+		#else
+			result += (result<<1) + (result<<4) + (result<<7) + (result<<8) + (result<<24);
+		#endif
+	}
+
+	return result;
 }
 
 template< typename T >
@@ -421,40 +432,47 @@ bool StringBase< T >::operator!=(const StringBase< T >& compare) const
 }
 
 template< typename T >
-bool StringBase< T >::operator<(const T* compare) const
+bool StringBase< T >::operator<(const StringBase< T >& compare) const
 {
-	size_type index = 0;
-	while (index < length && compare[index] == value[index])
-		index++;
+	unsigned int my_hash = Hash();
+	unsigned int his_hash = compare.Hash();
 
-	// Check if we reached the end of the string
-	if (index < length)
+	if( my_hash == his_hash )
 	{
-		// If we didn't check if we reached the end of
-		// the string we're comparing against, if so
-		// then we're not less than
-		if (compare[index] == 0)
-			return false;
+		if( length != compare.length )
+			return length < compare.length;
 
-		// Check the character at index
-		return value[index] < compare[index];
+		size_type index = 0;
+		while (index < length && compare.value[index] == value[index])
+			index++;
+
+		// Check if we reached the end of the string
+		if (index < length)
+		{
+			// If we didn't check if we reached the end of
+			// the string we're comparing against, if so
+			// then we're not less than
+			if (compare.value[index] == 0)
+				return false;
+
+			// Check the character at index
+			return value[index] < compare.value[index];
+		}
+		else
+		{
+			// We reached the end of our string,
+			// if the string we're comparing with still
+			// has data, then we're smaller
+			if (compare.value[index] != 0)
+				return true;		
+		}
+
+		return false;
 	}
 	else
 	{
-		// We reached the end of our string,
-		// if the string we're comparing with still
-		// has data, then we're smaller
-		if (compare[index] != 0)
-			return true;		
+		return my_hash < his_hash;
 	}
-
-	return false;
-}
-
-template< typename T >
-bool StringBase< T >::operator<(const StringBase< T >& compare) const
-{
-	return *this < compare.CString();
 }
 
 template< typename T >
@@ -706,4 +724,10 @@ void StringBase< T >::_Insert(size_type index, const T* insert, size_type insert
 	length += add_length;
 	
 	hash = 0;
+}
+
+template< typename T >
+size_t hash_value(const StringBase<T>& str)
+{
+	return str.Hash();
 }
