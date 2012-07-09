@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "LayoutInlineBox.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 #include "LayoutBlockBox.h"
 #include "LayoutEngine.h"
 #include <Rocket/Core/ElementText.h>

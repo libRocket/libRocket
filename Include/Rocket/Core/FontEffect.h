@@ -39,7 +39,7 @@ class FontEffectInstancer;
 	@author Peter Curry
  */
 
-class FontEffect : public ReferenceCountable
+class ROCKETCORE_API FontEffect : public ReferenceCountable
 {
 public:
 	FontEffect();

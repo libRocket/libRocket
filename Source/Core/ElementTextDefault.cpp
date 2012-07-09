@@ -29,7 +29,7 @@
 #include "ElementTextDefault.h"
 #include "ElementDefinition.h"
 #include "ElementStyle.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Event.h>
@@ -102,11 +102,11 @@ void ElementTextDefault::OnRender()
 	Vector2i clip_dimensions;
 	if (GetContext()->GetActiveClipRegion(clip_origin, clip_dimensions))
 	{
-		float clip_top = clip_origin.y;
-		float clip_left = clip_origin.x;
-		float clip_right = (clip_origin.x + clip_dimensions.x);
-		float clip_bottom = (clip_origin.y + clip_dimensions.y);
-		float line_height = GetFontFaceHandle()->GetLineHeight();
+		float clip_top = float(clip_origin.y);
+		float clip_left = float(clip_origin.x);
+		float clip_right = float((clip_origin.x + clip_dimensions.x));
+		float clip_bottom = float((clip_origin.y + clip_dimensions.y));
+		float line_height = float(GetFontFaceHandle()->GetLineHeight());
 		
 		render = false;
 		for (size_t i = 0; i < lines.size(); ++i)
@@ -216,7 +216,7 @@ bool ElementTextDefault::GenerateLine(WString& line, int& line_length, float& li
 		{
 			if (!line.Empty() &&
 				(line_width + token_width > maximum_line_width ||
-				 LastToken(next_token_begin, string_end, collapse_white_space, break_at_endline) && line_width + token_width > maximum_line_width - right_spacing_width))
+				 ( LastToken(next_token_begin, string_end, collapse_white_space, break_at_endline) && line_width + token_width > maximum_line_width - right_spacing_width)))
 			{
 				return false;
 			}

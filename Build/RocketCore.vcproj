@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="RocketCore"
 	ProjectGUID="{1AAC0B29-AEB9-4E3F-8EDF-B46F8949C41B}"
 	RootNamespace="rocket"
@@ -40,7 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\Include;..\..\support\freetype\include"
+				AdditionalIncludeDirectories="..\Include"
 				UsePrecompiledHeader="0"
 			/>
 			<Tool
@@ -54,9 +54,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype243MT_D.lib"
 				OutputFile="..\bin\$(ProjectName)_d.dll"
-				AdditionalLibraryDirectories="..\..\support\lib"
+				AdditionalLibraryDirectories=""
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 			/>
@@ -106,7 +105,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\Include;..\..\support\freetype\include"
+				AdditionalIncludeDirectories="..\Include"
 				UsePrecompiledHeader="2"
 			/>
 			<Tool
@@ -120,9 +119,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype243MT.lib"
 				OutputFile="..\bin\$(ProjectName).dll"
-				AdditionalLibraryDirectories="..\..\support\lib"
+				AdditionalLibraryDirectories=""
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 			/>
@@ -992,19 +990,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Source\Core\FontFace.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Core\FontFace.h"
-				>
-			</File>
-			<File
 				RelativePath="..\Source\Core\FontFaceHandle.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Core\FontFaceHandle.h"
 				>
 			</File>
 			<File
@@ -1016,14 +1002,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Source\Core\FontFamily.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Source\Core\FontFamily.h"
-				>
-			</File>
-			<File
 				RelativePath="..\Include\Rocket\Core\FontGlyph.h"
 				>
 			</File>
@@ -1032,7 +1010,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Source\Core\UnicodeRange.h"
+				RelativePath="..\Include\Rocket\Core\UnicodeRange.h"
 				>
 			</File>
 			<Filter

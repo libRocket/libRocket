@@ -36,9 +36,8 @@ namespace Rocket {
 namespace Core {
 
 class FontEffect;
-class FontFamily;
 class FontFaceHandle;
-class PropertyDictionary;
+class FontProvider;
 
 /**
 	The font database contains all font families currently in use by Rocket.
@@ -49,6 +48,13 @@ class PropertyDictionary;
 class ROCKETCORE_API FontDatabase
 {
 public:
+
+	enum FontProviderType
+	{
+		FREETYPE_FONT = 0,
+		BITMAP_FONT,
+	};
+
 	static bool Initialise();
 	static void Shutdown();
 
@@ -70,7 +76,7 @@ public:
 	/// @param[in] style The style of the face (normal or italic).
 	/// @param[in] weight The weight of the face (normal or bold).
 	/// @return True if the face was loaded successfully, false otherwise.
-	static bool LoadFontFace(const byte* data, int data_length, const String& family, Font::Style style, Font::Weight weight);
+	static bool LoadFontFace(FontProviderType font_type, const byte* data, int data_length, const String& family, Font::Style style, Font::Weight weight);
 
 	/// Returns a handle to a font face that can be used to position and render text. This will return the closest match
 	/// it can find, but in the event a font family is requested that does not exist, NULL will be returned instead of a
@@ -93,21 +99,22 @@ public:
 	/// Removes a font effect from the font database's cache.
 	/// @param[in] The effect to release.
 	static void ReleaseFontEffect(const FontEffect* effect);
+	
+	/// Add a font provider to the database
+	/// @param[in] The provider to add.
+	static void AddFontProvider(FontProvider * provider);
+
+	/// Remove a font provider from the database
+	/// @param[in] The provider to remove.
+	static void RemoveFontProvider(FontProvider * provider);
 
 private:
 	FontDatabase(void);
 	~FontDatabase(void);
 
-	// Adds a loaded face to the appropriate font family.
-	bool AddFace(void* face, const String& family, Font::Style style, Font::Weight weight, bool release_stream);
-	// Loads a FreeType face.
-	void* LoadFace(const String& file_name);
-	// Loads a FreeType face from memory.
-	void* LoadFace(const byte* data, int data_length, const String& source, bool local_data);
+	typedef std::vector< FontProvider *> FontProviderTable;
 
-	typedef std::map< String, FontFamily*, StringUtilities::StringComparei > FontFamilyMap;
-	FontFamilyMap font_families;
-
+	static FontProviderTable font_provider_table;
 	static FontDatabase* instance;
 };
 
