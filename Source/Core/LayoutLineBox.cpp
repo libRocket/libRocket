@@ -195,7 +195,7 @@ void LayoutLineBox::CloseInlineBox(LayoutInlineBox* inline_box)
 // Attempts to add a new element to this line box.
 LayoutInlineBox* LayoutLineBox::AddElement(Element* element, const Box& box)
 {
-	if (dynamic_cast< ElementText* >(element) != NULL)
+	if (rocket_dynamic_cast< ElementText* >(element) != NULL)
 		return AddBox(new LayoutInlineBoxText(element));
 	else
 		return AddBox(new LayoutInlineBox(element, box));

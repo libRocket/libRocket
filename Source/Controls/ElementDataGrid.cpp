@@ -44,7 +44,7 @@ ElementDataGrid::ElementDataGrid(const Rocket::Core::String& tag) : Core::Elemen
 	Rocket::Core::XMLAttributes attributes;
 
 	// Create the row for the column headers:
-	header = dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridheader", attributes));
+	header = rocket_dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridheader", attributes));
 	header->SetProperty("display", "block");
 	header->Initialise(this);
 	AppendChild(header);
@@ -58,7 +58,7 @@ ElementDataGrid::ElementDataGrid(const Rocket::Core::String& tag) : Core::Elemen
 
 	body_visible = false;
 
-	root = dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridroot", attributes));
+	root = rocket_dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridroot", attributes));
 	root->SetProperty("display", "none");
 	root->Initialise(this);
 
@@ -171,7 +171,7 @@ ElementDataGridRow* ElementDataGrid::AddRow(ElementDataGridRow* parent, int inde
 {
 	// Now we make a new row at the right place then return it.
 	Rocket::Core::XMLAttributes attributes;
-	ElementDataGridRow* new_row = dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridrow", attributes));
+	ElementDataGridRow* new_row = rocket_dynamic_cast< ElementDataGridRow* >(Core::Factory::InstanceElement(this, "#rktctl_datagridrow", "datagridrow", attributes));
 
 	new_row->Initialise(this, parent, index, header, parent->GetDepth() + 1);
 
@@ -216,7 +216,7 @@ int ElementDataGrid::GetNumRows() const
 ElementDataGridRow* ElementDataGrid::GetRow(int index) const
 {
 	// We need to add two to the index, to skip the header row.
-	ElementDataGridRow* row = dynamic_cast< ElementDataGridRow* >(body->GetChild(index));
+	ElementDataGridRow* row = rocket_dynamic_cast< ElementDataGridRow* >(body->GetChild(index));
 	return row;
 }
 

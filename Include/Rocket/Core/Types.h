@@ -120,7 +120,7 @@ struct make_non_const<T*>
 };
 
 template<class derived, class base>
-derived dyn_cast(base base_instance)
+derived rocket_dynamic_cast(base base_instance)
 {
 	if(base_instance->IsClass(make_non_const<derived>::type::GetStaticClassIdentifier())) 
 	{
@@ -132,12 +132,13 @@ derived dyn_cast(base base_instance)
 	}
 }
 
-#define dynamic_cast dyn_cast
 
 #else
 
 #define ROCKET_RTTI_Define()
 #define ROCKET_RTTI_DefineWithParent(_PARENT_)
+
+#define rocket_dynamic_cast dynamic_cast
 
 #endif
 

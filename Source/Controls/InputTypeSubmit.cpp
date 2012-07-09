@@ -55,7 +55,7 @@ void InputTypeSubmit::ProcessEvent(Core::Event& event)
 		Core::Element* parent = element->GetParentNode();
 		while (parent)
 		{
-			ElementForm* form = dynamic_cast< ElementForm* >(parent);
+			ElementForm* form = rocket_dynamic_cast< ElementForm* >(parent);
 			if (form != NULL)
 			{
 				form->Submit(element->GetAttribute< Rocket::Core::String >("name", ""), element->GetAttribute< Rocket::Core::String >("value", ""));

@@ -57,7 +57,7 @@ Core::Element* XMLNodeHandlerTabSet::ElementStart(Core::XMLParser* parser, const
 
 		// Attempt to instance the tabset
 		Core::Element* element = Core::Factory::InstanceElement(parser->GetParseFrame()->element, name, name, attributes);		
-		ElementTabSet* tabset = dynamic_cast< ElementTabSet* >(element);
+		ElementTabSet* tabset = rocket_dynamic_cast< ElementTabSet* >(element);
 		if (!tabset)
 		{
 			if (element)
@@ -79,7 +79,7 @@ Core::Element* XMLNodeHandlerTabSet::ElementStart(Core::XMLParser* parser, const
 
 		Core::Element* tab_element = Core::Factory::InstanceElement(parser->GetParseFrame()->element, "*", "tab", attributes);
 
-		ElementTabSet* tabset = dynamic_cast< ElementTabSet* >(parser->GetParseFrame()->element);
+		ElementTabSet* tabset = rocket_dynamic_cast< ElementTabSet* >(parser->GetParseFrame()->element);
 		if (tabset)
 		{
 			tabset->SetTab(-1, tab_element);
@@ -96,7 +96,7 @@ Core::Element* XMLNodeHandlerTabSet::ElementStart(Core::XMLParser* parser, const
 
 		Core::Element* panel_element = Core::Factory::InstanceElement(parser->GetParseFrame()->element, "*", "panel", attributes);
 
-		ElementTabSet* tabset = dynamic_cast< ElementTabSet* >(parser->GetParseFrame()->element);
+		ElementTabSet* tabset = rocket_dynamic_cast< ElementTabSet* >(parser->GetParseFrame()->element);
 		if (tabset)
 		{
 			tabset->SetPanel(-1, panel_element);

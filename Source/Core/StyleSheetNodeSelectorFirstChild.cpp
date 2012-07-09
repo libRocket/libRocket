@@ -57,7 +57,7 @@ bool StyleSheetNodeSelectorFirstChild::IsApplicable(const Element* element, int 
 			return true;
 
 		// If this child is not a text element, then the selector fails; this element is non-trivial.
-		if (dynamic_cast< ElementText* >(child) == NULL &&
+		if (rocket_dynamic_cast< ElementText* >(child) == NULL &&
 			child->GetProperty< int >(DISPLAY) != DISPLAY_NONE)
 			return false;
 

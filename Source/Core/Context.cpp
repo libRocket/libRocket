@@ -53,7 +53,7 @@ Context::Context(const String& name) : name(name), mouse_position(0, 0), dimensi
 	root->SetProperty(Z_INDEX, "0");
 
 	Element* element = Factory::InstanceElement(NULL, "body", "body", XMLAttributes());
-	cursor_proxy = dynamic_cast< ElementDocument* >(element);
+	cursor_proxy = rocket_dynamic_cast< ElementDocument* >(element);
 	if (cursor_proxy == NULL)
 	{
 		if (element != NULL)
@@ -198,7 +198,7 @@ ElementDocument* Context::CreateDocument(const String& tag)
 		return NULL;
 	}
 
-	ElementDocument* document = dynamic_cast< ElementDocument* >(element);
+	ElementDocument* document = rocket_dynamic_cast< ElementDocument* >(element);
 	if (document == NULL)
 	{
 		Log::Message(Log::LT_ERROR, "Failed to instance document on tag '%s', Found type '%s', was expecting derivative of ElementDocument.", tag.CString(), typeid(element).name());

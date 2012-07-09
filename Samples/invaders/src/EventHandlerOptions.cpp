@@ -66,12 +66,12 @@ void EventHandlerOptions::ProcessEvent(Rocket::Core::Event& event, const Rocket:
 		// Fetch the radio button from the document by ID, cast it to a radio button interface and set it as checked.
 		// This will automatically pop the other radio buttons in the set. Note that we could have not cast and called
 		// the 'Click()' function instead, but this method will avoid event overhead.
-		Rocket::Controls::ElementFormControlInput* graphics_option = dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById(graphics_option_id));
+		Rocket::Controls::ElementFormControlInput* graphics_option = rocket_dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById(graphics_option_id));
 		if (graphics_option != NULL)
 			graphics_option->SetAttribute("checked", "");
 
 		// Fetch the reverb option by ID and set its checked status from the game options.
-		Rocket::Controls::ElementFormControlInput* reverb_option = dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById("reverb"));
+		Rocket::Controls::ElementFormControlInput* reverb_option = rocket_dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById("reverb"));
 		if (reverb_option != NULL)
 		{
 			if (GameDetails::GetReverb())
@@ -81,7 +81,7 @@ void EventHandlerOptions::ProcessEvent(Rocket::Core::Event& event, const Rocket:
 		}
 
 		// Similarly, fetch the 3D spatialisation option by ID and set its checked status.
-		Rocket::Controls::ElementFormControlInput* spatialisation_option = dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById("3d"));
+		Rocket::Controls::ElementFormControlInput* spatialisation_option = rocket_dynamic_cast< Rocket::Controls::ElementFormControlInput* >(options_body->GetElementById("3d"));
 		if (spatialisation_option != NULL)
 		{
 			if (GameDetails::Get3DSpatialisation())

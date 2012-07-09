@@ -100,7 +100,7 @@ void InputTypeRadio::PopRadioSet()
 	ElementForm* form = NULL;
 	Core::Element* parent = element->GetParentNode();
 	while (parent != NULL &&
-		   (form = dynamic_cast< ElementForm* >(parent)) == NULL)
+		   (form = rocket_dynamic_cast< ElementForm* >(parent)) == NULL)
 	   parent = parent->GetParentNode();
 
 	if (form != NULL)
@@ -110,7 +110,7 @@ void InputTypeRadio::PopRadioSet()
 
 		for (size_t i = 0; i < form_controls.size(); ++i)
 		{
-			ElementFormControlInput* radio_control = dynamic_cast< ElementFormControlInput* >(form_controls[i]);
+			ElementFormControlInput* radio_control = rocket_dynamic_cast< ElementFormControlInput* >(form_controls[i]);
 			if (radio_control != NULL &&
 				element != radio_control &&
 				radio_control->GetAttribute< Rocket::Core::String >("type", "text") == "radio" &&

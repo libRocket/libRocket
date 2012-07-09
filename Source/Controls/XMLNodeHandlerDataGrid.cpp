@@ -55,7 +55,7 @@ Core::Element* XMLNodeHandlerDataGrid::ElementStart(Core::XMLParser* parser, con
 	{
 		// Attempt to instance the grid.
 		element = Core::Factory::InstanceElement(parent, name, name, attributes);
-		ElementDataGrid* grid = dynamic_cast< ElementDataGrid* >(element);
+		ElementDataGrid* grid = rocket_dynamic_cast< ElementDataGrid* >(element);
 		if (grid == NULL)
 		{
 			if (element != NULL)
@@ -82,7 +82,7 @@ Core::Element* XMLNodeHandlerDataGrid::ElementStart(Core::XMLParser* parser, con
 		if (element == NULL)
 			return NULL;
 
-		ElementDataGrid* grid = dynamic_cast< ElementDataGrid* >(parent);
+		ElementDataGrid* grid = rocket_dynamic_cast< ElementDataGrid* >(parent);
 		if (grid != NULL)
 		{
 			grid->AddColumn(attributes.Get< Rocket::Core::String >("fields", ""), attributes.Get< Rocket::Core::String >("formatter", ""), attributes.Get< float >("width", 0), element);

@@ -59,7 +59,7 @@ void ElementForm::Submit(const Rocket::Core::String& name, const Rocket::Core::S
 
 	for (size_t i = 0; i < form_controls.size(); i++)
 	{
-		ElementFormControl* control = dynamic_cast< ElementFormControl* >(form_controls[i]);
+		ElementFormControl* control = rocket_dynamic_cast< ElementFormControl* >(form_controls[i]);
 		if (!control)
 			continue;
 
