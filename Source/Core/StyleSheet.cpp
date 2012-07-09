@@ -125,7 +125,7 @@ ElementDefinition* StyleSheet::GetElementDefinition(const Element* element) cons
 		{
 			const NodeList& nodes = (*iterator).second;
 
-            NodeList::const_iterator end = nodes.end();
+			NodeList::const_iterator end = nodes.end();
 
 			// There are! Now see if we satisfy all of their parenting requirements. What this involves is traversing the style
 			// nodes backwards, trying to match nodes in the element's hierarchy to nodes in the style hierarchy.
@@ -152,7 +152,7 @@ ElementDefinition* StyleSheet::GetElementDefinition(const Element* element) cons
 		if (iterator != complete_node_index.end() && (*iterator).second.size())
 		{
 			const NodeList& nodes = (*iterator).second;
-            NodeList::const_iterator end = nodes.end();
+			NodeList::const_iterator end = nodes.end();
 
 			// See if we satisfy all of the parenting requirements for each of these nodes (as in the previous loop).
 			for (NodeList::const_iterator iterator = nodes.begin(); iterator != end; iterator++)
