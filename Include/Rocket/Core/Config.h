@@ -1,0 +1,5 @@
+#define ROCKET_SUPPORTS_RTTI 1
+
+#ifndef ROCKET_SUPPORTS_RTTI
+	#define ROCKET_SUPPORT_RTTI 0
+#endif

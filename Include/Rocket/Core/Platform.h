@@ -28,27 +28,22 @@
 #ifndef ROCKETCOREPLATFORM_H
 #define ROCKETCOREPLATFORM_H
 
+#include "Config.h"
+
 #if defined __WIN32__ || defined _WIN32
 	#define ROCKET_PLATFORM_WIN32
 	#define ROCKET_PLATFORM_NAME "win32"
 	#if !defined(__MINGW32__)
 		#pragma warning(disable:4355)
 	#endif
-	#ifdef _CPPRTTI
-		#define ROCKET_SUPPORT_RTTI 1 
-	#else
-		#define ROCKET_SUPPORT_RTTI 0
-	#endif
 #elif defined __APPLE_CC__
 	#define ROCKET_PLATFORM_UNIX
 	#define ROCKET_PLATFORM_MACOSX
 	#define ROCKET_PLATFORM_NAME "macosx"
-	#define ROCKET_SUPPORT_RTTI 1 
 #else
 	#define ROCKET_PLATFORM_UNIX
 	#define ROCKET_PLATFORM_LINUX
 	#define ROCKET_PLATFORM_NAME "linux"
-	#define ROCKET_SUPPORT_RTTI 1
 #endif
 
 #if !defined NDEBUG && !defined ROCKET_DEBUG
