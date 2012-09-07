@@ -43,6 +43,10 @@ namespace Python {
 	@author Lloyd Weehuizen
  */
 
+class EventListener;
+
+typedef std::map<PyObject*, EventListener* > EventListenersMap;
+
 class EventListener : public Rocket::Core::EventListener
 {
 public:
@@ -61,6 +65,8 @@ public:
 	/// Listen for detach event so we can clean up
 	virtual void OnAttach( Element* element );
 	virtual void OnDetach( Element* element );
+
+	static EventListenersMap active_listeners;
 
 private:
 	// Element we're attached to

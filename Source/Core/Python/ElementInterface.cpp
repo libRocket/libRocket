@@ -65,12 +65,16 @@ void ElementInterface::InitialisePythonInterface()
 		;
 
 	void (*AddEventListener)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase) = &ElementInterface::AddEventListener;
+	void (*RemoveEventListener)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase) = &ElementInterface::RemoveEventListener;
 	void (*AddEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::AddEventListener;
+	void (*RemoveEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::RemoveEventListener;
 
 	// Define the basic element type.
 	class_definitions["Element"] = python::class_< Element, ElementWrapper< Element >, boost::noncopyable >("Element", python::init< const char* >())
 		.def("AddEventListener", AddEventListener)
 		.def("AddEventListener", AddEventListenerDefault)
+		.def("RemoveEventListener", RemoveEventListener)
+		.def("RemoveEventListener", RemoveEventListenerDefault)
 		.def("AppendChild", &ElementInterface::AppendChild)
 		.def("Blur", &Element::Blur)
 		.def("Click", &Element::Click)
@@ -79,6 +83,7 @@ void ElementInterface::InitialisePythonInterface()
 		.def("GetAttribute", python::make_function(&ElementInterface::GetAttribute, python::return_value_policy< python::return_by_value >()))
 		.def("GetElementById", &Element::GetElementById, python::return_value_policy< python::return_by_value >())
 		.def("GetElementsByTagName", &ElementInterface::GetElementsByTagName)
+		.def("GetElementsByClassName", &ElementInterface::GetElementsByClassName)
 		.def("HasAttribute", &Element::HasAttribute)
 		.def("HasChildNodes", &Element::HasChildNodes)
 		.def("IsPseudoClassSet", &Element::IsPseudoClassSet)
@@ -91,6 +96,8 @@ void ElementInterface::InitialisePythonInterface()
 		.def("SetPseudoClass", &Element::SetPseudoClass)
 		.def("SetClass", &Element::SetClass)
 		.def("IsClassSet", &Element::IsClassSet)
+		.def("SetProperty", &ElementInterface::SetProperty)
+		.def("GetProperty", &ElementInterface::GetProperty)
 		.add_property("absolute_left", &Element::GetAbsoluteLeft)
 		.add_property("absolute_top", &Element::GetAbsoluteTop)
 		.add_property("address", python::make_function(&ElementInterface::GetAddress, python::return_value_policy< python::return_by_value >()))
@@ -192,6 +199,16 @@ void ElementInterface::AddEventListener(Element* element, const char* event, Eve
 	element->AddEventListener(event, listener);
 }
 
+void ElementInterface::RemoveEventListener(Element* element, const char* event, EventListener* listener, bool in_capture_phase)
+{
+	element->RemoveEventListener(event, listener, in_capture_phase);
+}
+
+void ElementInterface::RemoveEventListener(Element* element, const char* event, EventListener* listener)
+{
+	element->RemoveEventListener(event, listener);
+}
+
 // Override for AppendChild without the non-DOM boolean.
 void ElementInterface::AppendChild(Element* element, Element* child)
 {
@@ -242,9 +259,27 @@ ElementList ElementInterface::GetElementsByTagName(Element* element, const char*
 	return elements;
 }
 
+// Returns the list of elements.
+ElementList ElementInterface::GetElementsByClassName(Element* element, const char* class_name)
+{
+	ElementList elements;
+	element->GetElementsByClassName(elements, class_name);
+	return elements;
+}
+
 void ElementInterface::SetAttribute(Element* element, const char* name, const char* value)
 {
 	element->SetAttribute(name, value);
+}
+
+void ElementInterface::SetProperty(Element* element, const char* name, const char* value)
+{
+	element->SetProperty(name, value);
+}
+
+Rocket::Core::String ElementInterface::GetProperty(Element* element, const char* name)
+{
+    return element->GetProperty(Rocket::Core::String(name))->ToString();
 }
 
 Rocket::Core::String ElementInterface::GetInnerRML(Element* element)

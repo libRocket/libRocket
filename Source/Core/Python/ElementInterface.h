@@ -66,8 +66,12 @@ public:
 	static ElementAttributeProxy GetAttributes(Element* element);
 	/// Override for AddEventListener that takes a python EventListener
 	static void AddEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase);
+	/// Override for RemoveEventListener that takes a python EventListener
+    static void RemoveEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase);
 	/// Override for AddEventListener without the third parameter.
 	static void AddEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
+	/// Override for RemoveEventListener without the third parameter.
+    static void RemoveEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
 	/// Override for AppendChild without the non-DOM boolean.
 	static void AppendChild(Element* element, Element* child);
 	/// Dispatches an event.
@@ -76,10 +80,13 @@ public:
 	static Rocket::Core::String GetAttribute(Element* element, const char* name);
 	/// Returns the list of elements.
 	static ElementList GetElementsByTagName(Element* element, const char* tag);
-	/// Override for RemoveEventListener without the third parameter.
-	static void RemoveEventListener(Element* element, const char* event, EventListener* listener);
+	/// Returns the list of elements.
+    static ElementList GetElementsByClassName(Element* element, const char* class_name);
 	/// Get the specified attribute
 	static void SetAttribute(Element* element, const char* name, const char* value);
+	/// Get the specified attribute
+	static Rocket::Core::String GetProperty(Element* element, const char* name);
+    static void SetProperty(Element* element, const char* name, const char* value);
 	/// Get the inner html of the given element
 	static Rocket::Core::String GetInnerRML(Element* element);
 

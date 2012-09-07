@@ -37,6 +37,8 @@ namespace Rocket {
 namespace Core {
 namespace Python {
 
+EventListenersMap EventListener::active_listeners = EventListenersMap();
+
 EventListener::EventListener(PyObject* object)
 {
 	callable = NULL;
@@ -87,6 +89,9 @@ EventListener::EventListener(PyObject* object)
 		// Unknown, log an error
 		Log::Message(Rocket::Core::Log::LT_ERROR, "Failed to initialise python based event listener. Unknown python object type, should be a callable or a string."); 
 	}
+
+	//
+	active_listeners[object] = this;
 }
 
 EventListener::EventListener(const Rocket::Core::String& code, Element* context)
@@ -101,10 +106,16 @@ EventListener::EventListener(const Rocket::Core::String& code, Element* context)
 
 EventListener::~EventListener()
 {
+
+    EventListenersMap::iterator it = active_listeners.find(callable);
+    if (it != active_listeners.end()) {
+        active_listeners.erase(it);
+    }
+
 	if (callable)
 		Py_DECREF(callable);
 	if (global_namespace)
-		Py_DECREF(global_namespace);	
+		Py_DECREF(global_namespace);
 }
 
 void EventListener::ProcessEvent(Event& event)
