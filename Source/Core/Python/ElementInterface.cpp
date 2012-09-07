@@ -68,6 +68,7 @@ void ElementInterface::InitialisePythonInterface()
 	void (*RemoveEventListener)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase) = &ElementInterface::RemoveEventListener;
 	void (*AddEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::AddEventListener;
 	void (*RemoveEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::RemoveEventListener;
+	void (*RemoveEventListeners)(Element* element, const char* event) = &ElementInterface::RemoveEventListener;
 
 	// Define the basic element type.
 	class_definitions["Element"] = python::class_< Element, ElementWrapper< Element >, boost::noncopyable >("Element", python::init< const char* >())
@@ -75,6 +76,7 @@ void ElementInterface::InitialisePythonInterface()
 		.def("AddEventListener", AddEventListenerDefault)
 		.def("RemoveEventListener", RemoveEventListener)
 		.def("RemoveEventListener", RemoveEventListenerDefault)
+		.def("RemoveEventListener", RemoveEventListeners)
 		.def("AppendChild", &ElementInterface::AppendChild)
 		.def("Blur", &Element::Blur)
 		.def("Click", &Element::Click)
@@ -207,6 +209,11 @@ void ElementInterface::RemoveEventListener(Element* element, const char* event, 
 void ElementInterface::RemoveEventListener(Element* element, const char* event, EventListener* listener)
 {
 	element->RemoveEventListener(event, listener);
+}
+
+void ElementInterface::RemoveEventListener(Element* element, const char* event)
+{
+	element->RemoveEventListeners(event);
 }
 
 // Override for AppendChild without the non-DOM boolean.

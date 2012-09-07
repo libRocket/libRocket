@@ -72,6 +72,8 @@ public:
 	static void AddEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
 	/// Override for RemoveEventListener without the third parameter.
     static void RemoveEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
+    /// Override for RemoveEventListener by type only
+    static void RemoveEventListener(Element* element, const char* event);
 	/// Override for AppendChild without the non-DOM boolean.
 	static void AppendChild(Element* element, Element* child);
 	/// Dispatches an event.

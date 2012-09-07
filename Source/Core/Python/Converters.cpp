@@ -200,7 +200,9 @@ struct EventListenerFromPython
         if (it != EventListener::active_listeners.end()) {
             return (void*)it->second;
         }
-        else return new EventListener( object );
+        else {
+        return new EventListener( object );
+        }
 	}
 };
 

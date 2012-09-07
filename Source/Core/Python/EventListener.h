@@ -76,6 +76,9 @@ private:
 	PyObject* callable;
 	PyObject* global_namespace;
 
+	// Used to keep track of event listeners
+	PyObject* source_object;
+
 	// Source code, if any
 	Rocket::Core::String source_code;
 

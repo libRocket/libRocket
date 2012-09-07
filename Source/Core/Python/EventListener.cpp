@@ -44,6 +44,8 @@ EventListener::EventListener(PyObject* object)
 	callable = NULL;
 	element = NULL;
 	global_namespace = NULL;
+	source_object = object;
+	active_listeners[source_object] = this;
 
 	if (PyCallable_Check(object))
 	{
@@ -90,8 +92,6 @@ EventListener::EventListener(PyObject* object)
 		Log::Message(Rocket::Core::Log::LT_ERROR, "Failed to initialise python based event listener. Unknown python object type, should be a callable or a string."); 
 	}
 
-	//
-	active_listeners[object] = this;
 }
 
 EventListener::EventListener(const Rocket::Core::String& code, Element* context)
@@ -107,7 +107,7 @@ EventListener::EventListener(const Rocket::Core::String& code, Element* context)
 EventListener::~EventListener()
 {
 
-    EventListenersMap::iterator it = active_listeners.find(callable);
+    EventListenersMap::iterator it = active_listeners.find(source_object);
     if (it != active_listeners.end()) {
         active_listeners.erase(it);
     }
