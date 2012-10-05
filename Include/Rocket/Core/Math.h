@@ -35,14 +35,21 @@ namespace Core {
 namespace Math {
 
 // The constant PI / 2.
-extern ROCKETCORE_API const float PI_BY_TWO;
+#ifndef PI_BY_TWO
+	extern ROCKETCORE_API const float PI_BY_TWO;
+#endif
 // The constant PI.
-extern ROCKETCORE_API const float PI;
+#ifndef PI
+	extern ROCKETCORE_API const float PI;
+#endif
 // The constant 2 * PI / 3.
-extern ROCKETCORE_API const float TWO_PI_BY_THREE;
+#ifndef TWO_PI_BY_THREE
+	extern ROCKETCORE_API const float TWO_PI_BY_THREE;
+#endif
 // The constant 2 * PI.
-extern ROCKETCORE_API const float TWO_PI;
-
+#ifndef TWO_PI
+	extern ROCKETCORE_API const float TWO_PI;
+#endif
 
 template < typename Type >
 Type Max(Type a, Type b)
