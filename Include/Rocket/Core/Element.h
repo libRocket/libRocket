@@ -642,7 +642,7 @@ private:
 	Vector2f scroll_offset;
 
 	// The size of the element.
-	typedef std::vector< Box > BoxList;
+	typedef Container::vector< Box >::Type BoxList;
 	BoxList boxes;
 	// And of the element's internal content.
 	Vector2f content_offset;

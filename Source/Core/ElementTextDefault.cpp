@@ -338,7 +338,7 @@ void ElementTextDefault::OnPropertyChange(const PropertyNameList& changed_proper
 		geometry_dirty = true;
 
 		// Re-colour the decoration geometry.
-		std::vector< Vertex >& vertices = decoration.GetVertices();
+		Container::vector< Vertex >::Type& vertices = decoration.GetVertices();
 		for (size_t i = 0; i < vertices.size(); ++i)
 			vertices[i].colour = colour;
 

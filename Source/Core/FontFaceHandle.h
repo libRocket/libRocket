@@ -138,16 +138,16 @@ private:
 	// Generates (or shares) a layer derived from a font effect.
 	FontFaceLayer* GenerateLayer(FontEffect* font_effect);
 
-	typedef std::map< word, int > GlyphKerningMap;
-	typedef std::map< word, GlyphKerningMap > FontKerningMap;
+	typedef Container::map< word, int >::Type GlyphKerningMap;
+	typedef Container::map< word, GlyphKerningMap >::Type FontKerningMap;
 
 	FontGlyphMap glyphs;
 	FontKerningMap kerning;
 
-	typedef std::map< const FontEffect*, FontFaceLayer* > FontLayerMap;
-	typedef std::map< String, FontFaceLayer* > FontLayerCache;
-	typedef std::vector< FontFaceLayer* > LayerConfiguration;
-	typedef std::vector< LayerConfiguration > LayerConfigurationList;
+	typedef Container::map< const FontEffect*, FontFaceLayer* >::Type FontLayerMap;
+	typedef Container::map< String, FontFaceLayer* >::Type FontLayerCache;
+	typedef Container::vector< FontFaceLayer* >::Type LayerConfiguration;
+	typedef Container::vector< LayerConfiguration >::Type LayerConfigurationList;
 
 	// The list of all font layers, index by the effect that instanced them.
 	FontFaceLayer* base_layer;

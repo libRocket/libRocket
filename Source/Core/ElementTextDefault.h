@@ -113,7 +113,7 @@ private:
 
 	WString text;
 
-	typedef std::vector< Line > LineList;
+	typedef Container::vector< Line >::Type LineList;
 	LineList lines;
 
 	bool dirty_layout_on_change;

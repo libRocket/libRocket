@@ -234,8 +234,8 @@ private:
 
 	ContextInstancer* instancer;
 
-	typedef std::set< ElementReference > ElementSet;
-	typedef std::vector< ElementReference > ElementList;
+	typedef Container::set< ElementReference >::Type ElementSet;
+	typedef Container::vector< ElementReference >::Type ElementList;
 	// Set of elements that are currently in hover state.
 	ElementSet hover_chain;
 	// List of elements that are currently in active state.
@@ -260,7 +260,7 @@ private:
 	// The time the last click occured.
 	float last_click_time;
 
-	typedef std::map< String, ElementDocument* > CursorMap;
+	typedef Container::map< String, ElementDocument* >::Type CursorMap;
 	CursorMap cursors;
 	ElementReference default_cursor;
 	ElementReference active_cursor;

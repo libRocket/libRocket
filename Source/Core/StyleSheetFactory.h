@@ -75,14 +75,14 @@ private:
 	StyleSheet* LoadStyleSheet(const String& sheet);
 
 	// Individual loaded stylesheets
-	typedef std::map<String, StyleSheet*> StyleSheets;
+	typedef Container::map<String, StyleSheet*>::Type StyleSheets;
 	StyleSheets stylesheets;
 
 	// Cache of combined style sheets
 	StyleSheets stylesheet_cache;
 
 	// Custom complex selectors available for style sheets.
-	typedef std::map< String, StyleSheetNodeSelector* > SelectorMap;
+	typedef Container::map< String, StyleSheetNodeSelector* >::Type SelectorMap;
 	SelectorMap selectors;
 };
 

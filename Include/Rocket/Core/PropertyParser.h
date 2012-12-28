@@ -30,12 +30,12 @@
 
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/Property.h>
-#include <map>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
 
-typedef std::map< String, int, StringUtilities::StringComparei > ParameterMap;
+typedef Container::map< String, int, StringUtilities::StringComparei >::Type ParameterMap;
 
 /**
 	A property parser takes a property declaration in string form, validates it, and converts it to a Property.

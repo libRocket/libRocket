@@ -60,7 +60,7 @@ void EventDispatcher::AttachEvent(const String& type, EventListener* listener, b
 	// Ensure the event is in the event list
 	if (event_itr == events.end())
 	{
-		event_itr = events.insert(std::pair< String, Listeners >(type, Listeners())).first;
+		event_itr = events.insert(Container::pair< String, Listeners >::Type(type, Listeners())).first;
 	}
 
 	// Add the action to the events
@@ -118,7 +118,7 @@ bool EventDispatcher::DispatchEvent(Element* target_element, const String& name,
 		return false;
 
 	// Build the element traversal from the tree
-	typedef std::vector<Element*> Elements;
+	typedef Container::vector<Element*>::Type Elements;
 	Elements elements;
 
 	Element* walk_element = target_element->GetParentNode();

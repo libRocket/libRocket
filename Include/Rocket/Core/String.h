@@ -32,13 +32,13 @@
 #include <Rocket/Core/StringBase.h>
 #include <stdarg.h>
 #include <string.h>
-#include <vector>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
 
 typedef StringBase< char > String;
-typedef std::vector< String > StringList;
+typedef Container::vector< String >::Type StringList;
 
 // Template specialisation of the constructor and FormatString() methods that use variable argument lists.
 template<>

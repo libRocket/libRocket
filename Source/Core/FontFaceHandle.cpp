@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "FontFaceHandle.h"
-#include <algorithm>
+#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Core.h>
 #include "FontFaceLayer.h"
 #include "TextureLayout.h"
@@ -176,7 +176,7 @@ int FontFaceHandle::GenerateLayerConfiguration(FontEffectMap& font_effects)
 	for (FontEffectMap::const_iterator i = font_effects.begin(); i != font_effects.end(); ++i)
 		sorted_effects.push_back(i->second);
 
-	std::sort(sorted_effects.begin(), sorted_effects.end(), FontEffectSort());
+	Rocket::Core::Container::sort(sorted_effects.begin(), sorted_effects.end(), FontEffectSort());
 
 	// Check each existing configuration for a match with this arrangement of effects.
 	int configuration_index = 1;
@@ -309,8 +309,8 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 // Generates the geometry required to render a line above, below or through a line of text.
 void FontFaceHandle::GenerateLine(Geometry* geometry, const Vector2f& position, int width, Font::Line height, const Colourb& colour) const
 {
-	std::vector< Vertex >& line_vertices = geometry->GetVertices();
-	std::vector< int >& line_indices = geometry->GetIndices();
+	Container::vector< Vertex >::Type& line_vertices = geometry->GetVertices();
+	Container::vector< int >::Type& line_indices = geometry->GetIndices();
 
 	float offset;
 	switch (height)

@@ -29,7 +29,7 @@
 #define ROCKETCORETEXTUREDATABASE_H
 
 #include <Rocket/Core/String.h>
-#include <map>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
@@ -64,7 +64,7 @@ private:
 	TextureDatabase();
 	~TextureDatabase();
 
-	typedef std::map< String, TextureResource* > TextureMap;
+	typedef Container::map< String, TextureResource* >::Type TextureMap;
 	TextureMap textures;
 };
 

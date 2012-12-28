@@ -31,7 +31,7 @@
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/Types.h>
 #include <Rocket/Core/Dictionary.h>
-#include <set>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
@@ -110,7 +110,7 @@ class ROCKETCORE_API BaseXMLParser
 		// The loose data being read.
 		String data;
 
-		std::set< String > cdata_tags;
+		Container::set< String >::Type cdata_tags;
 };
 
 }

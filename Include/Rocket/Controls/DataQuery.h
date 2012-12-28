@@ -122,9 +122,9 @@ private:
 	int offset;
 	int limit;
 
-	typedef std::vector< Rocket::Core::StringList > Rows;
+	typedef Rocket::Core::Container::vector< Rocket::Core::StringList >::Type Rows;
 	Rows rows;
-	typedef std::map< Rocket::Core::String, size_t > FieldIndices;
+	typedef Rocket::Core::Container::map< Rocket::Core::String, size_t >::Type FieldIndices;
 	FieldIndices field_indices;
 	
 	void LoadRow();

@@ -57,8 +57,8 @@ public:
 
 private:
 	// Stores a list of the numerical units and their suffixes.
-	typedef std::pair< Property::Unit, String > UnitSuffix;
-	std::vector< UnitSuffix > unit_suffixes;
+	typedef Container::pair< Property::Unit, String >::Type UnitSuffix;
+	Container::vector< UnitSuffix >::Type unit_suffixes;
 };
 
 }

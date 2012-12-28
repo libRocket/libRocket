@@ -37,7 +37,7 @@ namespace Core {
 
 class StyleSheetNodeSelector;
 
-typedef std::map< StringList, PropertyDictionary > PseudoClassPropertyMap;
+typedef Container::map< StringList, PropertyDictionary >::Type PseudoClassPropertyMap;
 
 /**
 	A style sheet is composed of a tree of nodes.
@@ -110,7 +110,7 @@ public:
 	/// Returns true if this node is applicable to the given element, given its IDs, classes and heritage.
 	bool IsApplicable(const Element* element) const;
 	/// Appends all applicable non-tag descendants of this node into the given element list.
-	void GetApplicableDescendants(std::vector< const StyleSheetNode* >& applicable_nodes, const Element* element) const;
+	void GetApplicableDescendants(Container::vector< const StyleSheetNode* >::Type& applicable_nodes, const Element* element) const;
 
 	/// Returns true if this node employs a structural selector, and therefore generates element definitions that are
 	/// sensitive to sibling changes.
@@ -145,7 +145,7 @@ private:
 	PropertyDictionary properties;
 
 	// This node's child nodes, whether standard tagged children, or further derivations of this tag by ID or class.
-	typedef std::map< String, StyleSheetNode* > NodeMap;
+	typedef Container::map< String, StyleSheetNode* >::Type NodeMap;
 	NodeMap children[NUM_NODE_TYPES];
 };
 

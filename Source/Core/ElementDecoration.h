@@ -82,10 +82,10 @@ private:
 		DecoratorDataHandle decorator_data;
 	};
 
-	typedef std::vector< DecoratorHandle > DecoratorList;
-	typedef std::pair< PseudoClassList, int > PseudoClassDecoratorIndex;
-	typedef std::vector< PseudoClassDecoratorIndex > PseudoClassDecoratorIndexList;
-	typedef std::map< String, PseudoClassDecoratorIndexList > DecoratorIndex;
+	typedef Container::vector< DecoratorHandle >::Type DecoratorList;
+	typedef Container::pair< PseudoClassList, int >::Type PseudoClassDecoratorIndex;
+	typedef Container::vector< PseudoClassDecoratorIndex >::Type PseudoClassDecoratorIndexList;
+	typedef Container::map< String, PseudoClassDecoratorIndexList >::Type DecoratorIndex;
 
 	// The element this decorator belongs to
 	Element* element;
@@ -93,7 +93,7 @@ private:
 	// The list of every decorator used by this element in every class.
 	DecoratorList decorators;
 	// The list of currently active decorators.
-	std::vector< int > active_decorators;
+	Container::vector< int >::Type active_decorators;
 	bool active_decorators_dirty;
 
 	// For each unique decorator name, this stores (in order of specificity) the name of the pseudo-class that has

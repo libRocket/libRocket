@@ -120,8 +120,8 @@ private:
 	friend class Factory;
 };
 
-typedef std::vector< FontEffect* > FontEffectList;
-typedef std::map< String, FontEffect* > FontEffectMap;
+typedef Container::vector< FontEffect* >::Type FontEffectList;
+typedef Container::map< String, FontEffect* >::Type FontEffectMap;
 
 }
 }

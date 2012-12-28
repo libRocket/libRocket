@@ -30,7 +30,7 @@
 
 #include <Rocket/Core/EventListener.h>
 #include <Rocket/Core/Plugin.h>
-#include <set>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
@@ -125,7 +125,7 @@ private:
 	bool render_outlines;
 
 	// Keep track of instanced elements for leak tracking.
-	typedef std::set< Core::Element* > ElementInstanceMap;
+	typedef Core::Container::set< Core::Element* >::Type ElementInstanceMap;
 	ElementInstanceMap elements;
 
 	// Singleton instance

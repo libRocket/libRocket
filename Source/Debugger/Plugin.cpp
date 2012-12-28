@@ -35,7 +35,7 @@
 #include "Geometry.h"
 #include "MenuSource.h"
 #include "SystemInterface.h"
-#include <stack>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Debugger {
@@ -167,7 +167,7 @@ void Plugin::Render()
 			if (document->GetId().Find("rkt-debug-") == 0)
 				continue;
 
-			std::stack< Core::Element* > element_stack;
+			Rocket::Core::Container::stack< Core::Element* >::Type element_stack;
 			element_stack.push(document);
 
 			while (!element_stack.empty())

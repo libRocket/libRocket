@@ -127,8 +127,8 @@ protected:
 	virtual void GetInnerRML(Rocket::Core::String& content) const;
 
 private:
-	typedef std::vector< Column > ColumnList;
-	typedef std::vector< ElementDataGridRow* > RowList;
+	typedef Rocket::Core::Container::vector< Column >::Type ColumnList;
+	typedef Rocket::Core::Container::vector< ElementDataGridRow* >::Type RowList;
 
 	ColumnList columns;
 	Rocket::Core::String column_fields;

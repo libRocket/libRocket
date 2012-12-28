@@ -30,7 +30,7 @@
 
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/String.h>
-#include <map>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
@@ -101,7 +101,7 @@ public:
 	const String& GetExtension() const;
 	
 	/// Access the url parameters
-	typedef std::map< String, String > Parameters;
+	typedef Container::map< String, String >::Type Parameters;
 	const Parameters& GetParameters() const;
 	void SetParameter(const String& name, const String& value);
 	void SetParameters( const Parameters& parameters );

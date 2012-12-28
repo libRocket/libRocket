@@ -76,8 +76,8 @@ private:
 
 	String source;
 
-	typedef std::pair< TextureHandle, Vector2i > TextureData;
-	typedef std::map< RenderInterface*, TextureData > TextureDataMap;
+	typedef Container::pair< TextureHandle, Vector2i >::Type TextureData;
+	typedef Container::map< RenderInterface*, TextureData >::Type TextureDataMap;
 	mutable TextureDataMap texture_data;
 };
 

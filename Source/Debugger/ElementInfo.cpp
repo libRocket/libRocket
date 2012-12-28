@@ -32,7 +32,6 @@
 #include "Geometry.h"
 #include "CommonSource.h"
 #include "InfoSource.h"
-#include <map>
 
 namespace Rocket {
 namespace Debugger {

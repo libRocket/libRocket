@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREXMLPARSER_H
 #define ROCKETCOREXMLPARSER_H
 
-#include <stack>
+#include <Rocket/Core/ContainerWrapper.h>
 #include <Rocket/Core/Header.h>
 #include <Rocket/Core/BaseXMLParser.h>
 
@@ -111,7 +111,7 @@ private:
 	XMLNodeHandler* active_handler;
 
 	// The parser stack.
-	typedef std::stack< ParseFrame > ParserStack;
+	typedef Container::stack< ParseFrame >::Type ParserStack;
 	ParserStack stack;
 };
 

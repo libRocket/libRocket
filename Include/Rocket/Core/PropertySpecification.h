@@ -105,8 +105,8 @@ public:
 	void SetPropertyDefaults(PropertyDictionary& dictionary) const;
 
 private:
-	typedef std::map< String, PropertyDefinition* > PropertyMap;
-	typedef std::map< String, PropertyShorthandDefinition* > ShorthandMap;
+	typedef Container::map< String, PropertyDefinition* >::Type PropertyMap;
+	typedef Container::map< String, PropertyShorthandDefinition* >::Type ShorthandMap;
 
 	PropertyMap properties;
 	ShorthandMap shorthands;

@@ -35,7 +35,7 @@
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/ElementText.h>
 #include <Rocket/Core/StyleSheetKeywords.h>
-#include <stack>
+#include <Rocket/Core/ContainerWrapper.h>
 
 namespace Rocket {
 namespace Core {
@@ -313,7 +313,7 @@ LayoutInlineBox* LayoutLineBox::AddBox(LayoutInlineBox* box)
 // Adds an inline box as a chained hierarchy overflowing to this line.
 void LayoutLineBox::AddChainedBox(LayoutInlineBox* chained_box)
 {
-	std::stack< LayoutInlineBox* > hierarchy;
+	Rocket::Core::Container::stack< LayoutInlineBox* >::Type hierarchy;
 	LayoutInlineBox* chain = chained_box;
 	while (chain != NULL)
 	{

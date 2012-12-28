@@ -82,8 +82,8 @@ public:
 		const Character& character = (*iterator).second;
 
 		// Generate the geometry for the character.
-		std::vector< Vertex >& character_vertices = geometry[character.texture_index].GetVertices();
-		std::vector< int >& character_indices = geometry[character.texture_index].GetIndices();
+		Container::vector< Vertex >::Type& character_vertices = geometry[character.texture_index].GetVertices();
+		Container::vector< int >::Type& character_indices = geometry[character.texture_index].GetIndices();
 
 		character_vertices.resize(character_vertices.size() + 4);
 		character_indices.resize(character_indices.size() + 6);
@@ -120,8 +120,8 @@ private:
 		int texture_index;
 	};
 
-	typedef std::map< word, Character > CharacterMap;
-	typedef std::vector< Texture > TextureList;
+	typedef Container::map< word, Character >::Type CharacterMap;
+	typedef Container::vector< Texture >::Type TextureList;
 
 	const FontFaceHandle* handle;
 	FontEffect* effect;
