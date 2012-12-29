@@ -1019,6 +1019,8 @@ void Element::ScrollIntoView(bool align_with_top)
 // Appends a child to this element
 void Element::AppendChild(Element* child, bool dom_element)
 {
+	LockLayout(true);
+
 	child->AddReference();
 	child->SetParent(this);
 	if (dom_element)
@@ -1038,6 +1040,8 @@ void Element::AppendChild(Element* child, bool dom_element)
 
 	if (dom_element)
 		DirtyLayout();
+
+	LockLayout(false);
 }
 
 // Adds a child to this element, directly after the adjacent element. Inherits
@@ -1063,6 +1067,8 @@ void Element::InsertBefore(Element* child, Element* adjacent_element)
 
 	if (found_child)
 	{
+		LockLayout(true);
+
 		child->AddReference();
 		child->SetParent(this);
 
@@ -1079,6 +1085,8 @@ void Element::InsertBefore(Element* child, Element* adjacent_element)
 		child->OnChildAdd(child);
 		DirtyStackingContext();
 		DirtyStructure();
+
+		LockLayout(false);
 	}
 	else
 	{
@@ -1104,12 +1112,16 @@ bool Element::ReplaceChild(Element* inserted_element, Element* replaced_element)
 		return false;
 	}
 
+	LockLayout(true);
+
 	children.insert(insertion_point, inserted_element);
 	RemoveChild(replaced_element);
 
 	inserted_element->GetStyle()->DirtyDefinition();
 	inserted_element->GetStyle()->DirtyProperties();
 	inserted_element->OnChildAdd(inserted_element);
+
+	LockLayout(false);
 
 	return true;
 }
@@ -1124,6 +1136,8 @@ bool Element::RemoveChild(Element* child)
 		// Add the element to the delete list
 		if ((*itr) == child)
 		{
+			LockLayout(true);
+
 			// Inform the context of the element's pending removal (if we have a valid context).
 			Context* context = GetContext();
 			if (context)
@@ -1164,6 +1178,8 @@ bool Element::RemoveChild(Element* child)
 			DirtyLayout();
 			DirtyStackingContext();
 			DirtyStructure();
+
+			LockLayout(false);
 
 			return true;
 		}
@@ -1558,6 +1574,14 @@ void Element::DirtyLayout()
 	Element* document = GetOwnerDocument();
 	if (document != NULL)
 		document->DirtyLayout();
+}
+
+/// Increment/Decrement the layout lock
+void Element::LockLayout(bool lock)
+{
+	Element* document = GetOwnerDocument();
+	if (document != NULL)
+		document->LockLayout(lock);
 }
 
 // Forces a re-layout of this element, and any other children required.

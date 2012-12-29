@@ -574,6 +574,9 @@ protected:
 	/// Returns true if the element has been marked as needing a re-layout.
 	virtual bool IsLayoutDirty();
 
+	/// Increment/Decrement the layout lock
+	virtual void LockLayout(bool lock);
+
 	/// Forces a reevaluation of applicable font effects.
 	virtual void DirtyFont();
 
