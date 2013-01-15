@@ -25,16 +25,16 @@
  *
  */
 
-#include "Plugin.h"
+#include <Rocket/Debugger/Plugin.h>
 #include <Rocket/Core/Types.h>
 #include <Rocket/Core.h>
-#include "ElementContextHook.h"
-#include "ElementInfo.h"
-#include "ElementLog.h"
-#include "FontSource.h"
-#include "Geometry.h"
-#include "MenuSource.h"
-#include "SystemInterface.h"
+#include <Rocket/Debugger/ElementContextHook.h>
+#include <Rocket/Debugger/ElementInfo.h>
+#include <Rocket/Debugger/ElementLog.h>
+#include <Rocket/Debugger/FontSource.h>
+#include <Rocket/Debugger/Geometry.h>
+#include <Rocket/Debugger/MenuSource.h>
+#include <Rocket/Debugger/SystemInterface.h>
 #include <stack>
 
 namespace Rocket {

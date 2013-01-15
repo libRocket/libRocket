@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
-#include "LayoutInlineBox.h"
-#include "FontFaceHandle.h"
-#include "LayoutBlockBox.h"
-#include "LayoutEngine.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/LayoutInlineBox.h>
+#include <Rocket/Core/FontFaceHandle.h>
+#include <Rocket/Core/LayoutBlockBox.h>
+#include <Rocket/Core/LayoutEngine.h>
 #include <Rocket/Core/ElementText.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Property.h>

@@ -25,7 +25,7 @@
  *
  */
 
-#include "XMLNodeHandlerDataGrid.h"
+#include <Rocket/Controls/XMLNodeHandlerDataGrid.h>
 #include <Rocket/Core/StreamMemory.h>
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Factory.h>

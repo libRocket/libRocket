@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREELEMENTSTYLE_H
 #define ROCKETCOREELEMENTSTYLE_H
 
-#include "ElementDefinition.h"
+#include <Rocket/Core/ElementDefinition.h>
 #include <Rocket/Core/Types.h>
 
 namespace Rocket {

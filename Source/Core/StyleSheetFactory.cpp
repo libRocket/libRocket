@@ -25,21 +25,21 @@
  *
  */
 
-#include "precompiled.h"
-#include "StyleSheetFactory.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/StyleSheetFactory.h>
 #include <Rocket/Core/StyleSheet.h>
-#include "StreamFile.h"
-#include "StyleSheetNodeSelectorNthChild.h"
-#include "StyleSheetNodeSelectorNthLastChild.h"
-#include "StyleSheetNodeSelectorNthOfType.h"
-#include "StyleSheetNodeSelectorNthLastOfType.h"
-#include "StyleSheetNodeSelectorFirstChild.h"
-#include "StyleSheetNodeSelectorLastChild.h"
-#include "StyleSheetNodeSelectorFirstOfType.h"
-#include "StyleSheetNodeSelectorLastOfType.h"
-#include "StyleSheetNodeSelectorOnlyChild.h"
-#include "StyleSheetNodeSelectorOnlyOfType.h"
-#include "StyleSheetNodeSelectorEmpty.h"
+#include <Rocket/Core/StreamFile.h>
+#include <Rocket/Core/StyleSheetNodeSelectorNthChild.h>
+#include <Rocket/Core/StyleSheetNodeSelectorNthLastChild.h>
+#include <Rocket/Core/StyleSheetNodeSelectorNthOfType.h>
+#include <Rocket/Core/StyleSheetNodeSelectorNthLastOfType.h>
+#include <Rocket/Core/StyleSheetNodeSelectorFirstChild.h>
+#include <Rocket/Core/StyleSheetNodeSelectorLastChild.h>
+#include <Rocket/Core/StyleSheetNodeSelectorFirstOfType.h>
+#include <Rocket/Core/StyleSheetNodeSelectorLastOfType.h>
+#include <Rocket/Core/StyleSheetNodeSelectorOnlyChild.h>
+#include <Rocket/Core/StyleSheetNodeSelectorOnlyOfType.h>
+#include <Rocket/Core/StyleSheetNodeSelectorEmpty.h>
 #include <Rocket/Core/Log.h>
 
 namespace Rocket {

@@ -27,7 +27,7 @@
 
 #include <Rocket/Debugger/Debugger.h>
 #include <Rocket/Core.h>
-#include "Plugin.h"
+#include <Rocket/Debugger/Plugin.h>
 
 namespace Rocket {
 namespace Debugger {

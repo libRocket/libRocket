@@ -25,14 +25,14 @@
  *
  */
 
-#include "precompiled.h"
-#include "Module.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/Module.h>
 #include <Rocket/Core/Python/Python.h>
 #include <Rocket/Core/Python/ConverterScriptObject.h>
 #include <Rocket/Controls/DataSource.h>
-#include "ElementInterface.h"
-#include "DataFormatterWrapper.h"
-#include "DataSourceWrapper.h"
+#include <Rocket/Controls/Python/ElementInterface.h>
+#include <Rocket/Controls/Python/DataFormatterWrapper.h>
+#include <Rocket/Controls/Python/DataSourceWrapper.h>
 
 namespace Rocket {
 namespace Controls {

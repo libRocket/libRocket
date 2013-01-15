@@ -28,7 +28,7 @@
 #ifndef ROCKETCONTROLSWIDGETTEXTINPUTSINGLELINE_H
 #define ROCKETCONTROLSWIDGETTEXTINPUTSINGLELINE_H
 
-#include "WidgetTextInput.h"
+#include <Rocket/Controls/WidgetTextInput.h>
 
 namespace Rocket {
 namespace Controls {

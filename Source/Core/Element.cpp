@@ -25,21 +25,21 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Dictionary.h>
 #include <algorithm>
-#include "ElementBackground.h"
-#include "ElementBorder.h"
-#include "ElementDefinition.h"
-#include "ElementStyle.h"
-#include "EventDispatcher.h"
-#include "ElementDecoration.h"
-#include "FontFaceHandle.h"
-#include "LayoutEngine.h"
-#include "PluginRegistry.h"
-#include "StyleSheetParser.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/ElementBackground.h>
+#include <Rocket/Core/ElementBorder.h>
+#include <Rocket/Core/ElementDefinition.h>
+#include <Rocket/Core/ElementStyle.h>
+#include <Rocket/Core/EventDispatcher.h>
+#include <Rocket/Core/ElementDecoration.h>
+#include <Rocket/Core/FontFaceHandle.h>
+#include <Rocket/Core/LayoutEngine.h>
+#include <Rocket/Core/PluginRegistry.h>
+#include <Rocket/Core/StyleSheetParser.h>
+#include <Rocket/Core/XMLParseTools.h>
 #include <Rocket/Core/Core.h>
 
 namespace Rocket {

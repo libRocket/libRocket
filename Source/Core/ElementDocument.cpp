@@ -25,19 +25,19 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/StreamMemory.h>
 #include <Rocket/Core.h>
-#include "DocumentHeader.h"
-#include "ElementStyle.h"
-#include "EventDispatcher.h"
-#include "LayoutEngine.h"
-#include "StreamFile.h"
-#include "StyleSheetFactory.h"
-#include "Template.h"
-#include "TemplateCache.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/DocumentHeader.h>
+#include <Rocket/Core/ElementStyle.h>
+#include <Rocket/Core/EventDispatcher.h>
+#include <Rocket/Core/LayoutEngine.h>
+#include <Rocket/Core/StreamFile.h>
+#include <Rocket/Core/StyleSheetFactory.h>
+#include <Rocket/Core/Template.h>
+#include <Rocket/Core/TemplateCache.h>
+#include <Rocket/Core/XMLParseTools.h>
 
 namespace Rocket {
 namespace Core {

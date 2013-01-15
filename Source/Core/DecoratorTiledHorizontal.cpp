@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "DecoratorTiledHorizontal.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/DecoratorTiledHorizontal.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core/Texture.h>

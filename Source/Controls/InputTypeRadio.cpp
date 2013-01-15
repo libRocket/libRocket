@@ -25,7 +25,7 @@
  *
  */
 
-#include "InputTypeRadio.h"
+#include <Rocket/Controls/InputTypeRadio.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Controls/ElementForm.h>

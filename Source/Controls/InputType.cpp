@@ -25,7 +25,7 @@
  *
  */
 
-#include "InputType.h"
+#include <Rocket/Controls/InputType.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 
 namespace Rocket {

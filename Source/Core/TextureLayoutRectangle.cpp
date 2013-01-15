@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "TextureLayoutRectangle.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/TextureLayoutRectangle.h>
 
 namespace Rocket {
 namespace Core {

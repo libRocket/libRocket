@@ -25,13 +25,13 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/StyleSheet.h>
 #include <algorithm>
-#include "ElementDefinition.h"
-#include "StyleSheetFactory.h"
-#include "StyleSheetNode.h"
-#include "StyleSheetParser.h"
+#include <Rocket/Core/ElementDefinition.h>
+#include <Rocket/Core/StyleSheetFactory.h>
+#include <Rocket/Core/StyleSheetNode.h>
+#include <Rocket/Core/StyleSheetParser.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/PropertyDefinition.h>
 #include <Rocket/Core/StyleSheetSpecification.h>

@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/Python/precompiled.h>
 #include <Rocket/Core/Python/Utilities.h>
 
 namespace Rocket {

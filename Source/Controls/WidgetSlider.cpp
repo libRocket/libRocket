@@ -25,7 +25,7 @@
  *
  */
 
-#include "WidgetSlider.h"
+#include <Rocket/Controls/WidgetSlider.h>
 #include <Rocket/Core.h>
 #include <Rocket/Controls/ElementFormControl.h>
 

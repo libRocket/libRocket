@@ -25,12 +25,12 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FontFaceHandle.h>
 #include <algorithm>
 #include <Rocket/Core.h>
-#include "FontFaceLayer.h"
-#include "TextureLayout.h"
+#include <Rocket/Core/FontFaceLayer.h>
+#include <Rocket/Core/TextureLayout.h>
 
 namespace Rocket {
 namespace Core {

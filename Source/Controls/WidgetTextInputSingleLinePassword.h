@@ -28,7 +28,7 @@
 #ifndef ROCKETCONTROLSWIDGETTEXTINPUTSINGLELINEPASSWORD_H
 #define ROCKETCONTROLSWIDGETTEXTINPUTSINGLELINEPASSWORD_H
 
-#include "WidgetTextInputSingleLine.h"
+#include <Rocket/Controls/WidgetTextInputSingleLine.h>
 
 namespace Rocket {
 namespace Controls {

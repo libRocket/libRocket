@@ -28,8 +28,8 @@
 #ifndef ROCKETCONTROLSPYTHONELEMENTINTERFACE_H
 #define ROCKETCONTROLSPYTHONELEMENTINTERFACE_H
 
-#include "SelectOptionProxy.h"
-#include "DataGridRowProxy.h"
+#include <Rocket/Controls/Python/SelectOptionProxy.h>
+#include <Rocket/Controls/Python/DataGridRowProxy.h>
 
 namespace Rocket {
 namespace Controls {

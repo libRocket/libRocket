@@ -28,7 +28,7 @@
 #ifndef ROCKETCORELAYOUTENGINE_H
 #define ROCKETCORELAYOUTENGINE_H
 
-#include "LayoutBlockBox.h"
+#include <Rocket/Core/LayoutBlockBox.h>
 
 namespace Rocket {
 namespace Core {

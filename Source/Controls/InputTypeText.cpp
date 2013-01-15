@@ -25,10 +25,10 @@
  *
  */
 
-#include "InputTypeText.h"
+#include <Rocket/Controls/InputTypeText.h>
 #include <Rocket/Core/ElementUtilities.h>
-#include "WidgetTextInputSingleLine.h"
-#include "WidgetTextInputSingleLinePassword.h"
+#include <Rocket/Controls/WidgetTextInputSingleLine.h>
+#include <Rocket/Controls/WidgetTextInputSingleLinePassword.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 
 namespace Rocket {

@@ -25,16 +25,16 @@
  *
  */
 
-#include "precompiled.h"
-#include "ContextInterface.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ContextInterface.h>
 
 #include <Rocket/Core/Python/Utilities.h>
 #include <Rocket/Core/Python/Wrapper.h>
 #include <Rocket/Core/Context.h>
 #include <Rocket/Core/Factory.h>
 
-#include "EventListener.h"
-#include "ContextInstancer.h"
+#include <Rocket/Core/Python/EventListener.h>
+#include <Rocket/Core/Python/ContextInstancer.h>
 
 namespace Rocket {
 namespace Core {

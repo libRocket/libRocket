@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "StyleSheetNodeSelector.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/StyleSheetNodeSelector.h>
 
 namespace Rocket {
 namespace Core {

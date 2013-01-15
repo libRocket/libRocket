@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <queue>
-#include "FontFaceHandle.h"
-#include "LayoutEngine.h"
+#include <Rocket/Core/FontFaceHandle.h>
+#include <Rocket/Core/LayoutEngine.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

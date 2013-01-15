@@ -28,7 +28,7 @@
 #ifndef ROCKETCORESTYLESHEETNODESELECTORLASTOFTYPE_H
 #define ROCKETCORESTYLESHEETNODESELECTORLASTOFTYPE_H
 
-#include "StyleSheetNodeSelector.h"
+#include <Rocket/Core/StyleSheetNodeSelector.h>
 
 namespace Rocket {
 namespace Core {

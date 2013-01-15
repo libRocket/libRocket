@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "DataSourceWrapper.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/DataSourceWrapper.h>
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Python/Utilities.h>
 
@@ -35,7 +35,7 @@ namespace Controls {
 namespace Python {
 
 // Returns the string representation of a python class name
-static Core::String GetPythonClassName(PyObject* object)
+extern Core::String GetPythonClassName(PyObject* object)
 {
 	Core::String full_name;
 

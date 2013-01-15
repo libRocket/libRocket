@@ -27,12 +27,12 @@
 
 #include <Rocket/Controls/ElementFormControlInput.h>
 #include <Rocket/Core/Event.h>
-#include "InputTypeButton.h"
-#include "InputTypeCheckbox.h"
-#include "InputTypeRadio.h"
-#include "InputTypeRange.h"
-#include "InputTypeSubmit.h"
-#include "InputTypeText.h"
+#include <Rocket/Controls/InputTypeButton.h>
+#include <Rocket/Controls/InputTypeCheckbox.h>
+#include <Rocket/Controls/InputTypeRadio.h>
+#include <Rocket/Controls/InputTypeRange.h>
+#include <Rocket/Controls/InputTypeSubmit.h>
+#include <Rocket/Controls/InputTypeText.h>
 
 namespace Rocket {
 namespace Controls {

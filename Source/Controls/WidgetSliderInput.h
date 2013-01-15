@@ -28,7 +28,7 @@
 #ifndef ROCKETCONTROLSWIDGETSLIDERINPUT_H
 #define ROCKETCONTROLSWIDGETSLIDERINPUT_H
 
-#include "WidgetSlider.h"
+#include <Rocket/Controls/WidgetSlider.h>
 
 namespace Rocket {
 namespace Controls {

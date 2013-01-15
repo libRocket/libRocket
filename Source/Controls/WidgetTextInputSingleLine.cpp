@@ -27,7 +27,7 @@
 
 #include <Rocket/Core/Dictionary.h>
 #include <Rocket/Core/ElementText.h>
-#include "WidgetTextInputSingleLine.h"
+#include <Rocket/Controls/WidgetTextInputSingleLine.h>
 
 namespace Rocket {
 namespace Controls {

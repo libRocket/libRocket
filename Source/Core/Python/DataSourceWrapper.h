@@ -28,11 +28,11 @@
 #ifndef EMPCOREPYTHONDATASOURCEWRAPPER_H
 #define EMPCOREPYTHONDATASOURCEWRAPPER_H
 
-#include <EMP/Core/Python/Python.h>
-#include <EMP/Core/Types.h>
-#include <EMP/Core/DataSource.h>
+#include <Rocket/Core/Python/Python.h>
+#include <Rocket/Core/Types.h>
+#include <Rocket/Controls/DataSource.h>
 
-namespace EMP {
+namespace Rocket {
 namespace Core {
 namespace Python {
 
@@ -44,7 +44,7 @@ namespace Python {
 	@author Lloyd Weehuizen
  */
 
-class DataSourceWrapper : public DataSource
+class DataSourceWrapper : public Rocket::Controls::DataSource
 {
 	public:
 		DataSourceWrapper(PyObject* self, const char* name);

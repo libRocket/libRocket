@@ -25,11 +25,11 @@
  *
  */
 
-#include "ElementLog.h"
+#include <Rocket/Debugger/ElementLog.h>
 #include <Rocket/Core.h>
-#include "CommonSource.h"
-#include "BeaconSource.h"
-#include "LogSource.h"
+#include <Rocket/Debugger/CommonSource.h>
+#include <Rocket/Debugger/BeaconSource.h>
+#include <Rocket/Debugger/LogSource.h>
 
 namespace Rocket {
 namespace Debugger {

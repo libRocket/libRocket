@@ -25,12 +25,12 @@
  *
  */
 
-#include "precompiled.h"
-#include "DataSourceWrapper.h"
-#include <EMP/Core/Python/Python.h>
-#include <EMP/Core/Python/Utilities.h>
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/DataSourceWrapper.h>
+#include <Rocket/Core/Python/Python.h>
+#include <Rocket/Controls/Python/DataSourceWrapper.h>
 
-namespace EMP {
+namespace Rocket {
 namespace Core {
 namespace Python {
 
@@ -66,8 +66,8 @@ void DataSourceWrapper::GetRow(StringList& row, const String& table, int row_ind
 	PyObject* callable = PyObject_GetAttrString(self, "GetRow");
 	if (!callable)
 	{
-		Core::String error_message(128, "Function \"GetRow\" not found on python data source %s.", Utilities::GetPythonClassName(self).CString());
-		Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
+		Core::String error_message(128, "Function \"GetRow\" not found on python data source %s.", Rocket::Controls::Python::GetPythonClassName(self).CString());
+		//Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
 		PyErr_SetString(PyExc_RuntimeError, error_message.CString());
 		python::throw_error_already_set();
 		return;
@@ -102,8 +102,8 @@ void DataSourceWrapper::GetRow(StringList& row, const String& table, int row_ind
 			}
 			else
 			{
-				Core::String error_message(128, "Failed to convert row %d entry %d on data source %s.", row_index, i, Utilities::GetPythonClassName(self).CString());
-				Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
+				Core::String error_message(128, "Failed to convert row %d entry %d on data source %s.", row_index, i, Rocket::Controls::Python::GetPythonClassName(self).CString());
+				//Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
 				PyErr_SetString(PyExc_RuntimeError, error_message.CString());
 				python::throw_error_already_set();
 			}
@@ -120,8 +120,8 @@ void DataSourceWrapper::GetRow(StringList& row, const String& table, int row_ind
 		Py_XINCREF(value);
 		Py_XINCREF(traceback);
 
-		Core::String error_message(128, "Failed to get entries for table %s row %d from python data source %s.", table.CString(), row_index, Utilities::GetPythonClassName(self).CString());
-		Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
+		Core::String error_message(128, "Failed to get entries for table %s row %d from python data source %s.", table.CString(), row_index, Rocket::Controls::Python::GetPythonClassName(self).CString());
+		//Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
 		if (type == NULL)
 			PyErr_SetString(PyExc_RuntimeError, error_message.CString());
 		else
@@ -141,8 +141,8 @@ int DataSourceWrapper::GetNumRows(const String& table)
 	PyObject* callable = PyObject_GetAttrString(self, "GetNumRows");
 	if (!callable)
 	{
-		Core::String error_message(128, "Function \"GetNumRows\" not found on python data source %s.", Utilities::GetPythonClassName(self).CString());
-		Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
+		Core::String error_message(128, "Function \"GetNumRows\" not found on python data source %s.", Rocket::Controls::Python::GetPythonClassName(self).CString());
+		//Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
 		PyErr_SetString(PyExc_RuntimeError, error_message.CString());
 		python::throw_error_already_set();
 
@@ -165,8 +165,8 @@ int DataSourceWrapper::GetNumRows(const String& table)
 		Py_XINCREF(value);
 		Py_XINCREF(traceback);
 
-		Core::String error_message(128, "Failed to get number of rows from python data source %s.", Utilities::GetPythonClassName(self).CString());
-		Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
+		Core::String error_message(128, "Failed to get number of rows from python data source %s.", Rocket::Controls::Python::GetPythonClassName(self).CString());
+		//Log::Message(LC_COREPYTHON, Log::LT_WARNING, "%s", error_message.CString());
 		if (type == NULL)
 			PyErr_SetString(PyExc_RuntimeError, error_message.CString());
 		else
@@ -189,3 +189,4 @@ ScriptObject DataSourceWrapper::GetScriptObject() const
 }
 }
 }
+

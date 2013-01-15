@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ContextInstancerDefault.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ContextInstancerDefault.h>
 #include <Rocket/Core/Context.h>
 
 namespace Rocket {

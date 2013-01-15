@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "EventWrapper.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/EventWrapper.h>
 
 namespace Rocket {
 namespace Core {

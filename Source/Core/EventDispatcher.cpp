@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "EventDispatcher.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/EventDispatcher.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Event.h>
 #include <Rocket/Core/EventListener.h>

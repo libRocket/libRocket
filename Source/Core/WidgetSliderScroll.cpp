@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "WidgetSliderScroll.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/WidgetSliderScroll.h>
 
 namespace Rocket {
 namespace Core {

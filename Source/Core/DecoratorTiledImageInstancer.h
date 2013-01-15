@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREDECORATORTILEDIMAGEINSTANCER_H
 #define ROCKETCOREDECORATORTILEDIMAGEINSTANCER_H
 
-#include "DecoratorTiledInstancer.h"
+#include <Rocket/Core/DecoratorTiledInstancer.h>
 
 namespace Rocket {
 namespace Core {

@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "StyleSheetNodeSelectorOnlyChild.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/StyleSheetNodeSelectorOnlyChild.h>
 #include <Rocket/Core/ElementText.h>
 #include <Rocket/Core/StyleSheetKeywords.h>
 

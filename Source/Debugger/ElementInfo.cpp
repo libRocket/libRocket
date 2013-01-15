@@ -25,13 +25,13 @@
  *
  */
 
-#include "ElementInfo.h"
+#include <Rocket/Debugger/ElementInfo.h>
 #include <Rocket/Core/Property.h>
 #include <Rocket/Core/Factory.h>
 #include <Rocket/Core/StyleSheet.h>
-#include "Geometry.h"
-#include "CommonSource.h"
-#include "InfoSource.h"
+#include <Rocket/Debugger/Geometry.h>
+#include <Rocket/Debugger/CommonSource.h>
+#include <Rocket/Debugger/InfoSource.h>
 #include <map>
 
 namespace Rocket {

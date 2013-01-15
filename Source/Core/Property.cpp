@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/Property.h>
 #include <Rocket/Core/PropertyDefinition.h>
 

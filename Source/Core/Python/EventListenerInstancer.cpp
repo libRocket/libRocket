@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "EventListenerInstancer.h"
-#include "EventListener.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/EventListenerInstancer.h>
+#include <Rocket/Core/Python/EventListener.h>
 
 namespace Rocket {
 namespace Core {

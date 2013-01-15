@@ -29,7 +29,7 @@
 #define TEXTURELAYOUTTEXTURE_H
 
 #include <Rocket/Core/Texture.h>
-#include "TextureLayoutRow.h"
+#include <Rocket/Core/TextureLayoutRow.h>
 
 namespace Rocket {
 namespace Core {

@@ -29,7 +29,7 @@
 #define ROCKETCOREDECORATORTILEDINSTANCER_H
 
 #include <Rocket/Core/DecoratorInstancer.h>
-#include "DecoratorTiled.h"
+#include <Rocket/Core/DecoratorTiled.h>
 
 namespace Rocket {
 namespace Core {

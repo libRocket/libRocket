@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementStyleProxy.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ElementStyleProxy.h>
 #include <Rocket/Core/Property.h>
 #include <Rocket/Core/Element.h>
 

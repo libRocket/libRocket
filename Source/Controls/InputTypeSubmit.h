@@ -28,7 +28,7 @@
 #ifndef ROCKETCONTROLSINPUTTYPESUBMIT_H
 #define ROCKETCONTROLSINPUTTYPESUBMIT_H
 
-#include "InputType.h"
+#include <Rocket/Controls/InputType.h>
 
 namespace Rocket {
 namespace Controls {

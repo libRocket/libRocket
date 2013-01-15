@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREPYTHONEVENTINTERFACE_H
 #define ROCKETCOREPYTHONEVENTINTERFACE_H
 
-#include "EventWrapper.h"
+#include <Rocket/Core/Python/EventWrapper.h>
 
 namespace Rocket {
 namespace Core {

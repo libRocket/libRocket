@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/Geometry.h>
 #include <Rocket/Core.h>
-#include "GeometryDatabase.h"
+#include <Rocket/Core/GeometryDatabase.h>
 
 namespace Rocket {
 namespace Core {

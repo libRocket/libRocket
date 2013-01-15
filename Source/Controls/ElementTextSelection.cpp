@@ -25,8 +25,8 @@
  *
  */
 
-#include "ElementTextSelection.h"
-#include "WidgetTextInput.h"
+#include <Rocket/Controls/ElementTextSelection.h>
+#include <Rocket/Controls/WidgetTextInput.h>
 
 namespace Rocket {
 namespace Controls {

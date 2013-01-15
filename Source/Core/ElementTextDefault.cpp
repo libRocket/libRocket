@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementTextDefault.h"
-#include "ElementDefinition.h"
-#include "ElementStyle.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementTextDefault.h>
+#include <Rocket/Core/ElementDefinition.h>
+#include <Rocket/Core/ElementStyle.h>
+#include <Rocket/Core/FontFaceHandle.h>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Event.h>

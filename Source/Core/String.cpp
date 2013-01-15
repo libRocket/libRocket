@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/StringBase.h>
 
@@ -90,7 +90,7 @@ String operator+(const char* cstring, const String& string)
 //#define ENABLE_STRING_TESTS
 #ifdef ENABLE_STRING_TESTS
 #include <string>
-#include "Rocket/Core/SystemInterface.h"
+#include <Rocket/Core/Rocket/Core/SystemInterface.h>
 ROCKETCORE_API void StringTests()
 {
 	SystemInterface* sys = Rocket::Core::GetSystemInterface();

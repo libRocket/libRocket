@@ -25,9 +25,9 @@
  *
  */
 
-#include "SystemInterface.h"
+#include <Rocket/Debugger/SystemInterface.h>
 #include <Rocket/Core.h>
-#include "ElementLog.h"
+#include <Rocket/Debugger/ElementLog.h>
 
 namespace Rocket {
 namespace Debugger {

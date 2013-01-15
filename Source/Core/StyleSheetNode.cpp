@@ -25,12 +25,12 @@
  *
  */
 
-#include "precompiled.h"
-#include "StyleSheetNode.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/StyleSheetNode.h>
 #include <algorithm>
 #include <Rocket/Core/Element.h>
-#include "StyleSheetFactory.h"
-#include "StyleSheetNodeSelector.h"
+#include <Rocket/Core/StyleSheetFactory.h>
+#include <Rocket/Core/StyleSheetNodeSelector.h>
 
 namespace Rocket {
 namespace Core {

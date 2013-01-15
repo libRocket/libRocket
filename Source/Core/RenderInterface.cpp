@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/RenderInterface.h>
-#include "TextureDatabase.h"
+#include <Rocket/Core/TextureDatabase.h>
 
 namespace Rocket {
 namespace Core {

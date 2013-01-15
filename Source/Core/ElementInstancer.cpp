@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/ElementInstancer.h>
-#include "XMLParseTools.h"
+#include <Rocket/Core/XMLParseTools.h>
 
 namespace Rocket {
 namespace Core {

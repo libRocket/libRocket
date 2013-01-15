@@ -25,12 +25,12 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/StyleSheetSpecification.h>
-#include "PropertyParserNumber.h"
-#include "PropertyParserColour.h"
-#include "PropertyParserKeyword.h"
-#include "PropertyParserString.h"
+#include <Rocket/Core/PropertyParserNumber.h>
+#include <Rocket/Core/PropertyParserColour.h>
+#include <Rocket/Core/PropertyParserKeyword.h>
+#include <Rocket/Core/PropertyParserString.h>
 
 namespace Rocket {
 namespace Core {

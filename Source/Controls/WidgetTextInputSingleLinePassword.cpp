@@ -26,7 +26,7 @@
  */
 
 #include <Rocket/Core/ElementText.h>
-#include "WidgetTextInputSingleLinePassword.h"
+#include <Rocket/Controls/WidgetTextInputSingleLinePassword.h>
 
 namespace Rocket {
 namespace Controls {

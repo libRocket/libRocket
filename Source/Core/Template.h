@@ -29,7 +29,7 @@
 #define ROCKETCORETEMPLATE_H
 
 #include <Rocket/Core/StreamMemory.h>
-#include "DocumentHeader.h"
+#include <Rocket/Core/DocumentHeader.h>
 
 namespace Rocket {
 namespace Core {

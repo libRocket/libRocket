@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
-#include "TextureResource.h"
-#include "FontFaceHandle.h"
-#include "TextureDatabase.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/TextureResource.h>
+#include <Rocket/Core/FontFaceHandle.h>
+#include <Rocket/Core/TextureDatabase.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

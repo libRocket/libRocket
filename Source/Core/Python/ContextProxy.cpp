@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ContextProxy.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ContextProxy.h>
 #include <Rocket/Core/Python/NameIndexInterface.h>
 #include <Rocket/Core/Python/Utilities.h>
 #include <Rocket/Core.h>

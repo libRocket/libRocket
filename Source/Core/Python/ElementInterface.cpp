@@ -25,19 +25,19 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementInterface.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ElementInterface.h>
 #include <Rocket/Core/Python/Utilities.h>
 #include <Rocket/Core/Python/VectorInterface.h>
-#include "../ElementHandle.h"
-#include "../ElementImage.h"
-#include "../ElementTextDefault.h"
+#include <Rocket/Core/Python/../ElementHandle.h>
+#include <Rocket/Core/Python/../ElementImage.h>
+#include <Rocket/Core/Python/../ElementTextDefault.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Factory.h>
-#include "ElementAttributeProxy.h"
-#include "ElementChildrenProxy.h"
-#include "ElementDocumentWrapper.h"
-#include "ElementStyleProxy.h"
+#include <Rocket/Core/Python/ElementAttributeProxy.h>
+#include <Rocket/Core/Python/ElementChildrenProxy.h>
+#include <Rocket/Core/Python/ElementDocumentWrapper.h>
+#include <Rocket/Core/Python/ElementStyleProxy.h>
 #include <Rocket/Core/Python/ElementInstancer.h>
 #include <Rocket/Core/Python/ElementWrapper.h>
 

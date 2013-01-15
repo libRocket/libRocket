@@ -25,7 +25,7 @@
  *
  */
 
-#include "WidgetSliderInput.h"
+#include <Rocket/Controls/WidgetSliderInput.h>
 #include <Rocket/Core/Math.h>
 #include <Rocket/Core/Element.h>
 

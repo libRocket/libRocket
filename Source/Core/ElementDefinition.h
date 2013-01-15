@@ -33,7 +33,7 @@
 #include <map>
 #include <set>
 #include <Rocket/Core/FontEffect.h>
-#include "StyleSheetNode.h"
+#include <Rocket/Core/StyleSheetNode.h>
 
 namespace Rocket {
 namespace Core {

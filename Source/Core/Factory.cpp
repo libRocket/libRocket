@@ -25,31 +25,31 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core.h>
 #include <Rocket/Core/StreamMemory.h>
-#include "ContextInstancerDefault.h"
-#include "DecoratorNoneInstancer.h"
-#include "DecoratorTiledBoxInstancer.h"
-#include "DecoratorTiledHorizontalInstancer.h"
-#include "DecoratorTiledImageInstancer.h"
-#include "DecoratorTiledVerticalInstancer.h"
-#include "ElementHandle.h"
-#include "ElementImage.h"
-#include "ElementTextDefault.h"
-#include "EventInstancerDefault.h"
-#include "FontEffectNoneInstancer.h"
-#include "FontEffectOutlineInstancer.h"
-#include "FontEffectShadowInstancer.h"
-#include "PluginRegistry.h"
-#include "PropertyParserColour.h"
-#include "StreamFile.h"
-#include "StyleSheetFactory.h"
-#include "XMLNodeHandlerBody.h"
-#include "XMLNodeHandlerDefault.h"
-#include "XMLNodeHandlerHead.h"
-#include "XMLNodeHandlerTemplate.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/ContextInstancerDefault.h>
+#include <Rocket/Core/DecoratorNoneInstancer.h>
+#include <Rocket/Core/DecoratorTiledBoxInstancer.h>
+#include <Rocket/Core/DecoratorTiledHorizontalInstancer.h>
+#include <Rocket/Core/DecoratorTiledImageInstancer.h>
+#include <Rocket/Core/DecoratorTiledVerticalInstancer.h>
+#include <Rocket/Core/ElementHandle.h>
+#include <Rocket/Core/ElementImage.h>
+#include <Rocket/Core/ElementTextDefault.h>
+#include <Rocket/Core/EventInstancerDefault.h>
+#include <Rocket/Core/FontEffectNoneInstancer.h>
+#include <Rocket/Core/FontEffectOutlineInstancer.h>
+#include <Rocket/Core/FontEffectShadowInstancer.h>
+#include <Rocket/Core/PluginRegistry.h>
+#include <Rocket/Core/PropertyParserColour.h>
+#include <Rocket/Core/StreamFile.h>
+#include <Rocket/Core/StyleSheetFactory.h>
+#include <Rocket/Core/XMLNodeHandlerBody.h>
+#include <Rocket/Core/XMLNodeHandlerDefault.h>
+#include <Rocket/Core/XMLNodeHandlerHead.h>
+#include <Rocket/Core/XMLNodeHandlerTemplate.h>
+#include <Rocket/Core/XMLParseTools.h>
 
 namespace Rocket {
 namespace Core {

@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/Python/precompiled.h>
 #include <Rocket/Core/URL.h>
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Dictionary.h>
-//#include "DataSourceWrapper.h"
+//#include <Rocket/Core/Python/DataSourceWrapper.h>
 #include <Rocket/Core/Python/ConverterScriptObject.h>
 #include <Rocket/Core/Python/PickleTypeConverter.h>
 #include <Rocket/Core/Python/Utilities.h>

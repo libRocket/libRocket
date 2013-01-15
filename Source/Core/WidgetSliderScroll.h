@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREWIDGETSLIDERSCROLL_H
 #define ROCKETCOREWIDGETSLIDERSCROLL_H
 
-#include "WidgetSlider.h"
+#include <Rocket/Core/WidgetSlider.h>
 
 namespace Rocket {
 namespace Core {

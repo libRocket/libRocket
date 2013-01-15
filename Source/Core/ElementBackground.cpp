@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementBackground.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementBackground.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/GeometryUtilities.h>
 #include <Rocket/Core/Property.h>

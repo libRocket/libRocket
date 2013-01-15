@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "DecoratorNoneInstancer.h"
-#include "DecoratorNone.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/DecoratorNoneInstancer.h>
+#include <Rocket/Core/DecoratorNone.h>
 
 namespace Rocket {
 namespace Core {

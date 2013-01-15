@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "Clock.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/Clock.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

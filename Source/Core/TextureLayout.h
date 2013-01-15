@@ -28,8 +28,8 @@
 #ifndef TEXTURELAYOUT_H
 #define TEXTURELAYOUT_H
 
-#include "TextureLayoutRectangle.h"
-#include "TextureLayoutTexture.h"
+#include <Rocket/Core/TextureLayoutRectangle.h>
+#include <Rocket/Core/TextureLayoutTexture.h>
 
 namespace Rocket {
 namespace Core {

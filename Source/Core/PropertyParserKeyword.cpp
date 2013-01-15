@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "PropertyParserKeyword.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/PropertyParserKeyword.h>
 
 namespace Rocket {
 namespace Core {

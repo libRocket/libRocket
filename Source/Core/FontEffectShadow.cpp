@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontEffectShadow.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FontEffectShadow.h>
 
 namespace Rocket {
 namespace Core {

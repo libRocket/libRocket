@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementImage.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementImage.h>
 #include <Rocket/Core.h>
-#include "TextureDatabase.h"
-#include "TextureResource.h"
+#include <Rocket/Core/TextureDatabase.h>
+#include <Rocket/Core/TextureResource.h>
 
 namespace Rocket {
 namespace Core {
