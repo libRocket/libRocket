@@ -400,7 +400,12 @@ void Context::UnloadMouseCursor(const String& cursor_name)
 void Context::UnloadAllMouseCursors()
 {
 	while (!cursors.empty())
-		UnloadMouseCursor((*cursors.begin()).first.CString());
+        UnloadMouseCursor((*cursors.begin()).first.CString());
+}
+
+ElementDocument *Context::GetActiveCursor()
+{
+    return static_cast<ElementDocument*>(*active_cursor);
 }
 
 // Sets a cursor as the active cursor.
@@ -415,7 +420,19 @@ bool Context::SetMouseCursor(const String& cursor_name)
 	}
 
 	active_cursor = (*i).second;
-	return true;
+    return true;
+}
+
+bool Context::SetMouseCursorClass(const String &class_name)
+{
+    ElementDocument* cursor = GetActiveCursor();
+
+    if (cursor != NULL)
+    {
+        cursor->SetClassNames(class_name);
+    }
+
+    return false;
 }
 
 // Shows or hides the cursor.
@@ -975,10 +992,16 @@ void Context::UpdateHoverChain(const Dictionary& parameters, const Dictionary& d
 	hover = GetElementAtPoint(position);
 
 	if (!hover ||
-		hover->GetProperty(CURSOR)->unit == Property::KEYWORD)
+        hover->GetProperty(CURSOR)->unit == Property::KEYWORD)
 		active_cursor = default_cursor;
 	else
 		SetMouseCursor(hover->GetProperty< String >(CURSOR));
+
+	if (!hover || hover->GetProperty(CURSOR_CLASS)->unit == Property::KEYWORD)
+        SetMouseCursorClass("");
+    else
+        SetMouseCursorClass(hover->GetProperty< String >(CURSOR_CLASS));
+
 
 	// Build the new hover chain.
 	ElementSet new_hover_chain;
