@@ -32,14 +32,13 @@
 #include "RenderInterfaceOgre3D.h"
 #include "RocketFrameListener.h"
 #include "SystemInterfaceOgre3D.h"
-#include <direct.h>
 
 RocketApplication::RocketApplication()
 {
 	context = NULL;
 	ogre_system = NULL;
 	ogre_renderer = NULL;
-
+/*
 	// Switch the working directory to Ogre's bin directory.
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 	char path[MAX_PATH];
@@ -60,6 +59,7 @@ RocketApplication::RocketApplication()
 	chdir((Ogre::String(getenv("OGRE_HOME")) + "\\bin\\release\\").c_str());
 #endif
 #endif
+*/
 }
 
 RocketApplication::~RocketApplication()
@@ -69,7 +69,8 @@ RocketApplication::~RocketApplication()
 void RocketApplication::createScene()
 {
 	Ogre::ResourceGroupManager::getSingleton().createResourceGroup("Rocket");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(rocket_path.Replace("\\", "/").CString(), "FileSystem", "Rocket");
+	//Ogre::ResourceGroupManager::getSingleton().addResourceLocation(rocket_path.Replace("\\", "/").CString(), "FileSystem", "Rocket");
+	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(".", "FileSystem", "Rocket");
 
 	// Rocket initialisation.
 	ogre_renderer = new RenderInterfaceOgre3D(mWindow->getWidth(), mWindow->getHeight());
@@ -82,20 +83,20 @@ void RocketApplication::createScene()
 	Rocket::Controls::Initialise();
 
 	// Load the fonts from the path to the sample directory.
-	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "../../assets/Delicious-Roman.otf");
-	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "../../assets/Delicious-Bold.otf");
-	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "../../assets/Delicious-Italic.otf");
-	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "../../assets/Delicious-BoldItalic.otf");
+	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "./assets/Delicious-Roman.otf");
+	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "./assets/Delicious-Bold.otf");
+	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "./assets/Delicious-Italic.otf");
+	Rocket::Core::FontDatabase::LoadFontFace(sample_path + "./assets/Delicious-BoldItalic.otf");
 
 	context = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(mWindow->getWidth(), mWindow->getHeight()));
 	Rocket::Debugger::Initialise(context);
 
 	// Load the mouse cursor and release the caller's reference.
-	Rocket::Core::ElementDocument* cursor = context->LoadMouseCursor(sample_path + "../../assets/cursor.rml");
+	Rocket::Core::ElementDocument* cursor = context->LoadMouseCursor(sample_path + "./assets/cursor.rml");
 	if (cursor)
 		cursor->RemoveReference();
 
-	Rocket::Core::ElementDocument* document = context->LoadDocument(sample_path + "../../assets/demo.rml");
+	Rocket::Core::ElementDocument* document = context->LoadDocument(sample_path + "./assets/demo.rml");
 	if (document)
 	{
 		document->Show();
