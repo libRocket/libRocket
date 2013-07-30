@@ -40,7 +40,7 @@ ElementStyleCache::ElementStyleCache(ElementStyle *style) : style(style),
 	local_width(NULL), local_height(NULL), have_local_width(false), have_local_height(false),
 	overflow_x(NULL), overflow_y(NULL),
 	position(-1), float_(-1), display(-1), whitespace(-1),
-	line_height(NULL), text_align(-1), text_transform(-1), vertical_align(NULL)
+	line_height(0), text_align(-1), text_transform(-1), vertical_align(0)
 {
 }
 
