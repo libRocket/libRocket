@@ -124,6 +124,10 @@ public:
 	/// @param[in] cursor_name The name of the cursor to activate.
 	/// @return True if a cursor exists with the given name, false if not.
 	bool SetMouseCursor(const String& cursor_name);
+	/// Sets a cursor as the default cursor.
+	/// @param[in] cursor_name The name of the cursor to default to.
+	/// @return True if a cursor exists with the given name, false if not.
+	bool SetDefaultMouseCursor(const String& cursor_name);
 	/// Shows or hides the cursor.
 	/// @param[in] show True to show the cursor, false to hide it.
 	void ShowMouseCursor(bool show);
