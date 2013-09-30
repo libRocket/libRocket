@@ -23,6 +23,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+  *  --== Changes ==--
+ *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *  29 Feb 2012     Adding texture loading code in Fetch(ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Refactored Fetch(ImageSource*) to work with recent      Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  changes.
  */
 
 #include "precompiled.h"
@@ -83,6 +88,31 @@ TextureResource* TextureDatabase::Fetch(const String& source, const String& sour
 
 	instance->textures[resource->GetSource()] = resource;
 	return resource;
+}
+
+// If the requested texture is already in the database, it will be returned with an extra reference count. If not, it
+// will be generated through the application's render interface.
+TextureResource* TextureDatabase::Fetch(ImageSource* image_source)
+{
+    TextureResource* resource = NULL;
+    Rocket::Core::String name("?image_source::");
+    name += image_source->GetImageSourceName();
+    TextureMap::iterator iterator = instance->textures.find(name);
+    if (iterator != instance->textures.end())
+    {
+        resource = iterator->second;
+        resource->AddReference();
+    }
+    else
+    {
+        resource = new TextureResource();
+        resource->Load(name);
+        instance->textures[name] = resource;
+    }
+
+    RenderInterface* renderInterface = GetRenderInterface();
+    resource->Load(renderInterface, image_source);
+    return resource;
 }
 
 // Releases all textures in the database.

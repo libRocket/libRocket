@@ -23,6 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *   2 Mar 2012     Added a LoadTexture() method for dynamic ImageSource objects     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
