@@ -48,6 +48,16 @@ namespace Python {
 typedef std::map< Rocket::Core::String, PyObject* > ClassDefinitions;
 ClassDefinitions class_definitions;
 
+void		setDynamicImageSrc(ElementDynamicImage &image, String const &str)
+{
+	image.SetAttribute("src", str);
+}
+
+String		getDynamicImageSrc(ElementDynamicImage &image)
+{
+	return image.GetAttribute<String>(String("src"), "");
+}
+
 void ElementInterface::InitialisePythonInterface()
 {
 	ElementStyleProxy::InitialisePythonInterface();
@@ -146,6 +156,11 @@ void ElementInterface::InitialisePythonInterface()
 	class_definitions["Image"] = python::class_< ElementImage, ElementWrapper< ElementImage >, boost::noncopyable, python::bases< Element > >("Image", python::init< const char* >())
 		.ptr();
 
+	// The ElementDynamicImage type.
+	class_definitions["DynamicImage"] = python::class_< ElementDynamicImage, ElementWrapper< ElementDynamicImage >, boost::noncopyable, python::bases< Element > >("DynamicImage", python::init< const char* >())
+		.add_property("src", &getDynamicImageSrc, &setDynamicImageSrc)
+		.ptr();
+
 	// The ElementHandle type.
 	class_definitions["Handle"] = python::class_< ElementHandle, ElementWrapper< ElementHandle >, boost::noncopyable, python::bases< Element > >("Handle", python::init< const char* >())
 		.ptr();
@@ -159,6 +174,7 @@ void ElementInterface::InitialiseRocketInterface()
 	Factory::RegisterElementInstancer("body", new ElementInstancer((*class_definitions.find("Document")).second))->RemoveReference();
 	Factory::RegisterElementInstancer("handle", new ElementInstancer((*class_definitions.find("Handle")).second))->RemoveReference();
 	Factory::RegisterElementInstancer("img", new ElementInstancer((*class_definitions.find("Image")).second))->RemoveReference();
+	Factory::RegisterElementInstancer("dynamic-img", new ElementInstancer((*class_definitions.find("DynamicImage")).second))->RemoveReference();
 }
 
 // Get the element's address.
