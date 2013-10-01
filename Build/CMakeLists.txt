@@ -23,7 +23,7 @@ set(PROJECT_VERSION ${LIBROCKET_VERSION_MAJOR}.${LIBROCKET_VERSION_MINOR}.${LIBR
 # Search in the 'cmake' directory for additional CMake modules.
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(CMAKE_DEBUG_POSTFIX  "_d")
+#set(CMAKE_DEBUG_POSTFIX  "_d")
 
 #===================================
 # Environment tests ================
@@ -45,7 +45,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-option(BUILD_PYTHON_BINDINGS "Build python bindings" OFF)
+option(BUILD_PYTHON_BINDINGS "Build python bindings" ON)
 option(BUILD_SAMPLES "Build samples" OFF)
 
 if(NOT BUILD_SHARED_LIBS)
@@ -117,7 +117,7 @@ include(FileList)
 # Build libraries ==================
 #===================================
 
-set(LIBRARIES Core Controls Debugger)
+set(LIBRARIES Core Controls)
 
 foreach(library ${LIBRARIES})
     set(NAME Rocket${library})
@@ -134,7 +134,7 @@ foreach(library ${LIBRARIES})
     
     if(APPLE)
     	set_target_properties(${NAME} PROPERTIES
-    					OSX_ARCHITECTURES "i386;x86_64;"
+    					OSX_ARCHITECTURES "x86_64;"
     	)
     endif()
 
@@ -158,10 +158,18 @@ if(BUILD_PYTHON_BINDINGS)
         )
 
         set_target_properties(${NAME} PROPERTIES PREFIX "")
+		if (WIN32)
+			set_target_properties(${NAME} PROPERTIES SUFFIX ".pyd")
+		endif()
+		if (LINUX)
+			install(TARGET ${NAME}
+				LIBRARY DESTINATION ${PYTHON_INSTDIR}
+			)
+		endif()
 
-        install(TARGETS ${NAME}
-                LIBRARY DESTINATION ${PYTHON_INSTDIR}
-        )
+#        install(TARGETS ${NAME}
+#                LIBRARY DESTINATION ${PYTHON_INSTDIR}
+#        )
     endforeach(library)
 endif()
 
@@ -172,11 +180,10 @@ endif()
 
 target_link_libraries(RocketCore ${CORE_LINK_LIBS})
 target_link_libraries(RocketControls RocketCore)
-target_link_libraries(RocketDebugger RocketCore)
 
 if(BUILD_PYTHON_BINDINGS)
-    target_link_libraries(_rocketcore RocketCore ${PY_BINDINGS_LINK_LIBS})
-    target_link_libraries(_rocketcontrols RocketControls ${PY_BINDINGS_LINK_LIBS})
+    target_link_libraries(_rocketcore RocketCore ${PY_BINDINGS_LINK_LIBS} ${PYTHON_LIBRARIES})
+    target_link_libraries(_rocketcontrols RocketControls ${PY_BINDINGS_LINK_LIBS} ${PYTHON_LIBRARIES})
 endif()
 
 
