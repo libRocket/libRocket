@@ -65,13 +65,9 @@ public:
 	/// Get an attribute proxy for this element
 	static ElementAttributeProxy GetAttributes(Element* element);
 	/// Override for AddEventListener that takes a python EventListener
-	static void AddEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase);
-	/// Override for RemoveEventListener that takes a python EventListener
-    static void RemoveEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase);
+	static void AddEventListener(Element* element, const char* event, PyObject* object, bool in_capture_phase);
 	/// Override for AddEventListener without the third parameter.
-	static void AddEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
-	/// Override for RemoveEventListener without the third parameter.
-    static void RemoveEventListener(Element* element, const char* event, Rocket::Core::Python::EventListener* listener);
+	static void AddEventListener(Element* element, const char* event, PyObject* object);
     /// Override for RemoveEventListener by type only
     static void RemoveEventListener(Element* element, const char* event);
 	/// Override for AppendChild without the non-DOM boolean.

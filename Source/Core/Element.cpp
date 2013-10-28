@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  *
  */
-
+#include <iostream>
 #include "precompiled.h"
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Dictionary.h>

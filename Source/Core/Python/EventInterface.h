@@ -52,7 +52,8 @@ public:
 	static void InitialiseRocketInterface();
 
 	/// Attribute accessor for getting event details
-	static const Rocket::Core::Dictionary& GetParameters(EventWrapper* self);
+	static const Rocket::Core::Dictionary	&GetParameters(EventWrapper* self);
+	static Rocket::Core::Element			*GetDragElement(EventWrapper* self);
 };
 
 }

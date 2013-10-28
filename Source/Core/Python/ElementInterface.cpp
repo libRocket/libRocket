@@ -74,18 +74,14 @@ void ElementInterface::InitialisePythonInterface()
 		.value("MODAL", ElementDocument::MODAL)
 		;
 
-	void (*AddEventListener)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase) = &ElementInterface::AddEventListener;
-	void (*RemoveEventListener)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener, bool in_capture_phase) = &ElementInterface::RemoveEventListener;
-	void (*AddEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::AddEventListener;
-	void (*RemoveEventListenerDefault)(Element* element, const char* event, Rocket::Core::Python::EventListener* listener) = &ElementInterface::RemoveEventListener;
+	void (*AddEventListener)(Element* element, const char* event, PyObject* object, bool in_capture_phase) = &ElementInterface::AddEventListener;
+	void (*AddEventListenerDefault)(Element* element, const char* event, PyObject* object) = &ElementInterface::AddEventListener;
 	void (*RemoveEventListeners)(Element* element, const char* event) = &ElementInterface::RemoveEventListener;
 
 	// Define the basic element type.
 	class_definitions["Element"] = python::class_< Element, ElementWrapper< Element >, boost::noncopyable >("Element", python::init< const char* >())
 		.def("AddEventListener", AddEventListener)
 		.def("AddEventListener", AddEventListenerDefault)
-		.def("RemoveEventListener", RemoveEventListener)
-		.def("RemoveEventListener", RemoveEventListenerDefault)
 		.def("RemoveEventListener", RemoveEventListeners)
 		.def("AppendChild", &ElementInterface::AppendChild)
 		.def("Blur", &Element::Blur)
@@ -207,24 +203,14 @@ ElementAttributeProxy ElementInterface::GetAttributes(Element* element)
 	return ElementAttributeProxy(element);
 }
 
-void ElementInterface::AddEventListener(Element* element, const char* event, EventListener* listener, bool in_capture_phase)
+void ElementInterface::AddEventListener(Element* element, const char* event, PyObject* object, bool in_capture_phase)
 {
-	element->AddEventListener(event, listener, in_capture_phase);
+	element->AddEventListener(event, new EventListener(object), in_capture_phase);
 }
 
-void ElementInterface::AddEventListener(Element* element, const char* event, EventListener* listener)
+void ElementInterface::AddEventListener(Element* element, const char* event, PyObject* object)
 {
-	element->AddEventListener(event, listener);
-}
-
-void ElementInterface::RemoveEventListener(Element* element, const char* event, EventListener* listener, bool in_capture_phase)
-{
-	element->RemoveEventListener(event, listener, in_capture_phase);
-}
-
-void ElementInterface::RemoveEventListener(Element* element, const char* event, EventListener* listener)
-{
-	element->RemoveEventListener(event, listener);
+	element->AddEventListener(event, new EventListener(object));
 }
 
 void ElementInterface::RemoveEventListener(Element* element, const char* event)
