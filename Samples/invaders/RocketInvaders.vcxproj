@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BB815171-A9C3-434B-862C-A98E6715B160}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\shell\include;..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>RocketCore_d.lib;RocketDebugger_d.lib;RocketControls_d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>..\shell\libpng;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\shell\include;..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>RocketCore.lib;RocketDebugger.lib;RocketControls.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>..\shell\libpng;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Event.cpp" />
+    <ClCompile Include="src\EventHandler.cpp" />
+    <ClCompile Include="src\EventInstancer.cpp" />
+    <ClCompile Include="src\EventManager.cpp" />
+    <ClCompile Include="src\EventHandlerHighScore.cpp" />
+    <ClCompile Include="src\EventHandlerOptions.cpp" />
+    <ClCompile Include="src\EventHandlerStartGame.cpp" />
+    <ClCompile Include="src\Defender.cpp" />
+    <ClCompile Include="src\ElementGame.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameDetails.cpp" />
+    <ClCompile Include="src\Invader.cpp" />
+    <ClCompile Include="src\Mothership.cpp" />
+    <ClCompile Include="src\Shield.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
+    <ClCompile Include="src\DecoratorDefender.cpp" />
+    <ClCompile Include="src\DecoratorInstancerDefender.cpp" />
+    <ClCompile Include="src\HighScores.cpp" />
+    <ClCompile Include="src\HighScoresNameFormatter.cpp" />
+    <ClCompile Include="src\HighScoresShipFormatter.cpp" />
+    <ClCompile Include="src\DecoratorInstancerStarfield.cpp" />
+    <ClCompile Include="src\DecoratorStarfield.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Event.h" />
+    <ClInclude Include="src\EventHandler.h" />
+    <ClInclude Include="src\EventInstancer.h" />
+    <ClInclude Include="src\EventManager.h" />
+    <ClInclude Include="src\EventHandlerHighScore.h" />
+    <ClInclude Include="src\EventHandlerOptions.h" />
+    <ClInclude Include="src\EventHandlerStartGame.h" />
+    <ClInclude Include="src\Defender.h" />
+    <ClInclude Include="src\ElementGame.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameDetails.h" />
+    <ClInclude Include="src\Invader.h" />
+    <ClInclude Include="src\Mothership.h" />
+    <ClInclude Include="src\Shield.h" />
+    <ClInclude Include="src\Sprite.h" />
+    <ClInclude Include="src\DecoratorDefender.h" />
+    <ClInclude Include="src\DecoratorInstancerDefender.h" />
+    <ClInclude Include="src\HighScores.h" />
+    <ClInclude Include="src\HighScoresNameFormatter.h" />
+    <ClInclude Include="src\HighScoresShipFormatter.h" />
+    <ClInclude Include="src\DecoratorInstancerStarfield.h" />
+    <ClInclude Include="src\DecoratorStarfield.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\shell\Shell.vcxproj">
+      <Project>{af4ff882-afd9-457b-979e-a5b482388d46}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
