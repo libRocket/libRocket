@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="Drag"
 	ProjectGUID="{B6D35247-4428-4A6B-B964-20B926C00E65}"
+	RootNamespace="Drag"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -109,7 +110,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\..\..\packages\include"
-				PreprocessorDefinitions="WIN32"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 			/>

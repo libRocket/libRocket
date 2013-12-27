@@ -108,7 +108,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\shell\include;..\..\include;..\..\..\support\python\include;..\..\..\support\python\pc;..\..\..\support\boost"
-				PreprocessorDefinitions="WIN32"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="3"
 				DebugInformationFormat="3"

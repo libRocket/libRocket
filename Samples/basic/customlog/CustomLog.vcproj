@@ -108,8 +108,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\shell\include;..\..\include"
-				PreprocessorDefinitions="WIN32,NDEBUG"
+				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\include"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 			/>
