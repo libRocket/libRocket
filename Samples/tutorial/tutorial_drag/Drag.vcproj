@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Drag"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{B6D35247-4428-4A6B-B964-20B926C00E65}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>

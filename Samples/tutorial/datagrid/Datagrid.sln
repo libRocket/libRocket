@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Datagrid", "datagrid.vcproj", "{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Datagrid", "datagrid.vcproj", "{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AF4FF882-AFD9-457B-979E-A5B482388D46} = {AF4FF882-AFD9-457B-979E-A5B482388D46}
 	EndProjectSection
@@ -14,10 +14,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3C58D3B5-9478-4221-954A-01E3C4F1FA89}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3C58D3B5-9478-4221-954A-01E3C4F1FA89}.Debug|Win32.Build.0 = Debug|Win32
-		{3C58D3B5-9478-4221-954A-01E3C4F1FA89}.Release|Win32.ActiveCfg = Release|Win32
-		{3C58D3B5-9478-4221-954A-01E3C4F1FA89}.Release|Win32.Build.0 = Release|Win32
+		{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}.Debug|Win32.Build.0 = Debug|Win32
+		{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}.Release|Win32.ActiveCfg = Release|Win32
+		{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}.Release|Win32.Build.0 = Release|Win32
 		{AF4FF882-AFD9-457B-979E-A5B482388D46}.Debug|Win32.ActiveCfg = Debug|Win32
 		{AF4FF882-AFD9-457B-979E-A5B482388D46}.Debug|Win32.Build.0 = Debug|Win32
 		{AF4FF882-AFD9-457B-979E-A5B482388D46}.Release|Win32.ActiveCfg = Release|Win32

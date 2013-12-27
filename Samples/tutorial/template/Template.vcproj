@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Template"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{F59AD76B-4BEE-4B03-89BF-4B26F64E2D6B}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>

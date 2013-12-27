@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="LoadDocument"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{71FD7D98-FB98-4395-B1BC-D6CEC15ECB66}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>

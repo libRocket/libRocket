@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="DatagridTree"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{32F02C35-E99B-46F5-8AD9-DC48786F748E}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>

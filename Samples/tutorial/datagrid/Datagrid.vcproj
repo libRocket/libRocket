@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Datagrid"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{E7D5E0D7-9853-4589-A888-70FBDAE60F7B}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
