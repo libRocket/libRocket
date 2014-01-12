@@ -418,6 +418,20 @@ bool Context::SetMouseCursor(const String& cursor_name)
 	return true;
 }
 
+// Sets a cursor as the active cursor.
+bool Context::SetDefaultMouseCursor(const String& cursor_name)
+{
+	CursorMap::iterator i = cursors.find(cursor_name);
+	if (i == cursors.end())
+	{
+		Log::Message(Log::LT_WARNING, "Failed to find cursor '%s' in context '%s'", cursor_name.CString(), name.CString());
+		return false;
+	}
+
+	default_cursor = (*i).second;
+	return true;
+}
+
 // Shows or hides the cursor.
 void Context::ShowMouseCursor(bool show)
 {
