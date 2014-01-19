@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="API">
+      <UniqueIdentifier>{b89e17ad-8d27-4e57-a4e0-2d577b50d9e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API\win32">
+      <UniqueIdentifier>{4d2c73f0-0968-4546-927f-2f15440594be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API\macosx">
+      <UniqueIdentifier>{861988e3-fabe-44b3-a5b9-ad35343330a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API\x11">
+      <UniqueIdentifier>{b793b73d-2688-472f-a9e7-83409956ab45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL">
+      <UniqueIdentifier>{478c5624-83f8-4ce8-abcb-bda63aba2263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{63f14678-818b-4f49-9ee3-09650e158bbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\win32">
+      <UniqueIdentifier>{69339c73-b5a0-4172-b2af-7d179cf70bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\x11">
+      <UniqueIdentifier>{3cfa42ef-29c9-469e-aa5f-e1156c85cc5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\macosx">
+      <UniqueIdentifier>{359f1123-b2f5-4989-be57-eddf1d3e977e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{1e2e563e-d8a2-4d0c-b2a9-52d4e50c67f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File">
+      <UniqueIdentifier>{50a5f7fe-7eb8-4a99-8aa7-1f4433b9073e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Shell.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\ShellWin32.cpp">
+      <Filter>API\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\macosx\ShellMacOSX.cpp">
+      <Filter>API\macosx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\x11\ShellX11.cpp">
+      <Filter>API\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShellRenderInterfaceOpenGL.cpp">
+      <Filter>OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\InputWin32.cpp">
+      <Filter>Input\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\x11\InputX11.cpp">
+      <Filter>Input\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShellSystemInterface.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShellFileInterface.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Shell.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShellOpenGL.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShellRenderInterfaceOpenGL.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win32\InputWin32.h">
+      <Filter>Input\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShellSystemInterface.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ShellFileInterface.h">
+      <Filter>File</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

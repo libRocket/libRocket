@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="TreeView"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA80}"
+	ProjectGUID="{CE66A3D8-1231-4F9D-8DED-0C6A95A020A7}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -16,7 +16,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(ProjectDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			>
@@ -109,7 +109,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\include"
-				PreprocessorDefinitions="WIN32"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 			/>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Event">
+      <UniqueIdentifier>{89bf2b37-d667-42a4-922c-0f62adbd8402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event\Event Handlers">
+      <UniqueIdentifier>{951e417f-b78d-49c6-b202-3810bd828584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{695ac858-327d-4a9a-8e83-95f8fcf45c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\High Scores">
+      <UniqueIdentifier>{3e491f3c-9f96-451b-b49f-7bb712c23cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Starfield">
+      <UniqueIdentifier>{19e7e6cc-0c48-4429-af33-e00e9f339841}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Event.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandler.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventInstancer.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventManager.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlerHighScore.cpp">
+      <Filter>Event\Event Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlerOptions.cpp">
+      <Filter>Event\Event Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlerStartGame.cpp">
+      <Filter>Event\Event Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defender.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElementGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameDetails.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Invader.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mothership.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shield.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorDefender.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorInstancerDefender.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighScores.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighScoresNameFormatter.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighScoresShipFormatter.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorInstancerStarfield.cpp">
+      <Filter>Starfield</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorStarfield.cpp">
+      <Filter>Starfield</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Event.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventHandler.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventInstancer.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventManager.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventHandlerHighScore.h">
+      <Filter>Event\Event Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventHandlerOptions.h">
+      <Filter>Event\Event Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventHandlerStartGame.h">
+      <Filter>Event\Event Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defender.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElementGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameDetails.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Invader.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mothership.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shield.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorDefender.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorInstancerDefender.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScores.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScoresNameFormatter.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScoresShipFormatter.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorInstancerStarfield.h">
+      <Filter>Starfield</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorStarfield.h">
+      <Filter>Starfield</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
