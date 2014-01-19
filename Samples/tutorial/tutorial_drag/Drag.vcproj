@@ -3,7 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Drag"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{B6D35247-4428-4A6B-B964-20B926C00E65}"
+	RootNamespace="Drag"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -16,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(ProjectDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			>
@@ -38,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\..\..\packages\include"
+				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\include"
 				PreprocessorDefinitions="WIN32"
 				RuntimeLibrary="3"
 				WarningLevel="4"
@@ -55,9 +56,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore_d.lib RocketControls_d.lib RocketDebugger_d.lib libpng_d.lib zlib_d.lib opengl32.lib"
-				OutputFile="..\..\..\..\..\packages\bin\$(ProjectName)_d.exe"
-				AdditionalLibraryDirectories="..\..\shell\libpng;..\..\..\..\..\packages\bin"
+				AdditionalDependencies="RocketCore_d.lib RocketControls_d.lib RocketDebugger_d.lib opengl32.lib"
+				OutputFile="..\..\..\bin\$(ProjectName)_d.exe"
+				AdditionalLibraryDirectories="..\..\shell\libpng;..\..\..\bin"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -87,7 +88,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(ProjectDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			>
@@ -108,8 +109,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\..\..\packages\include"
-				PreprocessorDefinitions="WIN32"
+				AdditionalIncludeDirectories="..\..\shell\include;..\..\..\include"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 			/>
@@ -124,9 +125,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="RocketCore.lib RocketControls.lib RocketDebugger.lib libpng.lib zlib.lib opengl32.lib"
-				OutputFile="..\..\..\..\..\packages\bin\$(ProjectName).exe"
-				AdditionalLibraryDirectories="..\..\shell\libpng;..\..\..\..\..\packages\bin"
+				AdditionalDependencies="RocketCore.lib RocketControls.lib RocketDebugger.lib opengl32.lib"
+				OutputFile="..\..\..\bin\$(ProjectName).exe"
+				AdditionalLibraryDirectories="..\..\shell\libpng;..\..\..\bin"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

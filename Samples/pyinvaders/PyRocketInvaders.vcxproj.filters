@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{2efebb12-6325-4365-8888-2f0a39ccff46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\High Scores">
+      <UniqueIdentifier>{51281615-4735-410a-a6fd-26600a40ff6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Starfield">
+      <UniqueIdentifier>{4994d369-7957-4553-9f7b-cff8e6200e7a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Defender.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElementGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameDetails.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Invader.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mothership.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shield.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorDefender.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorInstancerDefender.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighScores.cpp">
+      <Filter>Game\High Scores</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorInstancerStarfield.cpp">
+      <Filter>Starfield</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecoratorStarfield.cpp">
+      <Filter>Starfield</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PythonInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Defender.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElementGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameDetails.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Invader.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mothership.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shield.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorDefender.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorInstancerDefender.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScores.h">
+      <Filter>Game\High Scores</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorInstancerStarfield.h">
+      <Filter>Starfield</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecoratorStarfield.h">
+      <Filter>Starfield</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PythonInterface.h" />
+  </ItemGroup>
+</Project>

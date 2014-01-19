@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="RocketInvaders"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{BB815171-A9C3-434B-862C-A98E6715B160}"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -110,7 +110,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\shell\include;..\..\Include"
-				PreprocessorDefinitions="WIN32"
+				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 				DebugInformationFormat="3"

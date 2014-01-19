@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="ogre3d"
-	ProjectGUID="{3C58D3B5-9478-4221-954A-01E3C4F1FA89}"
+	ProjectGUID="{76FFE160-2A07-4603-8A20-A266E08CF6B5}"
 	RootNamespace="ogre3d"
 	TargetFrameworkVersion="131072"
 	>
