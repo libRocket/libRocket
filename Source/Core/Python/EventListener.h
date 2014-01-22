@@ -43,6 +43,10 @@ namespace Python {
 	@author Lloyd Weehuizen
  */
 
+class EventListener;
+
+typedef std::map<PyObject*, EventListener* > EventListenersMap;
+
 class EventListener : public Rocket::Core::EventListener
 {
 public:
@@ -62,6 +66,8 @@ public:
 	virtual void OnAttach( Element* element );
 	virtual void OnDetach( Element* element );
 
+	static EventListenersMap active_listeners;
+
 private:
 	// Element we're attached to
 	Element* element;
@@ -69,6 +75,9 @@ private:
 	// Callable this listener is using
 	PyObject* callable;
 	PyObject* global_namespace;
+
+	// Used to keep track of event listeners
+	PyObject* source_object;
 
 	// Source code, if any
 	Rocket::Core::String source_code;

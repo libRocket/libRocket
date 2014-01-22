@@ -50,6 +50,7 @@ void EventInterface::InitialisePythonInterface()
 		.add_property("target_element", python::make_function(&Event::GetTargetElement, python::return_value_policy< python::return_by_value >()))
 		.add_property("current_element", python::make_function(&Event::GetCurrentElement, python::return_value_policy< python::return_by_value >()))
 		.add_property("parameters", python::make_function(&EventInterface::GetParameters, python::return_value_policy< python::return_by_value >()))
+		.def("GetDragElement", python::make_function(&EventInterface::GetDragElement, python::return_value_policy< python::reference_existing_object >()))
 		.def("StopPropagation", &Event::StopPropagation)
 		.ptr();
 
@@ -66,6 +67,11 @@ void EventInterface::InitialiseRocketInterface()
 const Rocket::Core::Dictionary& EventInterface::GetParameters(EventWrapper* self)
 {
 	return *self->GetParameters();
+}
+
+Rocket::Core::Element			*EventInterface::GetDragElement(EventWrapper* self)
+{
+	return *static_cast<Rocket::Core::Element**>(self->GetParameter<void*>("drag_element", nullptr));
 }
 
 }
