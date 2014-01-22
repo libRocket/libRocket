@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  *
  */
-
+#include <iostream>
 #include "precompiled.h"
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Dictionary.h>
@@ -73,7 +73,7 @@ public:
 };
 
 /// Constructs a new libRocket element.
-Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_base(0, 0), relative_offset_position(0, 0), scroll_offset(0, 0), content_offset(0, 0), content_box(0, 0), boxes(1)
+Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_base(0, 0), relative_offset_position(0, 0), scroll_offset(0, 0), content_offset(0, 0), content_box(0, 0), boxes(1), dispatchEventEnable(true)
 {
 	tag = _tag.ToLower();
 	parent = NULL;
@@ -648,6 +648,136 @@ Variant* Element::GetAttribute(const String& name) const
 	return attributes.Get(name);
 }
 
+template<>
+void Element::SetAttribute(const String& name, const std::string& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::STRING && !::strcmp(variant->Get<String>().CString(), value.c_str()))
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const String& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::STRING && variant->Get<String>() == value)
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const int& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::INT && value == variant->Get<int>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const float& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::FLOAT && value == variant->Get<float>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const char& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::CHAR && value == variant->Get<char>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const Colourb& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::COLOURB && value == variant->Get<Colourb>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const Colourf& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::COLOURF && value == variant->Get<Colourf>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const Vector2f& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::VECTOR2 && value == variant->Get<Vector2f>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const unsigned char& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::BYTE && value == variant->Get<unsigned char>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
+template<>
+void Element::SetAttribute(const String& name, const unsigned short& value)
+{
+	Rocket::Core::Variant	*variant = attributes.Get(name);
+	if (variant && variant->GetType() == Core::Variant::WORD && value == variant->Get<unsigned short>())
+		return;
+	attributes.Set(name, value);
+
+	AttributeNameList changed_attributes;
+	changed_attributes.insert(name);
+	OnAttributeChange(changed_attributes);
+}
+
 // Checks if the element has a certain attribute.
 bool Element::HasAttribute(const String& name)
 {
@@ -1046,10 +1176,26 @@ void Element::RemoveEventListener(const String& event, EventListener* listener, 
 	event_dispatcher->DetachEvent(event, listener, in_capture_phase);
 }
 
+// Removes an event listener from this element.
+void Element::RemoveEventListeners(const String& event)
+{
+	event_dispatcher->DetachEvents(event);
+}
+
 // Dispatches the specified event
 bool Element::DispatchEvent(const String& event, const Dictionary& parameters, bool interruptible)
 {
-	return event_dispatcher->DispatchEvent(this, event, parameters, interruptible);
+	return (dispatchEventEnable) ? event_dispatcher->DispatchEvent(this, event, parameters, interruptible) : true;
+}
+
+void Element::EnableDispatchEvent(bool value)
+{
+	dispatchEventEnable = value;
+}
+
+bool Element::DispatchEventIsEnable() const
+{
+	return dispatchEventEnable;
 }
 
 // Scrolls the parent element's contents so that this element is visible.
