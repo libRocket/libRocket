@@ -29,7 +29,7 @@
 #define RENDERINTERFACEOGRE3D_H
 
 #include <Rocket/Core/RenderInterface.h>
-#include <Ogre/Ogre.h>
+#include <OGRE/Ogre.h>
 
 /**
 	A sample render interface for Rocket into Ogre3D.

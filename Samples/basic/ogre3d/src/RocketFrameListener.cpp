@@ -25,6 +25,9 @@
  *
  */
 
+#ifndef WIN32 //FIXME MAC
+  #include <X11/Xlib.h>
+#endif
 #include "RocketFrameListener.h"
 #include <Rocket/Core/Context.h>
 #include <Rocket/Debugger.h>
@@ -288,7 +291,9 @@ int RocketFrameListener::GetKeyModifierState()
 #elif OGRE_PLATFORM == OGRE_PLATFORM_LINUX
 
 	XKeyboardState keyboard_state;
-	XGetKeyboardControl(DISPLAY!, &keyboard_state);
+  Display* display;
+  mWindow->getCustomAttribute("DISPLAY", &display);
+	XGetKeyboardControl(display, &keyboard_state);
 
 	if (keyboard_state.led_mask & (1 << 0))
 		modifier_state |= Rocket::Core::Input::KM_CAPSLOCK;

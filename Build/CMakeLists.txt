@@ -205,7 +205,7 @@ endmacro()
 if(BUILD_SAMPLES)
     include(SampleFileList)
 
-    set(samples treeview customlog drag loaddocument)
+    set(samples treeview customlog drag loaddocument ogre3d)
     set(tutorials template datagrid datagrid_tree tutorial_drag)
     
     set(sample_LIBRARIES
@@ -220,7 +220,94 @@ if(BUILD_SAMPLES)
     	   
     if(OPENGL_FOUND)
 	include_directories(${OPENGL_INCLUDE_DIR})
-	list(APPEND sample_LIBRARIES ${OPENGL_LIBRARIES})
+  # ============ Find Ogre =======================
+  # Statically linking boost to a dynamic Ogre build doesn't work on Linux 64bit
+  set(Boost_USE_STATIC_LIBS ${OGRE_STATIC})
+
+  set(OGRE_BOOST_COMPONENTS thread date_time system filesystem iostreams program_options)
+
+  include(FindBoost)
+  find_package(
+    Boost
+    1.36.0
+    COMPONENTS ${OGRE_BOOST_COMPONENTS} REQUIRED
+    )
+  if (NOT Boost_FOUND)
+    # Try again with the other type of libs
+    set(Boost_USE_STATIC_LIBS NOT ${Boost_USE_STATIC_LIBS})
+    find_package(
+      Boost
+      1.36.0
+      COMPONENTS ${OGRE_BOOST_COMPONENTS} REQUIRED
+      )
+  endif()
+
+  if(WIN32)
+    set(CMAKE_MODULE_PATH "$ENV{OGRE_HOME}/CMake/;${CMAKE_MODULE_PATH}")
+    set(OGRE_SAMPLES_INCLUDEPATH
+      $ENV{OGRE_HOME}/Samples/include
+      )
+
+  endif(WIN32)
+
+  if(UNIX)
+    if(EXISTS "/usr/local/lib/OGRE/cmake")
+      message("using /usr/local/lib/OGRE/cmake")
+      set(CMAKE_MODULE_PATH "/usr/local/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
+      set(OGRE_SAMPLES_INCLUDEPATH "/usr/local/share/OGRE/samples/Common/include/") # We could just *assume* that developers uses this basepath : /usr/local
+
+    elseif(EXISTS "/usr/share/OGRE/cmake/modules")
+      message("using /usr/share/OGRE/cmake/modules")
+      set(CMAKE_MODULE_PATH "/usr/share/OGRE/cmake/modules/;${CMAKE_MODULE_PATH}")
+      set(OGRE_SAMPLES_INCLUDEPATH "/usr/share/OGRE/samples/Common/include/") # Otherwise, this one
+
+    elseif(EXISTS "/usr/lib/OGRE/cmake")
+      message("using /usr/lib/OGRE/cmake")
+      set(CMAKE_MODULE_PATH "/usr/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
+      set(OGRE_SAMPLES_INCLUDEPATH "/usr/share/OGRE/samples/Common/include/") # Otherwise, this one
+
+    elseif(APPLE)
+      set(OGRE_HOME "$ENV{OGRE_HOME}")
+      if(OGRE_HOME STREQUAL "")
+        message(SEND_ERROR "\nOGRE_HOME not defined !\n")
+      endif(OGRE_HOME STREQUAL "")
+      message("using ${OGRE_HOME}")
+      set(CMAKE_MODULE_PATH "${OGRE_HOME}/CMake;${CMAKE_MODULE_PATH}")
+      set(OGRE_SAMPLES_INCLUDEPATH "${OGRE_HOME}/Samples/Common/include/") # Otherwise, this one
+
+    else ()
+      message(SEND_ERROR "Failed to find module path.")
+    endif(EXISTS "/usr/local/lib/OGRE/cmake")
+  endif(UNIX)
+
+  if (CMAKE_BUILD_TYPE STREQUAL "")
+    # CMake defaults to leaving CMAKE_BUILD_TYPE empty. This screws up
+    # differentiation between debug and release builds.
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
+
+  endif (CMAKE_BUILD_TYPE STREQUAL "")
+  set(OGRE_COMPONENTS RenderSystem_GL)
+  find_package(OGRE REQUIRED)
+  message(OGRE_RenderSystem_GL_FOUND=${OGRE_RenderSystem_GL_FOUND})
+  message(OGRE_RenderSystem_GL_LIBRARY_REL=${OGRE_RenderSystem_GL_LIBRARY_REL})
+  find_package(OIS REQUIRED)
+  if(NOT OIS_FOUND)
+    message(SEND_ERROR "Failed to find OIS.")
+  endif()
+  include_directories(SYSTEM
+    ${OIS_INCLUDE_DIRS}
+    ${OGRE_INCLUDE_DIRS}
+    ${OGRE_SAMPLES_INCLUDEPATH}
+    ${Boost_INCLUDE_DIRS}
+    ${OGRE_RenderSystem_GL_INCLUDE_DIRS}
+    ${LIBROCKET_INCLUDE_DIRS}
+    )
+  # ===================================================
+
+  list(APPEND sample_LIBRARIES  ${Boost_LIBRARIES} ${OGRE_LIBRARIES} ${OIS_LIBRARIES} ${OPENGL_LIBRARIES})
+  if(NOT WIN32)
+    list(APPEND sample_LIBRARIES X11 pthread)
+  endif()
     endif()
     
     # Set up required system libraries
