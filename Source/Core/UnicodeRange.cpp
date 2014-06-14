@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "UnicodeRange.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/UnicodeRange.h>
 
 namespace Rocket {
 namespace Core {

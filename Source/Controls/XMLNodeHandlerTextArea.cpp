@@ -25,7 +25,7 @@
  *
  */
 
-#include "XMLNodeHandlerTextArea.h"
+#include <Rocket/Controls/XMLNodeHandlerTextArea.h>
 #include <Rocket/Core.h>
 #include <Rocket/Controls/ElementFormControlTextArea.h>
 

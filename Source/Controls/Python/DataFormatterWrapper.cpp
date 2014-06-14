@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "DataFormatterWrapper.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/DataFormatterWrapper.h>
 
 namespace Rocket {
 namespace Controls {

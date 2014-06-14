@@ -33,7 +33,7 @@
 #include <Rocket/Core/GeometryUtilities.h>
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/Texture.h>
-#include "TextureLayout.h"
+#include <Rocket/Core/TextureLayout.h>
 
 namespace Rocket {
 namespace Core {

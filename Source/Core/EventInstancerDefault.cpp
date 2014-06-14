@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "EventInstancerDefault.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/EventInstancerDefault.h>
 #include <Rocket/Core/Event.h>
 
 namespace Rocket {

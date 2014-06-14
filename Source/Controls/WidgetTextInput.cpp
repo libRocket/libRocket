@@ -25,8 +25,8 @@
  *
  */
 
-#include "WidgetTextInput.h"
-#include "ElementTextSelection.h"
+#include <Rocket/Controls/WidgetTextInput.h>
+#include <Rocket/Controls/ElementTextSelection.h>
 #include <Rocket/Core.h>
 #include <Rocket/Controls/ElementFormControl.h>
 #include <Rocket/Controls/Clipboard.h>

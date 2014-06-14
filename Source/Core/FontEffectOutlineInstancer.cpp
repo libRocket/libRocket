@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontEffectOutlineInstancer.h"
-#include "FontEffectOutline.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FontEffectOutlineInstancer.h>
+#include <Rocket/Core/FontEffectOutline.h>
 
 namespace Rocket {
 namespace Core {

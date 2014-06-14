@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementHandle.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementHandle.h>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Property.h>

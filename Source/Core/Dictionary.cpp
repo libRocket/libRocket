@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/Dictionary.h>
 
 /* NOTE: This is dictionary implementation is copied from PYTHON 

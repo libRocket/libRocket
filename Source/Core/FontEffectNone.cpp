@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontEffectNone.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FontEffectNone.h>
 
 namespace Rocket {
 namespace Core {

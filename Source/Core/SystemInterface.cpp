@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/SystemInterface.h>
 #include <Rocket/Core/Log.h>
 

@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "SelectOptionProxy.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/SelectOptionProxy.h>
 #include <Rocket/Core/Element.h>
 
 namespace Rocket {

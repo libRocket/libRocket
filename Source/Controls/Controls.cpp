@@ -32,10 +32,10 @@
 #include <Rocket/Core/XMLParser.h>
 #include <Rocket/Core/Plugin.h>
 #include <Rocket/Core/Core.h>
-#include "ElementTextSelection.h"
-#include "XMLNodeHandlerDataGrid.h"
-#include "XMLNodeHandlerTabSet.h"
-#include "XMLNodeHandlerTextArea.h"
+#include <Rocket/Controls/ElementTextSelection.h>
+#include <Rocket/Controls/XMLNodeHandlerDataGrid.h>
+#include <Rocket/Controls/XMLNodeHandlerTabSet.h>
+#include <Rocket/Controls/XMLNodeHandlerTextArea.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 
 namespace Rocket {

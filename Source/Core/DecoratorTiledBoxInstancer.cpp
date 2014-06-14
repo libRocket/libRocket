@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "DecoratorTiledBoxInstancer.h"
-#include "DecoratorTiledBox.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/DecoratorTiledBoxInstancer.h>
+#include <Rocket/Core/DecoratorTiledBox.h>
 
 namespace Rocket {
 namespace Core {

@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
-#include "TemplateCache.h"
-#include "StreamFile.h"
-#include "Template.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/TemplateCache.h>
+#include <Rocket/Core/StreamFile.h>
+#include <Rocket/Core/Template.h>
 #include <Rocket/Core/Log.h>
 
 namespace Rocket {

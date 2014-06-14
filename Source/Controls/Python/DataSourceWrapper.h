@@ -36,6 +36,8 @@ namespace Rocket {
 namespace Controls {
 namespace Python {
 
+extern Core::String GetPythonClassName(PyObject* object);
+
 /**
 	Python DataSource Wrapper
 

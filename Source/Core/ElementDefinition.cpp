@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementDefinition.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementDefinition.h>
 #include <Rocket/Core/Decorator.h>
 #include <Rocket/Core/Factory.h>
 #include <Rocket/Core/FontDatabase.h>

@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
-#include "LayoutBlockBoxSpace.h"
-#include "LayoutBlockBox.h"
-#include "LayoutEngine.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/LayoutBlockBoxSpace.h>
+#include <Rocket/Core/LayoutBlockBox.h>
+#include <Rocket/Core/LayoutEngine.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/ElementScroll.h>
 #include <Rocket/Core/StyleSheetKeywords.h>

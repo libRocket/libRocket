@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ContextInstancer.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ContextInstancer.h>
 #include <Rocket/Core/Python/Utilities.h>
 
 namespace Rocket {

@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "XMLNodeHandlerDefault.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/XMLNodeHandlerDefault.h>
+#include <Rocket/Core/XMLParseTools.h>
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Factory.h>

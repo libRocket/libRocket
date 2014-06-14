@@ -25,7 +25,7 @@
  *
  */
 
-#include "Geometry.h"
+#include <Rocket/Debugger/Geometry.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

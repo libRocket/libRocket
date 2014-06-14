@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/ElementScroll.h>
-#include "LayoutEngine.h"
-#include "WidgetSliderScroll.h"
+#include <Rocket/Core/LayoutEngine.h>
+#include <Rocket/Core/WidgetSliderScroll.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/Event.h>

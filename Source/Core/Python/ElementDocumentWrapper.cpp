@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementDocumentWrapper.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/ElementDocumentWrapper.h>
 #include <Rocket/Core/Stream.h>
 #include <Rocket/Core/Python/Utilities.h>
 

@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "FileInterfaceDefault.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FileInterfaceDefault.h>
 
 #ifndef ROCKET_NO_FILE_INTERFACE_DEFAULT
 

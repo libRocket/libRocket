@@ -25,7 +25,7 @@
  *
  */
 
-#include "XMLNodeHandlerTabSet.h"
+#include <Rocket/Controls/XMLNodeHandlerTabSet.h>
 #include <Rocket/Core/Log.h>
 #include <Rocket/Core/Factory.h>
 #include <Rocket/Core/XMLParser.h>

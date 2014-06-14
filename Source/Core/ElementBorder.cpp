@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementBorder.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementBorder.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Property.h>
 

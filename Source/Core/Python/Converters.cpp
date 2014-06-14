@@ -25,14 +25,14 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/Python/precompiled.h>
 
 #include <Rocket/Core/Variant.h>
 #include <Rocket/Core/Dictionary.h>
 #include <Rocket/Core/Python/ConverterScriptObject.h>
 #include <Rocket/Core/ElementDocument.h>
 
-#include "EventListener.h"
+#include <Rocket/Core/Python/EventListener.h>
 
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 

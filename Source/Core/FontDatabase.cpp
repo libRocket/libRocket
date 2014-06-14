@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/FontDatabase.h>
-#include "FontFamily.h"
+#include <Rocket/Core/FontFamily.h>
 #include <Rocket/Core.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H

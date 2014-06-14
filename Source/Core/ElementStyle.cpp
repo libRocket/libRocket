@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementStyle.h"
-#include "ElementStyleCache.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/ElementStyle.h>
+#include <Rocket/Core/ElementStyleCache.h>
 #include <algorithm>
 #include <Rocket/Core/ElementDocument.h>
 #include <Rocket/Core/ElementUtilities.h>
@@ -36,11 +36,11 @@
 #include <Rocket/Core/PropertyDefinition.h>
 #include <Rocket/Core/PropertyDictionary.h>
 #include <Rocket/Core/StyleSheetSpecification.h>
-#include "ElementBackground.h"
-#include "ElementBorder.h"
-#include "ElementDecoration.h"
-#include "ElementDefinition.h"
-#include "FontFaceHandle.h"
+#include <Rocket/Core/ElementBackground.h>
+#include <Rocket/Core/ElementBorder.h>
+#include <Rocket/Core/ElementDecoration.h>
+#include <Rocket/Core/ElementDefinition.h>
+#include <Rocket/Core/FontFaceHandle.h>
 
 namespace Rocket {
 namespace Core {

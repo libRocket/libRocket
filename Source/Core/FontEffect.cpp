@@ -25,7 +25,7 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core/FontEffect.h>
 #include <Rocket/Core/FontDatabase.h>
 #include <Rocket/Core/FontEffectInstancer.h>

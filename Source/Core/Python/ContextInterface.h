@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREPYTHONCONTEXTINTERFACE_H
 #define ROCKETCOREPYTHONCONTEXTINTERFACE_H
 
-#include "ContextDocumentProxy.h"
+#include <Rocket/Core/Python/ContextDocumentProxy.h>
 
 namespace Rocket {
 namespace Core {

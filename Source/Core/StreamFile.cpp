@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "StreamFile.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/StreamFile.h>
 #include <Rocket/Core/FileInterface.h>
 #include <Rocket/Core.h>
 

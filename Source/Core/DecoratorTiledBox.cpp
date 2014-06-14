@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "DecoratorTiledBox.h"
-#include "TextureResource.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/DecoratorTiledBox.h>
+#include <Rocket/Core/TextureResource.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/Geometry.h>
 

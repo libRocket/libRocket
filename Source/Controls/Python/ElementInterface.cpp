@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "ElementInterface.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/ElementInterface.h>
 #include <Rocket/Core/Python/ConverterScriptObject.h>
 #include <Rocket/Core/Factory.h>
 #include <Rocket/Core/Python/ElementInstancer.h>
@@ -41,8 +41,8 @@
 #include <Rocket/Controls/ElementFormControlSelect.h>
 #include <Rocket/Controls/ElementFormControlTextArea.h>
 #include <Rocket/Controls/ElementTabSet.h>
-#include "SelectOptionProxy.h"
-#include "DataGridRowProxy.h"
+#include <Rocket/Controls/Python/SelectOptionProxy.h>
+#include <Rocket/Controls/Python/DataGridRowProxy.h>
 
 namespace Rocket {
 namespace Controls {

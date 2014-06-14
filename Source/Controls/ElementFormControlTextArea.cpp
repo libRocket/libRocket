@@ -29,7 +29,7 @@
 #include <Rocket/Core/Math.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/ElementText.h>
-#include "WidgetTextInputMultiLine.h"
+#include <Rocket/Controls/WidgetTextInputMultiLine.h>
 
 namespace Rocket {
 namespace Controls {

@@ -25,11 +25,11 @@
  *
  */
 
-#include "precompiled.h"
-#include "XMLNodeHandlerTemplate.h"
-#include "Template.h"
-#include "TemplateCache.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/XMLNodeHandlerTemplate.h>
+#include <Rocket/Core/Template.h>
+#include <Rocket/Core/TemplateCache.h>
+#include <Rocket/Core/XMLParseTools.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

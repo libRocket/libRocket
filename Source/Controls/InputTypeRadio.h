@@ -28,7 +28,7 @@
 #ifndef ROCKETCONTROLSINPUTTYPERADIO_H
 #define ROCKETCONTROLSINPUTTYPERADIO_H
 
-#include "InputType.h"
+#include <Rocket/Controls/InputType.h>
 
 namespace Rocket {
 namespace Controls {

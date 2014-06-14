@@ -25,8 +25,8 @@
  *
  */
 
-#include "ElementContextHook.h"
-#include "Plugin.h"
+#include <Rocket/Debugger/ElementContextHook.h>
+#include <Rocket/Debugger/Plugin.h>
 
 namespace Rocket {
 namespace Debugger {

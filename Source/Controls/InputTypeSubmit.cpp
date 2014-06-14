@@ -25,7 +25,7 @@
  *
  */
 
-#include "InputTypeSubmit.h"
+#include <Rocket/Controls/InputTypeSubmit.h>
 #include <Rocket/Controls/ElementForm.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 

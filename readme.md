@@ -44,3 +44,11 @@ this, you don't have to learn a whole new proprietary technology like other libr
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
+
+
+
+# Ignifuga
+
+This is version is slightly modified from the official repository 
+to better suit Ignifuga's way of compiling modules into Python which
+requires a flat file structure

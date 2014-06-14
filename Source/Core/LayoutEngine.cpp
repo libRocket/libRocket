@@ -25,12 +25,12 @@
  *
  */
 
-#include "precompiled.h"
-#include "LayoutEngine.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/LayoutEngine.h>
 #include <Rocket/Core/Math.h>
-#include "Pool.h"
-#include "LayoutBlockBoxSpace.h"
-#include "LayoutInlineBoxText.h"
+#include <Rocket/Core/Pool.h>
+#include <Rocket/Core/LayoutBlockBoxSpace.h>
+#include <Rocket/Core/LayoutInlineBoxText.h>
 #include <Rocket/Core/Element.h>
 #include <Rocket/Core/ElementScroll.h>
 #include <Rocket/Core/ElementText.h>

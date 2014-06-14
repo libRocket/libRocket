@@ -25,8 +25,8 @@
  *
  */
 
-#include "precompiled.h"
-#include "DataGridRowProxy.h"
+#include <Rocket/Controls/Python/precompiled.h>
+#include <Rocket/Controls/Python/DataGridRowProxy.h>
 #include <Rocket/Core/Python/NameIndexInterface.h>
 #include <Rocket/Core/Python/Utilities.h>
 #include <Rocket/Core.h>

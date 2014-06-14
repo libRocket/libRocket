@@ -25,15 +25,15 @@
  *
  */
 
-#include "precompiled.h"
+#include <Rocket/Core/precompiled.h>
 #include <Rocket/Core.h>
 #include <algorithm>
-#include "FileInterfaceDefault.h"
-#include "GeometryDatabase.h"
-#include "PluginRegistry.h"
-#include "StyleSheetFactory.h"
-#include "TemplateCache.h"
-#include "TextureDatabase.h"
+#include <Rocket/Core/FileInterfaceDefault.h>
+#include <Rocket/Core/GeometryDatabase.h>
+#include <Rocket/Core/PluginRegistry.h>
+#include <Rocket/Core/StyleSheetFactory.h>
+#include <Rocket/Core/TemplateCache.h>
+#include <Rocket/Core/TextureDatabase.h>
 
 namespace Rocket {
 namespace Core {

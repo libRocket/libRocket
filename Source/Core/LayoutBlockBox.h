@@ -28,7 +28,7 @@
 #ifndef ROCKETCORELAYOUTBLOCKBOX_H
 #define ROCKETCORELAYOUTBLOCKBOX_H
 
-#include "LayoutLineBox.h"
+#include <Rocket/Core/LayoutLineBox.h>
 #include <Rocket/Core/Box.h>
 #include <Rocket/Core/Types.h>
 

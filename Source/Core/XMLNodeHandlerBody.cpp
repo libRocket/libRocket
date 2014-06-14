@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "XMLNodeHandlerBody.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/XMLNodeHandlerBody.h>
+#include <Rocket/Core/XMLParseTools.h>
 #include <Rocket/Core.h>
 
 namespace Rocket {

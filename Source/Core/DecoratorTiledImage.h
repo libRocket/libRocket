@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREDECORATORTILEDIMAGE_H
 #define ROCKETCOREDECORATORTILEDIMAGE_H
 
-#include "DecoratorTiled.h"
+#include <Rocket/Core/DecoratorTiled.h>
 
 namespace Rocket {
 namespace Core {

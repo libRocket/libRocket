@@ -29,7 +29,7 @@
 #define ROCKETCOREFONTFACEHANDLE_H
 
 #include <Rocket/Core/ReferenceCountable.h>
-#include "UnicodeRange.h"
+#include <Rocket/Core/UnicodeRange.h>
 #include <Rocket/Core/Font.h>
 #include <Rocket/Core/FontEffect.h>
 #include <Rocket/Core/FontGlyph.h>

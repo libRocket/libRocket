@@ -25,8 +25,8 @@
  *
  */
 
-#include "InputTypeRange.h"
-#include "WidgetSliderInput.h"
+#include <Rocket/Controls/InputTypeRange.h>
+#include <Rocket/Controls/WidgetSliderInput.h>
 #include <Rocket/Controls/ElementFormControlInput.h>
 
 namespace Rocket {

@@ -28,7 +28,7 @@
 #ifndef ROCKETCORELAYOUTINLINEBOXTEXT_H
 #define ROCKETCORELAYOUTINLINEBOXTEXT_H
 
-#include "LayoutInlineBox.h"
+#include <Rocket/Core/LayoutInlineBox.h>
 #include <Rocket/Core/String.h>
 
 namespace Rocket {

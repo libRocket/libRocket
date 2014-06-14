@@ -25,10 +25,10 @@
  *
  */
 
-#include "precompiled.h"
-#include "FontFaceLayer.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/FontFaceLayer.h>
 #include <Rocket/Core/Core.h>
-#include "FontFaceHandle.h"
+#include <Rocket/Core/FontFaceHandle.h>
 
 namespace Rocket {
 namespace Core {

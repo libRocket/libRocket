@@ -25,9 +25,9 @@
  *
  */
 
-#include "precompiled.h"
-#include "Template.h"
-#include "XMLParseTools.h"
+#include <Rocket/Core/precompiled.h>
+#include <Rocket/Core/Template.h>
+#include <Rocket/Core/XMLParseTools.h>
 #include <Rocket/Core/ElementUtilities.h>
 #include <Rocket/Core/XMLParser.h>
 

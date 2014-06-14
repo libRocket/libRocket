@@ -29,7 +29,7 @@
 #include <Rocket/Core/ElementText.h>
 #include <Rocket/Core/Event.h>
 #include <Rocket/Core/ElementUtilities.h>
-#include "WidgetDropDown.h"
+#include <Rocket/Controls/WidgetDropDown.h>
 
 namespace Rocket {
 namespace Controls {

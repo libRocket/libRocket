@@ -25,13 +25,13 @@
  *
  */
 
-#include "precompiled.h"
-#include "EventListener.h"
+#include <Rocket/Core/Python/precompiled.h>
+#include <Rocket/Core/Python/EventListener.h>
 
 #include <Rocket/Core/Python/Utilities.h>
 
-#include "EventWrapper.h"
-#include "ElementDocumentWrapper.h"
+#include <Rocket/Core/Python/EventWrapper.h>
+#include <Rocket/Core/Python/ElementDocumentWrapper.h>
 
 namespace Rocket {
 namespace Core {

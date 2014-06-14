@@ -25,7 +25,7 @@
  *
  */
 
-#include "WidgetTextInputMultiLine.h"
+#include <Rocket/Controls/WidgetTextInputMultiLine.h>
 #include <Rocket/Core/Dictionary.h>
 #include <Rocket/Core/ElementText.h>
 

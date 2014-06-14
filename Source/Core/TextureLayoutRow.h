@@ -28,7 +28,7 @@
 #ifndef TEXTURELAYOUTROW_H
 #define TEXTURELAYOUTROW_H
 
-#include "TextureLayoutRectangle.h"
+#include <Rocket/Core/TextureLayoutRectangle.h>
 
 namespace Rocket {
 namespace Core {

@@ -30,10 +30,10 @@
 
 #include <Rocket/Core/Element.h>
 
-#include "ElementStyleProxy.h"
-#include "ElementChildrenProxy.h"
-#include "ElementAttributeProxy.h"
-#include "EventListener.h"
+#include <Rocket/Core/Python/ElementStyleProxy.h>
+#include <Rocket/Core/Python/ElementChildrenProxy.h>
+#include <Rocket/Core/Python/ElementAttributeProxy.h>
+#include <Rocket/Core/Python/EventListener.h>
 
 namespace Rocket {
 namespace Core {
