@@ -91,7 +91,7 @@
 // of the function should contain a matching ROCKET_UNUSED call with the name of the function
 // as well to cover compilers with no-op ROCKET_UNUSED_PARAMETER macros.
 #if defined __llvm__
-#  define ROCKET_UNUSED_PARAMETER(x) UNUSED_ ## x __unused
+#  define ROCKET_UNUSED_PARAMETER(x) UNUSED_ ## x __attribute__((unused))
 #elif defined __GNUC__
 #  define ROCKET_UNUSED_PARAMETER(x) UNUSED_ ## x __attribute__((__unused__))
 #else
@@ -108,7 +108,7 @@
 #else
    // If not in DEBUG builds, this parameter is unused, mark it as such
 #  if defined __llvm__
-#    define ROCKET_UNUSED_ASSERT_PARAMETER(x) UNUSED_ ## x __unused
+#    define ROCKET_UNUSED_ASSERT_PARAMETER(x) UNUSED_ ## x __attribute__((unused))
 #    define ROCKET_UNUSED_ASSERT(x)
 #  elif defined __GNUC__
 #    define ROCKET_UNUSED_ASSERT_PARAMETER(x) UNUSED_ ## x __attribute__((__unused__))
