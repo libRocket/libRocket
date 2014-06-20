@@ -38,7 +38,7 @@ Box::Box() : content(0, 0), offset(0, 0)
 }
 
 // Initialises a box with a default content area and no padding, borders and margins.
-Box::Box(const Vector2f& content) : content(0, 0), offset(content)
+Box::Box(const Vector2f& content) : content(content), offset(content)
 {
 	memset(area_edges, 0, sizeof(area_edges));
 }
