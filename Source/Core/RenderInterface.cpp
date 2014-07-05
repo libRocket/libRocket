@@ -95,7 +95,7 @@ float RenderInterface::GetPixelsPerInch()
 // Returns the number of pixels per device pixel.
 float RenderInterface::GetDevicePixelRatio()
 {
-	return GetPixelsPerInch() / 96.0f;
+	return GetPixelsPerInch() * (1.0f / 96.0f);
 }
 
 // Called when this render interface is released.
