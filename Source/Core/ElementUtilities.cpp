@@ -167,6 +167,8 @@ int ElementUtilities::GetLineHeight(Element* element)
 		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 72.0f));
 	case Property::PC:
 		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 6.0f));
+	case Property::DP:
+		return Math::Round(line_height_property->value.Get< float >() * element->GetRenderInterface()->GetDevicePixelRatio());
 	}
 
 	return 0;

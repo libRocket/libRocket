@@ -113,8 +113,12 @@ public:
 	virtual float GetVerticalTexelOffset();
 
 	/// Returns the number of pixels per inch.
-	/// @returns The number of pixels per inch. The default implementation returns 100.
+	/// @returns The number of pixels per inch. The default implementation returns 96.
 	virtual float GetPixelsPerInch();
+
+	/// Returns the number of pixels per device pixel.
+	/// @returns The number of pixels per device pixel. The default implementation returns GetPixelsPerInch()/96.
+	virtual float GetDevicePixelRatio();
 
 	/// Called when this render interface is released.
 	virtual void Release();

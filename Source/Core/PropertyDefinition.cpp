@@ -140,6 +140,7 @@ bool PropertyDefinition::GetValue(String& value, const Property& property) const
 		case Property::MM:		value.Append("mm"); break;
 		case Property::PT:		value.Append("pt"); break;
 		case Property::PC:		value.Append("pc"); break;
+		case Property::DP:		value.Append("dp"); break;
 		default:					break;
 	}
 

@@ -137,6 +137,9 @@ float Decorator::ResolveProperty(const PropertyDictionary& properties, const Str
 			return inch / 6.0f;
 	}
 
+	if (property->unit & Property::DP)
+		return property->value.Get< float >() * GetRenderInterface()->GetDevicePixelRatio();
+
 	ROCKET_ERROR;
 	return 0;
 }

@@ -77,19 +77,25 @@ void RenderInterface::ReleaseTexture(TextureHandle ROCKET_UNUSED(texture))
 // Returns the native horizontal texel offset for the renderer.
 float RenderInterface::GetHorizontalTexelOffset()
 {
-	return 0;
+	return 0.0f;
 }
 
 // Returns the native vertical texel offset for the renderer.
 float RenderInterface::GetVerticalTexelOffset()
 {
-	return 0;
+	return 0.0f;
 }
 
 // Returns the number of pixels per inch.
 float RenderInterface::GetPixelsPerInch()
 {
-	return 100;
+	return 96.0f;
+}
+
+// Returns the number of pixels per device pixel.
+float RenderInterface::GetDevicePixelRatio()
+{
+	return GetPixelsPerInch() / 96.0f;
 }
 
 // Called when this render interface is released.
