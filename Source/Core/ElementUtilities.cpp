@@ -146,6 +146,26 @@ int ElementUtilities::GetLineHeight(Element* element)
 
 	switch (line_height_property->unit)
 	{
+		case Property::REM:
+		// If the property is a straight number or an em measurement, then it scales the line height of the parent.
+		// Ref: Equal to the computed value of ‘font-size’ on the root element.
+		// Ref URL: http://www.w3.org/TR/css3-values/#rem-unit
+		{
+			Rocket::Core::ElementDocument* owner_document = element->GetOwnerDocument();
+			if (owner_document == NULL)
+				return 0;
+			
+			FontFaceHandle* parent_font_face_handle = owner_document->GetFontFaceHandle();
+			if (parent_font_face_handle == NULL)
+				return 0;
+			
+			int parent_line_height = parent_font_face_handle->GetLineHeight();
+			const Property* parent_line_height_property = owner_document->GetLineHeightProperty();
+			
+			float calculated_parent_line_height = parent_line_height_property->value.Get< float >() * parent_line_height;
+			
+			return Math::Round((line_height_property->value.Get< float >() * calculated_parent_line_height));
+		}
 	case Property::NUMBER:
 	case Property::EM:
 		// If the property is a straight number or an em measurement, then it scales the line height.
