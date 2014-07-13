@@ -23,6 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+  *  --== Changes ==--
+ *  29 Feb 2012     Adding TextureResource::Load(RenderInterface*,ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mat 2012     Refactored TextureResource::Load() to work with recent changes   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -30,6 +33,7 @@
 #include "FontFaceHandle.h"
 #include "TextureDatabase.h"
 #include <Rocket/Core.h>
+#include <Rocket/Core/ImageSource.h>
 
 namespace Rocket {
 namespace Core {
@@ -148,7 +152,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 		// hope the client knows what the hell to do with the question mark in their file name.
 		if (data != NULL)
 		{
-			TextureHandle handle;
+			TextureHandle handle = 0;
 			bool success = render_interface->GenerateTexture(handle, data, dimensions);
 
 			if (delete_data)
@@ -169,7 +173,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 		}
 	}
 
-	TextureHandle handle;
+	TextureHandle handle = 0;
 	Vector2i dimensions;
 	if (!render_interface->LoadTexture(handle, dimensions, source))
 	{
@@ -181,6 +185,30 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 	texture_data[render_interface] = TextureData(handle, dimensions);
 	return true;
+}
+
+bool TextureResource::Load(RenderInterface* render_interface, ImageSource* image_source)
+{
+    Rocket::Core::Vector2i dimensions;
+    TextureHandle handle = reinterpret_cast<TextureHandle>((void*)NULL);
+    TextureDataMap::iterator iter = texture_data.find(render_interface);
+    if (iter != texture_data.end())
+    {
+        handle = iter->second.first;
+    }
+    else
+    {
+        render_interface->LoadTexture(
+            handle,
+            dimensions,
+            String("?image_source::") + image_source->GetImageSourceName()
+        );
+    }
+
+    Rocket::Core::byte* data = NULL;
+    image_source->GetImage(render_interface, handle, dimensions);
+    texture_data[render_interface] = TextureData(handle, dimensions);
+    return true;
 }
 
 void TextureResource::OnReferenceDeactivate()

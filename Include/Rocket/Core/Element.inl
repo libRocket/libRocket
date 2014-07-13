@@ -40,11 +40,41 @@ template< typename T >
 void Element::SetAttribute(const String& name, const T& value)
 {
 	attributes.Set(name, value);
+
 	AttributeNameList changed_attributes;
 	changed_attributes.insert(name);
-
 	OnAttributeChange(changed_attributes);
 }
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const std::string& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const String& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const int& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const float& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const char& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const Colourb& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const Colourf& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const Vector2f& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const unsigned char& value);
+
+template<>
+void ROCKETCORE_API Element::SetAttribute(const String& name, const unsigned short& value);
 
 // Gets the specified attribute, with default value.
 template< typename T >

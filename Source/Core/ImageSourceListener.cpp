@@ -23,41 +23,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *  20 Feb 2012     Initial Creation                                        Matthew Alan Gray <mgray@hatboystudios.com>
+ *   2 Mar 2012     Removed byte and source_dimensions parameters since     Matthew Alan Gray <mgray@hatboystudios.com>
+ *                  this can be obtained via ImageSource::GetImage()
  */
 
-#ifndef ROCKETCOREPYTHONEVENTINTERFACE_H
-#define ROCKETCOREPYTHONEVENTINTERFACE_H
-
-#include "EventWrapper.h"
+#include <Rocket/Core/ImageSourceListener.h>
+#include <Rocket/Core/ImageSource.h>
+#include <Rocket/Core/Log.h>
 
 namespace Rocket {
 namespace Core {
-namespace Python {
 
-/**
-	Python interface to the event class
-
-	Contains a list of static methods that wrap
-	event functions for easier use from python.
-
-	@author Lloyd Weehuizen
- */
-
-class EventInterface
+ImageSourceListener::ImageSourceListener()
 {
-public:
-	/// Initialises the python event interface
-	static void InitialisePythonInterface();
-	/// Initialise the rocket interface
-	static void InitialiseRocketInterface();
+}
 
-	/// Attribute accessor for getting event details
-	static const Rocket::Core::Dictionary	&GetParameters(EventWrapper* self);
-	static Rocket::Core::Element			*GetDragElement(EventWrapper* self);
-};
+ImageSourceListener::~ImageSourceListener()
+{
+}
+
+void ImageSourceListener::OnImageSourceDestroy(ImageSource* ROCKET_UNUSED(image_source))
+{
+}
+
+void ImageSourceListener::OnImageChange(ImageSource* ROCKET_UNUSED(image_source))
+{
+}
 
 }
 }
-}
-
-#endif
