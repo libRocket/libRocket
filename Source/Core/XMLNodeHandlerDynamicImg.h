@@ -25,58 +25,41 @@
  *
  */
 
-#ifndef ROCKETCORETEXTUREDATABASE_H
-#define ROCKETCORETEXTUREDATABASE_H
+#ifndef ROCKETCOREXMLNODEHANDLERDYNAMICIMG_H
+#define ROCKETCOREXMLNODEHANDLERDYNAMICIMG_H
 
-#include <Rocket/Core/ImageSource.h>
-#include <Rocket/Core/String.h>
-#include <map>
+#include <Rocket/Core/Types.h>
+#include <Rocket/Core/XMLNodeHandler.h>
 
 namespace Rocket {
 namespace Core {
 
-class RenderInterface;
-class TextureResource;
-
 /**
-	@author Peter Curry
+    Element Node handler that creates img RKTElements
+
+    @author Matthew Alan Gray <mgray@hatboystudios.com>
 
  *  --== Changes ==--
- *  20 Feb 2012     Edited to support the ImageSourceListener interface     Matthew Alan Gray <mgray@hatboystudios.com>
+ *  27 Apr 2012     Initial creation.                   Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
-class TextureDatabase
+class XMLNodeHandlerDynamicImg : public XMLNodeHandler
 {
 public:
-	static void Initialise();
-	static void Shutdown();
+    XMLNodeHandlerDynamicImg();
+    ~XMLNodeHandlerDynamicImg();
 
-	/// If the requested texture is already in the database, it will be returned with an extra
-	/// reference count. If not, it will be loaded through the application's render interface.
-	static TextureResource* Fetch(const String& source, const String& source_directory);
+    /// Called when a new element start is opened.
+    virtual Element* ElementStart(XMLParser* parser, const String& name, const XMLAttributes& attributes);
+    /// Called when an element is closed.
+    virtual bool ElementEnd(XMLParser* parser, const String& name);
+    /// Called for element data
+    virtual bool ElementData(XMLParser* parser, const String& data);
 
-    /// If the requested texture is already in the database, it will be returned with an extra
-    /// reference count. If not, it will be created through the application's render interface.
-    static TextureResource* Fetch(ImageSource* image_source);
-
-	/// Releases all textures in the database.
-	static void ReleaseTextures();
-
-	/// Removes a texture from the database.
-	static void RemoveTexture(TextureResource* texture);
-
-	/// Release all textures bound through a render interface.
-	static void ReleaseTextures(RenderInterface* render_interface);
-
-private:
-	TextureDatabase();
-	~TextureDatabase();
-
-	typedef std::map< String, TextureResource* > TextureMap;
-	TextureMap textures;
+    virtual void Release();
 };
 
 }
 }
 
-#endif
+#endif // ROCKETCOREXMLNODEHANDLERIMG_H

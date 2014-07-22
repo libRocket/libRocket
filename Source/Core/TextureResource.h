@@ -39,7 +39,12 @@ namespace Core {
 	unique render interface that needs to render the data. It is used through a Texture object.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *  29 Feb 2012     Adding TextureResource::Load(RenderInterface*,ImageSource*)      Matthew Alan Gray <mgray@hatboystudios.com>
  */
+
+class ImageSource;
 
 class TextureResource : public ReferenceCountable
 {
@@ -67,6 +72,11 @@ public:
 protected:
 	/// Attempts to load the texture from the source.
 	bool Load(RenderInterface* render_interface) const;
+
+    /// Attempts to load a generated texture into the resource. This always succeeds, as texture
+    /// loading is delayed until the texture is accessed by a specific render interface. All this
+    /// does is store the source, data, and dimensions.
+    bool Load(RenderInterface* render_interface, ImageSource* image_source);
 
 	/// Releases the texture and destroys the resource.
 	virtual void OnReferenceDeactivate();

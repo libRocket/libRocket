@@ -43,6 +43,9 @@ class Context;
 	implementation of this class and install it through Core::SetRenderInterface() in order for anything to be rendered.
 
 	@author Peter Curry
+
+ *  --== Changes ==--
+ *   2 Mar 2012     Added a LoadTexture() method for dynamic ImageSource objects     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 class ROCKETCORE_API RenderInterface : public ReferenceCountable

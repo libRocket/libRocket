@@ -23,6 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
+ *  --== Changes ==--
+ *  21 Feb 2012     Added registration of XMLNodeHandlerImg for dynamic-img tag     Matthew Alan Gray <mgray@hatboystudios.com>
  */
 
 #include "precompiled.h"
@@ -36,6 +38,7 @@
 #include "DecoratorTiledVerticalInstancer.h"
 #include "ElementHandle.h"
 #include "ElementImage.h"
+#include <Rocket/Core/ElementDynamicImage.h>
 #include "ElementTextDefault.h"
 #include "EventInstancerDefault.h"
 #include "FontEffectNoneInstancer.h"
@@ -47,6 +50,7 @@
 #include "StyleSheetFactory.h"
 #include "TemplateCache.h"
 #include "XMLNodeHandlerBody.h"
+#include "XMLNodeHandlerDynamicImg.h"
 #include "XMLNodeHandlerDefault.h"
 #include "XMLNodeHandlerHead.h"
 #include "XMLNodeHandlerTemplate.h"
@@ -101,6 +105,7 @@ bool Factory::Initialise()
 	// Bind the default element instancers
 	RegisterElementInstancer("*", new ElementInstancerGeneric< Element >())->RemoveReference();
 	RegisterElementInstancer("img", new ElementInstancerGeneric< ElementImage >())->RemoveReference();
+    RegisterElementInstancer("dynamic-img", new ElementInstancerGeneric< ElementDynamicImage >())->RemoveReference();
 	RegisterElementInstancer("#text", new ElementInstancerGeneric< ElementTextDefault >())->RemoveReference();
 	RegisterElementInstancer("handle", new ElementInstancerGeneric< ElementHandle >())->RemoveReference();
 	RegisterElementInstancer("body", new ElementInstancerGeneric< ElementDocument >())->RemoveReference();
@@ -118,6 +123,7 @@ bool Factory::Initialise()
 
 	// Register the core XML node handlers.
 	XMLParser::RegisterNodeHandler("", new XMLNodeHandlerDefault())->RemoveReference();
+    XMLParser::RegisterNodeHandler("dynamic-img", new XMLNodeHandlerDynamicImg())->RemoveReference();
 	XMLParser::RegisterNodeHandler("body", new XMLNodeHandlerBody())->RemoveReference();
 	XMLParser::RegisterNodeHandler("head", new XMLNodeHandlerHead())->RemoveReference();
 	XMLParser::RegisterNodeHandler("template", new XMLNodeHandlerTemplate())->RemoveReference();

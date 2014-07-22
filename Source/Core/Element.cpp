@@ -179,9 +179,10 @@ void Element::Render()
 	{
 		background->RenderBackground();
 		border->RenderBorder();
-		decoration->RenderDecorators();
 
 		OnRender();
+
+        decoration->RenderDecorators();
 	}
 
 	// Render the rest of the elements in the stacking context.
