@@ -154,17 +154,14 @@ int ElementUtilities::GetLineHeight(Element* element)
 			Rocket::Core::ElementDocument* owner_document = element->GetOwnerDocument();
 			if (owner_document == NULL)
 				return 0;
-			
-			FontFaceHandle* parent_font_face_handle = owner_document->GetFontFaceHandle();
-			if (parent_font_face_handle == NULL)
-				return 0;
-			
-			int parent_line_height = parent_font_face_handle->GetLineHeight();
-			const Property* parent_line_height_property = owner_document->GetLineHeightProperty();
-			
-			float calculated_parent_line_height = parent_line_height_property->value.Get< float >() * parent_line_height;
-			
-			return Math::Round((line_height_property->value.Get< float >() * calculated_parent_line_height));
+
+			/// @TODO In release mode, using REM on a body tag will result in an infinite recursion loop
+			/// and eventually a stack overflow crash, this needs to be resolved.
+			ROCKET_ASSERTMSG(owner_document != element, "REM unit is not allowed on document or body root.");
+
+			float base_value = owner_document->ResolveProperty(FONT_SIZE, 0);
+
+			return Math::Round(line_height_property->value.Get< float >() * base_value);
 		}
 	case Property::NUMBER:
 	case Property::EM:
