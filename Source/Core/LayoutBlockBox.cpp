@@ -200,6 +200,13 @@ LayoutBlockBox::CloseResult LayoutBlockBox::Close()
 		box.SetContent(content_area);
 	}
 
+	if (parent && parent->GetBox().GetSize().x < 0)
+	{
+		Vector2f content_area = parent->GetBox().GetSize();
+		content_area.x = Math::Max(content_area.x, box.GetPosition().x + box.GetSize(Box::MARGIN).x);
+		parent->GetBox().SetContent(content_area);
+	}
+
 	// Set the computed box on the element.
 	if (element != NULL)
 	{
