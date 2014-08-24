@@ -42,8 +42,10 @@
 // if the OpenGL Extension Wrangler Library (GLEW) should not be used
 // include the standard OpenGL library
 #ifndef ENABLE_GLEW
+#ifdef _MSC_VER 
 // NOTE: add this if you receive a lot of errors in gl.h
-//#include <windows.h>
+#include <windows.h>
+#endif
 #include <GL/gl.h>
 #endif
 
