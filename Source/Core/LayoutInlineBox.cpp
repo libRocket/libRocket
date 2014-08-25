@@ -30,16 +30,16 @@
 #include "FontFaceHandle.h"
 #include "LayoutBlockBox.h"
 #include "LayoutEngine.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/ElementUtilities.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/ElementUtilities.h"
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
 
 // Constructs a new inline box for an element.
-LayoutInlineBox::LayoutInlineBox(Element* _element, const Box& _box) : box(_box), position(0, 0)
+LayoutInlineBox::LayoutInlineBox(Element* _element, const Box& _box) : position(0, 0), box(_box)
 {
 	line = NULL;
 
@@ -81,7 +81,7 @@ LayoutInlineBox::LayoutInlineBox(Element* _element, const Box& _box) : box(_box)
 }
 
 // Constructs a new inline box for a split box.
-LayoutInlineBox::LayoutInlineBox(LayoutInlineBox* _chain) : box(_chain->GetBox()), position(0, 0)
+LayoutInlineBox::LayoutInlineBox(LayoutInlineBox* _chain) : position(0, 0), box(_chain->GetBox())
 {
 	line = NULL;
 
@@ -151,8 +151,12 @@ bool LayoutInlineBox::IsLastChild() const
 }
 
 // Flows the inline box's content into its parent line.
-LayoutInlineBox* LayoutInlineBox::FlowContent(bool ROCKET_UNUSED(first_box), float ROCKET_UNUSED(available_width), float ROCKET_UNUSED(right_spacing_width))
+LayoutInlineBox* LayoutInlineBox::FlowContent(bool ROCKET_UNUSED_PARAMETER(first_box), float ROCKET_UNUSED_PARAMETER(available_width), float ROCKET_UNUSED_PARAMETER(right_spacing_width))
 {
+	ROCKET_UNUSED(first_box);
+	ROCKET_UNUSED(available_width);
+	ROCKET_UNUSED(right_spacing_width);
+
 	// If we're representing a sized element, then add our element's width onto our parent's.
 	if (parent != NULL &&
 		box.GetSize().x > 0)

@@ -28,8 +28,8 @@
 #ifndef ROCKETCOREEVENTLISTENER_H
 #define ROCKETCOREEVENTLISTENER_H
 
-#include <Rocket/Core/Header.h>
-#include <Rocket/Core/Event.h>
+#include "Header.h"
+#include "Event.h"
 
 namespace Rocket {
 namespace Core {
@@ -52,13 +52,15 @@ public:
 	virtual void ProcessEvent(Event& event) = 0;
 
 	/// Called when the listener has been attached to a new Element
-	virtual void OnAttach(Element* ROCKET_UNUSED(element))
+	virtual void OnAttach(Element* ROCKET_UNUSED_PARAMETER(element))
 	{
+		ROCKET_UNUSED(element);
 	}
 
 	/// Called when the listener has been detached from a Element
-	virtual void OnDetach(Element* ROCKET_UNUSED(element))
+	virtual void OnDetach(Element* ROCKET_UNUSED_PARAMETER(element))
 	{
+		ROCKET_UNUSED(element);
 	}
 };
 

@@ -25,12 +25,12 @@
  *
  */
 
-#include <Rocket/Controls/ElementDataGridRow.h>
-#include <Rocket/Core.h>
-#include <Rocket/Controls/DataSource.h>
-#include <Rocket/Controls/DataFormatter.h>
-#include <Rocket/Controls/ElementDataGrid.h>
-#include <Rocket/Controls/ElementDataGridCell.h>
+#include "../../Include/Rocket/Controls/ElementDataGridRow.h"
+#include "../../Include/Rocket/Core.h"
+#include "../../Include/Rocket/Controls/DataSource.h"
+#include "../../Include/Rocket/Controls/DataFormatter.h"
+#include "../../Include/Rocket/Controls/ElementDataGrid.h"
+#include "../../Include/Rocket/Controls/ElementDataGridCell.h"
 
 namespace Rocket {
 namespace Controls {
@@ -61,6 +61,7 @@ ElementDataGridRow::~ElementDataGridRow()
 	if (data_source)
 	{
 		data_source->DetachListener(this);
+		data_source = NULL;
 	}
 }
 
@@ -109,8 +110,11 @@ int ElementDataGridRow::GetDepth()
 
 void ElementDataGridRow::SetDataSource(const Rocket::Core::String& data_source_name)
 {
-	if (data_source)
+	if (data_source != NULL)
+	{
 		data_source->DetachListener(this);
+		data_source = NULL;
+	}
 
 	if (ParseDataSource(data_source, data_table, data_source_name))
 	{
@@ -245,11 +249,13 @@ ElementDataGrid* ElementDataGridRow::GetParentGrid()
 	return parent_grid;
 }
 
-void ElementDataGridRow::OnDataSourceDestroy(DataSource* ROCKET_UNUSED(_data_source))
+void ElementDataGridRow::OnDataSourceDestroy(DataSource* data_source)
 {
-	data_source->DetachListener(this);
-	data_source = NULL;
-
+	if(data_source != NULL)
+	{
+		data_source->DetachListener(this);
+		data_source = NULL;
+	}
 	RemoveChildren();
 }
 
@@ -284,7 +290,7 @@ void ElementDataGridRow::RefreshRows()
 	RemoveChildren();
 
 	// Load the children from the data source.
-	if (data_source)
+	if (data_source != NULL)
 	{
 		int num_rows = data_source->GetNumRows(data_table);
 		if (num_rows > 0)
@@ -368,7 +374,7 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 
 	// We need to make a row for each new child, then pass through the cell
 	// information and the child's data source (if one exists.)
-	if (data_source)
+	if (data_source != NULL)
 	{
 		for (int i = 0; i < num_rows_added; i++)
 		{

@@ -26,10 +26,10 @@
  */
 
 #include "InputTypeText.h"
-#include <Rocket/Core/ElementUtilities.h>
+#include "../../Include/Rocket/Core/ElementUtilities.h"
 #include "WidgetTextInputSingleLine.h"
 #include "WidgetTextInputSingleLinePassword.h"
-#include <Rocket/Controls/ElementFormControlInput.h>
+#include "../../Include/Rocket/Controls/ElementFormControlInput.h"
 
 namespace Rocket {
 namespace Controls {
@@ -96,8 +96,9 @@ void InputTypeText::OnPropertyChange(const Core::PropertyNameList& changed_prope
 }
 
 // Checks for necessary functional changes in the control as a result of the event.
-void InputTypeText::ProcessEvent(Core::Event& ROCKET_UNUSED(event))
+void InputTypeText::ProcessEvent(Core::Event& ROCKET_UNUSED_PARAMETER(event))
 {
+	ROCKET_UNUSED(event);
 }
 
 // Sizes the dimensions to the element's inherent size.

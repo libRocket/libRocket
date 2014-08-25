@@ -27,16 +27,16 @@
 
 #include "precompiled.h"
 #include "LayoutEngine.h"
-#include <Rocket/Core/Math.h>
+#include "../../Include/Rocket/Core/Math.h"
 #include "Pool.h"
 #include "LayoutBlockBoxSpace.h"
 #include "LayoutInlineBoxText.h"
-#include <Rocket/Core/Element.h>
-#include <Rocket/Core/ElementScroll.h>
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/Types.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/Element.h"
+#include "../../Include/Rocket/Core/ElementScroll.h"
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Core/Types.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 #include <math.h>
 
 namespace Rocket {
@@ -282,12 +282,18 @@ Vector2f& LayoutEngine::Round(Vector2f& value)
 // Rounds a floating-point value to an integral value.
 float LayoutEngine::Round(float value)
 {
-	return ceilf(value);
+#if defined(_MSC_VER) && _MSC_VER < 1800
+	// Before Visual Studio 2013, roundf did not exist
+	return value >= 0.0f ? floorf(value + 0.5f) : ceilf(value - 0.5f);
+#else
+	return roundf(value);
+#endif
 }
 
-void* LayoutEngine::AllocateLayoutChunk(size_t size)
+void* LayoutEngine::AllocateLayoutChunk(size_t ROCKET_UNUSED_ASSERT_PARAMETER(size))
 {
-	(size);
+	ROCKET_UNUSED_ASSERT(size);
+
 	ROCKET_ASSERT(size <= LayoutChunk::size);
 
 	return layout_chunk_pool.AllocateObject();

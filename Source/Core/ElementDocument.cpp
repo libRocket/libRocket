@@ -26,9 +26,9 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/ElementDocument.h>
-#include <Rocket/Core/StreamMemory.h>
-#include <Rocket/Core.h>
+#include "../../Include/Rocket/Core/ElementDocument.h"
+#include "../../Include/Rocket/Core/StreamMemory.h"
+#include "../../Include/Rocket/Core.h"
 #include "DocumentHeader.h"
 #include "ElementStyle.h"
 #include "EventDispatcher.h"
@@ -287,8 +287,10 @@ bool ElementDocument::IsModal() const
 }
 
 // Default load script implementation
-void ElementDocument::LoadScript(Stream* ROCKET_UNUSED(stream), const String& ROCKET_UNUSED(source_name))
+void ElementDocument::LoadScript(Stream* ROCKET_UNUSED_PARAMETER(stream), const String& ROCKET_UNUSED_PARAMETER(source_name))
 {
+	ROCKET_UNUSED(stream);
+	ROCKET_UNUSED(source_name);
 }
 
 // Updates the layout if necessary.

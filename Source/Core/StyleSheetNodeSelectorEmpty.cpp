@@ -27,8 +27,8 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorEmpty.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -42,8 +42,11 @@ StyleSheetNodeSelectorEmpty::~StyleSheetNodeSelectorEmpty()
 }
 
 // Returns true if the element has no DOM children.
-bool StyleSheetNodeSelectorEmpty::IsApplicable(const Element* element, int ROCKET_UNUSED(a), int ROCKET_UNUSED(b))
+bool StyleSheetNodeSelectorEmpty::IsApplicable(const Element* element, int ROCKET_UNUSED_PARAMETER(a), int ROCKET_UNUSED_PARAMETER(b))
 {
+	ROCKET_UNUSED(a);
+	ROCKET_UNUSED(b);
+
 	for (int i = 0; i < element->GetNumChildren(); ++i)
 	{
 		if (element->GetChild(i)->GetDisplay() != DISPLAY_NONE)
