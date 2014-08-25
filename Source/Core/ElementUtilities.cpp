@@ -163,27 +163,27 @@ int ElementUtilities::GetLineHeight(Element* element)
 
 			return Math::Round(line_height_property->value.Get< float >() * base_value);
 		}
-	case Property::NUMBER:
-	case Property::EM:
-		// If the property is a straight number or an em measurement, then it scales the line height.
-		return Math::Round(line_height_property->value.Get< float >() * line_height);
-	case Property::PERCENT:
-		// If the property is a percentage, then it scales the line height.
-		return Math::Round(line_height_property->value.Get< float >() * line_height * 0.01f);
-	case Property::PX:
-		// A px measurement.
-		return Math::Round(line_height_property->value.Get< float >());
-	case Property::INCH:
-		// Values based on pixels-per-inch.
-		return Math::Round(line_height_property->value.Get< float >() * inch);
-	case Property::CM:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 2.54f));
-	case Property::MM:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 25.4f));
-	case Property::PT:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 72.0f));
-	case Property::PC:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 6.0f));
+		case Property::NUMBER:
+		case Property::EM:
+			// If the property is a straight number or an em measurement, then it scales the line height.
+			return Math::Round(line_height_property->value.Get< float >() * line_height);
+		case Property::PERCENT:
+			// If the property is a percentage, then it scales the line height.
+			return Math::Round(line_height_property->value.Get< float >() * line_height * 0.01f);
+		case Property::PX:
+			// A px measurement.
+			return Math::Round(line_height_property->value.Get< float >());
+		case Property::INCH:
+			// Values based on pixels-per-inch.
+			return Math::Round(line_height_property->value.Get< float >() * inch);
+		case Property::CM:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 2.54f));
+		case Property::MM:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 25.4f));
+		case Property::PT:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 72.0f));
+		case Property::PC:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 6.0f));
 	}
 
 	return 0;
