@@ -296,7 +296,6 @@ void ElementDocument::LoadScript(Stream* ROCKET_UNUSED_PARAMETER(stream), const 
 // Updates the layout if necessary.
 void ElementDocument::_UpdateLayout()
 {
-	layout_dirty = false;
 	lock_layout++;
 
 	Vector2f containing_block(0, 0);
@@ -307,6 +306,7 @@ void ElementDocument::_UpdateLayout()
 	layout_engine.FormatElement(this, containing_block);
 	
 	lock_layout--;
+	layout_dirty = false;
 }
 
 // Updates the position of the document based on the style properties.
