@@ -134,15 +134,15 @@ int main(int, char**)
 
 	Shell::EventLoop(GameLoop);	
 
-	// Shutdown the Rocket contexts.	
-	context->RemoveReference();
-	
-	// Shutdown Lua  before we shut down Rocket.
-	Rocket::Core::Lua::Interpreter::Shutdown();
-
 	// Shut down the game singletons.
 	HighScores::Shutdown();
 
+	// Shutdown Lua  before we shut down Rocket.
+	Rocket::Core::Lua::Interpreter::Shutdown();
+
+	// Shutdown the Rocket contexts.	
+	context->RemoveReference();
+	
 	// Shutdown Rocket.
 	Rocket::Core::Shutdown();
 

@@ -235,6 +235,7 @@ void Interpreter::Initialise(lua_State *luaStatePointer)
 void Interpreter::Shutdown()
 {
 	lua_close(_L);
+    _L = NULL;
 }
 
 

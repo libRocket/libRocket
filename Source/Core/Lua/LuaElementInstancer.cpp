@@ -55,6 +55,8 @@ Element* LuaElementInstancer::InstanceElement(Element* ROCKET_UNUSED_PARAMETER(p
     ROCKET_UNUSED(attributes);
 
     lua_State* L = Interpreter::GetLuaState();
+    if(L == NULL) //Lua is shutdown already
+        return NULL;
     int top = lua_gettop(L);
     Element* ret = NULL;
     if(ref_InstanceElement != LUA_REFNIL && ref_InstanceElement != LUA_NOREF)
