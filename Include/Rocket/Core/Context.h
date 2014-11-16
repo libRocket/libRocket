@@ -209,6 +209,10 @@ public:
 	/// @return True if the event was not consumed (ie, was prevented from propagating by an element), false if it was.
 	bool ProcessMouseWheel(int wheel_delta, int key_modifier_state);
 
+	void ProcessTouchMove(int finger_id, int x, int y, int key_modifier_state);
+	void ProcessTouchDown(int finger_id, int x, int y, int key_modifier_state);
+	void ProcessTouchUp(int finger_id, int x, int y, int key_modifier_state);
+
 	/// Gets the context's render interface.
 	/// @return The render interface the context renders through.
 	RenderInterface* GetRenderInterface() const;
@@ -260,6 +264,21 @@ private:
 	// The time the last click occured.
 	float last_click_time;
 
+	// Stores all the info for a single finger touch
+	struct TouchInfo {
+		Element* last_click_element;
+		float last_click_time;
+		ElementReference hover;
+		ElementSet hover_chain;
+		Vector2i position;
+	};
+	typedef std::map<int, TouchInfo> TouchMap;
+	TouchMap touches;
+
+	// Initializes the touches entry for the finger_id (if necessary)
+	// and returns a reference.
+	TouchInfo& InitTouchInfo(int finger_id);
+
 	typedef std::map< String, ElementDocument* > CursorMap;
 	CursorMap cursors;
 	ElementReference default_cursor;
@@ -302,6 +321,10 @@ private:
 
 	// Updates the current hover elements, sending required events.
 	void UpdateHoverChain(const Dictionary& parameters, const Dictionary& drag_parameters, const Vector2i& old_mouse_position);
+
+	// Updates the hover elements for the specified finger_id, sending required events
+	void UpdateTouchHoverChain(int finger_id, const Dictionary& parameters);
+
 	// Returns the youngest descendent of the given element which is under the given point in screen coordinates.
 	// @param[in] point The point to test.
 	// @param[in] ignore_element If set, this element and its descendents will be ignored.
@@ -320,6 +343,8 @@ private:
 	void GenerateKeyEventParameters(Dictionary& parameters, Input::KeyIdentifier key_identifier);
 	// Builds the parameters for a generic mouse event.
 	void GenerateMouseEventParameters(Dictionary& parameters, int button_index = -1);
+	// Builds the parameters for a generic touch event
+	void GenerateTouchEventParameters(Dictionary& parameters, int finger_id);
 	// Builds the parameters for the key modifier state.
 	void GenerateKeyModifierEventParameters(Dictionary& parameters, int key_modifier_state);
 	// Builds the parameters for a drag event.

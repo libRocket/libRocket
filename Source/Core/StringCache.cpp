@@ -116,5 +116,11 @@ const String DRAGOUT = "dragout";
 const String DRAGEND = "dragend";
 const String RESIZE = "resize";
 
+const String TOUCHDOWN = "touchdown";
+const String TOUCHUP = "touchup";
+const String TOUCHOVER = "touchover";
+const String TOUCHOUT = "touchout";
+const String TOUCHMOVE = "touchmove";
+
 }
 }
