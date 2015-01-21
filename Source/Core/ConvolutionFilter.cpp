@@ -115,7 +115,11 @@ void ConvolutionFilter::Run(byte* destination, const Vector2i& destination_dimen
 				opacity /= num_pixels;
 
 			opacity = Math::Min(255, opacity);
+#ifdef ROCKET_8BPP_FONTS
+			destination[x] = (byte) opacity;
+#else
 			destination[x * 4 + 3] = (byte) opacity;
+#endif
 		}
 
 		destination += destination_stride;

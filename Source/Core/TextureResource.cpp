@@ -123,6 +123,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 
 		bool delete_data = false;
 		const byte* data = NULL;
+		int samples = 4;
 
 		// Find the generation protocol and generate the data accordingly.
 		String protocol = source.Substring(1, source.Find("::") - 1);
@@ -139,6 +140,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 			{
 				handle->GenerateLayerTexture(data,
 											 dimensions,
+											 samples,
 											 layer_id,
 											 texture_id);
 			}
@@ -149,7 +151,7 @@ bool TextureResource::Load(RenderInterface* render_interface) const
 		if (data != NULL)
 		{
 			TextureHandle handle;
-			bool success = render_interface->GenerateTexture(handle, data, dimensions);
+			bool success = render_interface->GenerateTexture(handle, data, dimensions, samples);
 
 			if (delete_data)
 				delete[] data;

@@ -71,8 +71,9 @@ public:
 
 	/// Attempts to generate an efficient texture layout for the rectangles.
 	/// @param[in] max_texture_dimensions The maximum dimensions allowed for any single texture.
+	/// @param[in] samples Pixel size of texture data, in bytes.
 	/// @return True if the layout was generated successfully, false if not.
-	bool GenerateLayout(int max_texture_dimensions);
+	bool GenerateLayout(int max_texture_dimensions, int samples);
 
 private:
 	typedef std::vector< TextureLayoutRectangle > RectangleList;

@@ -82,10 +82,11 @@ bool TextureLayoutRectangle::IsPlaced() const
 }
 
 // Sets the rectangle's texture data and stride.
-void TextureLayoutRectangle::Allocate(byte* _texture_data, int _texture_stride)
+void TextureLayoutRectangle::Allocate(byte* _texture_data, int _texture_stride, int _texture_samples)
 {
-	texture_data = _texture_data + ((texture_position.y * _texture_stride) + texture_position.x * 4);
+	texture_data = _texture_data + ((texture_position.y * _texture_stride) + texture_position.x * _texture_samples);
 	texture_stride = _texture_stride;
+	texture_samples = _texture_samples;
 }
 
 // Returns the index of the texture this rectangle is placed on.

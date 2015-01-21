@@ -87,10 +87,10 @@ int TextureLayoutRow::Generate(TextureLayout& layout, int max_width, int y)
 }
 
 // Assigns allocated texture data to all rectangles in this row.
-void TextureLayoutRow::Allocate(byte* texture_data, int stride)
+void TextureLayoutRow::Allocate(byte* texture_data, int stride, int samples)
 {
 	for (size_t i = 0; i < rectangles.size(); ++i)
-		rectangles[i]->Allocate(texture_data, stride);
+		rectangles[i]->Allocate(texture_data, stride, samples);
 }
 
 // Returns the height of the row.

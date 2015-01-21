@@ -65,9 +65,10 @@ public:
 	/// Generates the texture data for a layer (for the texture database).
 	/// @param[out] texture_data The pointer to be set to the generated texture data.
 	/// @param[out] texture_dimensions The dimensions of the texture.
+	/// @param[out] texture_samples Pixel size of the texture, in bytes.
 	/// @param[in] glyphs The glyphs required by the font face handle.
 	/// @param[in] texture_id The index of the texture within the layer to generate.
-	bool GenerateTexture(const byte*& texture_data, Vector2i& texture_dimensions, int texture_id);
+	bool GenerateTexture(const byte*& texture_data, Vector2i& texture_dimensions, int &texture_samples, int texture_id);
 	/// Generates the geometry required to render a single character.
 	/// @param[out] geometry An array of geometries this layer will write to. It must be at least as big as the number of textures in this layer.
 	/// @param[in] character_code The character to generate geometry for.

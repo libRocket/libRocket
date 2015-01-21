@@ -122,8 +122,12 @@ bool FontFaceLayer::Initialise(const FontFaceHandle* _handle, FontEffect* _effec
 		}
 
 		// Generate the texture layout; this will position the glyph rectangles efficiently and
-		// allocate the texture data ready for writing.
-		if (!texture_layout.GenerateLayout(512))
+		// allocate the 8bit texture data ready for writing.
+#ifdef ROCKET_8BPP_FONTS
+		if (!texture_layout.GenerateLayout(512, 1))
+#else
+		if (!texture_layout.GenerateLayout(512, 4))
+#endif
 			return false;
 
 
@@ -162,7 +166,7 @@ bool FontFaceLayer::Initialise(const FontFaceHandle* _handle, FontEffect* _effec
 }
 
 // Generates the texture data for a layer (for the texture database).
-bool FontFaceLayer::GenerateTexture(const byte*& texture_data, Vector2i& texture_dimensions, int texture_id)
+bool FontFaceLayer::GenerateTexture(const byte*& texture_data, Vector2i& texture_dimensions, int &texture_samples, int texture_id)
 {
 	if (texture_id < 0 ||
 		texture_id > texture_layout.GetNumTextures())
@@ -173,6 +177,11 @@ bool FontFaceLayer::GenerateTexture(const byte*& texture_data, Vector2i& texture
 	// Generate the texture data.
 	texture_data = texture_layout.GetTexture(texture_id).AllocateTexture();
 	texture_dimensions = texture_layout.GetTexture(texture_id).GetDimensions();
+#ifdef ROCKET_8BPP_FONTS
+	texture_samples = 1;
+#else
+	texture_samples = 4;
+#endif
 
 	for (int i = 0; i < texture_layout.GetNumRectangles(); ++i)
 	{
@@ -194,9 +203,12 @@ bool FontFaceLayer::GenerateTexture(const byte*& texture_data, Vector2i& texture
 
 				for (int j = 0; j < glyph.bitmap_dimensions.y; ++j)
 				{
+#ifdef ROCKET_8BPP_FONTS
+					memcpy(destination, source, glyph.bitmap_dimensions.x);
+#else
 					for (int k = 0; k < glyph.bitmap_dimensions.x; ++k)
 						destination[k * 4 + 3] = source[k];
-
+#endif
 					destination += rectangle.GetTextureStride();
 					source += glyph.bitmap_dimensions.x;
 				}

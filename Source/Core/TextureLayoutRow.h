@@ -57,7 +57,8 @@ public:
 	/// Assigns allocated texture data to all rectangles in this row.
 	/// @param[in] texture_data The pointer to the beginning of the texture's data.
 	/// @param[in] stride The stride of the texture's surface, in bytes;
-	void Allocate(byte* texture_data, int stride);
+	/// @param[in] samples Pixel size of the texture, in bytes;
+	void Allocate(byte* texture_data, int stride, int samples);
 
 	/// Returns the height of the row.
 	/// @return The row's height.

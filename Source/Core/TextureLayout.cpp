@@ -87,7 +87,7 @@ int TextureLayout::GetNumTextures() const
 }
 
 // Attempts to generate an efficient texture layout for the rectangles.
-bool TextureLayout::GenerateLayout(int max_texture_dimensions)
+bool TextureLayout::GenerateLayout(int max_texture_dimensions, int samples)
 {
 	// Sort the rectangles by height.
 	std::sort(rectangles.begin(), rectangles.end(), RectangleSort());
@@ -95,7 +95,7 @@ bool TextureLayout::GenerateLayout(int max_texture_dimensions)
 	int num_placed_rectangles = 0;
 	while (num_placed_rectangles != GetNumRectangles())
 	{
-		TextureLayoutTexture texture;
+		TextureLayoutTexture texture(samples);
 		int texture_size = texture.Generate(*this, max_texture_dimensions);
 		if (texture_size == 0)
 			return false;

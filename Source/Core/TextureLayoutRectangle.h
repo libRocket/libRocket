@@ -66,7 +66,8 @@ public:
 	/// Sets the rectangle's texture data and stride.
 	/// @param[in] texture_data The pointer to the top-left corner of the texture's data.
 	/// @param[in] texture_stride The stride of the texture data, in bytes.
-	void Allocate(byte* texture_data, int texture_stride);
+	/// @param[in] texture_samples Pixel size of the texture data, in bytes.
+	void Allocate(byte* texture_data, int texture_stride, int texture_samples);
 
 	/// Returns the index of the texture this rectangle is placed on.
 	/// @return The texture index.
@@ -87,6 +88,7 @@ private:
 
 	byte* texture_data;
 	int texture_stride;
+	int texture_samples;
 };
 
 }

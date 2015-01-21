@@ -34,9 +34,9 @@
 namespace Rocket {
 namespace Core {
 
-TextureLayoutTexture::TextureLayoutTexture() : dimensions(0, 0)
+TextureLayoutTexture::TextureLayoutTexture(int samples) : 
+	dimensions(0, 0), texture_data(NULL), samples(samples)
 {
-	texture_data = NULL;
 }
 
 TextureLayoutTexture::~TextureLayoutTexture()
@@ -143,14 +143,21 @@ byte* TextureLayoutTexture::AllocateTexture()
 	if (dimensions.x > 0 &&
 		dimensions.y > 0)
 	{
-		texture_data = new byte[dimensions.x * dimensions.y * 4];
+		texture_data = new byte[dimensions.x * dimensions.y * samples];
 
 		// Set the texture to transparent white.
-		for (int i = 0; i < dimensions.x * dimensions.y; i++)
-			((unsigned int*)(texture_data))[i] = 0x00ffffff;
+		switch (samples) {
+			case 4:
+				for (int i = 0; i < dimensions.x * dimensions.y; i++)
+					((unsigned int*)(texture_data))[i] = 0x00ffffff;
+				break;
+			default:
+				memset(texture_data, 255, dimensions.x * dimensions.y * samples);
+				break;
+		}
 
 		for (size_t i = 0; i < rows.size(); ++i)
-			rows[i].Allocate(texture_data, dimensions.x * 4);
+			rows[i].Allocate(texture_data, dimensions.x * samples, samples);
 	}
 
 	return texture_data;
