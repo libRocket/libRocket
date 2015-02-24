@@ -29,32 +29,36 @@
 #include "../../Include/Rocket/Core/String.h"
 #include "../../Include/Rocket/Core/StringBase.h"
 
+#include <memory>
+
 namespace Rocket {
 namespace Core {
 
 int ROCKETCORE_API RocketStringFormatString(StringBase<char>& string, int max_size, const char* format, va_list argument_list)
 {
-	const int INTERNAL_BUFFER_SIZE = 1024;
-	static char buffer[INTERNAL_BUFFER_SIZE];
-	char* buffer_ptr = buffer;
+	const int INTERNAL_BUFFER_SIZE = 2048;
+	int length = 0;
 
 	if (max_size + 1 > INTERNAL_BUFFER_SIZE)
-		buffer_ptr = new char[max_size + 1];
-
-	int length = vsnprintf(buffer_ptr, max_size, format, argument_list);
-	buffer_ptr[length >= 0 ? length : max_size] = '\0';
-	#ifdef ROCKET_DEBUG
-		if (length == -1)
-		{
-			Log::Message(Log::LT_WARNING, "String::sprintf: String truncated to %d bytes when processing %s", max_size, format);
-		}
-	#endif
-
-	string = buffer_ptr;
-
-	if (buffer_ptr != buffer)
-		delete[] buffer_ptr;
-
+	{
+		std::unique_ptr<char[]> buffer_ptr(new char[max_size + 1]);
+		int length = vsnprintf(buffer_ptr.get(), max_size, format, argument_list);
+		buffer_ptr[length >= 0 ? length : max_size] = '\0';
+		string = buffer_ptr.get();
+	}
+	else
+	{
+		char buffer[INTERNAL_BUFFER_SIZE];
+		int length = vsnprintf(buffer, max_size, format, argument_list);
+		buffer[length >= 0 ? length : max_size] = '\0';
+		string = buffer;
+	}
+#ifdef ROCKET_DEBUG
+	if (length == -1)
+	{
+		Log::Message(Log::LT_WARNING, "String::sprintf: String truncated to %d bytes when processing %s", max_size, format);
+	}
+#endif
 	return length;
 }
 
