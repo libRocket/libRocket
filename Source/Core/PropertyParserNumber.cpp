@@ -76,8 +76,15 @@ bool PropertyParserNumber::ParseValue(Property& property, const String& value, c
 	}
 
 	float float_value;
-	if ( (sscanf(value.CString(), "%f", &float_value) == 1) 
-	     || (!stSuffix.Empty() && sscanf(value.Replace(stSuffix,"").CString(),"%f",&float_value)==1))
+	if ( (sscanf(value.CString(), "%f", &float_value) == 1)
+#ifdef __EMSCRIPTEN__
+	// this is a hack due the fact that emscripten is not converting float of the
+	// form 10.5em because it interprets the e following the 5 as exponential part
+	// of the float. gcc is doing it but also in an undefined way as it consumes the e
+	// which should be part of the following string.
+	     || (!stSuffix.Empty() && sscanf(value.Replace(stSuffix,"").CString(),"%f",&float_value)==1)
+#endif
+	   )
 	{
 		property.value = Variant(float_value);
 		return true;
