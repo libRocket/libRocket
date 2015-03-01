@@ -113,7 +113,7 @@ int main(int ROCKET_UNUSED_PARAMETER(argc), char** ROCKET_UNUSED_PARAMETER(argv)
 	Shell::LoadFonts("../../assets/");
 
 	// Create the file data source and formatter.
-	FileSystem file_system("../treeview/");
+	FileSystem file_system("../Samples/basic/treeview/");
 	FileFormatter file_formatter;
 
 	// Load and show the demo document.
