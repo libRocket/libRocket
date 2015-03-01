@@ -34,7 +34,13 @@ namespace Core {
 PropertyParserNumber::PropertyParserNumber()
 {
 	unit_suffixes.push_back(UnitSuffix(Property::PX, "px"));
+	unit_suffixes.push_back(UnitSuffix(Property::REM, "rem"));
 	unit_suffixes.push_back(UnitSuffix(Property::EM, "em"));
+	unit_suffixes.push_back(UnitSuffix(Property::INCH, "in"));
+	unit_suffixes.push_back(UnitSuffix(Property::CM, "cm"));
+	unit_suffixes.push_back(UnitSuffix(Property::MM, "mm"));
+	unit_suffixes.push_back(UnitSuffix(Property::PT, "pt"));
+	unit_suffixes.push_back(UnitSuffix(Property::PC, "pc"));
 	unit_suffixes.push_back(UnitSuffix(Property::PERCENT, "%"));
 }
 
@@ -43,8 +49,10 @@ PropertyParserNumber::~PropertyParserNumber()
 }
 
 // Called to parse a RCSS number declaration.
-bool PropertyParserNumber::ParseValue(Property& property, const String& value, const ParameterMap& ROCKET_UNUSED(parameters)) const
+bool PropertyParserNumber::ParseValue(Property& property, const String& value, const ParameterMap& ROCKET_UNUSED_PARAMETER(parameters)) const
 {
+	ROCKET_UNUSED(parameters);
+
 	// Default to a simple number.
 	property.unit = Property::NUMBER;
 

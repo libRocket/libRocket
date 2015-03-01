@@ -28,7 +28,7 @@
 #ifndef ROCKETCORESTRINGCACHE_H
 #define ROCKETCORESTRINGCACHE_H
 
-#include <Rocket/Core/String.h>
+#include "../../Include/Rocket/Core/String.h"
 
 namespace Rocket {
 namespace Core {
@@ -95,6 +95,7 @@ extern const String CURSOR;
 extern const String DRAG;
 extern const String TAB_INDEX;
 extern const String SCROLLBAR_MARGIN;
+extern const String SCROLL_DEFAULT_STEP_SIZE;
 
 extern const String MOUSEDOWN;
 extern const String MOUSESCROLL;

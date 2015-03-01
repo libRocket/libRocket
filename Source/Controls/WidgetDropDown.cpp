@@ -26,14 +26,14 @@
  */
 
 #include "WidgetDropDown.h"
-#include <Rocket/Core/Math.h>
-#include <Rocket/Core/Factory.h>
-#include <Rocket/Core/ElementUtilities.h>
-#include <Rocket/Core/Event.h>
-#include <Rocket/Core/Input.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
-#include <Rocket/Controls/ElementFormControl.h>
+#include "../../Include/Rocket/Core/Math.h"
+#include "../../Include/Rocket/Core/Factory.h"
+#include "../../Include/Rocket/Core/ElementUtilities.h"
+#include "../../Include/Rocket/Core/Event.h"
+#include "../../Include/Rocket/Core/Input.h"
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
+#include "../../Include/Rocket/Controls/ElementFormControl.h"
 
 namespace Rocket {
 namespace Controls {
@@ -293,7 +293,7 @@ void WidgetDropDown::ProcessEvent(Core::Event& event)
 				{
 					if (options[i].IsSelectable())
 					{
-						SetSelection(i);
+						SetSelection((int)i);
 						event.StopPropagation();
 
 						ShowSelectBox(false);
@@ -333,10 +333,10 @@ void WidgetDropDown::ProcessEvent(Core::Event& event)
 		switch (key_identifier)
 		{
 			case Core::Input::KI_UP:
-				SetSelection( (selected_option - 1 + options.size()) % options.size() );
+				SetSelection((selected_option - 1 + (int)options.size()) % (int)options.size());
 				break;
 			case Core::Input::KI_DOWN:		
-				SetSelection( (selected_option + 1) % options.size() );
+				SetSelection((selected_option + 1) % (int)options.size());
 				break;
 			default:
 				break;

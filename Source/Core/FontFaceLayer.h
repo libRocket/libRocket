@@ -28,11 +28,11 @@
 #ifndef ROCKETCOREFONTFACELAYER_H
 #define ROCKETCOREFONTFACELAYER_H
 
-#include <Rocket/Core/FontGlyph.h>
-#include <Rocket/Core/Geometry.h>
-#include <Rocket/Core/GeometryUtilities.h>
-#include <Rocket/Core/String.h>
-#include <Rocket/Core/Texture.h>
+#include "../../Include/Rocket/Core/FontGlyph.h"
+#include "../../Include/Rocket/Core/Geometry.h"
+#include "../../Include/Rocket/Core/GeometryUtilities.h"
+#include "../../Include/Rocket/Core/String.h"
+#include "../../Include/Rocket/Core/Texture.h"
 #include "TextureLayout.h"
 
 namespace Rocket {
@@ -75,11 +75,12 @@ public:
 	/// @param[in] colour The colour of the string.
 	inline void GenerateGeometry(Geometry* geometry, const word character_code, const Vector2f& position, const Colourb& colour) const
 	{
-		CharacterMap::const_iterator iterator = characters.find(character_code);
-		if (iterator == characters.end())
+		if (character_code >= characters.size())
 			return;
 
-		const Character& character = (*iterator).second;
+		const Character& character = characters[character_code];
+		if (character.texture_index < 0)
+			return;
 
 		// Generate the geometry for the character.
 		std::vector< Vertex >& character_vertices = geometry[character.texture_index].GetVertices();
@@ -87,7 +88,7 @@ public:
 
 		character_vertices.resize(character_vertices.size() + 4);
 		character_indices.resize(character_indices.size() + 6);
-		GeometryUtilities::GenerateQuad(&character_vertices[0] + (character_vertices.size() - 4), &character_indices[0] + (character_indices.size() - 6), Vector2f(position.x + character.origin.x, position.y + character.origin.y), character.dimensions, colour, character.texcoords[0], character.texcoords[1], character_vertices.size() - 4);
+		GeometryUtilities::GenerateQuad(&character_vertices[0] + (character_vertices.size() - 4), &character_indices[0] + (character_indices.size() - 6), Vector2f(position.x + character.origin.x, position.y + character.origin.y), character.dimensions, colour, character.texcoords[0], character.texcoords[1], (int)character_vertices.size() - 4);
 	}
 
 	/// Returns the effect used to generate the layer.
@@ -109,6 +110,8 @@ public:
 private:
 	struct Character
 	{
+		Character() : texture_index(-1) { }
+
 		// The offset, in pixels, of the baseline from the start of this character's geometry.
 		Vector2f origin;
 		// The width and height, in pixels, of this character's geometry.
@@ -120,7 +123,7 @@ private:
 		int texture_index;
 	};
 
-	typedef std::map< word, Character > CharacterMap;
+	typedef std::vector< Character > CharacterList;
 	typedef std::vector< Texture > TextureList;
 
 	const FontFaceHandle* handle;
@@ -128,7 +131,7 @@ private:
 
 	TextureLayout texture_layout;
 
-	CharacterMap characters;
+	CharacterList characters;
 	TextureList textures;
 	Colourb colour;
 };

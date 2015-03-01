@@ -28,7 +28,7 @@
 #ifndef ROCKETCORESTRINGBASE_H
 #define ROCKETCORESTRINGBASE_H
 
-#include <Rocket/Core/Debug.h>
+#include "Debug.h"
 #include <stdlib.h>
 
 namespace Rocket {
@@ -42,7 +42,7 @@ template< typename T >
 class StringBase
 {
 public:
-	typedef unsigned int size_type;
+	typedef size_t size_type;
 	static const size_type npos = (size_type)-1;
 
 	StringBase();
@@ -211,7 +211,7 @@ protected:
 	inline void _Insert(size_type index, const T* insert, size_type insert_length, size_type count = StringBase<T>::npos);
 };
 	
-#include <Rocket/Core/StringBase.inl>
+#include "StringBase.inl"
 
 }
 }

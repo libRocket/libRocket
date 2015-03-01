@@ -28,8 +28,8 @@
 #include "precompiled.h"
 #include "ElementDecoration.h"
 #include "ElementDefinition.h"
-#include <Rocket/Core/Decorator.h>
-#include <Rocket/Core/Element.h>
+#include "../../Include/Rocket/Core/Decorator.h"
+#include "../../Include/Rocket/Core/Element.h"
 
 namespace Rocket {
 namespace Core {
@@ -199,7 +199,7 @@ bool ElementDecoration::IterateDecorators(int& index, PseudoClassList& pseudo_cl
 		// This is the one we're looking for.
 		name = index_iterator->first;
 
-		int relative_index = index - count;
+		int relative_index = index - (int)count;
 		pseudo_classes = decorator_index_list[relative_index].first;
 
 		const DecoratorHandle& decorator_handle = decorators[decorator_index_list[relative_index].second];

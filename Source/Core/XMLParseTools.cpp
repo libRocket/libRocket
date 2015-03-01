@@ -27,10 +27,10 @@
 
 #include "precompiled.h"
 #include "XMLParseTools.h"
-#include <Rocket/Core/StreamMemory.h>
+#include "../../Include/Rocket/Core/StreamMemory.h"
 #include "Template.h"
 #include "TemplateCache.h"
-#include <Rocket/Core.h>
+#include "../../Include/Rocket/Core.h"
 #include <ctype.h>
 
 namespace Rocket {
@@ -40,7 +40,7 @@ namespace Core {
 // NOTE: tag *MUST* be in lowercase
 const char* XMLParseTools::FindTag(const char* tag, const char* string, bool closing_tag)
 {
-	int length = strlen(tag);
+	int length = (int)strlen(tag);
 	const char* ptr = string;
 	bool found_closing = false;
 

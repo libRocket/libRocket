@@ -28,9 +28,9 @@
 #ifndef ROCKETCONTROLSELEMENTTABSET_H
 #define ROCKETCONTROLSELEMENTTABSET_H
 
-#include <Rocket/Core/Element.h>
-#include <Rocket/Core/EventListener.h>
-#include <Rocket/Controls/Header.h>
+#include "../Core/Element.h"
+#include "../Core/EventListener.h"
+#include "Header.h"
 
 namespace Rocket {
 namespace Controls {
@@ -86,6 +86,12 @@ public:
 
 	/// Process the incoming event.
 	void ProcessEvent(Core::Event& event);
+
+	/// Called when the listener has been attached to a new Element
+	void OnAttach(Element* element);
+
+	/// Called when the listener has been detached from a Element
+	void OnDetach(Element* element);
 
 protected:
 	// Catch child add/removes so we can correctly set up their events.

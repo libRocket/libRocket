@@ -59,8 +59,10 @@ PropertyParserColour::~PropertyParserColour()
 }
 
 // Called to parse a RCSS colour declaration.
-bool PropertyParserColour::ParseValue(Property& property, const String& value, const ParameterMap& ROCKET_UNUSED(parameters)) const
+bool PropertyParserColour::ParseValue(Property& property, const String& value, const ParameterMap& ROCKET_UNUSED_PARAMETER(parameters)) const
 {
+	ROCKET_UNUSED(parameters);
+
 	if (value.Empty())
 		return false;
 
@@ -113,7 +115,7 @@ bool PropertyParserColour::ParseValue(Property& property, const String& value, c
 	{
 		StringList values;
 
-		int find = value.Find("(") + 1;
+		int find = (int)value.Find("(") + 1;
 		StringUtilities::ExpandString(values, value.Substring(find, value.RFind(")") - find), ',');
 
 		// Check if we're parsing an 'rgba' or 'rgb' colour declaration.

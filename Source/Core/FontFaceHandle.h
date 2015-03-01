@@ -28,14 +28,14 @@
 #ifndef ROCKETCOREFONTFACEHANDLE_H
 #define ROCKETCOREFONTFACEHANDLE_H
 
-#include <Rocket/Core/ReferenceCountable.h>
+#include "../../Include/Rocket/Core/ReferenceCountable.h"
 #include "UnicodeRange.h"
-#include <Rocket/Core/Font.h>
-#include <Rocket/Core/FontEffect.h>
-#include <Rocket/Core/FontGlyph.h>
-#include <Rocket/Core/Geometry.h>
-#include <Rocket/Core/String.h>
-#include <Rocket/Core/Texture.h>
+#include "../../Include/Rocket/Core/Font.h"
+#include "../../Include/Rocket/Core/FontEffect.h"
+#include "../../Include/Rocket/Core/FontGlyph.h"
+#include "../../Include/Rocket/Core/Geometry.h"
+#include "../../Include/Rocket/Core/String.h"
+#include "../../Include/Rocket/Core/Texture.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -81,7 +81,7 @@ public:
 
 	/// Returns the font's glyphs.
 	/// @return The font's glyphs.
-	const FontGlyphMap& GetGlyphs() const;
+	const FontGlyphList& GetGlyphs() const;
 
 	/// Returns the width a string will take up if rendered with this handle.
 	/// @param[in] string The string to measure.
@@ -127,22 +127,22 @@ protected:
 	virtual void OnReferenceDeactivate();
 
 private:
-	void GenerateMetrics(FT_Face ft_face);
+	void GenerateMetrics(void);
 
-	void BuildGlyphMap(FT_Face ft_face, const UnicodeRange& unicode_range);
+	void BuildGlyphMap(const UnicodeRange& unicode_range);
 	void BuildGlyph(FontGlyph& glyph, FT_GlyphSlot ft_glyph);
 
-	void BuildKerning(FT_Face ft_face);
 	int GetKerning(word lhs, word rhs) const;
 
 	// Generates (or shares) a layer derived from a font effect.
 	FontFaceLayer* GenerateLayer(FontEffect* font_effect);
 
-	typedef std::map< word, int > GlyphKerningMap;
-	typedef std::map< word, GlyphKerningMap > FontKerningMap;
+	typedef std::vector< int > GlyphKerningList;
+	typedef std::vector< GlyphKerningList > FontKerningList;
 
-	FontGlyphMap glyphs;
-	FontKerningMap kerning;
+	FT_Face ft_face;
+
+	FontGlyphList glyphs;
 
 	typedef std::map< const FontEffect*, FontFaceLayer* > FontLayerMap;
 	typedef std::map< String, FontFaceLayer* > FontLayerCache;
@@ -173,6 +173,7 @@ private:
 
 	String raw_charset;
 	UnicodeRangeList charset;
+	unsigned int max_codepoint;
 };
 
 }

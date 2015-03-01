@@ -27,8 +27,8 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorNthLastChild.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -62,7 +62,7 @@ bool StyleSheetNodeSelectorNthLastChild::IsApplicable(const Element* element, in
 		if (child == element)
 			break;
 
-		if (child->GetProperty< int >(DISPLAY) == DISPLAY_NONE)
+		if (child->GetDisplay() == DISPLAY_NONE)
 			continue;
 
 		element_index++;

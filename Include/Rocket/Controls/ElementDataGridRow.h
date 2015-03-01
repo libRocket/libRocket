@@ -28,10 +28,10 @@
 #ifndef ROCKETCONTROLSELEMENTDATAGRIDROW_H
 #define ROCKETCONTROLSELEMENTDATAGRIDROW_H
 
-#include <Rocket/Controls/Header.h>
-#include <Rocket/Controls/DataSourceListener.h>
-#include <Rocket/Controls/DataQuery.h>
-#include <Rocket/Core/Element.h>
+#include "Header.h"
+#include "DataSourceListener.h"
+#include "DataQuery.h"
+#include "../Core/Element.h"
 #include <queue>
 
 namespace Rocket {
@@ -124,6 +124,8 @@ private:
 	// If the num_rows_removed parameter is left as the -1 default, it'll
 	// default to the rest of the children after the first row.
 	void RemoveChildren(int first_row_removed = 0, int num_rows_removed = -1);
+	// Marks children as dirty and dispatches the event.
+	void ChangeChildren(int first_row_changed = 0, int num_rows_changed = -1);
 	// Returns the number of rows under this row (children, grandchildren, etc)
 	int GetNumDescendants();
 

@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "ContextInstancer.h"
-#include <Rocket/Core/Python/Utilities.h>
+#include "../../../Include/Rocket/Core/Python/Utilities.h"
 
 namespace Rocket {
 namespace Core {
@@ -69,8 +69,9 @@ Context* ContextInstancer::InstanceContext(const Rocket::Core::String& name)
 }
 
 // Releases a context previously created by this context.
-void ContextInstancer::ReleaseContext(Context* ROCKET_UNUSED(context))
+void ContextInstancer::ReleaseContext(Context* ROCKET_UNUSED_PARAMETER(context))
 {
+	ROCKET_UNUSED(context);
 }
 
 // Releases this context instancer

@@ -27,8 +27,8 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorNthOfType.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -60,7 +60,7 @@ bool StyleSheetNodeSelectorNthOfType::IsApplicable(const Element* element, int a
 
 		// Skip nodes that don't share our tag.
 		if (child->GetTagName() != element->GetTagName() ||
-			child->GetProperty< int >(DISPLAY) == DISPLAY_NONE)
+			child->GetDisplay() == DISPLAY_NONE)
 			continue;
 
 		element_index++;

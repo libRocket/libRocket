@@ -25,16 +25,16 @@
  *
  */
 
-#include <Rocket/Controls/ElementDataGrid.h>
-#include <Rocket/Controls/DataSource.h>
-#include <Rocket/Core/Math.h>
-#include <Rocket/Core/XMLParser.h>
-#include <Rocket/Core/Event.h>
-#include <Rocket/Core/ElementDocument.h>
-#include <Rocket/Core/Factory.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Controls/DataFormatter.h>
-#include <Rocket/Controls/ElementDataGridRow.h>
+#include "../../Include/Rocket/Controls/ElementDataGrid.h"
+#include "../../Include/Rocket/Controls/DataSource.h"
+#include "../../Include/Rocket/Core/Math.h"
+#include "../../Include/Rocket/Core/XMLParser.h"
+#include "../../Include/Rocket/Core/Event.h"
+#include "../../Include/Rocket/Core/ElementDocument.h"
+#include "../../Include/Rocket/Core/Factory.h"
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Controls/DataFormatter.h"
+#include "../../Include/Rocket/Controls/ElementDataGridRow.h"
 
 namespace Rocket {
 namespace Controls {
@@ -279,7 +279,7 @@ void ElementDataGrid::GetInnerRML(Rocket::Core::String& content) const
 	// The only content we have is the columns, and inside them the header elements.
 	for (size_t i = 0; i < columns.size(); i++)
 	{
-		Core::Element* header_element = header->GetChild(i);		
+		Core::Element* header_element = header->GetChild((int)i);
 
 		Rocket::Core::String column_fields;
 		for (size_t j = 0; j < columns[i].fields.size(); j++)

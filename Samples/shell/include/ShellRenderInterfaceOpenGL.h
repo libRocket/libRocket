@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef ROCKETSHELLRENDERINTERFACE_H
-#define ROCKETSHELLRENDERINTERFACE_H
+#ifndef ROCKETSHELLRENDERINTERFACEOPENGL_H
+#define ROCKETSHELLRENDERINTERFACEOPENGL_H
 
 #include "Rocket/Core/RenderInterface.h"
 #include "ShellOpenGL.h"
@@ -36,7 +36,16 @@
 	@author Peter Curry
  */
 
-class ShellRenderInterfaceOpenGL : public Rocket::Core::RenderInterface
+#if defined(ROCKET_PLATFORM_LINUX)
+struct __X11NativeWindowData
+{
+	Window window;
+	Display *display;
+	XVisualInfo *visual_info;
+};
+#endif
+
+class ShellRenderInterfaceOpenGL : public Rocket::Core::RenderInterface,  public ShellRenderInterfaceExtensions
 {
 public:
 	ShellRenderInterfaceOpenGL();
@@ -63,6 +72,34 @@ public:
 	virtual bool GenerateTexture(Rocket::Core::TextureHandle& texture_handle, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& source_dimensions);
 	/// Called by Rocket when a loaded texture is no longer required.
 	virtual void ReleaseTexture(Rocket::Core::TextureHandle texture_handle);
+
+
+// ShellRenderInterfaceExtensions
+	virtual void SetViewport(int width, int height);
+	virtual void SetContext(void *context);
+	virtual bool AttachToNative(void *nativeWindow);
+	virtual void DetachFromNative(void);
+	virtual void PrepareRenderBuffer(void);
+	virtual void PresentRenderBuffer(void);
+
+protected:
+	int m_width;
+	int m_height;
+	void *m_rocket_context;
+	
+#if defined(ROCKET_PLATFORM_MACOSX)
+	AGLContext gl_context;
+#elif defined(ROCKET_PLATFORM_LINUX)
+	struct __X11NativeWindowData nwData;
+	GLXContext gl_context;
+#elif defined(ROCKET_PLATFORM_WIN32)
+	HWND window_handle;
+	HDC device_context;
+	HGLRC render_context;
+#else
+#error Platform is undefined, this must be resolved so gl_context is usable.
+#endif
+
 };
 
 #endif

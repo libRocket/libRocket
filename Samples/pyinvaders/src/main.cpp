@@ -26,6 +26,8 @@
  */
 
 #define _WIN32_WINNT 0x0500
+#include "PythonInterface.h"
+
 #include <Rocket/Core.h>
 #include <Rocket/Controls.h>
 #include <Rocket/Debugger.h>
@@ -36,51 +38,70 @@
 #include "DecoratorInstancerStarfield.h"
 #include "ElementGame.h"
 #include "HighScores.h"
-#include "PythonInterface.h"
 
 Rocket::Core::Context* context = NULL;
 
 void DoAllocConsole();
 
+ShellRenderInterfaceExtensions *shell_renderer;
+
 void GameLoop()
 {
 	context->Update();
 
-	glClear(GL_COLOR_BUFFER_BIT);
+	shell_renderer->PrepareRenderBuffer();
 	context->Render();
-	Shell::FlipBuffers();
+	shell_renderer->PresentRenderBuffer();
 }
 
 #if defined ROCKET_PLATFORM_WIN32
 #include <windows.h>
-int APIENTRY WinMain(HINSTANCE, HINSTANCE, char*, int)
+int APIENTRY WinMain(HINSTANCE ROCKET_UNUSED_PARAMETER(instance_handle), HINSTANCE ROCKET_UNUSED_PARAMETER(previous_instance_handle), char* ROCKET_UNUSED_PARAMETER(command_line), int ROCKET_UNUSED_PARAMETER(command_show))
 #else
-int main(int, char**)
+int main(int ROCKET_UNUSED_PARAMETER(argc), char** ROCKET_UNUSED_PARAMETER(argv))
 #endif
 {
-	#ifdef ROCKET_PLATFORM_MACOSX
-	#define APP_PATH "../"
-	#define ROCKET_PATH "../../bin/"
-	#else
-	#define APP_PATH "../Samples/pyinvaders/"
-	#define ROCKET_PATH "."
-	#endif
+#ifdef ROCKET_PLATFORM_WIN32
+	ROCKET_UNUSED(instance_handle);
+	ROCKET_UNUSED(previous_instance_handle);
+	ROCKET_UNUSED(command_line);
+	ROCKET_UNUSED(command_show);
+#else
+	ROCKET_UNUSED(argc);
+	ROCKET_UNUSED(argv);
+#endif
 
-	#ifdef ROCKET_PLATFORM_WIN32
+// @TODO Make these lookup at runtime rather than using hard coded paths
+#ifdef ROCKET_PLATFORM_LINUX
+#define APP_PATH "../Samples/pyinvaders/"
+#define ROCKET_PATH ""
+#else
+#define APP_PATH "../../Samples/pyinvaders/"
+#define ROCKET_PATH "."
+#endif
+
+#ifdef ROCKET_PLATFORM_WIN32
 	DoAllocConsole();
-	#endif
+#endif
 
+	int window_width = 1024;
+	int window_height = 768;
+
+	ShellRenderInterfaceOpenGL opengl_renderer;
+	shell_renderer = &opengl_renderer;
+
+	// @TODO switch to using variable for window sizes
 	// Generic OS initialisation, creates a window and attaches OpenGL.
-	if (!Shell::Initialise("../Samples/pyinvaders/") ||
-		!Shell::OpenWindow("Rocket Invaders from Mars (Python Powered)", true))
+	if (!Shell::Initialise(APP_PATH) ||
+		!Shell::OpenWindow("Rocket Invaders from Mars (Python Powered)", shell_renderer, window_width, window_height, false))
 	{
 		Shell::Shutdown();
 		return -1;
 	}
 
 	// Rocket initialisation.
-	ShellRenderInterfaceOpenGL opengl_renderer;
 	Rocket::Core::SetRenderInterface(&opengl_renderer);
+	opengl_renderer.SetViewport(window_width, window_height);
 
 	ShellSystemInterface system_interface;
 	Rocket::Core::SetSystemInterface(&system_interface);
@@ -93,7 +114,7 @@ int main(int, char**)
 	PythonInterface::Initialise((Shell::GetExecutablePath() + (APP_PATH "python") + PATH_SEPARATOR + Shell::GetExecutablePath() + ROCKET_PATH).CString());
 
 	// Create the main Rocket context and set it on the shell's input layer.
-	context = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(1024, 768));
+	context = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(window_width, window_height));
 	if (context == NULL)
 	{
 		Rocket::Core::Shutdown();
@@ -103,6 +124,7 @@ int main(int, char**)
 
 	Rocket::Debugger::Initialise(context);
 	Input::SetContext(context);
+	shell_renderer->SetContext(context);
 
 	// Load the font faces required for Invaders.
 	Shell::LoadFonts("../assets/");

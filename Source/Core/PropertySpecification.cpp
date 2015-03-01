@@ -26,12 +26,12 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/PropertySpecification.h>
+#include "../../Include/Rocket/Core/PropertySpecification.h"
 #include "PropertyShorthandDefinition.h"
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/PropertyDefinition.h>
-#include <Rocket/Core/PropertyDictionary.h>
-#include <Rocket/Core/StyleSheetSpecification.h>
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/PropertyDefinition.h"
+#include "../../Include/Rocket/Core/PropertyDictionary.h"
+#include "../../Include/Rocket/Core/StyleSheetSpecification.h"
 
 namespace Rocket {
 namespace Core {
@@ -60,7 +60,17 @@ PropertyDefinition& PropertySpecification::RegisterProperty(const String& proper
 	// Delete any existing property.
 	PropertyMap::iterator iterator = properties.find(lower_case_name);
 	if (iterator != properties.end())
+	{
 		delete (*iterator).second;
+	}
+	else
+	{
+		property_names.insert(lower_case_name);
+		if (inherited)
+		{
+			inherited_property_names.insert(lower_case_name);
+		}
+	}
 
 	properties[lower_case_name] = property_definition;
 	return *property_definition;
@@ -77,10 +87,15 @@ const PropertyDefinition* PropertySpecification::GetProperty(const String& prope
 }
 
 // Fetches a list of the names of all registered property definitions.
-void PropertySpecification::GetRegisteredProperties(PropertyNameList& _properties) const
+const PropertyNameList& PropertySpecification::GetRegisteredProperties(void) const
 {
-	for (PropertyMap::const_iterator i = properties.begin(); i != properties.end(); ++i)
-		_properties.insert((*i).first);
+	return property_names;
+}
+
+// Fetches a list of the names of all registered property definitions.
+const PropertyNameList& PropertySpecification::GetRegisteredInheritedProperties(void) const
+{
+	return inherited_property_names;
 }
 
 // Registers a shorthand property definition.

@@ -31,10 +31,10 @@
 #include "LayoutEngine.h"
 #include "LayoutInlineBoxText.h"
 #include "FontFaceHandle.h"
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/ElementUtilities.h>
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Core/ElementUtilities.h"
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 #include <stack>
 
 namespace Rocket {
@@ -140,7 +140,7 @@ LayoutInlineBox* LayoutLineBox::Close(LayoutInlineBox* overflow)
 
 	// Position all the boxes horizontally in the line. We only need to reposition the elements if they're set to
 	// centre or right; the element are already placed left-aligned, and justification occurs at the text level.
-	int text_align_property = parent->GetParent()->GetElement()->GetProperty(TEXT_ALIGN)->value.Get< int >();
+	int text_align_property = parent->GetParent()->GetElement()->GetTextAlign();
 	if (text_align_property == TEXT_ALIGN_CENTER ||
 		text_align_property == TEXT_ALIGN_RIGHT)
 	{

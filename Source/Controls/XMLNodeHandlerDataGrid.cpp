@@ -26,11 +26,11 @@
  */
 
 #include "XMLNodeHandlerDataGrid.h"
-#include <Rocket/Core/StreamMemory.h>
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/Factory.h>
-#include <Rocket/Core/XMLParser.h>
-#include <Rocket/Controls/ElementDataGrid.h>
+#include "../../Include/Rocket/Core/StreamMemory.h"
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/Factory.h"
+#include "../../Include/Rocket/Core/XMLParser.h"
+#include "../../Include/Rocket/Controls/ElementDataGrid.h"
 
 namespace Rocket {
 namespace Controls {
@@ -100,8 +100,11 @@ Core::Element* XMLNodeHandlerDataGrid::ElementStart(Core::XMLParser* parser, con
 	return element;
 }
 
-bool XMLNodeHandlerDataGrid::ElementEnd(Core::XMLParser* ROCKET_UNUSED(parser), const Rocket::Core::String& ROCKET_UNUSED(name))
+bool XMLNodeHandlerDataGrid::ElementEnd(Core::XMLParser* ROCKET_UNUSED_PARAMETER(parser), const Rocket::Core::String& ROCKET_UNUSED_PARAMETER(name))
 {
+	ROCKET_UNUSED(parser);
+	ROCKET_UNUSED(name);
+
 	return true;
 }
 

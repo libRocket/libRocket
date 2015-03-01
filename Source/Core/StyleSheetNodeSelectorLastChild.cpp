@@ -27,8 +27,8 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorLastChild.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -42,8 +42,11 @@ StyleSheetNodeSelectorLastChild::~StyleSheetNodeSelectorLastChild()
 }
 
 // Returns true if the element is the last DOM child in its parent.
-bool StyleSheetNodeSelectorLastChild::IsApplicable(const Element* element, int ROCKET_UNUSED(a), int ROCKET_UNUSED(b))
+bool StyleSheetNodeSelectorLastChild::IsApplicable(const Element* element, int ROCKET_UNUSED_PARAMETER(a), int ROCKET_UNUSED_PARAMETER(b))
 {
+	ROCKET_UNUSED(a);
+	ROCKET_UNUSED(b);
+
 	Element* parent = element->GetParentNode();
 	if (parent == NULL)
 		return false;
@@ -58,7 +61,7 @@ bool StyleSheetNodeSelectorLastChild::IsApplicable(const Element* element, int R
 
 		// If this child is not a text element, then the selector fails; this element is non-trivial.
 		if (rocket_dynamic_cast< ElementText* >(child) == NULL &&
-			child->GetProperty< int >(DISPLAY) != DISPLAY_NONE)
+			child->GetDisplay() != DISPLAY_NONE)
 			return false;
 
 		// Otherwise, skip over the text element to find the last non-trivial element.

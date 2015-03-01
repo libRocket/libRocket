@@ -25,12 +25,12 @@
  *
  */
 
-#include <Rocket/Controls/ElementDataGridRow.h>
-#include <Rocket/Core.h>
-#include <Rocket/Controls/DataSource.h>
-#include <Rocket/Controls/DataFormatter.h>
-#include <Rocket/Controls/ElementDataGrid.h>
-#include <Rocket/Controls/ElementDataGridCell.h>
+#include "../../Include/Rocket/Controls/ElementDataGridRow.h"
+#include "../../Include/Rocket/Core.h"
+#include "../../Include/Rocket/Controls/DataSource.h"
+#include "../../Include/Rocket/Controls/DataFormatter.h"
+#include "../../Include/Rocket/Controls/ElementDataGrid.h"
+#include "../../Include/Rocket/Controls/ElementDataGridCell.h"
 
 namespace Rocket {
 namespace Controls {
@@ -61,6 +61,7 @@ ElementDataGridRow::~ElementDataGridRow()
 	if (data_source)
 	{
 		data_source->DetachListener(this);
+		data_source = NULL;
 	}
 }
 
@@ -109,8 +110,11 @@ int ElementDataGridRow::GetDepth()
 
 void ElementDataGridRow::SetDataSource(const Rocket::Core::String& data_source_name)
 {
-	if (data_source)
+	if (data_source != NULL)
+	{
 		data_source->DetachListener(this);
+		data_source = NULL;
+	}
 
 	if (ParseDataSource(data_source, data_table, data_source_name))
 	{
@@ -245,11 +249,13 @@ ElementDataGrid* ElementDataGridRow::GetParentGrid()
 	return parent_grid;
 }
 
-void ElementDataGridRow::OnDataSourceDestroy(DataSource* ROCKET_UNUSED(_data_source))
+void ElementDataGridRow::OnDataSourceDestroy(DataSource* ROCKET_UNUSED_PARAMETER(_data_source))
 {
-	data_source->DetachListener(this);
-	data_source = NULL;
-
+	if(data_source != NULL)
+	{
+		data_source->DetachListener(this);
+		data_source = NULL;
+	}
 	RemoveChildren();
 }
 
@@ -268,10 +274,7 @@ void ElementDataGridRow::OnRowRemove(DataSource* _data_source, const Rocket::Cor
 void ElementDataGridRow::OnRowChange(DataSource* _data_source, const Rocket::Core::String& _data_table, int first_row_changed, int num_rows_changed)
 {
 	if (_data_source == data_source && _data_table == data_table)
-	{
-		for (int i = first_row_changed; i < first_row_changed + num_rows_changed; i++)
-			children[i]->DirtyCells();
-	}
+		ChangeChildren(first_row_changed, num_rows_changed);
 }
 
 void ElementDataGridRow::OnRowChange(DataSource* _data_source, const Rocket::Core::String& _data_table)
@@ -287,7 +290,7 @@ void ElementDataGridRow::RefreshRows()
 	RemoveChildren();
 
 	// Load the children from the data source.
-	if (data_source)
+	if (data_source != NULL)
 	{
 		int num_rows = data_source->GetNumRows(data_table);
 		if (num_rows > 0)
@@ -365,9 +368,13 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 		first_row_added = (int)children.size();
 	}
 
+	// prevent relayout of the document while adding rows
+	Core::ElementDocument* document = parent_grid->GetOwnerDocument();
+	document->LockLayout(true);
+
 	// We need to make a row for each new child, then pass through the cell
 	// information and the child's data source (if one exists.)
-	if (data_source)
+	if (data_source != NULL)
 	{
 		for (int i = 0; i < num_rows_added; i++)
 		{
@@ -386,6 +393,7 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 		for (int i = first_row_added + num_rows_added; i < (int)children.size(); i++)
 		{
 			children[i]->SetChildIndex(i);
+			children[i]->DirtyTableRelativeIndex();
 		}
 
 		if (parent_row)
@@ -393,6 +401,8 @@ void ElementDataGridRow::AddChildren(int first_row_added, int num_rows_added)
 			parent_row->ChildChanged(child_index);
 		}
 	}
+
+	document->LockLayout(false);
 
 	RefreshChildDependentCells();
 	DirtyRow();
@@ -410,6 +420,10 @@ void ElementDataGridRow::RemoveChildren(int first_row_removed, int num_rows_remo
 		num_rows_removed = (int)children.size() - first_row_removed;
 	}
 
+	// prevent relayout of the document while removing rows
+	Core::ElementDocument* document = parent_grid->GetOwnerDocument();
+	document->LockLayout(true);
+
 	for (int i = num_rows_removed - 1; i >= 0; i--)
 	{
 		children[first_row_removed + i]->RemoveChildren();
@@ -420,12 +434,26 @@ void ElementDataGridRow::RemoveChildren(int first_row_removed, int num_rows_remo
     for (int i = first_row_removed; i < (int) children.size(); i++)
 	{
 		children[i]->SetChildIndex(i);
+		children[i]->DirtyTableRelativeIndex();
 	}
+
+	document->LockLayout(false);
 
 	Rocket::Core::Dictionary parameters;
 	parameters.Set("first_row_removed", GetChildTableRelativeIndex(first_row_removed));
 	parameters.Set("num_rows_removed", num_rows_removed);
 	parent_grid->DispatchEvent("rowremove", parameters);
+}
+
+void ElementDataGridRow::ChangeChildren(int first_row_changed, int num_rows_changed)
+{
+	for (int i = first_row_changed; i < first_row_changed + num_rows_changed; i++)
+		children[i]->DirtyCells();
+
+	Rocket::Core::Dictionary parameters;
+	parameters.Set("first_row_changed", GetChildTableRelativeIndex(first_row_changed));
+	parameters.Set("num_rows_changed", num_rows_changed);
+	parent_grid->DispatchEvent("rowchange", parameters);
 }
 
 // Returns the number of rows under this row (children, grandchildren, etc)
@@ -549,7 +577,7 @@ void ElementDataGridRow::LoadChildren(float time_slice)
 			any_dirty_children = true;
 			if (data_query_offset == -1)
 			{
-				data_query_offset = i;
+				data_query_offset = (int)i;
 				data_query_limit = 1;
 			}
 			else

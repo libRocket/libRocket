@@ -30,10 +30,10 @@
 #include <algorithm>
 #include "StyleSheetFactory.h"
 #include "StyleSheetNode.h"
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/StreamMemory.h>
-#include <Rocket/Core/StyleSheet.h>
-#include <Rocket/Core/StyleSheetSpecification.h>
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/StreamMemory.h"
+#include "../../Include/Rocket/Core/StyleSheet.h"
+#include "../../Include/Rocket/Core/StyleSheetSpecification.h"
 
 namespace Rocket {
 namespace Core {
@@ -95,7 +95,7 @@ bool StyleSheetParser::ParseProperties(PropertyDictionary& parsed_properties, co
 
 bool StyleSheetParser::ReadProperties(PropertyDictionary& properties)
 {
-	int rule_line_number = line_number;
+	int rule_line_number = (int)line_number;
 	String name;
 	String value;
 

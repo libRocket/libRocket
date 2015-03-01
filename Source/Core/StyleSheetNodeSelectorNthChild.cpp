@@ -27,9 +27,9 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorNthChild.h"
-#include <Rocket/Core/ElementText.h>
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementText.h"
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -64,7 +64,7 @@ bool StyleSheetNodeSelectorNthChild::IsApplicable(const Element* element, int a,
 			break;
 
 		// Skip nodes without a display type.
-		if (child->GetProperty< int >(DISPLAY) == DISPLAY_NONE)
+		if (child->GetDisplay() == DISPLAY_NONE)
 			continue;
 
 		element_index++;

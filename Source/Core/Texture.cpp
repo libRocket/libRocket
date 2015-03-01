@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/Texture.h>
+#include "../../Include/Rocket/Core/Texture.h"
 #include "TextureDatabase.h"
 #include "TextureResource.h"
 
@@ -75,7 +75,7 @@ String Texture::GetSource() const
 TextureHandle Texture::GetHandle(RenderInterface* render_interface) const
 {
 	if (resource == NULL)
-		return NULL;
+		return 0;
 
 	return resource->GetHandle(render_interface);
 }

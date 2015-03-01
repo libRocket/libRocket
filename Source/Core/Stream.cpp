@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/Stream.h>
+#include "../../Include/Rocket/Core/Stream.h"
 #include <algorithm>
 #include <stdio.h>
 
@@ -70,7 +70,7 @@ size_t Stream::Peek(void* buffer, size_t bytes) const
 {
 	size_t pos = Tell();
 	size_t read = Read( buffer, bytes );
-	Seek( pos, SEEK_SET );
+	Seek( (long)pos, SEEK_SET );
 	return read;
 }
 
@@ -118,8 +118,11 @@ size_t Stream::Write(const String& string)
 }
 
 // Push onto the front of the stream
-size_t Stream::PushFront(const void* ROCKET_UNUSED(buffer), size_t ROCKET_UNUSED(bytes))
+size_t Stream::PushFront(const void* ROCKET_UNUSED_PARAMETER(buffer), size_t ROCKET_UNUSED_PARAMETER(bytes))
 {
+	ROCKET_UNUSED(buffer);
+	ROCKET_UNUSED(bytes);
+
 	ROCKET_ERRORMSG("No generic way to PushFront to a stream.");
 	return false;
 }
@@ -130,13 +133,15 @@ size_t Stream::PushBack(const void* buffer, size_t bytes)
 	size_t pos = Tell();
 	Seek(0, SEEK_END);
 	size_t wrote = Write(buffer, bytes);
-	Seek(pos, SEEK_SET);
+	Seek((long)pos, SEEK_SET);
 	return wrote;
 }
 
 // Push onto the front of the stream
-size_t Stream::PopFront(size_t ROCKET_UNUSED(bytes))
+size_t Stream::PopFront(size_t ROCKET_UNUSED_PARAMETER(bytes))
 {
+	ROCKET_UNUSED(bytes);
+
 	ROCKET_ERRORMSG("No generic way to PopFront from a stream.");
 	return 0;
 }

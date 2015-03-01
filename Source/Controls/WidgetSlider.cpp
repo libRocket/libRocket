@@ -26,8 +26,8 @@
  */
 
 #include "WidgetSlider.h"
-#include <Rocket/Core.h>
-#include <Rocket/Controls/ElementFormControl.h>
+#include "../../Include/Rocket/Core.h"
+#include "../../Include/Rocket/Controls/ElementFormControl.h"
 
 namespace Rocket {
 namespace Controls {
@@ -47,6 +47,7 @@ WidgetSlider::WidgetSlider(ElementFormControl* _parent)
 	arrows[1] = NULL;
 
 	bar_position = 0;
+	bar_drag_anchor = 0;
 
 	arrow_timers[0] = -1;
 	arrow_timers[1] = -1;

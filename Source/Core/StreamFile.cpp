@@ -27,15 +27,15 @@
 
 #include "precompiled.h"
 #include "StreamFile.h"
-#include <Rocket/Core/FileInterface.h>
-#include <Rocket/Core.h>
+#include "../../Include/Rocket/Core/FileInterface.h"
+#include "../../Include/Rocket/Core.h"
 
 namespace Rocket {
 namespace Core {
 
 StreamFile::StreamFile()
 {
-	file_handle = NULL;
+	file_handle = 0;
 	length = 0;
 }
 
@@ -74,7 +74,7 @@ void StreamFile::Close()
 	if (file_handle)
 	{
 		GetFileInterface()->Close(file_handle);
-		file_handle = NULL;
+		file_handle = 0;
 	}
 
 	length = 0;
@@ -105,15 +105,20 @@ size_t StreamFile::Read(void* buffer, size_t bytes) const
 }
 
 // Write to the stream at the current position.
-size_t StreamFile::Write(const void* ROCKET_UNUSED(buffer), size_t ROCKET_UNUSED(bytes))
+size_t StreamFile::Write(const void* ROCKET_UNUSED_PARAMETER(buffer), size_t ROCKET_UNUSED_PARAMETER(bytes))
 {
+	ROCKET_UNUSED(buffer);
+	ROCKET_UNUSED(bytes);
+
 	ROCKET_ERROR;
 	return 0;
 }
 
 // Truncate the stream to the specified length.
-size_t StreamFile::Truncate(size_t ROCKET_UNUSED(bytes))
+size_t StreamFile::Truncate(size_t ROCKET_UNUSED_PARAMETER(bytes))
 {
+	ROCKET_UNUSED(bytes);
+
 	ROCKET_ERROR;
 	return 0;
 }

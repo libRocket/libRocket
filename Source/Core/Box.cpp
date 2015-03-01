@@ -26,19 +26,19 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/Box.h>
+#include "../../Include/Rocket/Core/Box.h"
 
 namespace Rocket {
 namespace Core {
 
 // Initialises a zero-sized box.
-Box::Box() : offset(0, 0), content(0, 0)
+Box::Box() : content(0, 0), offset(0, 0)
 {
 	memset(area_edges, 0, sizeof(area_edges));
 }
 
 // Initialises a box with a default content area and no padding, borders and margins.
-Box::Box(const Vector2f& content) : offset(0, 0), content(content)
+Box::Box(const Vector2f& content) : content(content), offset(0, 0)
 {
 	memset(area_edges, 0, sizeof(area_edges));
 }

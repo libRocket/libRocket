@@ -26,8 +26,8 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/Event.h>
-#include <Rocket/Core/EventInstancer.h>
+#include "../../Include/Rocket/Core/Event.h"
+#include "../../Include/Rocket/Core/EventInstancer.h"
 
 namespace Rocket {
 namespace Core {
@@ -41,7 +41,7 @@ Event::Event()
 	target_element = NULL;
 }
 
-Event::Event(Element* _target_element, const String& _type, const Dictionary& _parameters, bool _interruptible) : parameters(_parameters), target_element(_target_element), type(_type), interruptible(_interruptible)
+Event::Event(Element* _target_element, const String& _type, const Dictionary& _parameters, bool _interruptible) : type(_type), parameters(_parameters), target_element(_target_element), interruptible(_interruptible)
 {
 	phase = PHASE_UNKNOWN;
 	interruped = false;

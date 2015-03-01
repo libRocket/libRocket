@@ -28,7 +28,7 @@
 #ifndef ROCKETCOREELEMENTDOCUMENT_H
 #define ROCKETCOREELEMENTDOCUMENT_H
 
-#include <Rocket/Core/Element.h>
+#include "Element.h"
 
 namespace Rocket {
 namespace Core {
@@ -146,6 +146,9 @@ protected:
 
 	/// Sets the dirty flag on the layout so the document will format its children before the next render.
 	virtual void DirtyLayout();
+
+	/// Returns true if the document has been marked as needing a re-layout.
+	virtual bool IsLayoutDirty();
 
 	/// Processes the 'onpropertychange' event, checking for a change in position or size.
 	virtual void ProcessEvent(Event& event);

@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/FileInterface.h>
+#include "../../Include/Rocket/Core/FileInterface.h"
 
 namespace Rocket {
 namespace Core {
@@ -45,7 +45,7 @@ size_t FileInterface::Length(FileHandle file)
     size_t current_position = Tell(file);
     Seek( file, 0, SEEK_END);
     size_t length = Tell( file);
-    Seek( file, current_position, SEEK_SET);
+    Seek( file, (long)current_position, SEEK_SET);
     return length;
 }
 

@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core.h>
+#include "../../Include/Rocket/Core.h"
 #include <algorithm>
 #include "FileInterfaceDefault.h"
 #include "GeometryDatabase.h"
@@ -225,7 +225,10 @@ Context* CreateContext(const String& name, const Vector2i& dimensions, RenderInt
 
 	if (custom_render_interface == NULL &&
 		render_interface == NULL)
+	{
 		Log::Message(Log::LT_WARNING, "Failed to create context '%s', no render interface specified and no default render interface exists.", name.CString());
+		return NULL;
+	}
 
 	if (GetContext(name) != NULL)
 	{

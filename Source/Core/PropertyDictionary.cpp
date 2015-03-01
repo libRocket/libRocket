@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/PropertyDictionary.h>
+#include "../../Include/Rocket/Core/PropertyDictionary.h"
 
 namespace Rocket {
 namespace Core {
@@ -64,7 +64,7 @@ const Property* PropertyDictionary::GetProperty(const String& name) const
 // Returns the number of properties in the dictionary.
 int PropertyDictionary::GetNumProperties() const
 {
-	return properties.size();
+	return (int)properties.size();
 }
 
 // Returns the map of properties in the dictionary.

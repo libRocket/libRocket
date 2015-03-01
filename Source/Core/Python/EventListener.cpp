@@ -28,7 +28,7 @@
 #include "precompiled.h"
 #include "EventListener.h"
 
-#include <Rocket/Core/Python/Utilities.h>
+#include "../../../Include/Rocket/Core/Python/Utilities.h"
 
 #include "EventWrapper.h"
 #include "ElementDocumentWrapper.h"
@@ -138,7 +138,6 @@ void EventListener::ProcessEvent(Event& event)
 	// Set up the new expected globals
 	PyDict_SetItemString(py_namespace, "event", Rocket::Core::Python::Utilities::MakeObject(&event).ptr());
 	PyDict_SetItemString(py_namespace, "self", Rocket::Core::Python::Utilities::MakeObject(element).ptr());
-	PyDict_SetItemString(py_namespace, "document", Rocket::Core::Python::Utilities::MakeObject(element->GetOwnerDocument()).ptr());
 
 	// Call the bound function
 	PyObject* result = NULL;

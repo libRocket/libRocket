@@ -26,8 +26,8 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/String.h>
-#include <Rocket/Core/StringBase.h>
+#include "../../Include/Rocket/Core/String.h"
+#include "../../Include/Rocket/Core/StringBase.h"
 
 namespace Rocket {
 namespace Core {
@@ -64,7 +64,7 @@ StringBase<char>::StringBase(StringBase<char>::size_type max_size, const char* f
 	va_list argument_list;
 	va_start(argument_list, fmt);
 
-	RocketStringFormatString(*this, max_size, fmt, argument_list);
+	RocketStringFormatString(*this, (int)max_size, fmt, argument_list);
 
 	va_end(argument_list);
 }
@@ -75,7 +75,7 @@ int StringBase<char>::FormatString(StringBase<char>::size_type max_size, const c
 	va_list argument_list;
 	va_start(argument_list, fmt);
 
-	int length = RocketStringFormatString(*this, max_size, fmt, argument_list);
+	int length = RocketStringFormatString(*this, (int)max_size, fmt, argument_list);
 
 	va_end(argument_list);
 

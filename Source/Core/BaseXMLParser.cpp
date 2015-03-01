@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/BaseXMLParser.h>
+#include "../../Include/Rocket/Core/BaseXMLParser.h"
 
 namespace Rocket {
 namespace Core {
@@ -81,18 +81,22 @@ int BaseXMLParser::GetLineNumber()
 }
 
 // Called when the parser finds the beginning of an element tag.
-void BaseXMLParser::HandleElementStart(const String& ROCKET_UNUSED(name), const XMLAttributes& ROCKET_UNUSED(attributes))
+void BaseXMLParser::HandleElementStart(const String& ROCKET_UNUSED_PARAMETER(name), const XMLAttributes& ROCKET_UNUSED_PARAMETER(attributes))
 {
+	ROCKET_UNUSED(name);
+	ROCKET_UNUSED(attributes);
 }
 
 // Called when the parser finds the end of an element tag.
-void BaseXMLParser::HandleElementEnd(const String& ROCKET_UNUSED(name))
+void BaseXMLParser::HandleElementEnd(const String& ROCKET_UNUSED_PARAMETER(name))
 {
+	ROCKET_UNUSED(name);
 }
 
 // Called when the parser encounters data.
-void BaseXMLParser::HandleData(const String& ROCKET_UNUSED(data))
+void BaseXMLParser::HandleData(const String& ROCKET_UNUSED_PARAMETER(data))
 {
+	ROCKET_UNUSED(data);
 }
 
 void BaseXMLParser::ReadHeader()
@@ -137,7 +141,7 @@ void BaseXMLParser::ReadBody()
 			// Bail if we've hit the end of the XML data.
 			if (open_tag_depth == 0)
 			{
-				xml_source->Seek((read - buffer) - buffer_used, SEEK_CUR);
+				xml_source->Seek((long)((read - buffer) - buffer_used), SEEK_CUR);
 				break;
 			}
 		}
@@ -434,7 +438,7 @@ bool BaseXMLParser::PeekString(const unsigned char* string, bool consume)
 		// overflow buffer.
 		if ((peek_read - buffer) + i >= buffer_used)
 		{
-			int peek_offset = peek_read - read;
+			int peek_offset = (int)(peek_read - read);
 			FillBuffer();
 			peek_read = read + peek_offset;
 
@@ -442,9 +446,14 @@ bool BaseXMLParser::PeekString(const unsigned char* string, bool consume)
 			{
 				// Wierd, seems our buffer is too small, realloc it bigger.
 				buffer_size *= 2;
-				int read_offset = read - buffer;
-				buffer = (unsigned char*) realloc(buffer, buffer_size);
-
+				int read_offset = (int)(read - buffer);
+				unsigned char* new_buffer = (unsigned char*) realloc(buffer, buffer_size);
+				ROCKET_ASSERTMSG(new_buffer != NULL, "Unable to allocate larger buffer for Peek() call");
+				if(new_buffer == NULL)
+				{
+					return false;
+				}
+				buffer = new_buffer;
 				// Restore the read pointers.
 				read = buffer + read_offset;
 				peek_read = read + peek_offset;
@@ -494,7 +503,7 @@ bool BaseXMLParser::FillBuffer()
 	
 	read = buffer;
 	size_t bytes_read = xml_source->Read(&buffer[bytes_remaining], bytes_free);
-	buffer_used = bytes_read + bytes_remaining;
+	buffer_used = (int)(bytes_read + bytes_remaining);
 
 	return bytes_read > 0;
 }

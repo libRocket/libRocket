@@ -30,12 +30,12 @@
 #include "ElementDefinition.h"
 #include "ElementStyle.h"
 #include "FontFaceHandle.h"
-#include <Rocket/Core/ElementDocument.h>
-#include <Rocket/Core/ElementUtilities.h>
-#include <Rocket/Core/Event.h>
-#include <Rocket/Core/FontDatabase.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/ElementDocument.h"
+#include "../../Include/Rocket/Core/ElementUtilities.h"
+#include "../../Include/Rocket/Core/Event.h"
+#include "../../Include/Rocket/Core/FontDatabase.h"
+#include "../../Include/Rocket/Core/Property.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -102,11 +102,11 @@ void ElementTextDefault::OnRender()
 	Vector2i clip_dimensions;
 	if (GetContext()->GetActiveClipRegion(clip_origin, clip_dimensions))
 	{
-		float clip_top = clip_origin.y;
-		float clip_left = clip_origin.x;
-		float clip_right = (clip_origin.x + clip_dimensions.x);
-		float clip_bottom = (clip_origin.y + clip_dimensions.y);
-		float line_height = GetFontFaceHandle()->GetLineHeight();
+		float clip_top = (float)clip_origin.y;
+		float clip_left = (float)clip_origin.x;
+		float clip_right = (float)(clip_origin.x + clip_dimensions.x);
+		float clip_bottom = (float)(clip_origin.y + clip_dimensions.y);
+		float line_height = (float)GetFontFaceHandle()->GetLineHeight();
 		
 		render = false;
 		for (size_t i = 0; i < lines.size(); ++i)
@@ -149,7 +149,7 @@ bool ElementTextDefault::GenerateToken(float& token_width, int line_begin)
 		return 0;
 
 	// Determine how we are processing white-space while formatting the text.
-	int white_space_property = GetProperty< int >(WHITE_SPACE);
+	int white_space_property = GetWhitespace();
 	bool collapse_white_space = white_space_property == WHITE_SPACE_NORMAL ||
 								white_space_property == WHITE_SPACE_NOWRAP ||
 								white_space_property == WHITE_SPACE_PRE_LINE;
@@ -160,7 +160,7 @@ bool ElementTextDefault::GenerateToken(float& token_width, int line_begin)
 	const word* token_begin = text.CString() + line_begin;
 	WString token;
 
-	BuildToken(token, token_begin, text.CString() + text.Length(), true, collapse_white_space, break_at_endline, GetProperty< int >(TEXT_TRANSFORM));
+	BuildToken(token, token_begin, text.CString() + text.Length(), true, collapse_white_space, break_at_endline, GetTextTransform());
 	token_width = (float) font_face_handle->GetStringWidth(token, 0);
 
 	return LastToken(token_begin, text.CString() + text.Length(), collapse_white_space, break_at_endline);
@@ -181,7 +181,7 @@ bool ElementTextDefault::GenerateLine(WString& line, int& line_length, float& li
 		return true;
 
 	// Determine how we are processing white-space while formatting the text.
-	int white_space_property = GetProperty< int >(WHITE_SPACE);
+	int white_space_property = GetWhitespace();
 	bool collapse_white_space = white_space_property == WHITE_SPACE_NORMAL ||
 								white_space_property == WHITE_SPACE_NOWRAP ||
 								white_space_property == WHITE_SPACE_PRE_LINE;
@@ -194,7 +194,7 @@ bool ElementTextDefault::GenerateLine(WString& line, int& line_length, float& li
 							white_space_property == WHITE_SPACE_PRE_LINE;
 
 	// Determine what (if any) text transformation we are putting the characters through.
-	int text_transform_property = GetProperty< int >(TEXT_TRANSFORM);
+	int text_transform_property = GetTextTransform();
 
 	// Starting at the line_begin character, we generate sections of the text (we'll call them tokens) depending on the
 	// white-space parsing parameters. Each section is then appended to the line if it can fit. If not, or if an
@@ -225,7 +225,7 @@ bool ElementTextDefault::GenerateLine(WString& line, int& line_length, float& li
 		// The token can fit on the end of the line, so add it onto the end and increment our width and length
 		// counters.
 		line += token;
-		line_length += (next_token_begin - token_begin);
+		line_length += (int)(next_token_begin - token_begin);
 		line_width += token_width;
 
 		// Break out of the loop if an endline was forced.
@@ -472,6 +472,8 @@ static bool BuildToken(WString& token, const word*& token_begin, const word* str
 					character = '>';
 				else if (ucs2_escape_code == "amp")
 					character = '&';
+				else if (ucs2_escape_code == "quot")
+					character = '"';
 				else if (ucs2_escape_code == "nbsp")
 				{
 					character = ' ';

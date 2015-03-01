@@ -28,9 +28,9 @@
 #ifndef ROCKETCORESTYLESHEETSPECIFICATION_H
 #define ROCKETCORESTYLESHEETSPECIFICATION_H
 
-#include <Rocket/Core/Header.h>
-#include <Rocket/Core/PropertySpecification.h>
-#include <Rocket/Core/Types.h>
+#include "Header.h"
+#include "PropertySpecification.h"
+#include "Types.h"
 
 namespace Rocket {
 namespace Core {
@@ -72,9 +72,13 @@ public:
 	/// @return The appropriate property definition if it could be found, NULL otherwise.
 	static const PropertyDefinition* GetProperty(const String& property_name);
 
-	/// Fetches a list of the names of all registered property definitions.
-	/// @param properties[in] The list to store the property names.
-	static void GetRegisteredProperties(PropertyNameList& properties);
+	/// Returns the list of the names of all registered property definitions.
+	/// @return The list with stored property names.
+	static const PropertyNameList & GetRegisteredProperties();
+
+	/// Returns the list of the names of all registered inherited property definitions.
+	/// @return The list with stored property names.
+	static const PropertyNameList & GetRegisteredInheritedProperties();
 
 	/// Registers a shorthand property definition.
 	/// @param[in] shorthand_name The name to register the new shorthand property under.

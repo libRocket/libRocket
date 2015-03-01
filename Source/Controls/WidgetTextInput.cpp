@@ -27,17 +27,17 @@
 
 #include "WidgetTextInput.h"
 #include "ElementTextSelection.h"
-#include <Rocket/Core.h>
-#include <Rocket/Controls/ElementFormControl.h>
-#include <Rocket/Controls/Clipboard.h>
-#include <Rocket/Core/SystemInterface.h>
+#include "../../Include/Rocket/Core.h"
+#include "../../Include/Rocket/Controls/ElementFormControl.h"
+#include "../../Include/Rocket/Controls/Clipboard.h"
+#include "../../Include/Rocket/Core/SystemInterface.h"
 
 namespace Rocket {
 namespace Controls {
 
 const float CURSOR_BLINK_TIME = 0.7f;
 
-WidgetTextInput::WidgetTextInput(ElementFormControl* _parent) : internal_dimensions(0, 0), scroll_offset(0, 0), cursor_position(0, 0), cursor_size(0, 0), cursor_geometry(_parent), selection_geometry(_parent)
+WidgetTextInput::WidgetTextInput(ElementFormControl* _parent) : internal_dimensions(0, 0), scroll_offset(0, 0), selection_geometry(_parent), cursor_position(0, 0), cursor_size(0, 0), cursor_geometry(_parent)
 {
 	keyboard_showed = false;
 	
@@ -234,10 +234,11 @@ Core::Element* WidgetTextInput::GetElement()
 }
 
 // Dispatches a change event to the widget's element.
-void WidgetTextInput::DispatchChangeEvent()
+void WidgetTextInput::DispatchChangeEvent(bool linebreak)
 {
 	Rocket::Core::Dictionary parameters;
 	parameters.Set("value", GetElement()->GetAttribute< Rocket::Core::String >("value", ""));
+	parameters.Set("linebreak", linebreak);
 	GetElement()->DispatchEvent("change", parameters);
 }
 
@@ -350,7 +351,7 @@ void WidgetTextInput::ProcessEvent(Core::Event& event)
     				for (size_t i = 0; i < clipboard_content.Length(); ++i)
     				{
     					if (max_length > 0 &&
-    						(int) Core::WString(GetElement()->GetAttribute< Rocket::Core::String >("value", "")).Length() < max_length)
+    						(int) Core::WString(GetElement()->GetAttribute< Rocket::Core::String >("value", "")).Length() > max_length)
     						break;
 
     					AddCharacter(clipboard_content[i]);
@@ -557,8 +558,8 @@ void WidgetTextInput::UpdateAbsoluteCursor()
 
 	for (int i = 0; i < cursor_line_index; i++)
 	{
-		absolute_cursor_index += lines[i].content.Length();
-		edit_index += lines[i].content.Length() + lines[i].extra_characters;
+		absolute_cursor_index += (int)lines[i].content.Length();
+		edit_index += (int)lines[i].content.Length() + lines[i].extra_characters;
 	}
 }
 
@@ -817,7 +818,7 @@ Rocket::Core::Vector2f WidgetTextInput::FormatText()
 
 			selection_vertices.resize(selection_vertices.size() + 4);
 			selection_indices.resize(selection_indices.size() + 6);
-			Core::GeometryUtilities::GenerateQuad(&selection_vertices[selection_vertices.size() - 4], &selection_indices[selection_indices.size() - 6], line_position, Rocket::Core::Vector2f((float) selection_width, (float) line_height), selection_colour, selection_vertices.size() - 4);
+			Core::GeometryUtilities::GenerateQuad(&selection_vertices[selection_vertices.size() - 4], &selection_indices[selection_indices.size() - 6], line_position, Rocket::Core::Vector2f((float)selection_width, (float)line_height), selection_colour, (int)selection_vertices.size() - 4);
 
 			line_position.x += selection_width;
 		}
