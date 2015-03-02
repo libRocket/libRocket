@@ -494,6 +494,10 @@ public:
 	/// @param[out] elements Resulting elements.
 	/// @param[in] tag Tag to search for.
 	void GetElementsByTagName(ElementList& elements, const String& tag);
+	/// Get all descendant elements with the given class set on them.
+	/// @param[out] elements Resulting elements.
+	/// @param[in] tag Tag to search for.
+	void GetElementsByClassName(ElementList& elements, const String& class_name);
 	//@}
 
 	/**
@@ -566,6 +570,9 @@ protected:
 
 	/// Forces a re-layout of this element, and any other elements required.
 	virtual void DirtyLayout();
+
+	/// Returns true if the element has been marked as needing a re-layout.
+	virtual bool IsLayoutDirty();
 
 	/// Forces a reevaluation of applicable font effects.
 	virtual void DirtyFont();

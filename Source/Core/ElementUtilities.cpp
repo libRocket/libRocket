@@ -87,6 +87,28 @@ void ElementUtilities::GetElementsByTagName(ElementList& elements, Element* root
 	}
 }
 
+void ElementUtilities::GetElementsByClassName(ElementList& elements, Element* root_element, const String& class_name)
+{
+	// Breadth first search on elements for the corresponding id
+	typedef std::queue< Element* > SearchQueue;
+	SearchQueue search_queue;
+	for (int i = 0; i < root_element->GetNumChildren(); ++i)
+		search_queue.push(root_element->GetChild(i));
+
+	while (!search_queue.empty())
+	{
+		Element* element = search_queue.front();
+		search_queue.pop();
+
+		if (element->IsClassSet(class_name))
+			elements.push_back(element);
+
+		// Add all children to search.
+		for (int i = 0; i < element->GetNumChildren(); i++)
+			search_queue.push(element->GetChild(i));
+	}
+}
+
 // Returns the element's font face.
 FontFaceHandle* ElementUtilities::GetFontFaceHandle(Element* element)
 {
@@ -188,14 +210,29 @@ bool ElementUtilities::GetClippingRegion(Vector2i& clip_origin, Vector2i& clip_d
 			// Ignore nodes that don't clip.
 			if (clipping_element->GetClientWidth() < clipping_element->GetScrollWidth()
 				|| clipping_element->GetClientHeight() < clipping_element->GetScrollHeight())
-			{				
+			{
 				Vector2f element_origin_f = clipping_element->GetAbsoluteOffset(Box::CONTENT);
 				Vector2f element_dimensions_f = clipping_element->GetBox().GetSize(Box::CONTENT);
-				
+
 				Vector2i element_origin(Math::RealToInteger(element_origin_f.x), Math::RealToInteger(element_origin_f.y));
 				Vector2i element_dimensions(Math::RealToInteger(element_dimensions_f.x), Math::RealToInteger(element_dimensions_f.y));
+
+				bool clip_x = clipping_element->GetProperty(OVERFLOW_X)->Get< int >() != OVERFLOW_VISIBLE;
+				bool clip_y = clipping_element->GetProperty(OVERFLOW_Y)->Get< int >() != OVERFLOW_VISIBLE;
+				ROCKET_ASSERT(clip_x || clip_y);
 				
-				if (clip_origin == Vector2i(-1, -1) && clip_dimensions == Vector2i(-1, -1))
+				if (!clip_x)
+				{
+					element_origin.x = 0;
+					element_dimensions.x = clip_dimensions.x < 0 ? element->GetContext()->GetDimensions().x : clip_dimensions.x;
+				}
+				else if (!clip_y)
+				{
+					element_origin.y = 0;
+					element_dimensions.y = clip_dimensions.y < 0 ? element->GetContext()->GetDimensions().y : clip_dimensions.y;
+				}
+
+				if (clip_dimensions == Vector2i(-1, -1))
 				{
 					clip_origin = element_origin;
 					clip_dimensions = element_dimensions;
@@ -204,10 +241,10 @@ bool ElementUtilities::GetClippingRegion(Vector2i& clip_origin, Vector2i& clip_d
 				{
 					Vector2i top_left(Math::Max(clip_origin.x, element_origin.x),
 									  Math::Max(clip_origin.y, element_origin.y));
-					
+
 					Vector2i bottom_right(Math::Min(clip_origin.x + clip_dimensions.x, element_origin.x + element_dimensions.x),
 										  Math::Min(clip_origin.y + clip_dimensions.y, element_origin.y + element_dimensions.y));
-					
+
 					clip_origin = top_left;
 					clip_dimensions.x = Math::Max(0, bottom_right.x - top_left.x);
 					clip_dimensions.y = Math::Max(0, bottom_right.y - top_left.y);
