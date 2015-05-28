@@ -125,11 +125,11 @@ DecoratorDataHandle DecoratorTiledHorizontal::GenerateElementData(Element* eleme
 	}
 
 	// Generate the geometry for the left tile.
-	tiles[LEFT].GenerateGeometry(data->geometry[tiles[LEFT].texture_index]->GetVertices(), data->geometry[tiles[LEFT].texture_index]->GetIndices(), element, Vector2f(0, 0), left_dimensions, left_dimensions);
+	tiles[LEFT].GenerateGeometry(data->geometry[tiles[LEFT].texture_index]->GetVertices(), data->geometry[tiles[LEFT].texture_index]->GetIndices(), element, Vector2f(0, 0), left_dimensions, left_dimensions, color_multiplier);
 	// Generate the geometry for the centre tiles.
-	tiles[CENTRE].GenerateGeometry(data->geometry[tiles[CENTRE].texture_index]->GetVertices(), data->geometry[tiles[CENTRE].texture_index]->GetIndices(), element, Vector2f(left_dimensions.x, 0), Vector2f(padded_size.x - (left_dimensions.x + right_dimensions.x), centre_dimensions.y), centre_dimensions);
+	tiles[CENTRE].GenerateGeometry(data->geometry[tiles[CENTRE].texture_index]->GetVertices(), data->geometry[tiles[CENTRE].texture_index]->GetIndices(), element, Vector2f(left_dimensions.x, 0), Vector2f(padded_size.x - (left_dimensions.x + right_dimensions.x), centre_dimensions.y), centre_dimensions, color_multiplier);
 	// Generate the geometry for the right tile.
-	tiles[RIGHT].GenerateGeometry(data->geometry[tiles[RIGHT].texture_index]->GetVertices(), data->geometry[tiles[RIGHT].texture_index]->GetIndices(), element, Vector2f(padded_size.x - right_dimensions.x, 0), right_dimensions, right_dimensions);
+	tiles[RIGHT].GenerateGeometry(data->geometry[tiles[RIGHT].texture_index]->GetVertices(), data->geometry[tiles[RIGHT].texture_index]->GetIndices(), element, Vector2f(padded_size.x - right_dimensions.x, 0), right_dimensions, right_dimensions, color_multiplier);
 
 	// Set the textures on the geometry.
 	const Texture* texture = NULL;

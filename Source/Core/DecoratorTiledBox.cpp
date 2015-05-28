@@ -203,21 +203,26 @@ DecoratorDataHandle DecoratorTiledBox::GenerateElementData(Element* element)
 											element,
 											Vector2f(0, 0),
 											top_left_dimensions,
-											top_left_dimensions);
+											top_left_dimensions,
+											color_multiplier);
+
 	// Generate the geometry for the top edge tiles.
 	tiles[TOP_EDGE].GenerateGeometry(data->geometry[tiles[TOP_EDGE].texture_index]->GetVertices(),
 									 data->geometry[tiles[TOP_EDGE].texture_index]->GetIndices(),
 									 element,
 									 Vector2f(top_left_dimensions.x, 0),
 									 Vector2f(padded_size.x - (top_left_dimensions.x + top_right_dimensions.x), top_dimensions.y),
-									 top_dimensions);
+									 top_dimensions,
+									 color_multiplier);
+
 	// Generate the geometry for the top-right tile.
 	tiles[TOP_RIGHT_CORNER].GenerateGeometry(data->geometry[tiles[TOP_RIGHT_CORNER].texture_index]->GetVertices(),
 											 data->geometry[tiles[TOP_RIGHT_CORNER].texture_index]->GetIndices(),
 											 element,
 											 Vector2f(padded_size.x - top_right_dimensions.x, 0),
 											 top_right_dimensions,
-											 top_right_dimensions);
+											 top_right_dimensions,
+											 color_multiplier);
 
 	// Generate the geometry for the left side.
 	tiles[LEFT_EDGE].GenerateGeometry(data->geometry[tiles[LEFT_EDGE].texture_index]->GetVertices(),
@@ -225,7 +230,8 @@ DecoratorDataHandle DecoratorTiledBox::GenerateElementData(Element* element)
 									  element,
 									  Vector2f(0, top_left_dimensions.y),
 									  Vector2f(left_dimensions.x, padded_size.y - (top_left_dimensions.y + bottom_left_dimensions.y)),
-									  left_dimensions);
+									  left_dimensions,
+									  color_multiplier);
 
 	// Generate the geometry for the right side.
 	tiles[RIGHT_EDGE].GenerateGeometry(data->geometry[tiles[RIGHT_EDGE].texture_index]->GetVertices(),
@@ -233,7 +239,8 @@ DecoratorDataHandle DecoratorTiledBox::GenerateElementData(Element* element)
 									   element,
 									   Vector2f((padded_size.x - right_dimensions.x), top_right_dimensions.y),
 									   Vector2f(right_dimensions.x, padded_size.y - (top_right_dimensions.y + bottom_right_dimensions.y)),
-									   right_dimensions);
+									   right_dimensions,
+									   color_multiplier);
 
 	// Generate the geometry for the bottom-left tile.
 	tiles[BOTTOM_LEFT_CORNER].GenerateGeometry(data->geometry[tiles[BOTTOM_LEFT_CORNER].texture_index]->GetVertices(),
@@ -241,21 +248,26 @@ DecoratorDataHandle DecoratorTiledBox::GenerateElementData(Element* element)
 											   element,
 											   Vector2f(0, padded_size.y - bottom_left_dimensions.y),
 											   bottom_left_dimensions,
-											   bottom_left_dimensions);
+											   bottom_left_dimensions,
+											   color_multiplier);
+
 	// Generate the geometry for the bottom edge tiles.
 	tiles[BOTTOM_EDGE].GenerateGeometry(data->geometry[tiles[BOTTOM_EDGE].texture_index]->GetVertices(),
 										data->geometry[tiles[BOTTOM_EDGE].texture_index]->GetIndices(),
 										element,
 										Vector2f(bottom_left_dimensions.x, padded_size.y - bottom_dimensions.y),
 										Vector2f(padded_size.x - (bottom_left_dimensions.x + bottom_right_dimensions.x), bottom_dimensions.y),
-										bottom_dimensions);
+										bottom_dimensions,
+										color_multiplier);
+
 	// Generate the geometry for the bottom-right tile.
 	tiles[BOTTOM_RIGHT_CORNER].GenerateGeometry(data->geometry[tiles[BOTTOM_RIGHT_CORNER].texture_index]->GetVertices(),
 												data->geometry[tiles[BOTTOM_RIGHT_CORNER].texture_index]->GetIndices(),
 												element,
 												Vector2f(padded_size.x - bottom_right_dimensions.x, padded_size.y - bottom_right_dimensions.y),
 												bottom_right_dimensions,
-												bottom_right_dimensions);
+												bottom_right_dimensions,
+												color_multiplier);
 
 	// Generate the centre geometry.
 	if (tiles[CENTRE].texture_index >= 0)
@@ -269,7 +281,8 @@ DecoratorDataHandle DecoratorTiledBox::GenerateElementData(Element* element)
 									   element,
 									   Vector2f(left_dimensions.x, top_dimensions.y),
 									   centre_surface_dimensions,
-									   centre_dimensions);
+									   centre_dimensions,
+									   color_multiplier);
 	}
 
 	// Set the textures on the geometry.
