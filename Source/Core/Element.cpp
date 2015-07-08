@@ -1564,7 +1564,8 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 	// Dirty the background if it's changed.
 	if (all_dirty ||
-		changed_properties.find(BACKGROUND_COLOR) != changed_properties.end())
+		changed_properties.find(BACKGROUND_COLOR) != changed_properties.end() ||
+		changed_properties.find(OPACITY) != changed_properties.end())
 		background->DirtyBackground();
 
 	// Dirty the border if it's changed.
@@ -1576,7 +1577,8 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 		changed_properties.find(BORDER_TOP_COLOR) != changed_properties.end() ||
 		changed_properties.find(BORDER_RIGHT_COLOR) != changed_properties.end() ||
 		changed_properties.find(BORDER_BOTTOM_COLOR) != changed_properties.end() ||
-		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties.end())
+		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties.end() ||
+		changed_properties.find(OPACITY) != changed_properties.end())
 		border->DirtyBorder();
 
 	// Fetch a new font face if it has been changed.
