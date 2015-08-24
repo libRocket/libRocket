@@ -44,7 +44,7 @@ class TextureResource;
 	@author Peter
  */
 
-class TextureLayoutTexture
+class TextureLayoutTexture : public ReferenceCountable
 {
 public:
 	TextureLayoutTexture();
@@ -64,6 +64,9 @@ public:
 	/// Allocates the texture.
 	/// @return The allocated texture data.
 	byte* AllocateTexture();
+
+protected:
+  virtual void OnReferenceDeactivate();
 
 private:
 	typedef std::vector< TextureLayoutRow > RowList;

@@ -74,9 +74,11 @@ public:
 	/// @return True if the layout was generated successfully, false if not.
 	bool GenerateLayout(int max_texture_dimensions);
 
+  TextureLayout& operator+=(const TextureLayout &layout);
+
 private:
-	typedef std::vector< TextureLayoutRectangle > RectangleList;
-	typedef std::vector< TextureLayoutTexture > TextureList;
+	typedef std::vector< TextureLayoutRectangle* > RectangleList;
+	typedef std::vector< TextureLayoutTexture* > TextureList;
 
 	TextureList textures;
 	RectangleList rectangles;

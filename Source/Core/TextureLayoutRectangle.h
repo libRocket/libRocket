@@ -37,7 +37,7 @@ namespace Core {
 	@author Peter
  */
 
-class TextureLayoutRectangle
+class TextureLayoutRectangle : public ReferenceCountable
 {
 public:
 	TextureLayoutRectangle(int id, const Vector2i& dimensions);
@@ -77,6 +77,9 @@ public:
 	/// Returns the stride of the rectangle's texture data.
 	/// @return The texture data stride.
 	int GetTextureStride() const;
+
+protected:
+  virtual void OnReferenceDeactivate();
 
 private:
 	int id;

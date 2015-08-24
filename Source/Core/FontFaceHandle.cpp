@@ -261,6 +261,63 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 	int geometry_index = 0;
 	int line_width = 0;
 
+  // font load check
+  {
+    int old_charset_size = charset.size();
+	  const word* string_iterator = string.CString();
+	  const word* string_end = string.CString() + string.Length();
+
+	  for (; string_iterator != string_end; string_iterator++)
+	  {
+      const unsigned int code = *string_iterator;
+      const unsigned int charset_size = charset.size();
+
+      unsigned int i;
+      for (i = 0; i < charset_size; ++i)
+        if (charset[i].min_codepoint <= code && charset[i].max_codepoint >= code) break;
+
+      if (i == charset_size)
+      {
+        String codeStr;
+        codeStr.FormatString(64, "%04x", code);
+        const_cast<String*>(&raw_charset)->Append(",U+");
+        const_cast<String*>(&raw_charset)->Append(codeStr);
+        const_cast<String*>(&raw_charset)->Append("-");
+        const_cast<String*>(&raw_charset)->Append(codeStr);
+
+        UnicodeRange range;
+        range.min_codepoint = code;
+        range.max_codepoint = code;
+        const_cast<UnicodeRangeList*>(&charset)->push_back(range);
+      }
+    }
+
+    if (old_charset_size != charset.size())
+    {
+      FT_Set_Char_Size(ft_face, 0, size << 6, 0, 0);
+
+      for (size_t i = old_charset_size; i < charset.size(); ++i)
+		    *const_cast<unsigned int*>(&max_codepoint) = Math::Max(max_codepoint, charset[i].max_codepoint);
+
+	    const_cast<FontGlyphList*>(&glyphs)->resize(max_codepoint+1, FontGlyph());
+	    for (size_t i = old_charset_size; i < charset.size(); ++i)
+      {
+		    const_cast<FontFaceHandle*>(this)->BuildGlyphMap(charset[i]);
+      }
+
+      FontGlyphList append_glyphs;
+	    for (size_t i = old_charset_size; i < charset.size(); ++i)
+      {
+        for (unsigned int code = charset[i].min_codepoint; code <= charset[i].max_codepoint; ++code)
+          append_glyphs.push_back(glyphs[code]);
+      }
+	    for (FontLayerMap::iterator i = const_cast<FontLayerMap*>(&layers)->begin(); i != layers.end(); ++i)
+        i->second->AppendGlyphs(append_glyphs);
+
+      return GenerateString(geometry, string, position, colour, layer_configuration_index);
+    }
+  }
+
 	ROCKET_ASSERT(layer_configuration_index >= 0);
 	ROCKET_ASSERT(layer_configuration_index < (int) layer_configurations.size());
 
@@ -292,8 +349,6 @@ int FontFaceHandle::GenerateString(GeometryList& geometry, const WString& string
 
 		for (; string_iterator != string_end; string_iterator++)
 		{
-			if (*string_iterator >= glyphs.size())
-				continue;
 			const FontGlyph &glyph = glyphs[*string_iterator];
 
 			// Adjust the cursor for the kerning between this character and the previous one.
