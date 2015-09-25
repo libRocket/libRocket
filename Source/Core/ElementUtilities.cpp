@@ -146,34 +146,51 @@ int ElementUtilities::GetLineHeight(Element* element)
 
 	switch (line_height_property->unit)
 	{
-	ROCKET_UNUSED_SWITCH_ENUM(Property::UNKNOWN);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::KEYWORD);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::STRING);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::COLOUR);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::ABSOLUTE_UNIT);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::PPI_UNIT);
-	ROCKET_UNUSED_SWITCH_ENUM(Property::RELATIVE_UNIT);
-	case Property::NUMBER:
-	case Property::EM:
-		// If the property is a straight number or an em measurement, then it scales the line height.
-		return Math::Round(line_height_property->value.Get< float >() * line_height);
-	case Property::PERCENT:
-		// If the property is a percentage, then it scales the line height.
-		return Math::Round(line_height_property->value.Get< float >() * line_height * 0.01f);
-	case Property::PX:
-		// A px measurement.
-		return Math::Round(line_height_property->value.Get< float >());
-	case Property::INCH:
-		// Values based on pixels-per-inch.
-		return Math::Round(line_height_property->value.Get< float >() * inch);
-	case Property::CM:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 2.54f));
-	case Property::MM:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 25.4f));
-	case Property::PT:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 72.0f));
-	case Property::PC:
-		return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 6.0f));
+		ROCKET_UNUSED_SWITCH_ENUM(Property::UNKNOWN);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::KEYWORD);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::STRING);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::COLOUR);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::ABSOLUTE_UNIT);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::PPI_UNIT);
+		ROCKET_UNUSED_SWITCH_ENUM(Property::RELATIVE_UNIT);
+		case Property::REM:
+		// If the property is a straight number or an em measurement, then it scales the line height of the parent.
+		// Ref: Equal to the computed value of ‘font-size’ on the root element.
+		// Ref URL: http://www.w3.org/TR/css3-values/#rem-unit
+		{
+			Rocket::Core::ElementDocument* owner_document = element->GetOwnerDocument();
+			if (owner_document == NULL)
+				return 0;
+
+			/// @TODO In release mode, using REM on a body tag will result in an infinite recursion loop
+			/// and eventually a stack overflow crash, this needs to be resolved.
+			ROCKET_ASSERTMSG(owner_document != element, "REM unit is not allowed on document or body root.");
+
+			float base_value = owner_document->ResolveProperty(FONT_SIZE, 0);
+
+			return Math::Round(line_height_property->value.Get< float >() * base_value);
+		}
+		case Property::NUMBER:
+		case Property::EM:
+			// If the property is a straight number or an em measurement, then it scales the line height.
+			return Math::Round(line_height_property->value.Get< float >() * line_height);
+		case Property::PERCENT:
+			// If the property is a percentage, then it scales the line height.
+			return Math::Round(line_height_property->value.Get< float >() * line_height * 0.01f);
+		case Property::PX:
+			// A px measurement.
+			return Math::Round(line_height_property->value.Get< float >());
+		case Property::INCH:
+			// Values based on pixels-per-inch.
+			return Math::Round(line_height_property->value.Get< float >() * inch);
+		case Property::CM:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 2.54f));
+		case Property::MM:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 25.4f));
+		case Property::PT:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 72.0f));
+		case Property::PC:
+			return Math::Round(line_height_property->value.Get< float >() * inch * (1.0f / 6.0f));
 	}
 
 	return 0;
