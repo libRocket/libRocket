@@ -227,12 +227,12 @@ void init() {
 
 	MarmaladeInput::SetContext(context);
 
-	Rocket::Core::String font_names[5];
+	Rocket::Core::String font_names[4];
 	font_names[0] = "Delicious-Roman.otf";
 	font_names[1] = "Delicious-Italic.otf";
 	font_names[2] = "Delicious-Bold.otf";
 	font_names[3] = "Delicious-BoldItalic.otf";
-    font_names[4] = "Arial.fnt";
+    //font_names[4] = "Arial.fnt";
 
 	for (uint i = 0; i < sizeof(font_names) / sizeof(Rocket::Core::String); i++)
 	{
