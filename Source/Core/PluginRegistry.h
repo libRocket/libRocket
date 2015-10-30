@@ -35,6 +35,7 @@ class Context;
 class Element;
 class ElementDocument;
 class Plugin;
+typedef std::vector< Plugin* > PluginList;
 
 /**
 	@author Peter Curry
@@ -43,6 +44,9 @@ class Plugin;
 class PluginRegistry
 {
 public:
+    static bool Initialise();
+    static void Shutdown();
+
 	static void RegisterPlugin(Plugin* plugin);
 
 	/// Calls OnInitialise() on all plugins.
@@ -69,6 +73,9 @@ public:
 
 private:
 	PluginRegistry();
+    static PluginList *basic_plugins;
+    static PluginList *document_plugins;
+    static PluginList *element_plugins;
 };
 
 }

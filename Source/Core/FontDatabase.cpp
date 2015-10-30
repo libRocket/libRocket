@@ -36,7 +36,7 @@ namespace Rocket {
 namespace Core {
 
 FontDatabase* FontDatabase::instance = NULL;
-FontDatabase::FontProviderTable FontDatabase::font_provider_table;
+FontDatabase::FontProviderTable* FontDatabase::font_provider_table = NULL;
 
 typedef std::map< String, FontEffect* > FontEffectCache;
 FontEffectCache font_effect_cache;
@@ -44,13 +44,18 @@ FontEffectCache font_effect_cache;
 FontDatabase::FontDatabase()
 {
 	ROCKET_ASSERT(instance == NULL);
+    ROCKET_ASSERT(font_provider_table == NULL);
 	instance = this;
+    font_provider_table = new FontProviderTable();
 }
 
 FontDatabase::~FontDatabase()
 {
 	ROCKET_ASSERT(instance == this);
+    ROCKET_ASSERT(font_provider_table != NULL);
 	instance = NULL;
+    delete font_provider_table;
+    font_provider_table = NULL;
 }
 
 bool FontDatabase::Initialise()
@@ -165,11 +170,11 @@ FontFaceHandle* FontDatabase::GetFontFaceHandle(const String& family, const Stri
 {
     size_t provider_index, provider_count;
 
-    provider_count = font_provider_table.size();
+    provider_count = font_provider_table->size();
 
     for(provider_index = 0; provider_index < provider_count; ++provider_index)
     {
-        FontFaceHandle * face_handle = font_provider_table[ provider_index ]->GetFontFaceHandle(family, charset, style, weight, size);
+        FontFaceHandle * face_handle = (*font_provider_table)[ provider_index ]->GetFontFaceHandle(family, charset, style, weight, size);
 
         if(face_handle)
         {
@@ -244,16 +249,16 @@ void FontDatabase::ReleaseFontEffect(const FontEffect* effect)
 
 void FontDatabase::AddFontProvider(FontProvider * provider)
 {
-    instance->font_provider_table.push_back(provider);
+    instance->font_provider_table->push_back(provider);
 }
 
 void FontDatabase::RemoveFontProvider(FontProvider * provider)
 {
-    for(FontProviderTable::iterator i = instance->font_provider_table.begin(); i != instance->font_provider_table.end(); ++i)
+    for (FontProviderTable::iterator i = instance->font_provider_table->begin(); i != instance->font_provider_table->end(); ++i)
     {
         if(*i == provider)
         {
-            instance->font_provider_table.erase(i);
+            instance->font_provider_table->erase(i);
             return;
         }
     }

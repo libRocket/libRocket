@@ -45,7 +45,20 @@
 namespace Rocket {
 namespace Core {
 
-ElementStyle::ElementStyle(Element* _element)
+PropCounter* ElementStyle::prop_counter = NULL;
+
+    bool ElementStyle::Initialise()
+    {
+        prop_counter = new PropCounter();
+        return true;
+    }
+
+    void ElementStyle::Shutdown()
+    {
+        delete prop_counter;
+    }
+
+    ElementStyle::ElementStyle(Element* _element)
 {
 	local_properties = NULL;
 	em_properties = NULL;
@@ -70,9 +83,7 @@ ElementStyle::~ElementStyle()
 	delete cache;
 }
 
-static PropCounter prop_counter;
-
-PropCounter &ElementStyle::GetPropCounter()
+PropCounter* ElementStyle::GetPropCounter()
 {
 	return prop_counter;
 }
@@ -292,9 +303,9 @@ void ElementStyle::RemoveProperty(const String& name)
 // Returns one of this element's properties.
 const Property* ElementStyle::GetProperty(const String& name)
 {
-	if (prop_counter.find(name) == prop_counter.end())
-		prop_counter[name] = 0;
-	prop_counter[name] = prop_counter[name] + 1;
+    if (prop_counter->find(name) == prop_counter->end())
+		(*prop_counter)[name] = 0;
+	(*prop_counter)[name] = (*prop_counter)[name] + 1;
 
 	const Property* local_property = GetLocalProperty(name);
 	if (local_property != NULL)

@@ -46,6 +46,12 @@ typedef std::map<String, int> PropCounter;
 class ElementStyle
 {
 public:
+
+    /// Creates the PropCounter
+    static bool Initialise();
+    /// Destroys the PropCounter
+    static void Shutdown();
+
 	/// Constructor
 	/// @param[in] element The element this structure belongs to.
 	ElementStyle(Element* element);
@@ -176,7 +182,7 @@ public:
 	/// Returns 'vertical-align' property value from element's style or local cache.
 	const Property *GetVerticalAlignProperty();
 
-	static PropCounter &GetPropCounter();
+	static PropCounter *GetPropCounter();
 
 private:
 	// Sets a single property as dirty.
@@ -206,6 +212,7 @@ private:
 	bool child_definition_dirty;
 	// cached non-inherited properties
 	ElementStyleCache *cache;
+    static PropCounter* prop_counter;
 };
 
 }
