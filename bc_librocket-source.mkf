@@ -16,6 +16,11 @@ includepaths
 #	Include/Rocket/Debugger
 }
 
+options
+{
+   cxxflags="-std=gnu++0x"
+}
+
 defines {
 	ROCKET_STATIC_LIB
 }

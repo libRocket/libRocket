@@ -1,0 +1,1 @@
+ROCKET_STATIC_LIB	The library is compiled and linked as static.

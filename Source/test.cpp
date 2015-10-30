@@ -233,7 +233,7 @@ void init() {
 	font_names[3] = "Delicious-BoldItalic.otf";
   font_names[4] = "Amorpheus.ttf";
 
-	for (int i = 0; i < sizeof(font_names) / sizeof(Rocket::Core::String); i++)
+	for (uint i = 0; i < sizeof(font_names) / sizeof(Rocket::Core::String); i++)
 	{
 		Rocket::Core::FontDatabase::LoadFontFace(font_names[i]);
 	}
