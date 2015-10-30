@@ -171,7 +171,6 @@ static int32 keyboardHandler(void* sys, void*)
 {
     s3eKeyboardEvent* event = (s3eKeyboardEvent*)sys;
 	Rocket::Core::Input::KeyIdentifier key_identifier;
-	s3eWChar ch;
 
 	if (event->m_Pressed) 
     {

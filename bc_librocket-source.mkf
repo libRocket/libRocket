@@ -1,19 +1,19 @@
 includepaths
 {
 	Source
-	Source/Controls
-	Source/Core
-	Source/Core/BitmapFont
-	Source/Core/FreeType
-	Source/Debugger
+#	Source/Controls
+#	Source/Core
+#	Source/Core/BitmapFont
+#	Source/Core/FreeType
+#	Source/Debugger
 	
 	Include
-	Include/Rocket
-	Include/Rocket/Controls
-	Include/Rocket/Core
-	Include/Rocket/Core/BitmapFont
-	Include/Rocket/Core/FreeType
-	Include/Rocket/Debugger
+#	Include/Rocket
+#	Include/Rocket/Controls
+#	Include/Rocket/Core
+#	Include/Rocket/Core/BitmapFont
+#	Include/Rocket/Core/FreeType
+#	Include/Rocket/Debugger
 }
 
 defines {

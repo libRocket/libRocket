@@ -38,8 +38,3 @@ void MarmaladeEvent::ProcessEvent(Rocket::Core::Event &event)
 
 }
 
-void MarmaladeEvent::OnDetach(Rocket::Core::Element* ROCKET_UNUSED(element))
-{
-	delete this;
-}
-

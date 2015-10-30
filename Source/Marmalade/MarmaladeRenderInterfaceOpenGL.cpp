@@ -52,21 +52,21 @@ void MarmaladeRenderInterfaceOpenGL::RenderGeometry(Rocket::Core::Vertex* vertic
 	IwGxDrawPrims(IW_GX_TRI_LIST, indices_stream, num_indices);
 }
 
-// Called by Rocket when it wants to compile geometry it believes will be static for the forseeable future.		
-Rocket::Core::CompiledGeometryHandle MarmaladeRenderInterfaceOpenGL::CompileGeometry(Rocket::Core::Vertex* ROCKET_UNUSED(vertices), int ROCKET_UNUSED(num_vertices), int* ROCKET_UNUSED(indices), int ROCKET_UNUSED(num_indices), const Rocket::Core::TextureHandle ROCKET_UNUSED(texture))
-{
-	return (Rocket::Core::CompiledGeometryHandle) NULL;
-}
-
-// Called by Rocket when it wants to render application-compiled geometry.		
-void MarmaladeRenderInterfaceOpenGL::RenderCompiledGeometry(Rocket::Core::CompiledGeometryHandle ROCKET_UNUSED(geometry), const Rocket::Core::Vector2f& ROCKET_UNUSED(translation))
-{
-}
-
-// Called by Rocket when it wants to release application-compiled geometry.		
-void MarmaladeRenderInterfaceOpenGL::ReleaseCompiledGeometry(Rocket::Core::CompiledGeometryHandle ROCKET_UNUSED(geometry))
-{
-}
+//// Called by Rocket when it wants to compile geometry it believes will be static for the forseeable future.		
+//Rocket::Core::CompiledGeometryHandle MarmaladeRenderInterfaceOpenGL::CompileGeometry(Rocket::Core::Vertex* ROCKET_UNUSED(vertices), int ROCKET_UNUSED(num_vertices), int* ROCKET_UNUSED(indices), int ROCKET_UNUSED(num_indices), const Rocket::Core::TextureHandle ROCKET_UNUSED(texture))
+//{
+//	return (Rocket::Core::CompiledGeometryHandle) NULL;
+//}
+//
+//// Called by Rocket when it wants to render application-compiled geometry.		
+//void MarmaladeRenderInterfaceOpenGL::RenderCompiledGeometry(Rocket::Core::CompiledGeometryHandle ROCKET_UNUSED(geometry), const Rocket::Core::Vector2f& ROCKET_UNUSED(translation))
+//{
+//}
+//
+//// Called by Rocket when it wants to release application-compiled geometry.		
+//void MarmaladeRenderInterfaceOpenGL::ReleaseCompiledGeometry(Rocket::Core::CompiledGeometryHandle ROCKET_UNUSED(geometry))
+//{
+//}
 
 // Called by Rocket when it wants to enable or disable scissoring to clip content.		
 void MarmaladeRenderInterfaceOpenGL::EnableScissorRegion(bool enable)
