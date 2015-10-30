@@ -11,8 +11,6 @@ MarmaladeEvent::MarmaladeEvent(const Rocket::Core::String& value) : _value(value
 
 MarmaladeEvent::~MarmaladeEvent()
 {
-
-
 }
 
 void MarmaladeEvent::ProcessEvent(Rocket::Core::Event &event)

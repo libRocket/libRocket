@@ -16,3 +16,8 @@ subprojects
 	iwutil
 	bc_librocket-source
 }
+
+options
+{
+    s3e-data-dir="./Samples/assets"
+}

@@ -209,7 +209,8 @@ void init() {
 	Rocket::Core::Initialise();
     Rocket::Controls::Initialise();
 
-    Rocket::Core::Factory::RegisterEventListenerInstancer(event_instancer);
+    //FIXME: Crashes when using events
+    //Rocket::Core::Factory::RegisterEventListenerInstancer(event_instancer);
 
 
 
@@ -231,7 +232,7 @@ void init() {
 	font_names[1] = "Delicious-Italic.otf";
 	font_names[2] = "Delicious-Bold.otf";
 	font_names[3] = "Delicious-BoldItalic.otf";
-  font_names[4] = "Amorpheus.ttf";
+    font_names[4] = "Arial.fnt";
 
 	for (uint i = 0; i < sizeof(font_names) / sizeof(Rocket::Core::String); i++)
 	{
