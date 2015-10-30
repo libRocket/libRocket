@@ -3,7 +3,6 @@
 #include "s3eKeyboard.h"
 #include "MarmaladeEvent.h"
 
-
 MarmaladeEvent::MarmaladeEvent(const Rocket::Core::String& value) : _value(value)
 {
 
@@ -36,3 +35,8 @@ void MarmaladeEvent::ProcessEvent(Rocket::Core::Event &event)
 
 }
 
+void MarmaladeEvent::OnDetach(Rocket::Core::Element* ROCKET_UNUSED_PARAMETER(element))
+{
+    ROCKET_UNUSED(element);
+    delete this;
+}
