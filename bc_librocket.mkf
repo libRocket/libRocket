@@ -1,0 +1,10 @@
+library
+{
+	".,librocket"
+}
+
+defines {
+	STATIC_LIB
+}
+
+subproject bc_librocket-source

@@ -1,0 +1,13 @@
+option lib
+
+subproject bc_librocket
+
+defines {
+	STATIC_LIB
+}
+
+options 
+{ 
+	optimise-speed
+	enable-exceptions
+}

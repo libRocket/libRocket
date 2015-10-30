@@ -1,0 +1,18 @@
+files
+{
+	[Source]
+	(Source)
+	test.cpp
+}
+
+includepaths
+{
+	Source
+}
+
+subprojects
+{
+	iwgx
+	iwutil
+	bc_librocket-source
+}
