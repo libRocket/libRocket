@@ -180,11 +180,13 @@ input.text
 {
 	height: 31px;
 	padding: 10px 10px 0px;
-
+	background-color: white;
+/*
 	background-decorator: tiled-horizontal;
 	background-left-image: invader.tga 162px 192px 176px 223px;
 	background-center-image: invader.tga stretch 176px 192px 177px 223px;
-}
+*/
+	}
 
 input.text,
 select,

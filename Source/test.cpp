@@ -210,7 +210,7 @@ void init() {
     Rocket::Controls::Initialise();
 
     //FIXME: Crashes when using events
-    //Rocket::Core::Factory::RegisterEventListenerInstancer(event_instancer);
+    Rocket::Core::Factory::RegisterEventListenerInstancer(event_instancer);
 
 
 
