@@ -42,6 +42,14 @@ const float DOUBLE_CLICK_TIME = 0.5f;
 
 Context::Context(const String& name) : name(name), dimensions(0, 0), mouse_position(0, 0), clip_origin(-1, -1), clip_dimensions(-1, -1)
 {
+    property_names[0] = "ctrl_key";
+    property_names[1] = "shift_key";
+    property_names[2] = "alt_key";
+    property_names[3] = "meta_key";
+    property_names[4] = "caps_lock_key";
+    property_names[5] = "num_lock_key";
+    property_names[6] = "scroll_lock_key";
+
 	instancer = NULL;
 
 	// Initialise this to NULL; this will be set in Rocket::Core::CreateContext().
@@ -1178,16 +1186,6 @@ void Context::GenerateMouseEventParameters(Dictionary& parameters, int button_in
 // Builds the parameters for the key modifier state.
 void Context::GenerateKeyModifierEventParameters(Dictionary& parameters, int key_modifier_state)
 {
-	static String property_names[] = {
-		"ctrl_key",
-		"shift_key",
-		"alt_key",
-		"meta_key",
-		"caps_lock_key",
-		"num_lock_key",
-		"scroll_lock_key"
-	};
-
 	for (int i = 0; i < 7; i++)
 		parameters.Set(property_names[i], (int) ((key_modifier_state & (1 << i)) > 0));
 }
