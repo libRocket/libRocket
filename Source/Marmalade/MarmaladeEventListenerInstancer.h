@@ -8,12 +8,13 @@ class MarmaladeEventListenerInstancer : public Rocket::Core::EventListenerInstan
 {
 public:
 	MarmaladeEventListenerInstancer() { }
-	~MarmaladeEventListenerInstancer() { }
+	~MarmaladeEventListenerInstancer() override
+	{ }
 
 
-	virtual Rocket::Core::EventListener* InstanceEventListener(const Rocket::Core::String& value, Rocket::Core::Element* element);
+	virtual Rocket::Core::EventListener* InstanceEventListener(const Rocket::Core::String& value, Rocket::Core::Element* element) override;
 
-	virtual void Release();
+	virtual void Release() override;
 
 };
 

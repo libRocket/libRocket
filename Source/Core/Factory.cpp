@@ -55,17 +55,9 @@
 namespace Rocket {
 namespace Core {
 
-// Element instancers.
-typedef std::map< String, ElementInstancer* > ElementInstancerMap;
-static ElementInstancerMap element_instancers;
-
-// Decorator instancers.
-typedef std::map< String, DecoratorInstancer* > DecoratorInstancerMap;
-static DecoratorInstancerMap decorator_instancers;
-
-// Font effect instancers.
-typedef std::map< String, FontEffectInstancer* > FontEffectInstancerMap;
-static FontEffectInstancerMap font_effect_instancers;
+ElementInstancerMap* Factory::element_instancers;
+DecoratorInstancerMap* Factory::decorator_instancers;
+FontEffectInstancerMap* Factory::font_effect_instancers;
 
 // The context instancer.
 static ContextInstancer* context_instancer = NULL;
@@ -74,7 +66,9 @@ static ContextInstancer* context_instancer = NULL;
 static EventInstancer* event_instancer = NULL;
 
 // Event listener instancer.
-static EventListenerInstancer* event_listener_instancer = NULL;
+EventListenerInstancer *Factory::event_listener_instancer = NULL;
+
+PropertyParserColour *Factory::colour_parser = NULL;
 
 Factory::Factory()
 {
@@ -86,6 +80,10 @@ Factory::~Factory()
 
 bool Factory::Initialise()
 {
+    element_instancers = new ElementInstancerMap();
+    decorator_instancers = new DecoratorInstancerMap();
+    font_effect_instancers = new FontEffectInstancerMap();
+
 	// Bind the default context instancer.
 	if (context_instancer == NULL)
 		context_instancer = new ContextInstancerDefault();
@@ -122,22 +120,26 @@ bool Factory::Initialise()
 	XMLParser::RegisterNodeHandler("head", new XMLNodeHandlerHead())->RemoveReference();
 	XMLParser::RegisterNodeHandler("template", new XMLNodeHandlerTemplate())->RemoveReference();
 
+    colour_parser = new PropertyParserColour();;
+
 	return true;
 }
 
 void Factory::Shutdown()
 {
-	for (ElementInstancerMap::iterator i = element_instancers.begin(); i != element_instancers.end(); ++i)
-		(*i).second->RemoveReference();
-	element_instancers.clear();
+    delete colour_parser;
 
-	for (DecoratorInstancerMap::iterator i = decorator_instancers.begin(); i != decorator_instancers.end(); ++i)
+    for (ElementInstancerMap::iterator i = element_instancers->begin(); i != element_instancers->end(); ++i)
 		(*i).second->RemoveReference();
-	decorator_instancers.clear();
+    element_instancers->clear();
 
-	for (FontEffectInstancerMap::iterator i = font_effect_instancers.begin(); i != font_effect_instancers.end(); ++i)
+    for (DecoratorInstancerMap::iterator i = decorator_instancers->begin(); i != decorator_instancers->end(); ++i)
 		(*i).second->RemoveReference();
-	font_effect_instancers.clear();
+    decorator_instancers->clear();
+
+    for (FontEffectInstancerMap::iterator i = font_effect_instancers->begin(); i != font_effect_instancers->end(); ++i)
+		(*i).second->RemoveReference();
+    font_effect_instancers->clear();
 
 	if (context_instancer)
 		context_instancer->RemoveReference();
@@ -152,6 +154,9 @@ void Factory::Shutdown()
 	event_instancer = NULL;
 
 	XMLParser::ReleaseHandlers();
+    delete element_instancers;
+    delete decorator_instancers;
+    delete font_effect_instancers;
 }
 
 // Registers the instancer to use when instancing contexts.
@@ -181,24 +186,24 @@ ElementInstancer* Factory::RegisterElementInstancer(const String& name, ElementI
 	instancer->AddReference();
 
 	// Check if an instancer for this tag is already defined, if so release it
-	ElementInstancerMap::iterator itr = element_instancers.find(lower_case_name);
-	if (itr != element_instancers.end())
+    ElementInstancerMap::iterator itr = element_instancers->find(lower_case_name);
+    if (itr != element_instancers->end())
 	{
 		(*itr).second->RemoveReference();
 	}
 
-	element_instancers[lower_case_name] = instancer;
+	(*element_instancers)[lower_case_name] = instancer;
 	return instancer;
 }
 
 // Looks up the instancer for the given element
 ElementInstancer* Factory::GetElementInstancer(const String& tag)
 {
-	ElementInstancerMap::iterator instancer_iterator = element_instancers.find(tag);
-	if (instancer_iterator == element_instancers.end())
+    ElementInstancerMap::iterator instancer_iterator = element_instancers->find(tag);
+    if (instancer_iterator == element_instancers->end())
 	{
-		instancer_iterator = element_instancers.find("*");
-		if (instancer_iterator == element_instancers.end())
+        instancer_iterator = element_instancers->find("*");
+        if (instancer_iterator == element_instancers->end())
 			return NULL;
 	}
 
@@ -338,11 +343,11 @@ DecoratorInstancer* Factory::RegisterDecoratorInstancer(const String& name, Deco
 	instancer->AddReference();
 
 	// Check if an instancer for this tag is already defined. If so, release it.
-	DecoratorInstancerMap::iterator iterator = decorator_instancers.find(lower_case_name);
-	if (iterator != decorator_instancers.end())
+    DecoratorInstancerMap::iterator iterator = decorator_instancers->find(lower_case_name);
+    if (iterator != decorator_instancers->end())
 		(*iterator).second->RemoveReference();
 
-	decorator_instancers[lower_case_name] = instancer;
+	(*decorator_instancers)[lower_case_name] = instancer;
 	return instancer;
 }
 
@@ -352,8 +357,8 @@ Decorator* Factory::InstanceDecorator(const String& name, const PropertyDictiona
 	float z_index = 0;
 	int specificity = -1;
 
-	DecoratorInstancerMap::iterator iterator = decorator_instancers.find(name);
-	if (iterator == decorator_instancers.end())
+    DecoratorInstancerMap::iterator iterator = decorator_instancers->find(name);
+    if (iterator == decorator_instancers->end())
 		return NULL;
 
 	// Turn the generic, un-parsed properties we've got into a properly parsed dictionary.
@@ -391,11 +396,11 @@ FontEffectInstancer* Factory::RegisterFontEffectInstancer(const String& name, Fo
 	instancer->AddReference();
 
 	// Check if an instancer for this tag is already defined. If so, release it.
-	FontEffectInstancerMap::iterator iterator = font_effect_instancers.find(lower_case_name);
-	if (iterator != font_effect_instancers.end())
+    FontEffectInstancerMap::iterator iterator = font_effect_instancers->find(lower_case_name);
+    if (iterator != font_effect_instancers->end())
 		(*iterator).second->RemoveReference();
 
-	font_effect_instancers[lower_case_name] = instancer;
+	(*font_effect_instancers)[lower_case_name] = instancer;
 	return instancer;
 }
 
@@ -410,8 +415,8 @@ FontEffect* Factory::InstanceFontEffect(const String& name, const PropertyDictio
 
 	int specificity = -1;
 
-	FontEffectInstancerMap::iterator iterator = font_effect_instancers.find(name);
-	if (iterator == font_effect_instancers.end())
+    FontEffectInstancerMap::iterator iterator = font_effect_instancers->find(name);
+    if (iterator == font_effect_instancers->end())
 		return NULL;
 
 	FontEffectInstancer* instancer = iterator->second;
@@ -432,10 +437,8 @@ FontEffect* Factory::InstanceFontEffect(const String& name, const PropertyDictio
 		}
 		else if (i->first == COLOR)
 		{
-			static PropertyParserColour colour_parser;
-
 			Property colour_property;
-			if (colour_parser.ParseValue(colour_property, i->second.value.Get< String >(), ParameterMap()))
+			if (colour_parser->ParseValue(colour_property, i->second.value.Get< String >(), ParameterMap()))
 			{
 				colour = colour_property.value.Get< Colourb >();
 				set_colour = true;

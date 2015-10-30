@@ -50,6 +50,10 @@ class FontEffect;
 class FontEffectInstancer;
 class StyleSheet;
 class PropertyDictionary;
+class PropertyParserColour;
+typedef std::map< String, ElementInstancer* > ElementInstancerMap;
+typedef std::map< String, DecoratorInstancer* > DecoratorInstancerMap;
+typedef std::map< String, FontEffectInstancer* > FontEffectInstancerMap;
 
 /**
 	The Factory contains a registry of instancers for different types.
@@ -173,6 +177,11 @@ public:
 private:
 	Factory();
 	~Factory();
+    static PropertyParserColour *colour_parser;
+    static EventListenerInstancer *event_listener_instancer;
+    static ElementInstancerMap* Factory::element_instancers;
+    static DecoratorInstancerMap* Factory::decorator_instancers;
+    static FontEffectInstancerMap* Factory::font_effect_instancers;
 };
 
 }
