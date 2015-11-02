@@ -23,8 +23,6 @@
 		</style>
 	</head>
 	<body template="window">
-		This is a sample.<br/>
-		<input onclick="showKeys" type="text" size="15" value="name" name="name1" /><br />
-		<button>Test</button><br/>
+		This is a sample.
 	</body>
 </rml>
