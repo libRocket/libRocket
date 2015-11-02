@@ -11,3 +11,4 @@ bin/*
 /lib/
 Debug_bc_librockettest_vc12_arm
 build_bc_librockettest_vc12
+/Samples/basic/marmalade/build_bc_librocket_vc12

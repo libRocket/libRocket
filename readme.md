@@ -23,11 +23,6 @@ this, you don't have to learn a whole new proprietary technology like other libr
 - Decorator engine allowing custom application-specific effects that can be applied to any element.
 - Generic event system that binds seamlessly into existing projects.
 
-## Marmalade
-- Bitmapfonts not working
-- EventListener not working
-- Python not working
-
 ## License (MIT)
  
  Copyright (c) 2008-2014 CodePoint Ltd, Shift Technology Ltd, and contributors
