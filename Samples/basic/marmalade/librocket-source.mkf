@@ -17,7 +17,7 @@ defines {
 files
 {
 	["Marmalade"]
-	(".")
+	("./")
 	MarmaladeEvent.cpp
 	MarmaladeEvent.h
 	MarmaladeEventListenerInstancer.cpp
@@ -446,5 +446,5 @@ files
 
 subprojects
 {
-	bc_freetype
+	freetype
 }

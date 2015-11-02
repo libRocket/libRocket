@@ -6,10 +6,10 @@
 #include <Rocket/Core.h>
 #include <Rocket/Controls.h>
 #include <Rocket/Debugger.h>
-#include "Marmalade/MarmaladeRenderInterfaceOpenGL.h"
-#include "Marmalade/MarmaladeSystemInterface.h"
-#include "Marmalade/MarmaladeInput.h"
-#include "Marmalade/MarmaladeEventListenerInstancer.h"
+#include "MarmaladeRenderInterfaceOpenGL.h"
+#include "MarmaladeSystemInterface.h"
+#include "MarmaladeInput.h"
+#include "MarmaladeEventListenerInstancer.h"
 
 MarmaladeRenderInterfaceOpenGL *opengl_renderer;
 MarmaladeSystemInterface *system_interface;
