@@ -28,7 +28,7 @@ defines {
 files
 {
 	["Marmalade"]
-	("Source/Marmalade")
+	("Samples/basic/marmalade")
 	MarmaladeEvent.cpp
 	MarmaladeEvent.h
 	MarmaladeEventListenerInstancer.cpp
@@ -41,13 +41,13 @@ files
 	MarmaladeSystemInterface.h
 
 	[]
-	("Include/Rocket")
+	("../../../Include/Rocket")
 	Controls.h
 	Core.h
 	Debugger.h
 
 	["Controls"]
-	("Source/Controls")
+	("../../../Source/Controls")
 	Clipboard.cpp
 	Controls.cpp
 	DataFormatter.cpp
@@ -103,7 +103,7 @@ files
 	XMLNodeHandlerTextArea.cpp
 	XMLNodeHandlerTextArea.h
 	
-	("Include/Rocket/Controls")
+	("../../../Include/Rocket/Controls")
 	Clipboard.h
 	Controls.h
 	DataFormatter.h
@@ -125,7 +125,7 @@ files
 	SelectOption.h
 
 	["Core"]
-	("Source/Core")
+	("../../../Source/Core")
 	BaseXMLParser.cpp
 	"BitmapFont/*"
 	Box.cpp
@@ -347,7 +347,7 @@ files
 	XMLParseTools.cpp
 	XMLParseTools.h
 	
-	("Include/Rocket/Core")
+	("../../../Include/Rocket/Core")
 	BaseXMLParser.h
 	"BitmapFont/*"
 	Box.h
@@ -429,7 +429,7 @@ files
 	XMLParser.h
 	
 	["Debugger"]
-	("Source/Debugger")
+	("../../../Source/Debugger")
 	BeaconSource.h
 	CommonSource.h
 	Debugger.cpp
@@ -450,7 +450,7 @@ files
 	SystemInterface.cpp
 	SystemInterface.h
 	
-	("Include/Rocket/Debugger")
+	("../../../Include/Rocket/Debugger")
 	Debugger.h
 	Header.h
 }

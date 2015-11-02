@@ -19,5 +19,5 @@ subprojects
 
 options
 {
-    s3e-data-dir="./Samples/assets"
+    s3e-data-dir="../../assets"
 }
