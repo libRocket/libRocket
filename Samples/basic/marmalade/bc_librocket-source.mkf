@@ -1,19 +1,8 @@
 includepaths
 {
-	Source
-#	Source/Controls
-#	Source/Core
-#	Source/Core/BitmapFont
-#	Source/Core/FreeType
-#	Source/Debugger
-	
-	Include
-#	Include/Rocket
-#	Include/Rocket/Controls
-#	Include/Rocket/Core
-#	Include/Rocket/Core/BitmapFont
-#	Include/Rocket/Core/FreeType
-#	Include/Rocket/Debugger
+	./
+	./../../../Source
+	./../../../Include
 }
 
 options
@@ -28,7 +17,7 @@ defines {
 files
 {
 	["Marmalade"]
-	("Samples/basic/marmalade")
+	(".")
 	MarmaladeEvent.cpp
 	MarmaladeEvent.h
 	MarmaladeEventListenerInstancer.cpp

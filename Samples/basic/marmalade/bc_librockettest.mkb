@@ -1,13 +1,13 @@
 files
 {
 	[Source]
-	(Source)
+	(.)
 	test.cpp
 }
 
 includepaths
 {
-	Source
+	.
 }
 
 subprojects
