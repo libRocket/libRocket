@@ -1,9 +1,14 @@
 option lib
 
-subproject librocket
+library
+{
+	".,librocket"
+}
+
+subproject librocket-source
 
 defines {
-	STATIC_LIB
+	ROCKET_STATIC_LIB
 }
 
 options 
