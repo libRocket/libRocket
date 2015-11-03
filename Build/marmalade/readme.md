@@ -8,4 +8,5 @@ Just include librocket-source.mkf to compile without a library
 ## Missing features
 - Bitmapfonts crashing
 - Python not working
-- Draw call batching
+
+For rendering take a look into https://github.com/BlazingSun/libRocketMarmalade or the basic example
