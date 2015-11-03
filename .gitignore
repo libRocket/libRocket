@@ -1,4 +1,4 @@
-# Ignore compiled python code
+﻿# Ignore compiled python code
 *.pyc
 # Ignore MacOSX directory info
 .DS_Store
@@ -9,6 +9,4 @@
 bin/*
 
 /lib/
-Debug_bc_librockettest_vc12_arm
-build_bc_librockettest_vc12
-/Samples/basic/marmalade/build_bc_librocket_vc12
+/Build/marmalade/build_librocket_vc12
