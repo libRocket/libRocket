@@ -179,9 +179,9 @@ private:
 	~Factory();
     static PropertyParserColour *colour_parser;
     static EventListenerInstancer *event_listener_instancer;
-    static ElementInstancerMap* Factory::element_instancers;
-    static DecoratorInstancerMap* Factory::decorator_instancers;
-    static FontEffectInstancerMap* Factory::font_effect_instancers;
+    static ElementInstancerMap* element_instancers;
+    static DecoratorInstancerMap* decorator_instancers;
+    static FontEffectInstancerMap* font_effect_instancers;
 };
 
 }
