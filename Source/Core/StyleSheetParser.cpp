@@ -247,7 +247,6 @@ bool StyleSheetParser::ImportProperties(StyleSheetNode* node, const String& name
 
 		// Get the named child node.
 		leaf_node = leaf_node->GetChildNode(tag, StyleSheetNode::TAG);
-		tag_node = leaf_node;
 
 		if (!id.Empty())
 			leaf_node = leaf_node->GetChildNode(id, StyleSheetNode::ID);
