@@ -14,5 +14,5 @@ defines {
 options 
 { 
 	optimise-speed
-	enable-exceptions
+    strict-compile
 }
