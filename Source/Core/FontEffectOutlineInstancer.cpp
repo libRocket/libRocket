@@ -50,9 +50,15 @@ FontEffect* FontEffectOutlineInstancer::InstanceFontEffect(const String& ROCKET_
 	float width = properties.GetProperty("width")->Get< float >();
 
 	FontEffectOutline* font_effect = new FontEffectOutline();
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 	if (font_effect->Initialise(Math::RealToInteger(width)))
 		return font_effect;
-
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 	font_effect->RemoveReference();
 	ReleaseFontEffect(font_effect);
 	return NULL;

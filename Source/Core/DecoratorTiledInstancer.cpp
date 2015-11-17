@@ -80,8 +80,14 @@ void DecoratorTiledInstancer::LoadTexCoord(const PropertyDictionary& properties,
 	const Property* property = properties.GetProperty(name);
 	if (property == NULL)
 		return;
-
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 	tex_coord = property->value.Get< float >();
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 	if (property->unit == Property::PX)
 		tex_coord_absolute = true;
 	else
