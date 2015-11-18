@@ -143,9 +143,9 @@ public:
 private:
 	
 #ifdef ROCKET_ARCH_64
-		static const int LOCAL_DATA_SIZE = 40; // Required for Strings
+    static const size_t LOCAL_DATA_SIZE = 40; // Required for Strings
 #else
-		static const int LOCAL_DATA_SIZE = 24;
+		static const size_t LOCAL_DATA_SIZE = 24;
 #endif
 	Type type;
 	char data[LOCAL_DATA_SIZE];

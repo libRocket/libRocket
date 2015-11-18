@@ -80,7 +80,6 @@ void DecoratorTiledInstancer::LoadTexCoord(const PropertyDictionary& properties,
 	const Property* property = properties.GetProperty(name);
 	if (property == NULL)
 		return;
-
 	tex_coord = property->value.Get< float >();
 	if (property->unit == Property::PX)
 		tex_coord_absolute = true;

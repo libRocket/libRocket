@@ -78,7 +78,7 @@ public:
 	bool Iterate(int &pos, String& key, T& value) const;
 
 	/// Reserve the specified number of entries in the dictionary
-	bool Reserve(int size);
+	bool Reserve(unsigned int size);
 
 	/// Empty the dictionary
 	void Clear();
@@ -107,7 +107,7 @@ private:
 	 * majority of dicts (consisting mostly of usually-small instance dicts and
 	 * usually-small dicts created to pass keyword arguments).
 	 */
-	static const int DICTIONARY_MINSIZE = 8;
+    static const size_t DICTIONARY_MINSIZE = 8;
 
 	// Individual entry in a dictionary
 	struct DictionaryEntry
