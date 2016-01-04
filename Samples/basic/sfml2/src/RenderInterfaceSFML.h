@@ -27,11 +27,23 @@
 #ifndef RENDERINTERFACESFML_H
 #define RENDERINTERFACESFML_H
 
+// NOTE: uncomment this only when you want to use the
+// OpenGL Extension Wrangler Library (GLEW)
+//#define ENABLE_GLEW
+
+// if the OpenGL Extension Wrangler Library (GLEW) should be used include it
+#ifdef ENABLE_GLEW
+#include <GL/glew.h>
+#endif
 
 #include <Rocket/Core/RenderInterface.h>
 #include <SFML/Graphics.hpp>
 
-#define ENABLE_GLEW
+// if the OpenGL Extension Wrangler Library (GLEW) should not be used
+// include the standard OpenGL library
+#ifndef ENABLE_GLEW
+#include "../../../shell/include/ShellOpenGL.h"
+#endif
 
 class RocketSFMLRenderer : public Rocket::Core::RenderInterface
 {

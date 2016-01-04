@@ -26,8 +26,8 @@
  */
 
 #include "XMLNodeHandlerTextArea.h"
-#include <Rocket/Core.h>
-#include <Rocket/Controls/ElementFormControlTextArea.h>
+#include "../../Include/Rocket/Core.h"
+#include "../../Include/Rocket/Controls/ElementFormControlTextArea.h"
 
 namespace Rocket {
 namespace Controls {
@@ -58,8 +58,11 @@ Core::Element* XMLNodeHandlerTextArea::ElementStart(Core::XMLParser* parser, con
 	return NULL;
 }
 
-bool XMLNodeHandlerTextArea::ElementEnd(Core::XMLParser* ROCKET_UNUSED(parser), const Rocket::Core::String& ROCKET_UNUSED(name))
+bool XMLNodeHandlerTextArea::ElementEnd(Core::XMLParser* ROCKET_UNUSED_PARAMETER(parser), const Rocket::Core::String& ROCKET_UNUSED_PARAMETER(name))
 {
+	ROCKET_UNUSED(parser);
+	ROCKET_UNUSED(name);
+
 	return true;
 }
 

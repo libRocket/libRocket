@@ -27,8 +27,8 @@
 
 #include "precompiled.h"
 #include "StyleSheetNodeSelectorLastOfType.h"
-#include <Rocket/Core/Element.h>
-#include <Rocket/Core/StyleSheetKeywords.h>
+#include "../../Include/Rocket/Core/Element.h"
+#include "../../Include/Rocket/Core/StyleSheetKeywords.h"
 
 namespace Rocket {
 namespace Core {
@@ -42,8 +42,11 @@ StyleSheetNodeSelectorLastOfType::~StyleSheetNodeSelectorLastOfType()
 }
 
 // Returns true if the element is the last DOM child in its parent.
-bool StyleSheetNodeSelectorLastOfType::IsApplicable(const Element* element, int ROCKET_UNUSED(a), int ROCKET_UNUSED(b))
+bool StyleSheetNodeSelectorLastOfType::IsApplicable(const Element* element, int ROCKET_UNUSED_PARAMETER(a), int ROCKET_UNUSED_PARAMETER(b))
 {
+	ROCKET_UNUSED(a);
+	ROCKET_UNUSED(b);
+
 	Element* parent = element->GetParentNode();
 	if (parent == NULL)
 		return false;

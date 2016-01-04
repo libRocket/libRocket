@@ -28,10 +28,10 @@
 #include "precompiled.h"
 #include "XMLNodeHandlerDefault.h"
 #include "XMLParseTools.h"
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/Element.h>
-#include <Rocket/Core/Factory.h>
-#include <Rocket/Core/XMLParser.h>
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/Element.h"
+#include "../../Include/Rocket/Core/Factory.h"
+#include "../../Include/Rocket/Core/XMLParser.h"
 
 namespace Rocket {
 namespace Core {
@@ -64,8 +64,11 @@ Element* XMLNodeHandlerDefault::ElementStart(XMLParser* parser, const String& na
 	return element;
 }
 
-bool XMLNodeHandlerDefault::ElementEnd(XMLParser* ROCKET_UNUSED(parser), const String& ROCKET_UNUSED(name))
+bool XMLNodeHandlerDefault::ElementEnd(XMLParser* ROCKET_UNUSED_PARAMETER(parser), const String& ROCKET_UNUSED_PARAMETER(name))
 {
+	ROCKET_UNUSED(parser);
+	ROCKET_UNUSED(name);
+
 	return true;
 }
 

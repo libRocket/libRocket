@@ -74,8 +74,11 @@ StringBase< T >::StringBase(size_type count, const T character) : value((T*)loca
 }
 
 template< typename T >
-StringBase< T >::StringBase(size_type ROCKET_UNUSED(max_length), const T* ROCKET_UNUSED(fmt), ...) : value((T*)local_buffer), buffer_size(LOCAL_BUFFER_SIZE), length(0), hash(0)
+StringBase< T >::StringBase(size_type ROCKET_UNUSED_PARAMETER(max_length), const T* ROCKET_UNUSED_PARAMETER(fmt), ...) : value((T*)local_buffer), buffer_size(LOCAL_BUFFER_SIZE), length(0), hash(0)
 {
+	ROCKET_UNUSED(max_length);
+	ROCKET_UNUSED(fmt);
+
 	value[0] = 0;
 	// Can't implement this at the base level, requires template specialisation
 	ROCKET_ERRORMSG("Not implemented.");
@@ -157,17 +160,26 @@ void StringBase< T >::Reserve(size_type size)
 	const int BLOCK_SIZE = 16;
 	new_size = (new_size+BLOCK_SIZE-1)&(~(BLOCK_SIZE-1));
 	
-	buffer_size = new_size;
-	
 	if (value == (T*)local_buffer)
 	{
-		T* new_value = (T*)realloc(NULL, buffer_size);
-		Copy(new_value, (T*)local_buffer, LOCAL_BUFFER_SIZE / sizeof(T));
-		value = new_value;
+		T* new_value = (T*)realloc(NULL, new_size);
+		ROCKET_ASSERTMSG(new_value, "Could not reserve memory for String, realloc failed.");
+		if(new_value != NULL)
+		{
+			buffer_size = new_size;
+			Copy(new_value, (T*)local_buffer, LOCAL_BUFFER_SIZE / sizeof(T));
+			value = new_value;
+		}
 	}
 	else
 	{
-		value = (T*)realloc(value, buffer_size);
+		T* new_value = (T*)realloc(value, new_size);
+		ROCKET_ASSERTMSG(new_value, "Could not reserve memory for String, realloc failed.");
+		if(new_value != NULL)
+		{
+			buffer_size = new_size;
+			value = new_value;
+		}
 	}
 }
 
@@ -304,8 +316,11 @@ void StringBase< T >::Erase(size_type index, size_type count)
 }
 
 template< typename T >
-int StringBase< T >::FormatString(size_type ROCKET_UNUSED(max_length), const T* ROCKET_UNUSED(fmt), ...)
+int StringBase< T >::FormatString(size_type ROCKET_UNUSED_PARAMETER(max_length), const T* ROCKET_UNUSED_PARAMETER(fmt), ...)
 {
+	ROCKET_UNUSED(max_length);
+	ROCKET_UNUSED(fmt);
+
 	ROCKET_ERRORMSG("Not implemented.");
 	return -1;
 }

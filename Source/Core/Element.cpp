@@ -26,8 +26,8 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/Element.h>
-#include <Rocket/Core/Dictionary.h>
+#include "../../Include/Rocket/Core/Element.h"
+#include "../../Include/Rocket/Core/Dictionary.h"
 #include <algorithm>
 #include "ElementBackground.h"
 #include "ElementBorder.h"
@@ -40,7 +40,7 @@
 #include "PluginRegistry.h"
 #include "StyleSheetParser.h"
 #include "XMLParseTools.h"
-#include <Rocket/Core/Core.h>
+#include "../../Include/Rocket/Core/Core.h"
 
 namespace Rocket {
 namespace Core {
@@ -73,7 +73,7 @@ public:
 };
 
 /// Constructs a new libRocket element.
-Element::Element(const String& _tag) : absolute_offset(0, 0), relative_offset_base(0, 0), relative_offset_position(0, 0), scroll_offset(0, 0), content_offset(0, 0), content_box(0, 0), boxes(1)
+Element::Element(const String& _tag) : relative_offset_base(0, 0), relative_offset_position(0, 0), absolute_offset(0, 0), scroll_offset(0, 0), boxes(1), content_offset(0, 0), content_box(0, 0)
 {
 	tag = _tag.ToLower();
 	parent = NULL;
@@ -447,8 +447,10 @@ float Element::GetBaseline() const
 }
 
 // Gets the intrinsic dimensions of this element, if it is of a type that has an inherent size.
-bool Element::GetIntrinsicDimensions(Vector2f& ROCKET_UNUSED(dimensions))
+bool Element::GetIntrinsicDimensions(Vector2f& ROCKET_UNUSED_PARAMETER(dimensions))
 {
+	ROCKET_UNUSED(dimensions);
+
 	return false;
 }
 
@@ -533,6 +535,11 @@ float Element::ResolveProperty(const String& name, float base_value)
 float Element::ResolveProperty(const Property *property, float base_value)
 {
 	return style->ResolveProperty(property, base_value);
+}
+
+void Element::GetOffsetProperties(const Property **top, const Property **bottom, const Property **left, const Property **right )
+{
+	style->GetOffsetProperties(top, bottom, left, right);
 }
 
 void Element::GetBorderWidthProperties(const Property **border_top, const Property **border_bottom, const Property **border_left, const Property **bottom_right)
@@ -783,7 +790,7 @@ float Element::GetClientHeight()
 // Returns the element from which all offset calculations are currently computed.
 Element* Element::GetOffsetParent()
 {
-	return parent;
+	return offset_parent;
 }
 
 // Gets the distance from this element's left border to its offset parent's left border.
@@ -1706,7 +1713,7 @@ void Element::ProcessEvent(Event& event)
 			if (overflow_property == OVERFLOW_AUTO ||
 				overflow_property == OVERFLOW_SCROLL)
 			{
-				SetScrollTop(GetScrollTop() + wheel_delta * ElementUtilities::GetLineHeight(this));
+				SetScrollTop(GetScrollTop() + wheel_delta * (GetFontFaceHandle() ? ElementUtilities::GetLineHeight(this) : (GetProperty(SCROLL_DEFAULT_STEP_SIZE) ? GetProperty< int >(SCROLL_DEFAULT_STEP_SIZE) : 0 )));
 				event.StopPropagation();
 			}
 		}
@@ -1834,7 +1841,7 @@ void Element::UpdateOffset()
 			// If the element is anchored right, then the position is set first so the element's right-most edge
 			// (including margins) will render up against the containing box's right-most content edge, and then
 			// offset by the resolved value.
-			if (right != NULL && right->unit != Property::KEYWORD)
+			else if (right != NULL && right->unit != Property::KEYWORD)
 				relative_offset_base.x = containing_block.x + parent_box.GetEdge(Box::BORDER, Box::LEFT) - (ResolveProperty(RIGHT, containing_block.x) + GetBox().GetSize(Box::BORDER).x + GetBox().GetEdge(Box::MARGIN, Box::RIGHT));
 
 			const Property *top = GetLocalProperty(TOP);

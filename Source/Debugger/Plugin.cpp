@@ -26,8 +26,8 @@
  */
 
 #include "Plugin.h"
-#include <Rocket/Core/Types.h>
-#include <Rocket/Core.h>
+#include "../../Include/Rocket/Core/Types.h"
+#include "../../Include/Rocket/Core.h"
 #include "ElementContextHook.h"
 #include "ElementInfo.h"
 #include "ElementLog.h"
@@ -286,8 +286,8 @@ Plugin* Plugin::GetInstance()
 
 bool Plugin::LoadFont()
 {
-	return (Core::FontDatabase::LoadFontFace(lacuna_regular, sizeof(lacuna_regular) / sizeof(unsigned char), "Lacuna", Core::Font::STYLE_NORMAL, Core::Font::WEIGHT_NORMAL) &&
-			Core::FontDatabase::LoadFontFace(lacuna_italic, sizeof(lacuna_italic) / sizeof(unsigned char), "Lacuna", Core::Font::STYLE_ITALIC, Core::Font::WEIGHT_NORMAL));
+	return (Core::FontDatabase::LoadFontFace(Core::FontDatabase::FreeType, lacuna_regular, sizeof(lacuna_regular) / sizeof(unsigned char), "Lacuna", Core::Font::STYLE_NORMAL, Core::Font::WEIGHT_NORMAL) &&
+			Core::FontDatabase::LoadFontFace(Core::FontDatabase::FreeType, lacuna_italic, sizeof(lacuna_italic) / sizeof(unsigned char), "Lacuna", Core::Font::STYLE_ITALIC, Core::Font::WEIGHT_NORMAL));
 }
 
 bool Plugin::LoadMenuElement()

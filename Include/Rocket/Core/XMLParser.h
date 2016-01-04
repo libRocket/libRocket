@@ -29,8 +29,8 @@
 #define ROCKETCOREXMLPARSER_H
 
 #include <stack>
-#include <Rocket/Core/Header.h>
-#include <Rocket/Core/BaseXMLParser.h>
+#include "Header.h"
+#include "BaseXMLParser.h"
 
 namespace Rocket {
 namespace Core {
@@ -104,8 +104,6 @@ protected:
 private:
 	// The header of the document being parsed.
 	DocumentHeader* header;
-	// The root of the entire parse.
-	Element* parse_root;
 
 	// The active node handler.
 	XMLNodeHandler* active_handler;

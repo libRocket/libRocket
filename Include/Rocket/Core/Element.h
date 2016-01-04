@@ -28,13 +28,13 @@
 #ifndef ROCKETCOREELEMENT_H
 #define ROCKETCOREELEMENT_H
 
-#include <Rocket/Core/ReferenceCountable.h>
-#include <Rocket/Core/ScriptInterface.h>
-#include <Rocket/Core/Header.h>
-#include <Rocket/Core/Box.h>
-#include <Rocket/Core/Event.h>
-#include <Rocket/Core/Property.h>
-#include <Rocket/Core/Types.h>
+#include "ReferenceCountable.h"
+#include "ScriptInterface.h"
+#include "Header.h"
+#include "Box.h"
+#include "Event.h"
+#include "Property.h"
+#include "Types.h"
 
 namespace Rocket {
 namespace Core {
@@ -227,6 +227,8 @@ public:
 	/// @return The value of this property for this element.
 	float ResolveProperty(const Property *property, float base_value);
 
+	/// Returns 'top', 'bottom', 'left' and 'right' properties from element's style or local cache.
+	void GetOffsetProperties(const Property **top, const Property **bottom, const Property **left, const Property **right );
 	/// Returns 'border-width' properties from element's style or local cache.
 	void GetBorderWidthProperties(const Property **border_top_width, const Property **border_bottom_width, const Property **border_left_width, const Property **border_right_width);
 	/// Returns 'margin' properties from element's style or local cache.
@@ -721,7 +723,7 @@ private:
 	friend class LayoutInlineBox;
 };
 
-#include <Rocket/Core/Element.inl>
+#include "Element.inl"
 
 }
 }

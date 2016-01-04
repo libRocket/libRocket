@@ -25,9 +25,9 @@
  *
  */
 
-#include <Rocket/Controls/ElementTabSet.h>
-#include <Rocket/Core/Math.h>
-#include <Rocket/Core/Factory.h>
+#include "../../Include/Rocket/Controls/ElementTabSet.h"
+#include "../../Include/Rocket/Core/Math.h"
+#include "../../Include/Rocket/Core/Factory.h"
 
 namespace Rocket {
 namespace Controls {
@@ -47,14 +47,16 @@ void ElementTabSet::SetTab(int tab_index, const Rocket::Core::String& rml)
 	Core::Element* element = Core::Factory::InstanceElement(NULL, "*", "tab", Rocket::Core::XMLAttributes());
 	Core::Factory::InstanceElementText(element, rml);
 	SetTab(tab_index, element);
+	element->RemoveReference();
 }
 
 // Sets the specifed tab index's tab panel RML.
 void ElementTabSet::SetPanel(int tab_index, const Rocket::Core::String& rml)
 {
-	Core::Element* element = Core::Factory::InstanceElement(NULL, "*", "tab", Rocket::Core::XMLAttributes());
+	Core::Element* element = Core::Factory::InstanceElement(NULL, "*", "panel", Rocket::Core::XMLAttributes());
 	Core::Factory::InstanceElementText(element, rml);
 	SetPanel(tab_index, element);
+	element->RemoveReference();
 }
 
 // Set the specifed tab index's title element.
@@ -223,13 +225,17 @@ Core::Element* ElementTabSet::GetChildByTag(const Rocket::Core::String& tag)
 	return element;
 }
 
-void ElementTabSet::OnAttach(Core::Element * ROCKET_UNUSED(element))
+void ElementTabSet::OnAttach(Core::Element * ROCKET_UNUSED_PARAMETER(element))
 {
+	ROCKET_UNUSED(element);
+
 	AddReference();
 }
 
-void ElementTabSet::OnDetach(Core::Element * ROCKET_UNUSED(element))
+void ElementTabSet::OnDetach(Core::Element * ROCKET_UNUSED_PARAMETER(element))
 {
+	ROCKET_UNUSED(element);
+
 	RemoveReference();
 }
 

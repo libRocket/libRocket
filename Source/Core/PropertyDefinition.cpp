@@ -26,9 +26,9 @@
  */
 
 #include "precompiled.h"
-#include <Rocket/Core/PropertyDefinition.h>
-#include <Rocket/Core/Log.h>
-#include <Rocket/Core/StyleSheetSpecification.h>
+#include "../../Include/Rocket/Core/PropertyDefinition.h"
+#include "../../Include/Rocket/Core/Log.h"
+#include "../../Include/Rocket/Core/StyleSheetSpecification.h"
 
 namespace Rocket {
 namespace Core {
@@ -133,6 +133,7 @@ bool PropertyDefinition::GetValue(String& value, const Property& property) const
 
 		case Property::PX:		value.Append("px"); break;
 		case Property::EM:		value.Append("em"); break;
+		case Property::REM:		value.Append("rem"); break;
 		case Property::PERCENT:	value.Append("%"); break;
 		case Property::INCH:	value.Append("in"); break;
 		case Property::CM:		value.Append("cm"); break;
