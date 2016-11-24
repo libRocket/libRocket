@@ -194,7 +194,10 @@ if(CMAKE_MAJOR_VERSION LESS 3)
 	# the FindFreetype module from cmake v3 at least, included here
 	find_package(Freetype-v2fix REQUIRED)	
 else()
-	find_package(Freetype REQUIRED)	
+	set(PREV_CMAKE_FIND_FRAMEWORK ${CMAKE_FIND_FRAMEWORK})
+	set(CMAKE_FIND_FRAMEWORK LAST)
+	find_package(Freetype REQUIRED)
+	set(CMAKE_FIND_FRAMEWORK ${PREV_CMAKE_FIND_FRAMEWORK})
 endif()
 
 if(FREETYPE_FOUND)
