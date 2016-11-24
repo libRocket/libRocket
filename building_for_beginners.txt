@@ -1,0 +1,22 @@
+//Date: March 7, 2015
+
+This text file is geared towards beginner C++ programmers.
+
+This was compiled with g++ during the 1.3.0 release for libRocket for Windows 8.1, using GCC from the MinGW-w64 distribution for i686 (x86, 32-bit) architectures with POSIX threads as well as DWARF exception handling, revision 2.
+
+Assuming you'll be using MinGW-w64 (the regular MinGW compiler and even the TDM-GCC distribution, at this point, are still missing std::to_string() support by default), as well as the CMake GUI, you'll need to run the CMake GUI and then specify the "Where is the source code" box as the /libRocket/Build folder, not the source. Likewise, you may want to build your files in a separate /librocket/bin folder.
+
+You'll need to bind libRocket to a certain framework for general window handling: two viable options are SDL and SFML. After obtaining the correct DLL/LIB/A files as well as the header files either of the two, ensure that you specify the FRAMEWORK_INCLUDE_DIR as the /include directory and the FRAMEWORK_XXXX_LIBRARY_DEBUG/RELEASE as the actual .DLL file or the LIB file.
+
+Continuing, you'll find that you probably need to get GLEW. Once again, you'll need to obtain another library from the GLEW website. Once you get it, the library needs to be linked against its x86/Win32 glew32.lib file, most likely under release. The GLEW_INCLUDE_DIR should be specified as the /include directory with the header files.
+
+You may want to check off SKIP_DIRECTX_SAMPLES.
+
+At this point, the samples within libRocket are what are causing the problems; a missing semicolon here, a DoAllocConsole() to AllocConsole() there, and libRocket should eventually compile.
+
+To have the same programs run, you must place the correct DLL files into the folder of the sample in the Samples folder. Some examples also need to access the assets folder as well as their own resources folder, so make sure you place the program into the right folder.
+
+Congratulations! You now have a living, breathing, self-compiled version of libRocket!
+
+
+
