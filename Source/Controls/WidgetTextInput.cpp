@@ -390,6 +390,7 @@ void WidgetTextInput::ProcessEvent(Core::Event& event)
 	else if (event == "focus" &&
 			 event.GetTargetElement() == parent)
 	{
+		GenerateCursor();
 		UpdateSelection(false);
 		ShowCursor(true, false);
 	}

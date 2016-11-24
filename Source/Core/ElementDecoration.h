@@ -78,6 +78,7 @@ private:
 
 	struct DecoratorHandle
 	{
+		DecoratorHandle() : decorator(nullptr), decorator_data(NULL) {}
 		Decorator* decorator;
 		DecoratorDataHandle decorator_data;
 	};
@@ -95,6 +96,8 @@ private:
 	// The list of currently active decorators.
 	std::vector< int > active_decorators;
 	bool active_decorators_dirty;
+	bool decorators_locked;
+	bool reload_decorators_when_ready;
 
 	// For each unique decorator name, this stores (in order of specificity) the name of the pseudo-class that has
 	// a definition for it, and the index into the list of decorators.
