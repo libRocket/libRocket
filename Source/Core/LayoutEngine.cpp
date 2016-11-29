@@ -491,6 +491,23 @@ void LayoutEngine::BuildBoxWidth(Box& box, Element* element, float containing_bl
 		if (width_property->unit == Property::KEYWORD)
 		{
 			width_auto = true;
+
+			int position_property = element->GetPosition();
+			if (position_property == POSITION_ABSOLUTE) {
+				const Property* left = element->GetProperty(LEFT);
+				const Property* right = element->GetProperty(RIGHT);
+
+				if (left->unit == Property::KEYWORD || right->unit == Property::KEYWORD)
+					return;
+				else
+				{
+					float l = element->ResolveProperty(left, containing_block_width);
+					float r = element->ResolveProperty(right, containing_block_width);
+
+					width_auto = false;
+					content_area.x = containing_block_width - (l + r);
+				}
+			}
 		}
 		else
 		{
@@ -602,11 +619,28 @@ void LayoutEngine::BuildBoxHeight(Box& box, Element* element, float containing_b
 		element->GetDimensionProperties(NULL, &height_property);
 		if (height_property == NULL)
 		{
-			height_auto = false;		
+			height_auto = false;
 		}
 		else if (height_property->unit == Property::KEYWORD)
 		{
 			height_auto = true;
+
+			int position_property = element->GetPosition();
+			if (position_property == POSITION_ABSOLUTE) {
+				const Property* top = element->GetProperty(TOP);
+				const Property* bottom = element->GetProperty(BOTTOM);
+
+				if (top->unit == Property::KEYWORD || bottom->unit == Property::KEYWORD)
+					return;
+				else
+				{
+					float t = element->ResolveProperty(top, containing_block_height);
+					float b = element->ResolveProperty(bottom, containing_block_height);
+
+					height_auto = false;
+					content_area.y = containing_block_height - (t + b);
+				}
+			}
 		}
 		else
 		{
