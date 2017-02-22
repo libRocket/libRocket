@@ -106,7 +106,7 @@ public:
     /** Stops the plugin by calling lua_close
 	 @remark Shutdown calls lua_Close on the lua_State associated with the Interpreter.  If a lua_State was provided in the
 	 original call to Initialise, Shutdown should not be called OR you must not call lua_Close from within your code. */
-	static void Shutdown();
+	static void Shutdown(bool free_state);
     
     /** @sa Rocket::Core::Plugin::GetEventClasses */
     virtual int GetEventClasses();

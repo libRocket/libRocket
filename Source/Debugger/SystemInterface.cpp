@@ -78,5 +78,9 @@ void SystemInterface::DeactivateKeyboard()
 	application_interface->DeactivateKeyboard();
 }
 
+void SystemInterface::JoinPath(Core::String& translated_path, const Core::String& document_path, const Core::String& path) {
+	application_interface->JoinPath(translated_path, document_path, path);
+}
+
 }
 }

@@ -218,6 +218,8 @@ void Interpreter::OnInitialise()
 
 void Interpreter::OnShutdown()
 {
+	// Commit suicide
+	delete this;
 }
 
 void Interpreter::Initialise()
@@ -232,9 +234,11 @@ void Interpreter::Initialise(lua_State *luaStatePointer)
 	Rocket::Core::RegisterPlugin(iPtr);
 }
 
-void Interpreter::Shutdown()
+void Interpreter::Shutdown(bool free_state)
 {
-	lua_close(_L);
+	if (free_state) {
+		lua_close(_L);
+	}
 }
 
 
