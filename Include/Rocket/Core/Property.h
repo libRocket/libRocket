@@ -75,7 +75,7 @@ public:
 
 	Property();
 	template < typename PropertyType >
-	Property(PropertyType value, Unit unit, int specificity = -1) : value(Variant(value)), unit(unit), specificity(specificity)
+	Property(PropertyType _value, Unit _unit, int _specificity = -1) : value(Variant(_value)), unit(_unit), specificity(_specificity)
 	{
 		definition = NULL;
 		parser_index = -1;
