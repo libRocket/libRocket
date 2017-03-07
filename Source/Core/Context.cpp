@@ -1038,83 +1038,96 @@ void Context::UpdateHoverChain(const Dictionary& parameters, const Dictionary& d
 	hover_chain.swap(new_hover_chain);
 }
 
-// Returns the youngest descendent of the given element which is under the given point in screen coodinates.
-Element* Context::GetElementAtPoint(const Vector2f& point, const Element* ignore_element, Element* element)
+
+// local recursive method
+Element* Context::GetElementAtPointRecursive(const Vector2f& point, const Element* ignore_element, Element* element)
 {
+   // Check any elements within our stacking context. We want to return the lowest-down element
+   // that is under the cursor.
+   if (element->local_stacking_context)
+   {
+      if (element->stacking_context_dirty)
+         element->BuildLocalStackingContext();
+
+      for (int i = (int)element->stacking_context.size() - 1; i >= 0; --i)
+      {
+         if (ignore_element != NULL)
+         {
+            Element* element_hierarchy = element->stacking_context[i];
+            while (element_hierarchy != NULL)
+            {
+               if (element_hierarchy == ignore_element)
+                  break;
+
+               element_hierarchy = element_hierarchy->GetParentNode();
+            }
+
+            if (element_hierarchy != NULL)
+               continue;
+         }
+
+         Element* child_element = GetElementAtPointRecursive(point, ignore_element, element->stacking_context[i]);
+
+         if (child_element != NULL)
+         {
+            // if the element is a document root, keep checking
+            // TODO should we expose a setting for this?
+            if (child_element != child_element->GetOwnerDocument())
+               return child_element;
+         }
+      }
+   }
+
+   // Check if the point is actually within this element.
+   bool within_element = element->IsPointWithinElement(point);
+   if (within_element)
+   {
+      Vector2i clip_origin, clip_dimensions;
+      if (ElementUtilities::GetClippingRegion(clip_origin, clip_dimensions, element))
+      {
+         within_element = point.x >= clip_origin.x &&
+            point.y >= clip_origin.y &&
+            point.x <= (clip_origin.x + clip_dimensions.x) &&
+            point.y <= (clip_origin.y + clip_dimensions.y);
+      }
+   }
+
+   if (within_element)
+      return element;
+
+   return NULL;
+}
+
+
+
+// Returns the youngest descendent of the given element which is under the given point in screen coodinates.
+Element* Context::GetElementAtPoint(const Vector2f& point, const Element* ignore_element)
+{
+   // performance check, nothing to do if ignoring from the root
+   if (ignore_element == root)
+      return NULL;
+
 	// Update the layout on all documents prior to this call.
 	for (int i = 0; i < GetNumDocuments(); ++i)
 		GetDocument(i)->UpdateLayout();
 
-	if (element == NULL)
-	{
-		if (ignore_element == root)
-			return NULL;
+   // element to start the search from:
+   // root by default
+   Element* startElement = root;
 
-		element = root;
-	}
+   // BUT if any documents have modal focus; only check down that document.
+   if (focus)
+   {
+      ElementDocument* focus_document = focus->GetOwnerDocument();
+      if (focus_document != NULL &&
+         focus_document->IsModal())
+      {
+         startElement = focus_document;
+      }
+   }
 
-	// Check if any documents have modal focus; if so, only check down than document.
-	if (element == root)
-	{
-		if (focus)
-		{
-			ElementDocument* focus_document = focus->GetOwnerDocument();
-			if (focus_document != NULL &&
-				focus_document->IsModal())
-			{
-				element = focus_document;
-			}
-		}
-	}
-
-	// Check any elements within our stacking context. We want to return the lowest-down element
-	// that is under the cursor.
-	if (element->local_stacking_context)
-	{
-		if (element->stacking_context_dirty)
-			element->BuildLocalStackingContext();
-
-		for (int i = (int) element->stacking_context.size() - 1; i >= 0; --i)
-		{
-			if (ignore_element != NULL)
-			{
-				Element* element_hierarchy = element->stacking_context[i];
-				while (element_hierarchy != NULL)
-				{
-					if (element_hierarchy == ignore_element)
-						break;
-
-					element_hierarchy = element_hierarchy->GetParentNode();
-				}
-
-				if (element_hierarchy != NULL)
-					continue;
-			}
-
-			Element* child_element = GetElementAtPoint(point, ignore_element, element->stacking_context[i]);
-			if (child_element != NULL)
-				return child_element;
-		}
-	}
-
-	// Check if the point is actually within this element.
-	bool within_element = element->IsPointWithinElement(point);
-	if (within_element)
-	{
-		Vector2i clip_origin, clip_dimensions;
-		if (ElementUtilities::GetClippingRegion(clip_origin, clip_dimensions, element))
-		{
-			within_element = point.x >= clip_origin.x &&
-							 point.y >= clip_origin.y &&
-							 point.x <= (clip_origin.x + clip_dimensions.x) &&
-							 point.y <= (clip_origin.y + clip_dimensions.y);
-		}
-	}
-
-	if (within_element)
-		return element;
-
-	return NULL;
+   // now check down recursively from the start node
+   return GetElementAtPointRecursive(point, ignore_element, startElement);
 }
 
 // Creates the drag clone from the given element.
