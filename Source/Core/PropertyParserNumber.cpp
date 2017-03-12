@@ -41,6 +41,7 @@ PropertyParserNumber::PropertyParserNumber()
 	unit_suffixes.push_back(UnitSuffix(Property::MM, "mm"));
 	unit_suffixes.push_back(UnitSuffix(Property::PT, "pt"));
 	unit_suffixes.push_back(UnitSuffix(Property::PC, "pc"));
+	unit_suffixes.push_back(UnitSuffix(Property::DP, "dp"));
 	unit_suffixes.push_back(UnitSuffix(Property::PERCENT, "%"));
 }
 

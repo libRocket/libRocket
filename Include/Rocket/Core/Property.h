@@ -70,7 +70,9 @@ public:
 		PPI_UNIT = INCH | CM | MM | PT | PC,
 
 		REM = 1 << 13,				// number suffixed by 'rem'; fetch as < float >
-		RELATIVE_UNIT = EM | REM | PERCENT
+		RELATIVE_UNIT = EM | REM | PERCENT,
+
+		DP = 1 << 14				// number suffixed by 'dp'; fetch as < float >
 	};
 
 	Property();

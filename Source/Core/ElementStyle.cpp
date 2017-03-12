@@ -382,6 +382,9 @@ float ElementStyle::ResolveProperty(const Property* property, float base_value)
 			return inch * (1.0f / 6.0f);
 	}
 
+	if (property->unit & Property::DP)
+		return property->value.Get< float >() * element->GetRenderInterface()->GetDevicePixelRatio();
+
 	// We're not a numeric property; return 0.
 	return 0.0f;
 }
@@ -457,18 +460,21 @@ float ElementStyle::ResolveProperty(const String& name, float base_value)
 	if (property->unit & Property::PPI_UNIT)
 	{
 		float inch = property->value.Get< float >() * element->GetRenderInterface()->GetPixelsPerInch();
-
+		
 		if (property->unit & Property::INCH) // inch
 			return inch;
 		if (property->unit & Property::CM) // centimeter
-			return inch / 2.54f;
+			return inch * (1.0f / 2.54f);
 		if (property->unit & Property::MM) // millimeter
-			return inch / 25.4f;
+			return inch * (1.0f / 25.4f);
 		if (property->unit & Property::PT) // point
-			return inch / 72.0f;
+			return inch * (1.0f / 72.0f);
 		if (property->unit & Property::PC) // pica
-			return inch / 6.0f;
+			return inch * (1.0f / 6.0f);
 	}
+
+	if (property->unit & Property::DP)
+		return property->value.Get< float >() * element->GetRenderInterface()->GetDevicePixelRatio();
 
 	// We're not a numeric property; return 0.
 	return 0.0f;

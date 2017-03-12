@@ -128,14 +128,17 @@ float Decorator::ResolveProperty(const PropertyDictionary& properties, const Str
 		if (property->unit & Property::INCH) // inch
 			return inch;
 		if (property->unit & Property::CM) // centimeter
-			return inch / 2.54f;
+			return inch * (1.0f / 2.54f);
 		if (property->unit & Property::MM) // millimeter
-			return inch / 25.4f;
+			return inch * (1.0f / 25.4f);
 		if (property->unit & Property::PT) // point
-			return inch / 72.0f;
+			return inch * (1.0f / 72.0f);
 		if (property->unit & Property::PC) // pica
-			return inch / 6.0f;
+			return inch * (1.0f / 6.0f);
 	}
+
+	if (property->unit & Property::DP)
+		return property->value.Get< float >() * GetRenderInterface()->GetDevicePixelRatio();
 
 	ROCKET_ERROR;
 	return 0;
