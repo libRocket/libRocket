@@ -127,7 +127,7 @@ public:
 	virtual void LoadScript(Stream* stream, const String& source_name);
 
 	/// Updates the layout if necessary.
-	inline void UpdateLayout() { if (layout_dirty && lock_layout == 0) _UpdateLayout(); }
+	void UpdateLayout();
 	/// Updates the position of the document based on the style properties.
 	void UpdatePosition();
 	
