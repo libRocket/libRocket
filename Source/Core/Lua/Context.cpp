@@ -101,7 +101,9 @@ int ContextLoadDocument(lua_State* L, Context* obj)
     const char* path = luaL_checkstring(L,1);
     Document* doc = obj->LoadDocument(path);
     LuaType<Document>::push(L,doc,false);
-	doc->RemoveReference();
+    if (doc != nullptr) {
+	    doc->RemoveReference();
+    }
     return 1;
 }
 
