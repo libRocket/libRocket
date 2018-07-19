@@ -39,47 +39,47 @@ bool Variant::GetInto(T& value) const
 	switch (type)
 	{
 		case BYTE:
-			return TypeConverter< byte, T >::Convert(*(byte*)data, value);
+			return TypeConverter< byte, T >::Convert(*(byte*)&data, value);
 		break;
 
 		case CHAR:
-			return TypeConverter< char, T >::Convert(*(char*)data, value);
+			return TypeConverter< char, T >::Convert(*(char*)&data, value);
 		break;
 
 		case FLOAT:
-			return TypeConverter< float, T >::Convert(*(float*)data, value);
+			return TypeConverter< float, T >::Convert(*(float*)&data, value);
 		break;
 
 		case INT:
-			return TypeConverter< int, T >::Convert(*(int*)data, value);
+			return TypeConverter< int, T >::Convert(*(int*)&data, value);
 		break;
 
 		case STRING:
-			return TypeConverter< String, T >::Convert(*(String*)data, value);
+			return TypeConverter< String, T >::Convert(*(String*)&data, value);
 		break;
 
 		case WORD:
-			return TypeConverter< word, T >::Convert(*(word*)data, value);
+			return TypeConverter< word, T >::Convert(*(word*)&data, value);
 		break;
 
 		case VECTOR2:
-			return TypeConverter< Vector2f, T >::Convert(*(Vector2f*)data, value);
+			return TypeConverter< Vector2f, T >::Convert(*(Vector2f*)&data, value);
 		break;
 
 		case COLOURF:
-			return TypeConverter< Colourf, T >::Convert(*(Colourf*)data, value);
+			return TypeConverter< Colourf, T >::Convert(*(Colourf*)&data, value);
 		break;
 
 		case COLOURB:
-			return TypeConverter< Colourb, T >::Convert(*(Colourb*)data, value);
+			return TypeConverter< Colourb, T >::Convert(*(Colourb*)&data, value);
 		break;
 
 		case SCRIPTINTERFACE:
-			return TypeConverter< ScriptInterface*, T >::Convert(*(ScriptInterface**)data, value);			
+			return TypeConverter< ScriptInterface*, T >::Convert(*(ScriptInterface**)&data, value);
 		break;
 
 		case VOIDPTR:
-			return TypeConverter< void*, T >::Convert(*(void**)data, value);
+			return TypeConverter< void*, T >::Convert(*(void**)&data, value);
 		break;
 
 		case NONE:

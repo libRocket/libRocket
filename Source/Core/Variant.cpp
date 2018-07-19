@@ -39,141 +39,149 @@ Variant::Variant() : type(NONE)
 	ROCKET_STATIC_ASSERT(sizeof(String) <= LOCAL_DATA_SIZE, LOCAL_DATA_TOO_SMALL_FOR_String);
 }
 
-Variant::Variant( const Variant& copy ) : type(NONE)
-{
-	Set(copy);
-}
+Variant::Variant(const Variant& copy) : type(NONE) { Set(copy); }
 
-Variant::~Variant() 
-{
-	Clear();
-}
+Variant::~Variant() { Clear(); }
 
 void Variant::Clear()
 {
 	// Free any allocated types.
-	switch (type) 
-	{      
-		case STRING:
-		{
-			// Clean up the string.
-			String* string = (String*)data;
-			string->~String();
-		}
+	switch (type) {
+	case STRING: {
+		// Clean up the string.
+		String* string = (String*)&data;
+		string->~String();
 		break;
-			
-		default:
+	}
+	case VECTOR2: {
+		auto d = (Vector2f*)&data;
+		d->~Vector2f();
+		break;
+	}
+	case COLOURF: {
+		auto d = (Colourf*)&data;
+		d->~Colourf();
+		break;
+	}
+	case COLOURB: {
+		auto d = (Colourb*)&data;
+		d->~Colourb();
+		break;
+	}
+
+	default:
 		break;
 	}
 	type = NONE;
 }
 
-Variant::Type Variant::GetType() const
-{
-	return type;
-}
+Variant::Type Variant::GetType() const { return type; }
 
 //////////////////////////////////////////////////
 // Set methods
 //////////////////////////////////////////////////
 
-#define SET_VARIANT(type) *((type*)data) = value;
+#define SET_VARIANT(type) Clear(); new (std::addressof(data))(type)(value)
 
 void Variant::Set(const Variant& copy)
 {
-	switch (copy.type)
-	{
-		case STRING:
-		{
-			// Create the string
-			Set(*(String*)copy.data);
-		}
+	switch (copy.type) {
+	case STRING: {
+		// Create the string
+		Set(*(String*)std::addressof(copy.data));
 		break;
-			
-		default:
-			Clear();
-			memcpy(data, copy.data, LOCAL_DATA_SIZE);
-		break;	
+	}
+	case VECTOR2: {
+		Set(*(Vector2f*)std::addressof(copy.data));
+		break;
+	}
+	case COLOURF: {
+		Set(*(Colourf*)std::addressof(copy.data));
+		break;
+	}
+	case COLOURB: {
+		Set(*(Colourb*)std::addressof(copy.data));
+		break;
+	}
+
+	default:
+		Clear();
+		memcpy(std::addressof(data), std::addressof(copy.data), LOCAL_DATA_SIZE);
+		break;
 	}
 	type = copy.type;
 }
 
 void Variant::Set(const byte value)
 {
-	type = BYTE;
 	SET_VARIANT(byte);
+	type = BYTE;
 }
 
 void Variant::Set(const char value)
 {
-	type = CHAR;
 	SET_VARIANT(char);
+	type = CHAR;
 }
 
 void Variant::Set(const float value)
 {
-	type = FLOAT;
 	SET_VARIANT(float);
+	type = FLOAT;
 }
 
 void Variant::Set(const int value)
 {
-	type = INT;
 	SET_VARIANT(int);
+	type = INT;
 }
 
-void Variant::Set(const String& value) 
+void Variant::Set(const String& value)
 {
-	if (type == STRING)
-	{
-		((String*)data)->Assign(value);
+	if (type == STRING) {
+		((String*)&data)->Assign(value);
+	} else {
+		SET_VARIANT(String);
 	}
-	else
-	{
-		type = STRING;
-		new(data) String(value);
-	}
+	type = STRING;
 }
 
 void Variant::Set(const word value)
 {
+	SET_VARIANT(word);
 	type = WORD;
-	SET_VARIANT(word);  
 }
 
-void Variant::Set(const char* value) 
-{
-	Set(String(value));
-}
+void Variant::Set(const char* value) { Set(String(value)); }
 
-void Variant::Set(void* voidptr) 
+void Variant::Set(void* value)
 {
+	SET_VARIANT(void*);
 	type = VOIDPTR;
-	memcpy(data, &voidptr, sizeof(void*));
 }
 
 void Variant::Set(const Vector2f& value)
 {
-	type = VECTOR2;
 	SET_VARIANT(Vector2f);
+	type = VECTOR2;
 }
 
 void Variant::Set(const Colourf& value)
 {
-	type = COLOURF;
 	SET_VARIANT(Colourf);
+	type = COLOURF;
 }
 
 void Variant::Set(const Colourb& value)
 {
-	type = COLOURB;
 	SET_VARIANT(Colourb);
+	type = COLOURB;
 }
 
-void Variant::Set(ScriptInterface* value) 
+void Variant::Set(ScriptInterface* value)
 {
+	SET_VARIANT(ScriptInterface*);
 	type = SCRIPTINTERFACE;
-	memcpy(data, &value, sizeof(ScriptInterface*));
 }
 
 Variant& Variant::operator=(const Variant& copy)
@@ -182,5 +190,5 @@ Variant& Variant::operator=(const Variant& copy)
 	return *this;
 }
 
-}
-}
+} // namespace Core
+} // namespace Rocket
