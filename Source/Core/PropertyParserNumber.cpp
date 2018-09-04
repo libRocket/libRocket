@@ -56,6 +56,7 @@ bool PropertyParserNumber::ParseValue(Property& property, const String& value, c
 	// Default to a simple number.
 	property.unit = Property::NUMBER;
 
+	String value_str = value;
 	// Check for a unit declaration at the end of the number.
 	for (size_t i = 0; i < unit_suffixes.size(); i++)
 	{
@@ -67,18 +68,18 @@ bool PropertyParserNumber::ParseValue(Property& property, const String& value, c
 		if (strcasecmp(value.CString() + (value.Length() - unit_suffix.second.Length()), unit_suffix.second.CString()) == 0)
 		{
 			property.unit = unit_suffix.first;
+			value_str = value.Substring(0, value.Length() - unit_suffix.second.Length());
 			break;
 		}
 	}
 
-	float float_value;
-	if (sscanf(value.CString(), "%f", &float_value) == 1)
-	{
-		property.value = Variant(float_value);
+	try {
+		property.value = std::stof(value_str.CString());
 		return true;
 	}
-
-	return false;
+	catch (const std::exception&) {
+		return false;
+	}
 }
 
 // Destroys the parser.
