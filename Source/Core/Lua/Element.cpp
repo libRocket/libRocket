@@ -117,6 +117,13 @@ int ElementClick(lua_State* L, Element* obj)
     return 0;
 }
 
+int ElementClone(lua_State* L, Element* obj) {
+	auto el = obj->Clone();
+	LuaType<Element>::push(L,el,true);
+	el->RemoveReference();
+	return 1;
+}
+
 int ElementDispatchEvent(lua_State* L, Element* obj)
 {
     const char* event = luaL_checkstring(L,1);
@@ -562,6 +569,7 @@ RegType<Element> ElementMethods[] =
     LUAMETHOD(Element,AppendChild)
     LUAMETHOD(Element,Blur)
     LUAMETHOD(Element,Click)
+    LUAMETHOD(Element,Clone)
     LUAMETHOD(Element,DispatchEvent)
     LUAMETHOD(Element,Focus)
     LUAMETHOD(Element,GetAttribute)
