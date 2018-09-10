@@ -187,7 +187,22 @@ int ElementGetElementsByTagName(lua_State* L, Element* obj)
     lua_newtable(L);
     for(unsigned int i = 0; i < list.size(); i++)
     {
-        lua_pushinteger(L,i);
+        lua_pushinteger(L,i + 1);
+        LuaType<Element>::push(L,list[i],false);
+        lua_settable(L,-3); //-3 is the table
+    }
+    return 1;
+}
+
+int ElementGetElementsByClassName(lua_State* L, Element* obj)
+{
+    const char* class_name = luaL_checkstring(L,1);
+    ElementList list;
+    obj->GetElementsByClassName(list,class_name);
+    lua_newtable(L);
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        lua_pushinteger(L,i + 1);
         LuaType<Element>::push(L,list[i],false);
         lua_settable(L,-3); //-3 is the table
     }
@@ -575,6 +590,7 @@ RegType<Element> ElementMethods[] =
     LUAMETHOD(Element,GetAttribute)
     LUAMETHOD(Element,GetElementById)
     LUAMETHOD(Element,GetElementsByTagName)
+    LUAMETHOD(Element,GetElementsByClassName)
     LUAMETHOD(Element,HasAttribute)
     LUAMETHOD(Element,HasChildNodes)
     LUAMETHOD(Element,InsertBefore)
