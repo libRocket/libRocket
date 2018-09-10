@@ -197,8 +197,12 @@ Element* Element::Clone() const
 	if (instancer != NULL)
 	{
 		clone = instancer->InstanceElement(NULL, GetTagName(), attributes);
-		if (clone != NULL)
+		if (clone != NULL) {
 			clone->SetInstancer(instancer);
+
+			ElementUtilities::BindEventAttributes(clone);
+			PluginRegistry::NotifyElementCreate(clone);
+		}
 	}
 	else
 		clone = Factory::InstanceElement(NULL, GetTagName(), GetTagName(), attributes);
