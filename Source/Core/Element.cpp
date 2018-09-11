@@ -199,6 +199,7 @@ Element* Element::Clone() const
 		clone = instancer->InstanceElement(NULL, GetTagName(), attributes);
 		if (clone != NULL) {
 			clone->SetInstancer(instancer);
+			clone->SetAttributes(&attributes);
 
 			ElementUtilities::BindEventAttributes(clone);
 			PluginRegistry::NotifyElementCreate(clone);
