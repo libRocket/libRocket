@@ -188,6 +188,10 @@ void WidgetSlider::Update()
 // Sets the position of the bar.
 void WidgetSlider::SetBarPosition(float _bar_position)
 {
+	if (Math::AreEqual(_bar_position, bar_position)) {
+		return;
+	}
+
 	bar_position = Math::Clamp(_bar_position, 0.0f, 1.0f);
 	PositionBar();
 
