@@ -84,6 +84,8 @@ public:
     \em will need to call Rocket::Controls::Lua::RegisterTypes(lua_State*)     */
     static void RegisterCoreTypes(lua_State* L);
 
+    static int ErrorHandler(lua_State* L);
+
     /** 
     @return The lua_State that the Interpreter created in Interpreter::Startup()
     @remark This class lacks a SetLuaState for a reason. If you have to use a seperate Lua binding and want to keep the types
