@@ -73,7 +73,7 @@ ROCKETCORE_API_INLINE bool StringBase< char >::operator!=(const char * compare) 
 }
 
 // Redefine Windows APIs as their STDC counterparts.
-#ifdef ROCKET_PLATFORM_WIN32
+#if defined(ROCKET_PLATFORM_WIN32) && defined(_MSC_VER)
 	#define strcasecmp stricmp
 	#define strncasecmp strnicmp
 #endif
