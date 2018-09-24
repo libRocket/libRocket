@@ -55,9 +55,9 @@ void LuaDataSource::GetRow(Rocket::Core::StringList& row, const Rocket::Core::St
     Interpreter::BeginCall(getRowRef);
     lua_State* L = Interpreter::GetLuaState();
     lua_pushstring(L,table.CString());
-    lua_pushinteger(L,row_index);
+    lua_pushinteger(L,row_index + 1);
     lua_newtable(L);
-    int index = 0;
+    int index = 1;
     for(Rocket::Core::StringList::const_iterator itr = columns.begin(); itr != columns.end(); ++itr)
     {
         lua_pushstring(L,itr->CString());
