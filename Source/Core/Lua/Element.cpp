@@ -79,12 +79,12 @@ int ElementAddEventListener(lua_State* L, Element* obj)
     int type = lua_type(L,2);
     if(type == LUA_TFUNCTION)
     {
-        listener = new LuaEventListener(L,2,obj);
+        listener = new LuaEventListener(L,2);
     }
     else if(type == LUA_TSTRING)
     {
         const char* code = luaL_checkstring(L,2);
-        listener = new LuaEventListener(code,obj);
+        listener = new LuaEventListener(code);
     }
 	else
 	{
