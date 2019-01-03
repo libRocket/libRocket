@@ -62,7 +62,6 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/PropertyParserNumber.h
     ${PROJECT_SOURCE_DIR}/Source/Core/PropertyParserString.h
     ${PROJECT_SOURCE_DIR}/Source/Core/PropertyShorthandDefinition.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/StreamFile.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StringCache.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetFactory.h
     ${PROJECT_SOURCE_DIR}/Source/Core/StyleSheetNode.h
@@ -94,7 +93,6 @@ set(Core_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerDefault.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerHead.h
     ${PROJECT_SOURCE_DIR}/Source/Core/XMLNodeHandlerTemplate.h
-    ${PROJECT_SOURCE_DIR}/Source/Core/XMLParseTools.h
 )
 
 set(MASTER_Core_PUB_HDR_FILES
@@ -159,6 +157,7 @@ set(Core_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/RenderInterface.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/ScriptInterface.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/Stream.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/StreamFile.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/StreamMemory.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/String.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/StringBase.h
@@ -181,6 +180,7 @@ set(Core_PUB_HDR_FILES
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/WString.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/XMLNodeHandler.h
     ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/XMLParser.h
+    ${PROJECT_SOURCE_DIR}/Include/Rocket/Core/XMLParseTools.h
 )
 
 set(Core_SRC_FILES
