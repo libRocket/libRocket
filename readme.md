@@ -1,6 +1,6 @@
 # libRocket - The HTML/CSS User Interface Library
 
-http://librocket.com
+~~http://<span>librocket.com</span>~~ (!!! malicious domain !!!, last checked 23/feb/2020)
 
 libRocket is the C++ user interface package based on the HTML and CSS standards. It is 
 designed as a complete solution for any project's interface needs.
