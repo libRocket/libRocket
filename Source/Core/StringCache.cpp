@@ -89,6 +89,7 @@ const String TEXT_DECORATION = "text-decoration";
 const String TEXT_TRANSFORM = "text-transform";
 const String WHITE_SPACE = "white-space";
 const String CURSOR = "cursor";
+const String CURSOR_CLASS = "cursor-class";
 const String DRAG = "drag";
 const String TAB_INDEX = "tab-index";
 const String SCROLLBAR_MARGIN = "scrollbar-margin";

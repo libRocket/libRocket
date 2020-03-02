@@ -92,6 +92,7 @@ extern const String TEXT_DECORATION;
 extern const String TEXT_TRANSFORM;
 extern const String WHITE_SPACE;
 extern const String CURSOR;
+extern const String CURSOR_CLASS;
 extern const String DRAG;
 extern const String TAB_INDEX;
 extern const String SCROLLBAR_MARGIN;

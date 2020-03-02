@@ -120,10 +120,17 @@ public:
 	void UnloadMouseCursor(const String& cursor_name);
 	/// Unloads all currently loaded cursors.
 	void UnloadAllMouseCursors();
+	/// Gets the active cursor.
+	/// @return The active cursor document.
+	ElementDocument* GetActiveCursor();
 	/// Sets a cursor as the active cursor.
 	/// @param[in] cursor_name The name of the cursor to activate.
 	/// @return True if a cursor exists with the given name, false if not.
 	bool SetMouseCursor(const String& cursor_name);
+	/// Sets a cursor class for the active cursor.
+	/// @param[in] class_name The name of the class for the active cursor.
+	/// @return True if an active cursor exists, false if not.
+	bool SetMouseCursorClass(const String& class_name);
 	/// Shows or hides the cursor.
 	/// @param[in] show True to show the cursor, false to hide it.
 	void ShowMouseCursor(bool show);
