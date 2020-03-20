@@ -120,6 +120,12 @@ extern const String DRAGEND;
 extern const String DRAGOVER;
 extern const String RESIZE;
 
+extern const String TOUCHDOWN;
+extern const String TOUCHUP;
+extern const String TOUCHOVER;
+extern const String TOUCHOUT;
+extern const String TOUCHMOVE;
+
 }
 }
 

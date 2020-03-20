@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -121,7 +121,7 @@ void Context::SetDimensions(const Vector2i& _dimensions)
 				document->UpdatePosition();
 			}
 		}
-		
+
 		clip_dimensions = dimensions;
 	}
 }
@@ -217,7 +217,7 @@ ElementDocument* Context::CreateDocument(const String& tag)
 
 // Load a document into the context.
 ElementDocument* Context::LoadDocument(const String& document_path)
-{	
+{
 	// Open the stream based on the file path
 	StreamFile* stream = new StreamFile();
 	if (!stream->Open(document_path))
@@ -630,18 +630,18 @@ void Context::ProcessMouseMove(int x, int y, int key_modifier_state)
 		}
 	}
 }
-	
+
 static Element* FindFocusElement(Element* element)
 {
 	ElementDocument* owner_document = element->GetOwnerDocument();
 	if (!owner_document || owner_document->GetProperty< int >(FOCUS) == FOCUS_NONE)
 		return NULL;
-	
+
 	while (element && element->GetProperty< int >(FOCUS) == FOCUS_NONE)
 	{
 		element = element->GetParentNode();
 	}
-	
+
 	return element;
 }
 
@@ -655,7 +655,7 @@ void Context::ProcessMouseButtonDown(int button_index, int key_modifier_state)
 	if (button_index == 0)
 	{
 		Element* new_focus = *hover;
-		
+
 		// Set the currently hovered element to focus if it isn't already the focus.
 		if (hover)
 		{
@@ -671,7 +671,7 @@ void Context::ProcessMouseButtonDown(int button_index, int key_modifier_state)
 		active = new_focus;
 
 		bool propogate = true;
-		
+
 		// Call 'onmousedown' on every item in the hover chain, and copy the hover chain to the active chain.
 		if (hover)
 			propogate = hover->DispatchEvent(MOUSEDOWN, parameters, true);
@@ -694,7 +694,7 @@ void Context::ProcessMouseButtonDown(int button_index, int key_modifier_state)
 			{
 				last_click_element = *active;
 				last_click_time = click_time;
-			
+
 			}
 		}
 
@@ -805,24 +805,161 @@ bool Context::ProcessMouseWheel(int wheel_delta, int key_modifier_state)
 	return true;
 }
 
+Context::TouchInfo& Context::InitTouchInfo(int finger_id)
+{
+	if(touches.find(finger_id) != touches.end())
+	{
+		return touches.at(finger_id);
+	}
+
+	TouchInfo info;
+	info.last_click_element = NULL;
+	info.last_click_time = 0;
+
+	touches.insert(std::make_pair(finger_id, info));
+
+	return touches.at(finger_id);
+}
+
+void Context::ProcessTouchMove(int finger_id, int x, int y, int key_modifier_state)
+{
+	TouchInfo& info = InitTouchInfo(finger_id);
+
+	// Check whether the mouse moved since the last event came through.
+	bool touch_moved = (x != info.position.x) || (y != info.position.y);
+	if (touch_moved)
+	{
+		info.position.x = x;
+		info.position.y = y;
+	}
+
+	Dictionary parameters;
+	GenerateTouchEventParameters(parameters, finger_id);
+	GenerateKeyModifierEventParameters(parameters, key_modifier_state);
+
+	// Update the current hover chain. This will send all necessary 'ontouchout' and 'ontouchover' messages.
+	UpdateTouchHoverChain(finger_id, parameters);
+
+	// Dispatch any 'ontouchmove' events.
+	if (touch_moved)
+	{
+		if (info.hover)
+		{
+			info.hover->DispatchEvent(TOUCHMOVE, parameters, true);
+		}
+	}
+}
+
+void Context::ProcessTouchDown(int finger_id, int x, int y, int key_modifier_state)
+{
+	//First, process the position, this updates the hover chain
+	ProcessTouchMove(finger_id, x, y, key_modifier_state);
+
+	TouchInfo& info = InitTouchInfo(finger_id);
+
+	Dictionary parameters;
+	GenerateTouchEventParameters(parameters, finger_id);
+	GenerateKeyModifierEventParameters(parameters, key_modifier_state);
+
+	Element* new_focus = *info.hover;
+
+	// Set the currently hovered element to focus if it isn't already the focus.
+	if (info.hover)
+	{
+		new_focus = FindFocusElement(*info.hover);
+		if (new_focus && new_focus != *focus)
+		{
+			if (!new_focus->Focus())
+				return;
+		}
+	}
+
+	// Save the just-pressed-on element as the pressed element.
+    info.active = new_focus;
+
+	bool propogate = true;
+
+	// Call 'ontouchdown' on every item in the hover chain, and copy the hover chain to the active chain.
+	if (info.hover)
+    {
+        propogate = info.hover->DispatchEvent(TOUCHDOWN, parameters, true);
+    }
+
+	if (propogate)
+	{
+		// Check for a double-click on an element; if one has occured, we send the 'dblclick' event to the hover
+		// element. If not, we'll start a timer to catch the next one.
+		float click_time = GetSystemInterface()->GetElapsedTime();
+        if (info.active == info.last_click_element &&
+			click_time - info.last_click_time < DOUBLE_CLICK_TIME)
+		{
+			if (info.hover)
+				propogate = info.hover->DispatchEvent(DBLCLICK, parameters, true);
+
+			info.last_click_element = NULL;
+			info.last_click_time = 0;
+		}
+		else
+		{
+            info.last_click_element = *info.active;
+			info.last_click_time = click_time;
+		}
+	}
+
+    for (ElementSet::iterator itr = info.hover_chain.begin(); itr != info.hover_chain.end(); ++itr)
+    {
+		info.active_chain.push_back((*itr));
+	}
+
+}
+
+void Context::ProcessTouchUp(int finger_id, int x, int y, int key_modifier_state)
+{
+	TouchInfo& info = InitTouchInfo(finger_id);
+
+	Dictionary parameters;
+	GenerateTouchEventParameters(parameters, finger_id);
+	GenerateKeyModifierEventParameters(parameters, key_modifier_state);
+
+
+	// The elements in the new hover chain have the 'ontouchup' event called on them.
+	if (info.hover)
+	{
+        info.hover->DispatchEvent(TOUCHUP, parameters, true);
+	}
+
+	// If the active element (the one that was being hovered over when the finger was pressed) is still being
+	// hovered over, we click it.
+    if (info.hover && info.active && info.active == FindFocusElement(*info.hover))
+	{
+        info.active->DispatchEvent(CLICK, parameters, true);
+	}
+
+	// Unset the 'active' pseudo-class on all the elements in the active chain; because they may not necessarily
+	// have had 'ontouchup' called on them, we can't guarantee this has happened already.
+	std::for_each(info.active_chain.begin(), info.active_chain.end(), PseudoClassFunctor("active", false));
+	info.active_chain.clear();
+
+}
+
 // Gets the context's render interface.
 RenderInterface* Context::GetRenderInterface() const
 {
 	return render_interface;
 }
-	
+
 // Gets the current clipping region for the render traversal
 bool Context::GetActiveClipRegion(Vector2i& origin, Vector2i& dimensions) const
 {
 	if (clip_dimensions.x < 0 || clip_dimensions.y < 0)
 		return false;
-	
+
 	origin = clip_origin;
 	dimensions = clip_dimensions;
-	
+
 	return true;
 }
-	
+
 // Sets the current clipping region for the render traversal
 void Context::SetActiveClipRegion(const Vector2i& origin, const Vector2i& dimensions)
 {
@@ -835,7 +972,7 @@ void Context::SetInstancer(ContextInstancer* _instancer)
 {
 	ROCKET_ASSERT(instancer == NULL);
 	instancer = _instancer;
-	instancer->AddReference();	
+	instancer->AddReference();
 }
 
 // Internal callback for when an element is removed from the hierarchy.
@@ -946,6 +1083,31 @@ void Context::GenerateClickEvent(Element* element)
 	GenerateMouseEventParameters(parameters, 0);
 
 	element->DispatchEvent(CLICK, parameters, true);
+}
+
+void Context::UpdateTouchHoverChain(int finger_id, const Dictionary& parameters)
+{
+	TouchInfo& info = InitTouchInfo(finger_id); //Get the info for this finger
+
+	Vector2f position((float) info.position.x, (float) info.position.y);
+
+	info.hover = GetElementAtPoint(position);
+
+	// Build the new hover chain.
+	ElementSet new_hover_chain;
+	Element* element = *info.hover;
+	while (element != NULL)
+	{
+		new_hover_chain.insert(element);
+		element = element->GetParentNode();
+	}
+
+	// Send mouseout / mouseover events.
+    SendEvents(info.hover_chain, new_hover_chain, TOUCHOUT, parameters, true);
+    SendEvents(new_hover_chain, info.hover_chain, TOUCHOVER, parameters, true);
+
+	// Swap the new chain in.
+    info.hover_chain.swap(new_hover_chain);
 }
 
 // Updates the current hover elements, sending required events.
@@ -1175,6 +1337,16 @@ void Context::GenerateMouseEventParameters(Dictionary& parameters, int button_in
 		parameters.Set("button", button_index);
 }
 
+// Builds the parameters for a generic touch event.
+void Context::GenerateTouchEventParameters(Dictionary& parameters, int finger_id)
+{
+	TouchInfo& info = InitTouchInfo(finger_id);
+
+	parameters.Set("touch_x", info.position.x);
+	parameters.Set("touch_y", info.position.y);
+    parameters.Set("finger_id", finger_id);
+}
+
 // Builds the parameters for the key modifier state.
 void Context::GenerateKeyModifierEventParameters(Dictionary& parameters, int key_modifier_state)
 {
@@ -1194,7 +1366,7 @@ void Context::GenerateKeyModifierEventParameters(Dictionary& parameters, int key
 
 // Builds the parameters for a drag event.
 void Context::GenerateDragEventParameters(Dictionary& parameters)
-{	
+{
 	parameters.Set("drag_element", (void*) *drag);
 }
 
