@@ -307,7 +307,9 @@ private:
 	// @param[in] ignore_element If set, this element and its descendents will be ignored.
 	// @param[in] element Used internally.
 	// @return The element under the point, or NULL if nothing is.
-	Element* GetElementAtPoint(const Vector2f& point, const Element* ignore_element = NULL, Element* element = NULL);
+	Element* GetElementAtPoint(const Vector2f& point, const Element* ignore_element = NULL);
+
+   Element* GetElementAtPointRecursive(const Vector2f& point, const Element* ignore_element = NULL, Element* element = NULL);
 
 	// Creates the drag clone from the given element. The old drag clone will be released if
 	// necessary.
