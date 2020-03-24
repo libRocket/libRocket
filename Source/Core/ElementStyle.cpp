@@ -371,15 +371,15 @@ float ElementStyle::ResolveProperty(const Property* property, float base_value)
 		float inch = property->value.Get< float >() * element->GetRenderInterface()->GetPixelsPerInch();
 		
 		if (property->unit & Property::INCH) // inch
-			return inch;
+			return Math::Round(inch);
 		if (property->unit & Property::CM) // centimeter
-			return inch * (1.0f / 2.54f);
+			return Math::Round(inch * (1.0f / 2.54f));
 		if (property->unit & Property::MM) // millimeter
-			return inch * (1.0f / 25.4f);
+			return Math::Round(inch * (1.0f / 25.4f));
 		if (property->unit & Property::PT) // point
-			return inch * (1.0f / 72.0f);
+			return Math::Round(inch * (1.0f / 72.0f));
 		if (property->unit & Property::PC) // pica
-			return inch * (1.0f / 6.0f);
+			return Math::Round(inch * (1.0f / 6.0f));
 	}
 
 	// We're not a numeric property; return 0.
@@ -459,15 +459,15 @@ float ElementStyle::ResolveProperty(const String& name, float base_value)
 		float inch = property->value.Get< float >() * element->GetRenderInterface()->GetPixelsPerInch();
 
 		if (property->unit & Property::INCH) // inch
-			return inch;
+			return Math::Round(inch);
 		if (property->unit & Property::CM) // centimeter
-			return inch / 2.54f;
+			return Math::Round(inch * (1.0f / 2.54f));
 		if (property->unit & Property::MM) // millimeter
-			return inch / 25.4f;
+			return Math::Round(inch * (1.0f / 25.4f));
 		if (property->unit & Property::PT) // point
-			return inch / 72.0f;
+			return Math::Round(inch * (1.0f / 72.0f));
 		if (property->unit & Property::PC) // pica
-			return inch / 6.0f;
+			return Math::Round(inch * (1.0f / 6.0f));
 	}
 
 	// We're not a numeric property; return 0.
