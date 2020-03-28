@@ -62,6 +62,8 @@ public:
 	/// @return True if the layer was generated successfully, false if not.
 	virtual bool Initialise(const FontFaceHandle* handle, FontEffect* effect = NULL, const FontFaceLayer* clone = NULL, bool deep_clone = false);
 
+  bool AppendGlyphs(const FontGlyphList& glyphs);
+
 	/// Generates the texture data for a layer (for the texture database).
 	/// @param[out] texture_data The pointer to be set to the generated texture data.
 	/// @param[out] texture_dimensions The dimensions of the texture.
@@ -124,7 +126,7 @@ public:
 	};
 
 	typedef std::vector< Character > CharacterList;
-	typedef std::vector< Texture > TextureList;
+	typedef std::vector< Texture* > TextureList;
 
 	const FontFaceHandle* handle;
 	FontEffect* effect;

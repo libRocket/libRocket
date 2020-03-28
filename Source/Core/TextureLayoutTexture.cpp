@@ -34,7 +34,7 @@
 namespace Rocket {
 namespace Core {
 
-TextureLayoutTexture::TextureLayoutTexture() : dimensions(0, 0)
+TextureLayoutTexture::TextureLayoutTexture() : dimensions(0, 0), ReferenceCountable(1)
 {
 	texture_data = NULL;
 }
@@ -157,6 +157,11 @@ byte* TextureLayoutTexture::AllocateTexture()
 	}
 
 	return texture_data;
+}
+
+void TextureLayoutTexture::OnReferenceDeactivate()
+{
+  delete this;
 }
 
 }

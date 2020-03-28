@@ -36,9 +36,9 @@ namespace Core {
 
 struct RectangleSort
 {
-	bool operator()(const TextureLayoutRectangle& lhs, const TextureLayoutRectangle& rhs) const
+	bool operator()(const TextureLayoutRectangle* lhs, const TextureLayoutRectangle* rhs) const
 	{
-		return lhs.GetDimensions().y > rhs.GetDimensions().y;
+		return lhs->GetDimensions().y > rhs->GetDimensions().y;
 	}
 };
 
@@ -48,12 +48,16 @@ TextureLayout::TextureLayout()
 
 TextureLayout::~TextureLayout()
 {
+  for (TextureList::iterator i = textures.begin(); i != textures.end(); ++i)
+    (*i)->RemoveReference();
+  for (RectangleList::iterator i = rectangles.begin(); i != rectangles.end(); ++i)
+    (*i)->RemoveReference();
 }
 
 // Adds a rectangle to the list of rectangles to be laid out.
 void TextureLayout::AddRectangle(int id, const Vector2i& dimensions)
 {
-	rectangles.push_back(TextureLayoutRectangle(id, dimensions));
+	rectangles.push_back(new TextureLayoutRectangle(id, dimensions));
 }
 
 // Returns one of the layout's rectangles.
@@ -62,7 +66,7 @@ TextureLayoutRectangle& TextureLayout::GetRectangle(int index)
 	ROCKET_ASSERT(index >= 0);
 	ROCKET_ASSERT(index < GetNumRectangles());
 
-	return rectangles[index];
+	return *rectangles[index];
 }
 
 // Returns the number of rectangles in the layout.
@@ -77,7 +81,7 @@ TextureLayoutTexture& TextureLayout::GetTexture(int index)
 	ROCKET_ASSERT(index >= 0);
 	ROCKET_ASSERT(index < GetNumTextures());
 
-	return textures[index];
+	return *textures[index];
 }
 
 // Returns the number of textures in the layout.
@@ -95,16 +99,42 @@ bool TextureLayout::GenerateLayout(int max_texture_dimensions)
 	int num_placed_rectangles = 0;
 	while (num_placed_rectangles != GetNumRectangles())
 	{
-		TextureLayoutTexture texture;
-		int texture_size = texture.Generate(*this, max_texture_dimensions);
+		TextureLayoutTexture *texture = new TextureLayoutTexture();
+		int texture_size = texture->Generate(*this, max_texture_dimensions);
 		if (texture_size == 0)
+    {
+      texture->RemoveReference();
 			return false;
+    }
 
 		textures.push_back(texture);
 		num_placed_rectangles += texture_size;
 	}
 
 	return true;
+}
+
+TextureLayout& TextureLayout::operator+=(const TextureLayout &layout)
+{
+  const int texture_size = GetNumTextures();
+
+  for (TextureList::const_iterator i = layout.textures.begin(); i != layout.textures.end(); ++i)
+  {
+    TextureLayoutTexture *texture = *i;
+
+    texture->AddReference();
+    textures.push_back(texture);
+  }
+  for (RectangleList::const_iterator i = layout.rectangles.begin(); i != layout.rectangles.end(); ++i)
+  {
+    TextureLayoutRectangle *rect = *i;
+
+    rect->AddReference();
+    rect->Place(texture_size + rect->GetTextureIndex(), rect->GetPosition());
+    rectangles.push_back(rect);
+  }
+
+  return *this;
 }
 
 }

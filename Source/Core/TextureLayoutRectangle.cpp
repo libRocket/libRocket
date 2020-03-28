@@ -31,7 +31,7 @@
 namespace Rocket {
 namespace Core {
 
-TextureLayoutRectangle::TextureLayoutRectangle(int _id, const Vector2i& dimensions) : dimensions(dimensions), texture_position(0, 0)
+TextureLayoutRectangle::TextureLayoutRectangle(int _id, const Vector2i& dimensions) : dimensions(dimensions), texture_position(0, 0), ReferenceCountable(1)
 {
 	id = _id;
 	texture_index = -1;
@@ -104,6 +104,11 @@ byte* TextureLayoutRectangle::GetTextureData()
 int TextureLayoutRectangle::GetTextureStride() const
 {
 	return texture_stride;
+}
+
+void TextureLayoutRectangle::OnReferenceDeactivate()
+{
+  delete this;
 }
 
 }
