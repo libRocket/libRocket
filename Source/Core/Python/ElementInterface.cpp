@@ -207,7 +207,7 @@ void ElementInterface::DispatchEvent(Element* element, const char* event, const 
 	for (int i = 0; i < num_keys; ++i)
 	{
 		PyObject* py_key = PyList_GetItem(keys, i);
-		if (!PyString_Check(py_key))
+		if (!PyUnicode_Check(py_key))
 		{
 			Py_DECREF(keys);
 			PyErr_SetString(PyExc_KeyError, "Only string keys supported.");
@@ -222,7 +222,7 @@ void ElementInterface::DispatchEvent(Element* element, const char* event, const 
 			python::throw_error_already_set();
 		}
 
-		const char* key = PyString_AsString(py_key);
+		const char* key = PyUnicode_AsUTF8(py_key);
 		ROCKET_parameters.Set(key, value);
 	}
 

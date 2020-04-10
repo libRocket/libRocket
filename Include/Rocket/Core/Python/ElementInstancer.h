@@ -73,7 +73,7 @@ public:
 
 		// Build the arguments
 		PyObject* args = PyTuple_New(1);
-		PyTuple_SetItem(args, 0, PyString_FromString(tag.CString()));
+		PyTuple_SetItem(args, 0, PyUnicode_FromString(tag.CString()));
 
 		PyObject* instance = PyObject_CallObject(class_definition, args);
 		Py_DECREF(args);

@@ -101,14 +101,14 @@ bool Utilities::ConvertToVariant(Variant& variant, PyObject* object)
 		variant.Set((float) PyFloat_AsDouble(object));
 		return true;
 	}
-	else if (PyInt_Check(object))
+	else if (PyLong_Check(object))
 	{
-		variant.Set((int) PyInt_AsLong(object));
+		variant.Set((int) PyLong_AsLong(object));
 		return true;
 	}
-	else if (PyString_Check(object))
+	else if (PyUnicode_Check(object))
 	{
-		variant.Set(String(PyString_AsString(object)));
+		variant.Set(String(PyUnicode_AsUTF8(object)));
 		return true;
 	}
 

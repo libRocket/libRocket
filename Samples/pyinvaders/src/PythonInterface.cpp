@@ -31,6 +31,8 @@
 #include "ElementGame.h"
 #include "HighScores.h"
 
+#include <wchar.h>
+
 void SubmitHighScore()
 {
 	int score = GameDetails::GetScore();
@@ -74,9 +76,9 @@ bool PythonInterface::Initialise(const char* path)
 	Py_Initialize();
 
 	// Setup the Python search path.
-	const char* python_path = Py_GetPath();
-	char buffer[1024];
-	snprintf(buffer, 1024, "%s%s%s", path, PATH_SEPARATOR, python_path);
+	const wchar_t* python_path = Py_GetPath();
+	wchar_t buffer[1024];
+	swprintf(buffer, 1024, L"%s%s%s", path, PATH_SEPARATOR, python_path);
 	buffer[1023] = '\0';
 	PySys_SetPath(buffer);
 
@@ -85,7 +87,7 @@ bool PythonInterface::Initialise(const char* path)
 		return false;
 
 	// Define our game specific interface.
-	initgame();
+	init_module_game();
 
 	return true;
 }

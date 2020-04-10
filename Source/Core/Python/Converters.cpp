@@ -71,19 +71,19 @@ struct VariantConverter
 		{
 			case Variant::STRING:
 			{
-				object = PyString_FromString(variant.Get< String >().CString());
+				object = PyUnicode_FromString(variant.Get< String >().CString());
 			}
 			break;
 
 			case Variant::INT:
 			{
-				object = PyInt_FromLong(variant.Get< int >());
+				object = PyLong_FromLong(variant.Get< int >());
 			}
 			break;
 
 			case Variant::WORD:
 			{
-				object = PyInt_FromLong(variant.Get< word >());
+				object = PyLong_FromLong(variant.Get< word >());
 			}
 			break;
 
@@ -121,7 +121,7 @@ struct VariantConverter
 
 	static void* Convertible(PyObject* object)
 	{
-		if (!PyString_Check(object) && !PyInt_Check(object) && !PyFloat_Check(object))
+		if (!PyUnicode_Check(object) && !PyLong_Check(object) && !PyFloat_Check(object))
 			return 0;
 		return object;
 	}
@@ -131,13 +131,13 @@ struct VariantConverter
 		void* storage = ((boost::python::converter::rvalue_from_python_storage< Variant >*)data)->storage.bytes;
 		Variant* variant = new (storage) Variant();
 
-		if (PyString_Check(object))
+		if (PyUnicode_Check(object))
 		{
-			variant->Set(String(PyString_AsString(object)));
+			variant->Set(String(PyUnicode_AsUTF8(object)));
 		}
-		else if (PyInt_Check(object))
+		else if (PyLong_Check(object))
 		{
-			variant->Set((int)PyInt_AsLong(object));
+			variant->Set((int)PyLong_AsLong(object));
 		}
 		else if (PyFloat_Check(object))
 		{
@@ -170,14 +170,14 @@ struct StringConverter
 
 	static void* Convertible(PyObject* obj_ptr)
 	{
-		if (!PyString_Check(obj_ptr))
+		if (!PyUnicode_Check(obj_ptr))
 			return 0;
 		return obj_ptr;
 	}
 
 	static void Construct(PyObject* obj_ptr, boost::python::converter::rvalue_from_python_stage1_data* data)
 	{
-		const char* value = PyString_AsString(obj_ptr);
+		const char* value = PyUnicode_AsUTF8(obj_ptr);
 		if (value == 0) 
 			boost::python::throw_error_already_set();
 		void* storage = ((boost::python::converter::rvalue_from_python_storage< String >*)data)->storage.bytes;

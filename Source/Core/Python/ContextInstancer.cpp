@@ -49,7 +49,7 @@ Context* ContextInstancer::InstanceContext(const Rocket::Core::String& name)
 {
 	// Put the arguments into a tuple.
 	PyObject* args = PyTuple_New(1);	
-	PyTuple_SetItem(args, 0, PyString_FromString(name.CString()));
+	PyTuple_SetItem(args, 0, PyUnicode_FromString(name.CString()));
 
 	// Instance the context.
 	PyObject* instance = PyObject_CallObject(instancer, args);
