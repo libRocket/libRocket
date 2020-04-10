@@ -67,6 +67,7 @@ int LuaRocketCreateContext(lua_State* L, LuaRocket* obj)
     else
     {
         LuaType<Context>::push(L, new_context);
+		new_context->RemoveReference();
     }
     return 1;
 }

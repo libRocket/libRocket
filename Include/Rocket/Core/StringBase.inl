@@ -550,10 +550,10 @@ typename StringBase< T >::size_type StringBase< T >::GetLength(const T* string) 
 }
 
 template< typename T >
-void StringBase< T >::Copy(T* target, const T* src, size_type length, bool terminate)
+void StringBase< T >::Copy(T* target, const T* src, size_type length_in, bool terminate)
 {
 	// Copy values
-	for (size_type i = 0; i < length; i++)
+	for (size_type i = 0; i < length_in; i++)
 	{
 		*target++ = *src++;
 	}

@@ -28,7 +28,7 @@
 #include "precompiled.h"
 #include "StyleSheetFactory.h"
 #include "../../Include/Rocket/Core/StyleSheet.h"
-#include "StreamFile.h"
+#include "../../Include/Rocket/Core/StreamFile.h"
 #include "StyleSheetNodeSelectorNthChild.h"
 #include "StyleSheetNodeSelectorNthLastChild.h"
 #include "StyleSheetNodeSelectorNthOfType.h"

@@ -84,6 +84,8 @@ public:
     \em will need to call Rocket::Controls::Lua::RegisterTypes(lua_State*)     */
     static void RegisterCoreTypes(lua_State* L);
 
+    static int ErrorHandler(lua_State* L);
+
     /** 
     @return The lua_State that the Interpreter created in Interpreter::Startup()
     @remark This class lacks a SetLuaState for a reason. If you have to use a seperate Lua binding and want to keep the types
@@ -106,7 +108,7 @@ public:
     /** Stops the plugin by calling lua_close
 	 @remark Shutdown calls lua_Close on the lua_State associated with the Interpreter.  If a lua_State was provided in the
 	 original call to Initialise, Shutdown should not be called OR you must not call lua_Close from within your code. */
-	static void Shutdown();
+	static void Shutdown(bool free_state);
     
     /** @sa Rocket::Core::Plugin::GetEventClasses */
     virtual int GetEventClasses();

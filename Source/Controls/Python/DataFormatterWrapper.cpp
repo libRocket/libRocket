@@ -52,7 +52,7 @@ void DataFormatterWrapper::FormatData(Rocket::Core::String& formatted_data, cons
 	if (!callable)
 	{
 		PyObject* name = PyObject_GetAttrString(self, "__name__");
-		Rocket::Core::Log::Message(Rocket::Core::Log::LT_WARNING, "Function \"FormatData\" not found on python data formatter %s.", PyString_AsString(name));
+		Rocket::Core::Log::Message(Rocket::Core::Log::LT_WARNING, "Function \"FormatData\" not found on python data formatter %s.", PyUnicode_AsUTF8(name));
 		Py_DECREF(name);
 		return;
 	}
@@ -62,9 +62,9 @@ void DataFormatterWrapper::FormatData(Rocket::Core::String& formatted_data, cons
 	Py_DECREF(callable);
 
 	// If it's a string, then just return it.
-	if (result && PyString_Check(result))
+	if (result && PyUnicode_Check(result))
 	{
-		formatted_data = PyString_AsString(result);
+		formatted_data = PyUnicode_AsUTF8(result);
 	}
 	else
 	{

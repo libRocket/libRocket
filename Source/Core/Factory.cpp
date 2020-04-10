@@ -43,14 +43,14 @@
 #include "FontEffectShadowInstancer.h"
 #include "PluginRegistry.h"
 #include "PropertyParserColour.h"
-#include "StreamFile.h"
+#include "../../Include/Rocket/Core/StreamFile.h"
 #include "StyleSheetFactory.h"
 #include "TemplateCache.h"
 #include "XMLNodeHandlerBody.h"
 #include "XMLNodeHandlerDefault.h"
 #include "XMLNodeHandlerHead.h"
 #include "XMLNodeHandlerTemplate.h"
-#include "XMLParseTools.h"
+#include "../../Include/Rocket/Core/XMLParseTools.h"
 
 namespace Rocket {
 namespace Core {

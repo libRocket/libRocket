@@ -80,13 +80,13 @@ public:
 		static LengthAccessor length_accessor;
 		static IndexAccessor index_accessor;
 
-		if (PyString_Check(key.ptr()))
+		if (PyUnicode_Check(key.ptr()))
 		{
-			return Rocket::Core::Python::Utilities::MakeObject(name_accessor(host, PyString_AsString(key.ptr())));
+			return Rocket::Core::Python::Utilities::MakeObject(name_accessor(host, PyUnicode_AsUTF8(key.ptr())));
 		}
-		else if (PyInt_Check(key.ptr()))
+		else if (PyLong_Check(key.ptr()))
 		{
-			int index = PyInt_AsLong(key.ptr());
+			int index = PyLong_AsLong(key.ptr());
 
 			// Support indexing from both ends.
 			if (index < 0)

@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,6 +32,7 @@
 #include "Types.h"
 #include "TypeConverter.h"
 #include <list>
+#include <type_traits>
 
 namespace Rocket {
 namespace Core {
@@ -66,14 +67,14 @@ public:
 		BYTE = 'b',
 		CHAR = 'c',
 		FLOAT = 'f',
-		INT = 'i', 
+		INT = 'i',
 		STRING = 's',
 		WORD = 'w',
 		VECTOR2 = '2',
 		COLOURF = 'g',
 		COLOURB = 'h',
 		SCRIPTINTERFACE = 'p',
-		VOIDPTR = '*',			
+		VOIDPTR = '*',
 	};
 
 	/// Clears the data structure stored by the variant.
@@ -141,14 +142,15 @@ public:
 	Variant& operator=(const Variant& copy);
 
 private:
-	
+
 #ifdef ROCKET_ARCH_64
-		static const int LOCAL_DATA_SIZE = 40; // Required for Strings
+		static const size_t LOCAL_DATA_SIZE = 40; // Required for Strings
 #else
-		static const int LOCAL_DATA_SIZE = 24;
+		static const size_t LOCAL_DATA_SIZE = 24;
 #endif
-	Type type;
-	char data[LOCAL_DATA_SIZE];
+    Type type;
+    std::aligned_union<0, byte, char, float, int, String, word, Vector2f, Colourf, Colourb, ScriptInterface*,
+                       void*>::type data;
 };
 
 #include "Variant.inl"

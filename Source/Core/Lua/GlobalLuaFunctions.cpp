@@ -109,38 +109,39 @@ int rocket_ipairs(lua_State* L)
     else
         lua_pushvalue(L,lua_upvalueindex(1)); //generator
     lua_pushvalue(L,1); //state
-    lua_pushnil(L); //initial value
+	lua_pushinteger(L, 0);  /* and initial value */
     return 3;
 }
 
-
+/*
 //Based off of the luaB_print function from Lua's lbaselib.c
 int LuaPrint(lua_State* L)
 {
-    int n = lua_gettop(L);  /* number of arguments */
+    int n = lua_gettop(L);  // number of arguments
     int i;
     lua_getglobal(L, "tostring");
     StringList string_list = StringList();
     String output = "";
-    for (i=1; i<=n; i++) 
+    for (i=1; i<=n; i++)
     {
         const char *s;
-        lua_pushvalue(L, -1);  /* function to be called */
-        lua_pushvalue(L, i);   /* value to print */
+        lua_pushvalue(L, -1);  // function to be called
+        lua_pushvalue(L, i);   // value to print
         lua_call(L, 1, 1);
-        s = lua_tostring(L, -1);  /* get result */
+        s = lua_tostring(L, -1);  // get result
         if (s == NULL)
             return luaL_error(L, LUA_QL("tostring") " must return a string to "
                                  LUA_QL("print"));
-        if (i>1) 
+        if (i>1)
             output += "\t";
         output += String(s);
-        lua_pop(L, 1);  /* pop result */
+        lua_pop(L, 1);  // pop result
     }
     output += "\n";
     Log::Message(Log::LT_INFO, output.CString());
     return 0;
 }
+*/
 
 void OverrideLuaGlobalFunctions(lua_State* L)
 {
@@ -154,8 +155,10 @@ void OverrideLuaGlobalFunctions(lua_State* L)
     lua_pushcclosure(L,rocket_ipairs,1);
     lua_setfield(L,-2,"ipairs");
 
+    /*
     lua_pushcfunction(L,LuaPrint);
     lua_setfield(L,-2,"print");
+     */
 
     lua_pop(L,1); //pop _G
 }

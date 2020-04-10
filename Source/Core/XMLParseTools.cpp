@@ -26,7 +26,7 @@
  */
 
 #include "precompiled.h"
-#include "XMLParseTools.h"
+#include "../../Include/Rocket/Core/XMLParseTools.h"
 #include "../../Include/Rocket/Core/StreamMemory.h"
 #include "Template.h"
 #include "TemplateCache.h"

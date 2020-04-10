@@ -206,8 +206,8 @@ mark_as_advanced(FREETYPE_INCLUDE_DIRS FREETYPE_LIBRARY FREETYPE_LINK_DIRECTORIE
 
 # Boost and Python
 if(BUILD_PYTHON_BINDINGS)
-    find_package(PythonInterp 2 REQUIRED)
-    find_package(PythonLibs 2 REQUIRED)
+    find_package(PythonInterp 3 REQUIRED)
+    find_package(PythonLibs 3 REQUIRED)
     execute_process(
         COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
         OUTPUT_VARIABLE PYTHON_INSTDIR
@@ -635,7 +635,7 @@ endif(NOT BUILD_FRAMEWORK)
         		message("-- Can SDL2 sample be built - yes")
 			include_directories(${SDL2_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
 
-			bl_sample(sdl2 ${sample_LIBRARIES}  ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY})
+			bl_sample(sdl2 ${sample_LIBRARIES}  ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} GLEW::GLEW)
 			# The samples always set this as their current working directory
 			install(DIRECTORY DESTINATION ${SAMPLES_DIR}/basic/sdl2)
 			install(TARGETS sdl2
@@ -681,7 +681,7 @@ endif(NOT BUILD_FRAMEWORK)
 			message("-- Can SFML 2.x sample be built - yes: with GLEW")
 			include_directories(${SFML_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
 			add_definitions( -DENABLE_GLEW )
-			bl_sample(sfml2 ${sample_LIBRARIES} ${SFML_LIBRARIES} ${GLEW_LIBRARY})
+			bl_sample(sfml2 ${sample_LIBRARIES} ${SFML_LIBRARIES} GLEW::GLEW)
 		else()
 			message("-- Can SFML 2.x sample be built - yes: without GLEW")
 			include_directories(${SFML_INCLUDE_DIR})

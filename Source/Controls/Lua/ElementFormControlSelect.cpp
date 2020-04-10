@@ -76,8 +76,8 @@ int ElementFormControlSelectGetAttrselection(lua_State* L)
     ElementFormControlSelect* obj = LuaType<ElementFormControlSelect>::check(L,1);
     LUACHECKOBJ(obj);
     int selection = obj->GetSelection();
-    lua_pushinteger(L,selection);
-    return 1;
+	lua_pushinteger(L, selection < 0 ? -1 : selection + 1);
+	return 1;
 }
 
 
@@ -87,8 +87,8 @@ int ElementFormControlSelectSetAttrselection(lua_State* L)
     ElementFormControlSelect* obj = LuaType<ElementFormControlSelect>::check(L,1);
     LUACHECKOBJ(obj);
     int selection = luaL_checkinteger(L,2);
-    obj->SetSelection(selection);
-    return 0;
+	obj->SetSelection(selection <= 0 ? -1 : selection - 1);
+	return 0;
 }
 
 

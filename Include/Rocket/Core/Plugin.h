@@ -29,6 +29,7 @@
 #define ROCKETCOREPLUGIN_H
 
 #include "Header.h"
+#include "String.h"
 
 namespace Rocket {
 namespace Core {

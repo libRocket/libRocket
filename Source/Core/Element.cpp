@@ -39,7 +39,7 @@
 #include "LayoutEngine.h"
 #include "PluginRegistry.h"
 #include "StyleSheetParser.h"
-#include "XMLParseTools.h"
+#include "../../Include/Rocket/Core/XMLParseTools.h"
 #include "../../Include/Rocket/Core/Core.h"
 
 namespace Rocket {
@@ -197,8 +197,13 @@ Element* Element::Clone() const
 	if (instancer != NULL)
 	{
 		clone = instancer->InstanceElement(NULL, GetTagName(), attributes);
-		if (clone != NULL)
+		if (clone != NULL) {
 			clone->SetInstancer(instancer);
+			clone->SetAttributes(&attributes);
+
+			ElementUtilities::BindEventAttributes(clone);
+			PluginRegistry::NotifyElementCreate(clone);
+		}
 	}
 	else
 		clone = Factory::InstanceElement(NULL, GetTagName(), GetTagName(), attributes);

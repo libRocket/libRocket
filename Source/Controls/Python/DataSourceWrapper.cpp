@@ -42,7 +42,7 @@ static Core::String GetPythonClassName(PyObject* object)
 	// Check if the object is a class; either a standard Python class or a Boost Python class metatype. If so, we can
 	// query the name of the class object directly; otherwise, it is an object that we have to query the class type
 	// from.
-	bool is_class = PyClass_Check(object) ||
+	bool is_class = PyObject_IsInstance(object, (PyObject *)&PyType_Type) ||
 					object->ob_type == python::objects::class_metatype().get();
 	PyObject* py_class = NULL;
 	if (!is_class)
@@ -59,10 +59,10 @@ static Core::String GetPythonClassName(PyObject* object)
 	PyObject* py_class_name = PyObject_GetAttrString(object, "__name__");
 	if (py_class_name != NULL)
 	{
-		const char* class_name = PyString_AsString(py_class_name);
+		const char* class_name = PyUnicode_AsUTF8(py_class_name);
 
 		PyObject* py_module_name = PyObject_GetAttrString(object, "__module__");
-		const char* module_name = PyString_AsString(py_module_name);
+		const char* module_name = PyUnicode_AsUTF8(py_module_name);
 
 		full_name.FormatString(128, "%s.%s", module_name, class_name);
 
@@ -133,13 +133,13 @@ void DataSourceWrapper::GetRow(Core::StringList& row, const Core::String& table,
 			Core::String entry;
 
 			PyObject* entry_object = PyList_GetItem(result, i);
-			if (PyString_Check(entry_object))
+			if (PyUnicode_Check(entry_object))
 			{
-				entry = PyString_AS_STRING(entry_object);
+				entry = PyUnicode_AsUTF8(entry_object);
 			}
-			else if (PyInt_Check(entry_object))
+			else if (PyLong_Check(entry_object))
 			{
-				int entry_int = (int)PyInt_AS_LONG(entry_object);
+				int entry_int = (int)PyLong_AsLong(entry_object);
 				Core::TypeConverter< int, Core::String >::Convert(entry_int, entry);
 			}
 			else if (PyFloat_Check(entry_object))
@@ -199,9 +199,9 @@ int DataSourceWrapper::GetNumRows(const Core::String& table)
 	PyObject* result = PyObject_CallObject(callable, python::make_tuple(table.CString()).ptr());
 	Py_DECREF(callable);
 
-	if (result && PyInt_Check(result))
+	if (result && PyLong_Check(result))
 	{
-		num_rows = PyInt_AsLong(result);
+		num_rows = PyLong_AsLong(result);
 	}
 	else
 	{

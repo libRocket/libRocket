@@ -27,7 +27,7 @@
 
 #include "precompiled.h"
 #include "TemplateCache.h"
-#include "StreamFile.h"
+#include "../../Include/Rocket/Core/StreamFile.h"
 #include "Template.h"
 #include "../../Include/Rocket/Core/Log.h"
 

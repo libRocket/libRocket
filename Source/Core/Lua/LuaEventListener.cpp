@@ -36,7 +36,7 @@ namespace Core {
 namespace Lua {
 typedef Rocket::Core::ElementDocument Document;
 
-LuaEventListener::LuaEventListener(const String& code, Element* element) : EventListener()
+LuaEventListener::LuaEventListener(const String& code) : EventListener()
 {
     //compose function
     String function = "return function (event,element,document) ";
@@ -46,15 +46,6 @@ LuaEventListener::LuaEventListener(const String& code, Element* element) : Event
     //make sure there is an area to save the function
     lua_State* L = Interpreter::GetLuaState();
     int top = lua_gettop(L);
-    lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
-    if(lua_isnoneornil(L,-1))
-    {
-        lua_newtable(L);
-        lua_setglobal(L,"EVENTLISTENERFUNCTIONS");
-        lua_pop(L,1); //pop the unsucessful getglobal
-        lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
-    }
-    int tbl = lua_gettop(L);
 
     //compile,execute,and save the function
     if(luaL_loadstring(L,function.CString()) != 0)
@@ -70,48 +61,25 @@ LuaEventListener::LuaEventListener(const String& code, Element* element) : Event
             return;
         }
     }
-    luaFuncRef = luaL_ref(L,tbl); //creates a reference to the item at the top of the stack in to the table we just created
-    lua_pop(L,1); //pop the EVENTLISTENERFUNCTIONS table
+    luaFuncRef = luaL_ref(L, LUA_REGISTRYINDEX); //creates a reference to the item at the top of the stack
 
-    attached = element;
-	if(element)
-		parent = element->GetOwnerDocument();
-	else
-		parent = NULL;
     strFunc = function;
     lua_settop(L,top);
 }
 
 //if it is passed in a Lua function
-LuaEventListener::LuaEventListener(lua_State* L, int narg, Element* element)
+LuaEventListener::LuaEventListener(lua_State* L, int narg)
 {
     int top = lua_gettop(L);
-    lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
-	if(lua_isnoneornil(L,-1))
-	{
-		lua_newtable(L);
-		lua_setglobal(L,"EVENTLISTENERFUNCTIONS");
-		lua_pop(L,1); //pop the unsucessful getglobal
-		lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
-	}
 	lua_pushvalue(L,narg);
-	luaFuncRef = luaL_ref(L,-2); //put the funtion as a ref in to that table
-	lua_pop(L,1); //pop the EVENTLISTENERFUNCTIONS table
+	luaFuncRef = luaL_ref(L,LUA_REGISTRYINDEX); //put the funtion as a ref into the registry
 
-	attached = element;
-	if(element)
-		parent = element->GetOwnerDocument();
-	else
-		parent = NULL;
     lua_settop(L,top);
 }
 
 LuaEventListener::~LuaEventListener()
 {
-    if(attached)
-        attached->RemoveReference();
-    if(parent)
-        parent->RemoveReference();
+	luaL_unref(Interpreter::GetLuaState(), LUA_REGISTRYINDEX, luaFuncRef);
 }
 
 /// Process the incoming Event
@@ -125,8 +93,7 @@ void LuaEventListener::ProcessEvent(Event& event)
     int top = lua_gettop(L); 
 
     //push the arguments
-    lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
-    lua_rawgeti(L,-1,luaFuncRef);
+    lua_rawgeti(L,LUA_REGISTRYINDEX,luaFuncRef);
     LuaType<Event>::push(L,&event,false);
 	LuaType<Element>::push(L,attached,false);
     LuaType<Document>::push(L,parent,false);
@@ -135,6 +102,17 @@ void LuaEventListener::ProcessEvent(Event& event)
 
     lua_settop(L,top); //balanced stack makes Lua happy
     
+}
+void LuaEventListener::OnAttach(Element* el) {
+	attached = el;
+	if(el)
+		parent = el->GetOwnerDocument();
+	else
+		parent = NULL;
+}
+void LuaEventListener::OnDetach(Element* /*el*/) {
+	// Lua event listeners are single-use
+	delete this;
 }
 
 }

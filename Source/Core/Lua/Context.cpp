@@ -59,16 +59,16 @@ int ContextAddEventListener(lua_State* L, Context* obj)
 	if(type == LUA_TFUNCTION)
 	{
 		if(element)
-			element->AddEventListener(evt, new LuaEventListener(L,2,element), capturephase);
+			element->AddEventListener(evt, new LuaEventListener(L,2), capturephase);
 		else
-			obj->AddEventListener(evt, new LuaEventListener(L,2,NULL), capturephase);
+			obj->AddEventListener(evt, new LuaEventListener(L,2), capturephase);
 	}
 	else if(type == LUA_TSTRING)
 	{
 		if(element)
-			element->AddEventListener(evt, new LuaEventListener(luaL_checkstring(L,2),element), capturephase);
+			element->AddEventListener(evt, new LuaEventListener(luaL_checkstring(L,2)), capturephase);
 		else
-			obj->AddEventListener(evt, new LuaEventListener(luaL_checkstring(L,2),NULL), capturephase);
+			obj->AddEventListener(evt, new LuaEventListener(luaL_checkstring(L,2)), capturephase);
 	}
 	else
 	{
@@ -101,7 +101,9 @@ int ContextLoadDocument(lua_State* L, Context* obj)
     const char* path = luaL_checkstring(L,1);
     Document* doc = obj->LoadDocument(path);
     LuaType<Document>::push(L,doc,false);
-	doc->RemoveReference();
+    if (doc != nullptr) {
+	    doc->RemoveReference();
+    }
     return 1;
 }
 

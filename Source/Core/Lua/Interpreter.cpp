@@ -34,6 +34,7 @@
 #include <Rocket/Core/Lua/LuaType.h>
 #include "LuaDocumentElementInstancer.h"
 #include <Rocket/Core/Factory.h>
+#include <sstream>
 #include "LuaEventListenerInstancer.h"
 #include "Rocket.h"
 //the types I made
@@ -162,6 +163,36 @@ void Interpreter::BeginCall(int funRef)
     lua_rawgeti(_L, LUA_REGISTRYINDEX, (int)funRef);
 }
 
+int Interpreter::ErrorHandler(lua_State* L) {
+	std::stringstream msgStream;
+
+	msgStream << "LUA ERROR: " << lua_tostring(L, -1);
+	lua_pop(L, -1);
+
+	// Get the stack via the debug.traceback() function
+	lua_getglobal(L, LUA_DBLIBNAME);
+
+	if (!lua_isnil(L, -1))
+	{
+		msgStream << "\n";
+		lua_getfield(L, -1, "traceback");
+		lua_remove(L, -2);
+
+		if (lua_pcall(L, 0, 1, 0) != 0)
+			msgStream << "Error while retrieving stack: " << lua_tostring(L, -1);
+		else
+			msgStream << lua_tostring(L, -1);
+
+		lua_pop(L, 1);
+	}
+	msgStream << "\n";
+
+	auto message = msgStream.str();
+	lua_pushstring(L, message.c_str());
+
+	return 1;
+}
+
 bool Interpreter::ExecuteCall(int params, int res)
 {
     bool ret = true;
@@ -181,11 +212,17 @@ bool Interpreter::ExecuteCall(int params, int res)
     }
     else
     {
-        if(lua_pcall(_L,params,res,0) != 0)
+    	lua_pushcfunction(_L, ErrorHandler);
+    	lua_insert(_L, -params - 2);
+
+        if(lua_pcall(_L,params,res,-params - 2) != 0)
         {
             Report(_L);
             ret = false;
+            res = 0;
         }
+
+        lua_remove(_L, -res - 1); // Remove error function from stack
     }
     return ret;
 }
@@ -218,6 +255,8 @@ void Interpreter::OnInitialise()
 
 void Interpreter::OnShutdown()
 {
+	// Commit suicide
+	delete this;
 }
 
 void Interpreter::Initialise()
@@ -232,13 +271,12 @@ void Interpreter::Initialise(lua_State *luaStatePointer)
 	Rocket::Core::RegisterPlugin(iPtr);
 }
 
-void Interpreter::Shutdown()
+void Interpreter::Shutdown(bool free_state)
 {
-	lua_close(_L);
+	if (free_state) {
+		lua_close(_L);
+	}
 }
-
-
-
 
 }
 }

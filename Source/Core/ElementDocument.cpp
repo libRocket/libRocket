@@ -33,11 +33,11 @@
 #include "ElementStyle.h"
 #include "EventDispatcher.h"
 #include "LayoutEngine.h"
-#include "StreamFile.h"
+#include "../../Include/Rocket/Core/StreamFile.h"
 #include "StyleSheetFactory.h"
 #include "Template.h"
 #include "TemplateCache.h"
-#include "XMLParseTools.h"
+#include "../../Include/Rocket/Core/XMLParseTools.h"
 
 namespace Rocket {
 namespace Core {

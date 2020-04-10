@@ -77,10 +77,10 @@ EventListener::EventListener(PyObject* object)
 			PyErr_Clear();
 		}
 	}
-	else if (PyString_Check(object))
+	else if (PyUnicode_Check(object))
 	{
 		// Its a string, we need to compile it
-		source_code = PyString_AsString(object);
+		source_code = PyUnicode_AsUTF8(object);
 	}
 	else
 	{

@@ -139,7 +139,7 @@ int main(int, char**)
 	context->RemoveReference();
 	
 	// Shutdown Lua  before we shut down Rocket.
-	Rocket::Core::Lua::Interpreter::Shutdown();
+	Rocket::Core::Lua::Interpreter::Shutdown(true);
 
 	// Shut down the game singletons.
 	HighScores::Shutdown();

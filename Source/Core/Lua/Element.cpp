@@ -79,12 +79,12 @@ int ElementAddEventListener(lua_State* L, Element* obj)
     int type = lua_type(L,2);
     if(type == LUA_TFUNCTION)
     {
-        listener = new LuaEventListener(L,2,obj);
+        listener = new LuaEventListener(L,2);
     }
     else if(type == LUA_TSTRING)
     {
         const char* code = luaL_checkstring(L,2);
-        listener = new LuaEventListener(code,obj);
+        listener = new LuaEventListener(code);
     }
 	else
 	{
@@ -115,6 +115,13 @@ int ElementClick(lua_State* L, Element* obj)
 {
     obj->Click();
     return 0;
+}
+
+int ElementClone(lua_State* L, Element* obj) {
+	auto el = obj->Clone();
+	LuaType<Element>::push(L,el,true);
+	el->RemoveReference();
+	return 1;
 }
 
 int ElementDispatchEvent(lua_State* L, Element* obj)
@@ -180,7 +187,22 @@ int ElementGetElementsByTagName(lua_State* L, Element* obj)
     lua_newtable(L);
     for(unsigned int i = 0; i < list.size(); i++)
     {
-        lua_pushinteger(L,i);
+        lua_pushinteger(L,i + 1);
+        LuaType<Element>::push(L,list[i],false);
+        lua_settable(L,-3); //-3 is the table
+    }
+    return 1;
+}
+
+int ElementGetElementsByClassName(lua_State* L, Element* obj)
+{
+    const char* class_name = luaL_checkstring(L,1);
+    ElementList list;
+    obj->GetElementsByClassName(list,class_name);
+    lua_newtable(L);
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        lua_pushinteger(L,i + 1);
         LuaType<Element>::push(L,list[i],false);
         lua_settable(L,-3); //-3 is the table
     }
@@ -257,6 +279,14 @@ int ElementSetClass(lua_State* L, Element* obj)
     const char* name = luaL_checkstring(L,1);
     bool value = CHECK_BOOL(L,2);
     obj->SetClass(name,value);
+    return 0;
+}
+
+int ElementSetPseudoClass(lua_State* L, Element* obj)
+{
+    const char* name = luaL_checkstring(L,1);
+    bool value = CHECK_BOOL(L,2);
+    obj->SetPseudoClass(name,value);
     return 0;
 }
 
@@ -554,11 +584,13 @@ RegType<Element> ElementMethods[] =
     LUAMETHOD(Element,AppendChild)
     LUAMETHOD(Element,Blur)
     LUAMETHOD(Element,Click)
+    LUAMETHOD(Element,Clone)
     LUAMETHOD(Element,DispatchEvent)
     LUAMETHOD(Element,Focus)
     LUAMETHOD(Element,GetAttribute)
     LUAMETHOD(Element,GetElementById)
     LUAMETHOD(Element,GetElementsByTagName)
+    LUAMETHOD(Element,GetElementsByClassName)
     LUAMETHOD(Element,HasAttribute)
     LUAMETHOD(Element,HasChildNodes)
     LUAMETHOD(Element,InsertBefore)
@@ -569,6 +601,7 @@ RegType<Element> ElementMethods[] =
     LUAMETHOD(Element,ScrollIntoView)
     LUAMETHOD(Element,SetAttribute)
     LUAMETHOD(Element,SetClass)
+    LUAMETHOD(Element,SetPseudoClass)
     { NULL, NULL },
 };
 

@@ -60,7 +60,7 @@ Event* EventInstancer::InstanceEvent(Element* target, const Rocket::Core::String
 
 		// Put the arguments into a tuple
 		PyObject* args = PyTuple_New(3);
-		PyTuple_SetItem(args, 0, PyString_FromString(name.CString()));
+		PyTuple_SetItem(args, 0, PyUnicode_FromString(name.CString()));
 		PyTuple_SetItem(args, 1, params.ptr());
 		PyTuple_SetItem(args, 2, PyBool_FromLong(interruptable));
 	

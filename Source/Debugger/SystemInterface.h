@@ -71,7 +71,8 @@ public:
 	
 	/// Deactivate keyboard (for touchscreen devices)
 	virtual void DeactivateKeyboard();
-private:
+	void JoinPath(Core::String& translated_path, const Core::String& document_path, const Core::String& path) override;
+ private:
 	Core::SystemInterface* application_interface;
 	ElementLog* log;
 };

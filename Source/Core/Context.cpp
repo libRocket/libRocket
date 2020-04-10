@@ -30,7 +30,7 @@
 #include "EventDispatcher.h"
 #include "EventIterators.h"
 #include "PluginRegistry.h"
-#include "StreamFile.h"
+#include "../../Include/Rocket/Core/StreamFile.h"
 #include "../../Include/Rocket/Core/StreamMemory.h"
 #include <algorithm>
 #include <iterator>
