@@ -79,7 +79,7 @@ LuaEventListener::LuaEventListener(lua_State* L, int narg)
 
 LuaEventListener::~LuaEventListener()
 {
-	lua_unref(Interpreter::GetLuaState(), luaFuncRef);
+	luaL_unref(Interpreter::GetLuaState(), LUA_REGISTRYINDEX, luaFuncRef);
 }
 
 /// Process the incoming Event
