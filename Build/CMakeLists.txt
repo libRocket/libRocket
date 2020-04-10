@@ -635,7 +635,7 @@ endif(NOT BUILD_FRAMEWORK)
         		message("-- Can SDL2 sample be built - yes")
 			include_directories(${SDL2_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
 
-			bl_sample(sdl2 ${sample_LIBRARIES}  ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY})
+			bl_sample(sdl2 ${sample_LIBRARIES}  ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} GLEW::GLEW)
 			# The samples always set this as their current working directory
 			install(DIRECTORY DESTINATION ${SAMPLES_DIR}/basic/sdl2)
 			install(TARGETS sdl2
@@ -681,7 +681,7 @@ endif(NOT BUILD_FRAMEWORK)
 			message("-- Can SFML 2.x sample be built - yes: with GLEW")
 			include_directories(${SFML_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
 			add_definitions( -DENABLE_GLEW )
-			bl_sample(sfml2 ${sample_LIBRARIES} ${SFML_LIBRARIES} ${GLEW_LIBRARY})
+			bl_sample(sfml2 ${sample_LIBRARIES} ${SFML_LIBRARIES} GLEW::GLEW)
 		else()
 			message("-- Can SFML 2.x sample be built - yes: without GLEW")
 			include_directories(${SFML_INCLUDE_DIR})
