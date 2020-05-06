@@ -30,6 +30,7 @@
 
 #include "Header.h"
 #include "Variant.h"
+#include <initializer_list>
 
 namespace Rocket {
 namespace Core {
@@ -46,6 +47,7 @@ class ROCKETCORE_API Dictionary
 public:
 	Dictionary();
 	Dictionary(const Dictionary &dict);
+	Dictionary(std::initializer_list<std::pair<String, Variant>> init);
 	~Dictionary();
 
 	/// Store an item in the dictionary

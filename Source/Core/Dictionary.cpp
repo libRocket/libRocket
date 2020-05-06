@@ -185,6 +185,12 @@ Dictionary::Dictionary(const Dictionary &dict)
 	Copy(dict);
 }
 
+Dictionary::Dictionary(std::initializer_list<std::pair<String, Variant>> init) : Dictionary() {
+	Reserve(init.size());
+	for (auto& kv : init)
+		Set(kv.first, kv.second);
+}
+
 Dictionary::~Dictionary() 
 {
 	Clear();
