@@ -94,6 +94,12 @@ void ElementBorder::GenerateBorder()
 		border_colours[2] = element->GetProperty(BORDER_BOTTOM_COLOR)->value.Get< Colourb >();
 		border_colours[3] = element->GetProperty(BORDER_LEFT_COLOR)->value.Get< Colourb >();
 
+		// Apply opacity to the border
+		float opacity = element->GetProperty<float>(OPACITY);
+		for(int i = 0; i < 4; ++i) {
+			border_colours[i] *= opacity;
+		}
+
 		for (int i = 0; i < element->GetNumBoxes(); ++i)
 			GenerateBorder(raw_vertices, raw_indices, index_offset, element->GetBox(i), border_colours);
 	}

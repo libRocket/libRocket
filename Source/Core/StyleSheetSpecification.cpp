@@ -261,6 +261,7 @@ void StyleSheetSpecification::RegisterDefaultProperties()
 	RegisterProperty(FOCUS, "auto", true, false).AddParser("keyword", "none, auto");
 
 	RegisterProperty(SCROLLBAR_MARGIN, "0", false, false).AddParser("number");
+	RegisterProperty(OPACITY, "1", true, false).AddParser("number");
 }
 
 }

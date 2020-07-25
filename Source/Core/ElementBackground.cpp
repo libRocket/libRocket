@@ -67,6 +67,11 @@ void ElementBackground::GenerateBackground()
 {
 	// Fetch the new colour for the background. If the colour is transparent, then we don't render any background.
 	Colourb colour = element->GetProperty(BACKGROUND_COLOR)->value.Get< Colourb >();
+	float opacity = element->GetProperty<float>(OPACITY);
+
+	// Apply opacity
+	colour.alpha *= opacity;
+
 	if (colour.alpha <= 0)
 	{
 		geometry.GetVertices().clear();
