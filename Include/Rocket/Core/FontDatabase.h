@@ -119,7 +119,7 @@ private:
 
     typedef std::vector< FontProvider *> FontProviderTable;
 
-    static FontProviderTable font_provider_table;
+    static FontProviderTable* font_provider_table;
 	static FontDatabase* instance;
 };
 

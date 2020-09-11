@@ -46,7 +46,7 @@ LayoutBlockBox::LayoutBlockBox(LayoutEngine* _layout_engine, LayoutBlockBox* _pa
 	layout_engine = _layout_engine;
 	parent = _parent;
 
-	context = BLOCK;
+    context = FC_BLOCK;
 	element = _element;
 	interrupted_chain = NULL;
 
@@ -133,7 +133,7 @@ LayoutBlockBox::LayoutBlockBox(LayoutEngine* _layout_engine, LayoutBlockBox* _pa
 
 	space = _parent->space;
 
-	context = INLINE;
+    context = FC_INLINE;
 	line_boxes.push_back(new LayoutLineBox(this));
 	wrap_content = parent->wrap_content;
 
@@ -161,7 +161,7 @@ LayoutBlockBox::~LayoutBlockBox()
 	for (size_t i = 0; i < line_boxes.size(); i++)
 		delete line_boxes[i];
 
-	if (context == BLOCK)
+    if (context == FC_BLOCK)
 		delete space;
 }
 
@@ -169,7 +169,7 @@ LayoutBlockBox::~LayoutBlockBox()
 LayoutBlockBox::CloseResult LayoutBlockBox::Close()
 {
 	// If the last child of this block box is an inline box, then we haven't closed it; close it now!
-	if (context == BLOCK)
+    if (context == FC_BLOCK)
 	{
 		CloseResult result = CloseInlineBlockBox();
 		if (result != OK)
@@ -203,7 +203,7 @@ LayoutBlockBox::CloseResult LayoutBlockBox::Close()
 	// Set the computed box on the element.
 	if (element != NULL)
 	{
-		if (context == BLOCK)
+        if (context == FC_BLOCK)
 		{
 			// Calculate the dimensions of the box's *internal* content; this is the tightest-fitting box around all of the
 			// internal elements, plus this element's padding.
@@ -262,7 +262,7 @@ LayoutBlockBox::CloseResult LayoutBlockBox::Close()
 
 	// If we represent a positioned element, then we can now (as we've been sized) act as the containing block for all
 	// the absolutely-positioned elements of our descendants.
-	if (context == BLOCK &&
+    if (context == FC_BLOCK &&
 		element != NULL)
 	{
 		if (element->GetPosition() != POSITION_STATIC)
@@ -275,7 +275,7 @@ LayoutBlockBox::CloseResult LayoutBlockBox::Close()
 // Called by a closing block box child.
 bool LayoutBlockBox::CloseBlockBox(LayoutBlockBox* child)
 {
-	ROCKET_ASSERT(context == BLOCK);
+    ROCKET_ASSERT(context == FC_BLOCK);
 	box_cursor = (child->GetPosition().y - child->box.GetEdge(Box::MARGIN, Box::TOP) - (box.GetPosition().y + position.y)) + child->GetBox().GetSize(Box::MARGIN).y;
 
 	return CatchVerticalOverflow();
@@ -284,7 +284,7 @@ bool LayoutBlockBox::CloseBlockBox(LayoutBlockBox* child)
 // Called by a closing line box child.
 LayoutInlineBox* LayoutBlockBox::CloseLineBox(LayoutLineBox* child, LayoutInlineBox* overflow, LayoutInlineBox* overflow_chain)
 {
-	ROCKET_ASSERT(context == INLINE);
+    ROCKET_ASSERT(context == FC_INLINE);
 	if (child->GetDimensions().x > 0)
 		box_cursor = (child->GetPosition().y - (box.GetPosition().y + position.y)) + child->GetDimensions().y;
 
@@ -312,11 +312,11 @@ LayoutInlineBox* LayoutBlockBox::CloseLineBox(LayoutLineBox* child, LayoutInline
 // Adds a new block element to this block box.
 LayoutBlockBox* LayoutBlockBox::AddBlockElement(Element* element)
 {
-	ROCKET_ASSERT(context == BLOCK);
+    ROCKET_ASSERT(context == FC_BLOCK);
 
 	// Check if our most previous block box is rendering in an inline context.
 	if (!block_boxes.empty() &&
-		block_boxes.back()->context == INLINE)
+        block_boxes.back()->context == FC_INLINE)
 	{
 		LayoutBlockBox* inline_block_box = block_boxes.back();
 		LayoutInlineBox* open_inline_box = inline_block_box->line_boxes.back()->GetOpenInlineBox();
@@ -348,13 +348,13 @@ LayoutBlockBox* LayoutBlockBox::AddBlockElement(Element* element)
 // Adds a new inline element to this inline box.
 LayoutInlineBox* LayoutBlockBox::AddInlineElement(Element* element, const Box& box)
 {
-	if (context == BLOCK)
+    if (context == FC_BLOCK)
 	{
 		LayoutInlineBox* inline_box;
 
 		// If we have an open child rendering in an inline context, we can add this element into it.
 		if (!block_boxes.empty() &&
-			block_boxes.back()->context == INLINE)
+            block_boxes.back()->context == FC_INLINE)
 			inline_box = block_boxes.back()->AddInlineElement(element, box);
 
 		// No dice! Ah well, nothing for it but to open a new inline context block box.
@@ -389,7 +389,7 @@ void LayoutBlockBox::AddBreak()
 	if (!block_boxes.empty())
 	{
 		LayoutBlockBox* block_box = block_boxes.back();
-		if (block_box->context == INLINE)
+        if (block_box->context == FC_INLINE)
 		{
 			LayoutLineBox* last_line = block_box->line_boxes.back();
 			if (last_line->GetDimensions().y < 0)
@@ -410,7 +410,7 @@ bool LayoutBlockBox::AddFloatElement(Element* element)
 {
 	// If we have an open inline block box, then we have to position the box a little differently.
 	if (!block_boxes.empty() &&
-		block_boxes.back()->context == INLINE)
+        block_boxes.back()->context == FC_INLINE)
 		block_boxes.back()->float_elements.push_back(element);
 
 	// Nope ... just place it!
@@ -423,7 +423,7 @@ bool LayoutBlockBox::AddFloatElement(Element* element)
 // Adds an element to this block box to be handled as an absolutely-positioned element.
 void LayoutBlockBox::AddAbsoluteElement(Element* element)
 {
-	ROCKET_ASSERT(context == BLOCK);
+    ROCKET_ASSERT(context == FC_BLOCK);
 
 	AbsoluteElement absolute_element;
 	absolute_element.element = element;
@@ -433,7 +433,7 @@ void LayoutBlockBox::AddAbsoluteElement(Element* element)
 	// If we have an open inline-context block box as our last child, then the absolute element must appear after it,
 	// but not actually close the box.
 	if (!block_boxes.empty()
-		&& block_boxes.back()->context == INLINE)
+        && block_boxes.back()->context == FC_INLINE)
 	{
 		LayoutBlockBox* inline_context_box = block_boxes.back();
 		float last_line_height = inline_context_box->line_boxes.back()->GetDimensions().y;
@@ -496,7 +496,7 @@ void LayoutBlockBox::PositionBox(Vector2f& box_position, float top_margin, int c
 	{
 		// Check for a collapsing vertical margin.
 		if (!block_boxes.empty() &&
-			block_boxes.back()->context == BLOCK)
+            block_boxes.back()->context == FC_BLOCK)
 		{
 			float bottom_margin = block_boxes.back()->GetBox().GetEdge(Box::MARGIN, Box::BOTTOM);
 			box_position.y -= Math::Min(top_margin, bottom_margin);
@@ -584,7 +584,7 @@ void LayoutBlockBox::operator delete(void* chunk)
 LayoutBlockBox::CloseResult LayoutBlockBox::CloseInlineBlockBox()
 {
 	if (!block_boxes.empty() &&
-		block_boxes.back()->context == INLINE)
+        block_boxes.back()->context == FC_INLINE)
 		return block_boxes.back()->Close();
 
 	return OK;

@@ -47,8 +47,8 @@ class LayoutBlockBox
 public:
 	enum FormattingContext
 	{
-		BLOCK,
-		INLINE
+		FC_BLOCK,
+		FC_INLINE
 	};
 
 	enum CloseResult

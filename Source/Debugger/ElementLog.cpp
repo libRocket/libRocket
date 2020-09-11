@@ -34,7 +34,7 @@
 namespace Rocket {
 namespace Debugger {
 
-const int MAX_LOG_MESSAGES = 50;
+const size_t MAX_LOG_MESSAGES = 50;
 
 ElementLog::ElementLog(const Core::String& tag) : Core::ElementDocument(tag)
 {
@@ -193,10 +193,10 @@ void ElementLog::OnRender()
 		if (message_content)
 		{
 			unsigned int log_pointers[Core::Log::LT_MAX];
-			for (int i = 0; i < Core::Log::LT_MAX; i++)
+			for (unsigned int i = 0; i < Core::Log::LT_MAX; i++)
 				log_pointers[i] = 0;
 			int next_type = FindNextEarliestLogType(log_pointers);
-			int num_messages = 0;
+            unsigned int num_messages = 0;
 			while (next_type != -1 && num_messages < MAX_LOG_MESSAGES)
 			{
 				messages.Append(Core::String(128, "<div class=\"log-entry\"><div class=\"icon %s\">%s</div><p class=\"message\">", log_types[next_type].class_name.CString(), log_types[next_type].alert_contents.CString()));

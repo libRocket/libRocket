@@ -234,6 +234,8 @@ private:
 
 	ContextInstancer* instancer;
 
+    String property_names[7];
+
 	typedef std::set< ElementReference > ElementSet;
 	typedef std::vector< ElementReference > ElementList;
 	// Set of elements that are currently in hover state.

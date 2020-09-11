@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This source file is part of libRocket, the HTML/CSS Interface Middleware
  *
  * For the latest information, see http://www.librocket.com
@@ -52,7 +52,6 @@ FontEffect* FontEffectOutlineInstancer::InstanceFontEffect(const String& ROCKET_
 	FontEffectOutline* font_effect = new FontEffectOutline();
 	if (font_effect->Initialise(Math::RealToInteger(width)))
 		return font_effect;
-
 	font_effect->RemoveReference();
 	ReleaseFontEffect(font_effect);
 	return NULL;

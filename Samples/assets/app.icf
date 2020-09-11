@@ -1,0 +1,39 @@
+# This file is for configuration settings for your
+# application.
+#
+# The syntax is similar to windows .ini files ie
+#
+# [GroupName]
+# Setting = Value
+#
+# Which can be read by your application using
+#  e.g s3eConfigGetString("GroupName", "Setting", string)
+#
+# All settings must be documented in .config.txt files.
+# New settings specific to this application should be
+# documented in app.config.txt
+#
+# Some conditional operations are also permitted, see the
+# S3E documentation for details.
+[GxFont]
+CacheTextureMaxSize=2048
+
+[GX]
+PrintStringNumChars=5000
+DataCacheSize=200000
+UnIndexedStreamMax=8096
+DisplayFrameRate=1
+
+#DisableSurfaces=1
+#DisableCustomShaders =1
+#NoTextureUpload=1
+#UploadStreams=0
+#GLMipmapOffset=x
+
+[s3e]
+MemSize=30000000
+MemSizeDebug=500000000
+MemSize6=100000000 #8192
+
+[Util]
+#MemoryBreakpoint=9174

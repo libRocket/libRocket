@@ -303,9 +303,9 @@ void Dictionary::Insert(const String& key, Hash hash, const Variant& value)
  items again.  When entries have been deleted, the new table may
  actually be smaller than the old one.
  */
-bool Dictionary::Reserve(int minused)
+bool Dictionary::Reserve(unsigned int minused)
 {
-	int newsize;
+	unsigned int newsize;
 	DictionaryEntry *oldtable, *newtable, *ep;
 	int i = 0;
 	bool is_oldtable_malloced;
@@ -325,7 +325,7 @@ bool Dictionary::Reserve(int minused)
 	}
 
 	// If its the same size, ignore the request
-	if ((unsigned)newsize == mask + 1)
+	if (newsize == mask + 1)
 		return true;
 	
 	/* Get space for a new table. */

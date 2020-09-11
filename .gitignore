@@ -1,4 +1,4 @@
-# Ignore compiled python code
+﻿# Ignore compiled python code
 *.pyc
 # Ignore MacOSX directory info
 .DS_Store
@@ -9,3 +9,4 @@
 bin/*
 
 /lib/
+/Build/marmalade/build_librocket_vc12

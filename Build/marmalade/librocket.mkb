@@ -1,0 +1,18 @@
+option lib
+
+library
+{
+	".,librocket"
+}
+
+subproject librocket-source
+
+defines {
+	ROCKET_STATIC_LIB
+}
+
+options 
+{ 
+	optimise-speed
+    #strict-compile
+}

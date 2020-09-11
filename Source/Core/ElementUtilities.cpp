@@ -158,6 +158,7 @@ int ElementUtilities::GetLineHeight(Element* element)
 	ROCKET_UNUSED_SWITCH_ENUM(Property::ABSOLUTE_UNIT);
 	ROCKET_UNUSED_SWITCH_ENUM(Property::PPI_UNIT);
 	ROCKET_UNUSED_SWITCH_ENUM(Property::RELATIVE_UNIT);
+    ROCKET_UNUSED_SWITCH_ENUM(Property::REM);
 	case Property::NUMBER:
 	case Property::EM:
 	case Property::REM:

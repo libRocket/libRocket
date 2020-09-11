@@ -34,6 +34,7 @@
 #include "StyleSheetFactory.h"
 #include "TemplateCache.h"
 #include "TextureDatabase.h"
+#include "ElementStyle.h"
 
 namespace Rocket {
 namespace Core {
@@ -94,6 +95,9 @@ bool Initialise()
 #endif
 	}
 
+    ElementStyle::Initialise();
+    PluginRegistry::Initialise();
+
 	Log::Initialise();
 
 	TextureDatabase::Initialise();
@@ -134,6 +138,9 @@ void Shutdown()
 	Factory::Shutdown();
 
 	Log::Shutdown();
+
+    PluginRegistry::Shutdown();
+    ElementStyle::Shutdown();
 
 	initialised = false;
 

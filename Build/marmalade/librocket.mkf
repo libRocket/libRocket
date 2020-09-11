@@ -1,0 +1,128 @@
+includepaths
+{
+	../../Include
+}
+
+library
+{
+	".,librocket"
+}
+
+files
+{
+	[]
+	("../../Include/Rocket")
+	Controls.h
+	Core.h
+	Debugger.h
+	
+	[Controls]
+	("../../Include/Rocket/Controls")
+	Clipboard.h
+	Controls.h
+	DataFormatter.h
+	DataQuery.h
+	DataSource.h
+	DataSourceListener.h
+	ElementDataGrid.h
+	ElementDataGridCell.h
+	ElementDataGridExpandButton.h
+	ElementDataGridRow.h
+	ElementForm.h
+	ElementFormControl.h
+	ElementFormControlDataSelect.h
+	ElementFormControlInput.h
+	ElementFormControlSelect.h
+	ElementFormControlTextArea.h
+	ElementTabSet.h
+	Header.h
+	SelectOption.h
+
+	["Core"]
+	
+	("../../Include/Rocket/Core")
+	BaseXMLParser.h
+	"BitmapFont/*"
+	Box.h
+	Colour.h
+	Colour.inl
+	Context.h
+	ContextInstancer.h
+	ConvolutionFilter.h
+	Core.h
+	Debug.h
+	Decorator.h
+	DecoratorInstancer.h
+	Dictionary.h
+	Dictionary.inl
+	Element.h
+	Element.inl
+	ElementDocument.h
+	ElementInstancer.h
+	ElementInstancerGeneric.h
+	ElementInstancerGeneric.inl
+	ElementReference.h
+	ElementScroll.h
+	ElementText.h
+	ElementUtilities.h
+	Event.h
+	EventInstancer.h
+	EventListener.h
+	EventListenerInstancer.h
+	Factory.h
+	FileInterface.h
+	Font.h
+	FontDatabase.h
+	FontEffect.h
+	FontEffectInstancer.h
+	FontFace.h
+	FontFamily.h
+	FontGlyph.h
+	FontProvider.h
+	"FreeType/*"
+	Geometry.h
+	GeometryUtilities.h
+	Header.h
+	Input.h
+	Log.h
+	Math.h
+	MathTypes.h
+	Platform.h
+	Plugin.h
+	Property.h
+	PropertyDefinition.h
+	PropertyDictionary.h
+	PropertyParser.h
+	PropertySpecification.h
+	ReferenceCountable.h
+	RenderInterface.h
+	ScriptInterface.h
+	Stream.h
+	StreamMemory.h
+	String.h
+	StringBase.h
+	StringBase.inl
+	StringUtilities.h
+	StyleSheet.h
+	StyleSheetKeywords.h
+	StyleSheetSpecification.h
+	SystemInterface.h
+	Texture.h
+	TypeConverter.h
+	TypeConverter.inl
+	Types.h
+	URL.h
+	Variant.h
+	Variant.inl
+	Vector2.h
+	Vector2.inl
+	Vertex.h
+	WString.h
+	XMLNodeHandler.h
+	XMLParser.h
+	
+	["Debugger"]
+	("../../Include/Rocket/Debugger")
+	Debugger.h
+	Header.h
+}

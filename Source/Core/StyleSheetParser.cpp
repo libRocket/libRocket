@@ -186,7 +186,6 @@ bool StyleSheetParser::ReadProperties(PropertyDictionary& properties)
 // Updates the StyleNode tree, creating new nodes as necessary, setting the definition index
 bool StyleSheetParser::ImportProperties(StyleSheetNode* node, const String& names, const PropertyDictionary& properties, int rule_specificity)
 {
-	StyleSheetNode* tag_node = NULL;
 	StyleSheetNode* leaf_node = node;
 
 	StringList nodes;
@@ -248,7 +247,6 @@ bool StyleSheetParser::ImportProperties(StyleSheetNode* node, const String& name
 
 		// Get the named child node.
 		leaf_node = leaf_node->GetChildNode(tag, StyleSheetNode::TAG);
-		tag_node = leaf_node;
 
 		if (!id.Empty())
 			leaf_node = leaf_node->GetChildNode(id, StyleSheetNode::ID);

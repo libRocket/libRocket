@@ -1,0 +1,37 @@
+files
+{
+	[Source]
+	(.)
+	test.cpp
+	MarmaladeEvent.cpp
+	MarmaladeEvent.h
+	MarmaladeEventListenerInstancer.cpp
+	MarmaladeEventListenerInstancer.h
+	MarmaladeInput.cpp
+	MarmaladeInput.h
+	MarmaladeRenderInterfaceOpenGL.cpp
+	MarmaladeRenderInterfaceOpenGL.h
+	MarmaladeSystemInterface.cpp
+	MarmaladeSystemInterface.h
+}
+
+includepaths
+{
+	.
+}
+
+defines
+{
+    ROCKET_STATIC_LIB
+}
+
+subprojects
+{
+	iwgx
+	iwutil
+	../../Build/marmalade/librocket
+}
+
+options
+{
+}
