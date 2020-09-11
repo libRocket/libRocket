@@ -492,6 +492,9 @@ public:
 	/// @param[in] listener The listener object to be detached.
 	/// @param[in] in_capture_phase True to detach from the capture phase, false from the bubble phase.
 	void RemoveEventListener(const String& event, EventListener* listener, bool in_capture_phase = false);
+	/// Removes event listeners from this element.
+    /// @param[in] event Event to detach from.
+    void RemoveEventListeners(const String& event);
 	/// Sends an event to this element.
 	/// @param[in] event Name of the event in string form.
 	/// @param[in] parameters The event parameters.

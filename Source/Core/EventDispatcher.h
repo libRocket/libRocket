@@ -67,6 +67,10 @@ public:
 	/// @param[in] in_capture_phase Should the listener be notified in the capture phase
 	void DetachEvent(const String& type, EventListener* listener, bool in_capture_phase);
 
+	/// Detaches all listeners from the specified event name
+    /// @param[in] type Type of the event to detach from
+	void DetachEvents(const String& type);
+
 	/// Detaches all events from this dispatcher and all child dispatchers.
 	void DetachAllEvents();
 

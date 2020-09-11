@@ -196,7 +196,13 @@ struct EventListenerFromPython
 
 	static void* Convert( PyObject* object )
 	{
-		return new EventListener( object );	
+	    EventListenersMap::iterator it = EventListener::active_listeners.find(object);
+        if (it != EventListener::active_listeners.end()) {
+            return (void*)it->second;
+        }
+        else {
+        return new EventListener( object );
+        }
 	}
 };
 

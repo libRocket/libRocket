@@ -94,6 +94,28 @@ void EventDispatcher::DetachEvent(const String& type, EventListener* listener, b
 	}
 }
 
+void EventDispatcher::DetachEvents(const String& type)
+{
+	// Look up the event
+	Events::iterator event_itr = events.find(type);
+
+	// Bail if we can't find the event
+	if (event_itr == events.end())
+	{
+		return;
+	}
+
+	// Remove all listeners
+	Listeners::iterator listener_itr = (*event_itr).second.begin();
+	EventListener* listener;
+	while (listener_itr != (*event_itr).second.end())
+	{
+	    listener = (*listener_itr).listener;
+        listener_itr = (*event_itr).second.erase(listener_itr);
+        listener->OnDetach(element);
+	};
+}
+
 // Detaches all events from this dispatcher and all child dispatchers.
 void EventDispatcher::DetachAllEvents()
 {

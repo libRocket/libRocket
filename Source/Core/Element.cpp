@@ -1052,6 +1052,12 @@ void Element::RemoveEventListener(const String& event, EventListener* listener, 
 	event_dispatcher->DetachEvent(event, listener, in_capture_phase);
 }
 
+// Removes an event listener from this element.
+void Element::RemoveEventListeners(const String& event)
+{
+	event_dispatcher->DetachEvents(event);
+}
+
 // Dispatches the specified event
 bool Element::DispatchEvent(const String& event, const Dictionary& parameters, bool interruptible)
 {
