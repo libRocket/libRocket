@@ -85,7 +85,7 @@ public:
     static void RegisterCoreTypes(lua_State* L);
 
     /** 
-    @return The lua_State that the Interpreter created in Interpreter::Startup()
+    @return The lua_State that the Interpreter created in Interpreter::Startup(), or NULL if shutdown
     @remark This class lacks a SetLuaState for a reason. If you have to use a seperate Lua binding and want to keep the types
     from libRocket, then use this lua_State; it will already have all of the libraries loaded, and all of the types defined.
     Alternatively, you can call RegisterCoreTypes(lua_State*) with your own Lua state if you need them defined in it. */

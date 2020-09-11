@@ -54,6 +54,8 @@ void LuaDataFormatter::FormatData(Rocket::Core::String& formatted_data, const Ro
         return;
     }
     lua_State* L = Interpreter::GetLuaState();
+    if(L == NULL) //Lua is shutdown already
+        return;
     int top = lua_gettop(L);
     PushDataFormatterFunctionTable(L); // push the table where the function resides
     lua_rawgeti(L,-1,ref_FormatData); //push the function

@@ -45,6 +45,8 @@ LuaEventListener::LuaEventListener(const String& code, Element* element) : Event
 
     //make sure there is an area to save the function
     lua_State* L = Interpreter::GetLuaState();
+    if(L == NULL) //Lua is shutdown already
+        return;
     int top = lua_gettop(L);
     lua_getglobal(L,"EVENTLISTENERFUNCTIONS");
     if(lua_isnoneornil(L,-1))
@@ -122,6 +124,8 @@ void LuaEventListener::ProcessEvent(Event& event)
     //correct that
     if(!parent && attached) parent = attached->GetOwnerDocument();
     lua_State* L = Interpreter::GetLuaState();
+    if(L == NULL) //Lua is shutdown already
+        return;
     int top = lua_gettop(L); 
 
     //push the arguments
